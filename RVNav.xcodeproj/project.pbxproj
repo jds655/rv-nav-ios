@@ -60,7 +60,6 @@
 				FAD10D91F6469EDBAF57EDA8 /* Pods-RVNav.debug.xcconfig */,
 				2D434D66FFEBA839F3C00041 /* Pods-RVNav.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,17 +84,57 @@
 		D18DAE6E230B3C3D00D7C151 /* RVNav */ = {
 			isa = PBXGroup;
 			children = (
-				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
-				D18DAE71230B3C3D00D7C151 /* MapViewController.swift */,
-				446F3902230DA7FC00D57DE3 /* User.swift */,
-				D1BCDD7E230DB69B00986A18 /* NetworkController.swift */,
-				D18DAE73230B3C3D00D7C151 /* Main.storyboard */,
-				D18DAE81230C85EC00D7C151 /* LoginViewController.swift */,
-				D18DAE76230B3C3F00D7C151 /* Assets.xcassets */,
-				D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */,
-				D18DAE7B230B3C3F00D7C151 /* Info.plist */,
+				D1BCDD84230E0F9500986A18 /* Resources */,
+				D1BCDD80230E0F4C00986A18 /* ViewControllers */,
+				D1BCDD81230E0F5D00986A18 /* Models */,
+				D1BCDD82230E0F6900986A18 /* ModelControllers */,
+				D1BCDD83230E0F8400986A18 /* Storyboards */,
 			);
 			path = RVNav;
+			sourceTree = "<group>";
+		};
+		D1BCDD80230E0F4C00986A18 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D18DAE71230B3C3D00D7C151 /* MapViewController.swift */,
+				D18DAE81230C85EC00D7C151 /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D1BCDD81230E0F5D00986A18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				446F3902230DA7FC00D57DE3 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D1BCDD82230E0F6900986A18 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D1BCDD7E230DB69B00986A18 /* NetworkController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		D1BCDD83230E0F8400986A18 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D18DAE73230B3C3D00D7C151 /* Main.storyboard */,
+				D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D1BCDD84230E0F9500986A18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
+				D18DAE76230B3C3F00D7C151 /* Assets.xcassets */,
+				D18DAE7B230B3C3F00D7C151 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,7 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2KHAE3YT5;
-				INFOPLIST_FILE = RVNav/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RVNav/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,7 +424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2KHAE3YT5;
-				INFOPLIST_FILE = RVNav/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RVNav/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
