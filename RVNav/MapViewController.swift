@@ -46,16 +46,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         }
     }
 
-    @IBAction func navigateButtonPressed(_ sender: UIButton) {
-        mapView.setUserTrackingMode(.none, animated: true)
-
-        let annotation = MGLPointAnnotation()
-        annotation.coordinate = coordinates.last!
-        annotation.title = "Start Navigation"
-
-        mapView.addAnnotation(annotation)
-    }
-
+ 
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
