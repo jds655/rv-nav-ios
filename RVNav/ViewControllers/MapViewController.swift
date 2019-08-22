@@ -90,6 +90,5 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             destinationVC.networkController = networkController
         }
     }
-
 }
 
