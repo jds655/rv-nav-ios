@@ -74,6 +74,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             networkController?.signIn(with: signInInfo) { (error) in
                 if let error = error {
                     NSLog("Error signing up: \(error)")
+                    let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+
+                    self.present(alert, animated: true)
             }
                 guard let message = self.networkController?.result?.message else { return }
                 print(message)
@@ -81,8 +86,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
-                } else {
-                    
                 }
         }
 
