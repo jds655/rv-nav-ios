@@ -8,6 +8,7 @@
 
 
 import UIKit
+import FirebaseAnalytics
 
 enum SignInType {
     case signUp
@@ -65,8 +66,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
             networkController?.register(with: user) { (error) in
                 if let error = error {
-                    NSLog("Error signing up: \(error)")
+                    NSLog("\(error)")
+
                 }
+                Analytics.logEvent("register", parameters: nil)
+
             }
 
         case .logIn:
@@ -83,9 +87,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 guard let message = self.networkController?.result?.message else { return }
                 print(message)
                 if self.networkController?.result?.token != nil {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                    Analytics.logEvent("login", parameters: nil)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
         }
 
