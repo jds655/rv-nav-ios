@@ -26,13 +26,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var loginTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var signInButton: UIButton!
 
-    var signInType = SignInType.signUp
+    var signInType = SignInType.logIn
     var networkController: NetworkController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loginTypeSegmentedControl.selectedSegmentIndex = 1
+        firstNameTextField.isHidden = true
+        lastNameTextField.isHidden = true
+        emailTextField.isHidden = true
+        signInButton.setTitle("Log In", for: .normal)
+    }
 
     @IBAction func signInTypeChanged(_ sender: Any) {
         if loginTypeSegmentedControl.selectedSegmentIndex == 0 {
@@ -41,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             firstNameTextField.isHidden = false
             lastNameTextField.isHidden = false
             emailTextField.isHidden = false
-        } else {
+        } else if loginTypeSegmentedControl.selectedSegmentIndex == 1{
             signInType = .logIn
             signInButton.setTitle("Log In", for: .normal)
             firstNameTextField.isHidden = true
@@ -55,14 +64,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let firstName = firstNameTextField.text,
             let lastName = lastNameTextField.text,
             let password = passwordTextField.text,
+            !password.isEmpty,
             let username = usernameTextField.text,
-            let vehicleClass = emailTextField.text else { return }
+            !username.isEmpty,
+            let email = emailTextField.text else { return }
 
         switch signInType {
 
         case .signUp:
 
-            let user = User( firstName: firstName, lastName: lastName, password: password, vehicleClass: vehicleClass, username: username)
+            let user = User( firstName: firstName, lastName: lastName, password: password, vehicleClass: email, username: username)
 
             networkController?.register(with: user) { (error) in
                 if let error = error {
@@ -92,7 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
-        }
+                        }
 
 
         self.view.endEditing(true)

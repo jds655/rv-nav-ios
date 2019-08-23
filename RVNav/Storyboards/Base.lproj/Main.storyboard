@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="HVQ-5Y-qX5">
-                                <rect key="frame" x="40" y="269" width="334" height="306"/>
+                                <rect key="frame" x="40" y="144" width="334" height="306"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="bKE-IZ-4lK">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="306"/>
@@ -80,7 +80,7 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0nj-BA-jPy">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="0nj-BA-jPy">
                                                 <rect key="frame" x="0.0" y="278" width="334" height="29"/>
                                                 <segments>
                                                     <segment title="Sign Up"/>
@@ -98,9 +98,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="T7v-nn-ybi" firstAttribute="bottom" secondItem="HVQ-5Y-qX5" secondAttribute="bottom" constant="412" id="WiT-P1-lyW"/>
                             <constraint firstItem="HVQ-5Y-qX5" firstAttribute="leading" secondItem="T7v-nn-ybi" secondAttribute="leading" constant="40" id="pWv-A8-0Al"/>
                             <constraint firstItem="T7v-nn-ybi" firstAttribute="trailing" secondItem="HVQ-5Y-qX5" secondAttribute="trailing" constant="40" id="r5O-Cc-PcS"/>
-                            <constraint firstItem="HVQ-5Y-qX5" firstAttribute="top" secondItem="T7v-nn-ybi" secondAttribute="top" constant="225" id="shd-DV-8km"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T7v-nn-ybi"/>
                     </view>
@@ -139,7 +139,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dOB-u0-snw"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Dui-XS-zkh"/>
+                    <navigationItem key="navigationItem" id="Dui-XS-zkh">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="L8m-Ja-kS2">
+                            <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="logOutButtonTapped:" destination="uGF-27-2IW" id="XpN-WG-8or"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="yRP-zF-0Ep" kind="presentation" identifier="ShowLogin" id="RTs-Qa-E8T"/>
                     </connections>

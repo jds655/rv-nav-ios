@@ -12,6 +12,7 @@ import MapboxCoreNavigation
 import MapboxNavigation
 import MapboxDirections
 import SwiftKeychainWrapper
+import FirebaseAnalytics
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
 
@@ -37,6 +38,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
+        
+        Analytics.logEvent("app_opened", parameters: nil)
 
     }
 
@@ -87,6 +90,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             let destinationVC = segue.destination as! LoginViewController
             destinationVC.networkController = networkController
         }
+    }
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
+        performSegue(withIdentifier: "ShowLogin", sender: self)
+        print("Remove successful: \(removeSuccessful)")
+        
     }
 }
 
