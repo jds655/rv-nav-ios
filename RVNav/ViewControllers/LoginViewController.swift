@@ -20,7 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private weak var firstNameTextField: UITextField!
     @IBOutlet private weak var lastNameTextField: UITextField!
-    @IBOutlet private weak var vehicleClassTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var loginTypeSegmentedControl: UISegmentedControl!
@@ -40,13 +40,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             signInButton.setTitle("Sign Up", for: .normal)
             firstNameTextField.isHidden = false
             lastNameTextField.isHidden = false
-            vehicleClassTextField.isHidden = false
+            emailTextField.isHidden = false
         } else {
             signInType = .logIn
             signInButton.setTitle("Log In", for: .normal)
             firstNameTextField.isHidden = true
             lastNameTextField.isHidden = true
-            vehicleClassTextField.isHidden = true
+            emailTextField.isHidden = true
         }
     }
 
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let lastName = lastNameTextField.text,
             let password = passwordTextField.text,
             let username = usernameTextField.text,
-            let vehicleClass = vehicleClassTextField.text else { return }
+            let vehicleClass = emailTextField.text else { return }
 
         switch signInType {
 

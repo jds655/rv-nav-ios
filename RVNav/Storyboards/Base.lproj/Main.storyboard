@@ -54,11 +54,11 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vehicle Class" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFu-dG-M6K">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFu-dG-M6K">
                                                                 <rect key="frame" x="0.0" y="172" width="334" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -112,13 +112,13 @@
                         <viewLayoutGuide key="safeArea" id="T7v-nn-ybi"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="cFu-dG-M6K" id="tbP-cH-EnQ"/>
                         <outlet property="firstNameTextField" destination="2zv-Db-Qi2" id="mx2-WY-6Ba"/>
                         <outlet property="lastNameTextField" destination="H6v-M4-0J9" id="NKL-ZI-p3M"/>
                         <outlet property="loginTypeSegmentedControl" destination="0nj-BA-jPy" id="O08-GA-FRU"/>
                         <outlet property="passwordTextField" destination="qD8-cv-xJo" id="KCj-PM-l85"/>
                         <outlet property="signInButton" destination="gVE-mm-NTJ" id="BiL-ux-Icn"/>
                         <outlet property="usernameTextField" destination="p6f-dH-Jog" id="5c0-lO-Cbr"/>
-                        <outlet property="vehicleClassTextField" destination="cFu-dG-M6K" id="tbP-cH-EnQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bJ-tk-ZZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>

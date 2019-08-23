@@ -24,14 +24,14 @@ struct User: Codable, Equatable {
     var firstName: String?
     var lastName: String?
     var password: String?
-    var vehicleClass: String?
+    var email: String?
     var username: String?
     
     init( firstName: String, lastName: String, password: String, vehicleClass: String, username: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.password = password
-        self.vehicleClass = vehicleClass
+        self.email = vehicleClass
         self.username = username
         
         
