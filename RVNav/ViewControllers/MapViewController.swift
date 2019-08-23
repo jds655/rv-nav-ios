@@ -11,6 +11,7 @@ import Mapbox
 import MapboxCoreNavigation
 import MapboxNavigation
 import MapboxDirections
+import SwiftKeychainWrapper
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
 
@@ -41,7 +42,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if networkController.result?.token == nil {
+        if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
         }
     }

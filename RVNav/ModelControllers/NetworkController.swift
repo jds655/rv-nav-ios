@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class NetworkController {
 
@@ -90,6 +91,25 @@ class NetworkController {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 self.result = try jsonDecoder.decode(Result.self, from: data)
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
+                
+                if let parseJSON = json {
+                    let accessToken = parseJSON["token"] as? String
+//                    let userId = parseJSON["id"] as? Int
+                    
+                    let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
+//                    let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
+                    
+                    // Will return a bool.
+                    print("The access token save result: \(saveAccessToken)")
+//                    print("The userId save result: \(saveUserId)")
+                    
+                    if (accessToken?.isEmpty)! {
+                        NSLog("Access Token is Empty")
+                        return
+                    }
+                }
+                
             } catch {
                 completion(error)
                 return
