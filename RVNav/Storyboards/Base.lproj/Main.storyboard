@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eugene-quek-d7_fyuufaeo-unsplash_720" translatesAutoresizingMaskIntoConstraints="NO" id="SxD-nS-pJe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="HVQ-5Y-qX5">
                                 <rect key="frame" x="40" y="269" width="334" height="306"/>
                                 <subviews>
@@ -91,23 +95,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aun-Nm-c8Y">
-                                <rect key="frame" x="40" y="84" width="334" height="156"/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.98823529409999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="aun-Nm-c8Y" secondAttribute="height" multiplier="167:78" id="4QC-jl-KSa"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aun-Nm-c8Y" firstAttribute="top" secondItem="T7v-nn-ybi" secondAttribute="top" constant="40" id="COf-FI-YsN"/>
-                            <constraint firstItem="Odu-6b-7pq" firstAttribute="top" secondItem="aun-Nm-c8Y" secondAttribute="bottom" constant="29" id="CjS-zd-qEW"/>
-                            <constraint firstItem="T7v-nn-ybi" firstAttribute="trailing" secondItem="aun-Nm-c8Y" secondAttribute="trailing" constant="40" id="Gin-A7-ncF"/>
                             <constraint firstItem="HVQ-5Y-qX5" firstAttribute="leading" secondItem="T7v-nn-ybi" secondAttribute="leading" constant="40" id="pWv-A8-0Al"/>
                             <constraint firstItem="T7v-nn-ybi" firstAttribute="trailing" secondItem="HVQ-5Y-qX5" secondAttribute="trailing" constant="40" id="r5O-Cc-PcS"/>
                             <constraint firstItem="HVQ-5Y-qX5" firstAttribute="top" secondItem="T7v-nn-ybi" secondAttribute="top" constant="225" id="shd-DV-8km"/>
-                            <constraint firstItem="aun-Nm-c8Y" firstAttribute="leading" secondItem="T7v-nn-ybi" secondAttribute="leading" constant="40" id="y1E-ga-5Ah"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T7v-nn-ybi"/>
                     </view>
@@ -123,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bJ-tk-ZZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725" y="-1126"/>
+            <point key="canvasLocation" x="724.63768115942037" y="-1126.3392857142856"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="KHG-Jk-cXL">
@@ -174,4 +167,7 @@
             <point key="canvasLocation" x="-838" y="-402"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="eugene-quek-d7_fyuufaeo-unsplash_720" width="720" height="480"/>
+    </resources>
 </document>

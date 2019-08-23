@@ -56,9 +56,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         present(navigationVC, animated: true, completion: nil)
     }
 
-
-
-
     func drawRoute(route: Route) {
         guard route.coordinateCount > 0 else { return }
 
