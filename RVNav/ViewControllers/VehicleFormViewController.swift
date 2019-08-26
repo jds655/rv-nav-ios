@@ -10,21 +10,56 @@ import UIKit
 
 class VehicleFormViewController: UIViewController {
 
+    let networkController = NetworkController()
+    @IBOutlet weak var vehicleHeightTextField: UITextField!
+    @IBOutlet weak var vehicleWeightTextField: UITextField!
+    @IBOutlet weak var vehicleWidthTextField: UITextField!
+    @IBOutlet weak var vehicleLengthTextField: UITextField!
+    @IBOutlet weak var axleCountTextField: UITextField!
+    @IBOutlet weak var vehicleClassSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var hasDualTiresSwitch: UISwitch!
+    @IBOutlet weak var hasTrailerSwitch: UISwitch!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveButtonPressed(_ sender: Any) {
+
+        guard let height = vehicleWeightTextField.text,
+            let weight = vehicleWeightTextField.text,
+            let width = vehicleWidthTextField.text,
+            let length = vehicleLengthTextField.text,
+            let axleCount = axleCountTextField.text else { return }
+        var vehicleClass: String?
+        switch vehicleClassSegmentedControl.selectedSegmentIndex {
+        case 0:
+            vehicleClass = "A"
+        case 1:
+            vehicleClass = "B"
+        case 2:
+            vehicleClass = "C"
+        case 3:
+            vehicleClass = "D"
+        default:
+            break;
+        }
+
+        let vehicle = Vehicle(height: Float(height), weight: Float(weight), width: Float(width), length: Float(length), axelCount: Int(axleCount), vehicleClass: vehicleClass, dualTires: hasDualTiresSwitch.isOn, trailer: hasTrailerSwitch.isOn)
+
+        networkController.createVehicle(with: vehicle) { (error) in
+            if let error = error {
+                NSLog("Error creating vehicle: \(error)")
+            }
+        }
+
+
     }
-    */
+
+    @IBAction func vehicleClassChanged(_ sender: UISegmentedControl) {
+        }
 
 }
