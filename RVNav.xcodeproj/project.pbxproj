@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
+		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
+		447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E723146CE0007D50E7 /* VehicleFormViewController.swift */; };
+		447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447831EA23146D65007D50E7 /* GoogleService-Info.plist */; };
 		D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */; };
 		D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE71230B3C3D00D7C151 /* MapViewController.swift */; };
 		D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE73230B3C3D00D7C151 /* Main.storyboard */; };
 		D18DAE77230B3C3F00D7C151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE76230B3C3F00D7C151 /* Assets.xcassets */; };
 		D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */; };
 		D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE81230C85EC00D7C151 /* LoginViewController.swift */; };
-		D1A34D49230F196200253278 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1A34D48230F196200253278 /* GoogleService-Info.plist */; };
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
 		D8D1C32546DCAF7850A23C2F /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF49070387DFC10FBB9C48A /* Pods_RVNav.framework */; };
 /* End PBXBuildFile section */
@@ -22,6 +24,10 @@
 /* Begin PBXFileReference section */
 		2D434D66FFEBA839F3C00041 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
+		447831E923146D65007D50E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		447831EA23146D65007D50E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FF49070387DFC10FBB9C48A /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18DAE6C230B3C3C00D7C151 /* RVNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RVNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,9 +35,7 @@
 		D18DAE74230B3C3D00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D18DAE76230B3C3F00D7C151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D18DAE79230B3C3F00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D18DAE7B230B3C3F00D7C151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D18DAE81230C85EC00D7C151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D1A34D48230F196200253278 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FAD10D91F6469EDBAF57EDA8 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +104,7 @@
 			children = (
 				D18DAE71230B3C3D00D7C151 /* MapViewController.swift */,
 				D18DAE81230C85EC00D7C151 /* LoginViewController.swift */,
+				447831E723146CE0007D50E7 /* VehicleFormViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				446F3902230DA7FC00D57DE3 /* User.swift */,
+				447831E523146AC5007D50E7 /* Vehicle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,8 +140,8 @@
 			children = (
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
 				D18DAE76230B3C3F00D7C151 /* Assets.xcassets */,
-				D18DAE7B230B3C3F00D7C151 /* Info.plist */,
-				D1A34D48230F196200253278 /* GoogleService-Info.plist */,
+				447831EA23146D65007D50E7 /* GoogleService-Info.plist */,
+				447831E923146D65007D50E7 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -201,7 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */,
-				D1A34D49230F196200253278 /* GoogleService-Info.plist in Resources */,
+				447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */,
 				D18DAE77230B3C3F00D7C151 /* Assets.xcassets in Resources */,
 				D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */,
 			);
@@ -257,9 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
+				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
 				D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */,
 				D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
+				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
