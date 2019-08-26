@@ -160,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="62" y="-402"/>
         </scene>
-        <!--Vehicle Form View Controller-->
+        <!--Vehicle Information-->
         <scene sceneID="bWw-be-24F">
             <objects>
                 <viewController id="8iC-P7-5ic" customClass="VehicleFormViewController" customModule="RVNav" customModuleProvider="target" sceneMemberID="viewController">
@@ -307,6 +307,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MgY-Ix-7El"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Vehicle Information" id="j5J-Ke-Z5N">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HCZ-uv-XT6"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WS-ud-TvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
