@@ -11,19 +11,13 @@ import SwiftKeychainWrapper
 
 class NetworkController {
 
-
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
     var result: Result?
 
     func register(with user: User, completion: @escaping (Error?) -> Void) {
-
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("register")
-
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-
-
         request.httpMethod = "POST"
 
         do {
@@ -95,14 +89,9 @@ class NetworkController {
                 
                 if let parseJSON = json {
                     let accessToken = parseJSON["token"] as? String
-//                    let userId = parseJSON["id"] as? Int
                     
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
-//                    let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
-                    
-                    // Will return a bool.
                     print("The access token save result: \(saveAccessToken)")
-//                    print("The userId save result: \(saveUserId)")
                     
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
@@ -120,17 +109,11 @@ class NetworkController {
     }
 
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
-
         let url = baseURL.appendingPathComponent("vehicle")
-
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
-
-
-
         request.httpMethod = "POST"
-
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
@@ -158,15 +141,10 @@ class NetworkController {
     }
 
     func editVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
-
         let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("1")
-
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
-
-
-
         request.httpMethod = "PUT"
 
         do {
@@ -195,9 +173,45 @@ class NetworkController {
             }.resume()
     }
 
+    func getVehicle(completion: @escaping (Vehicle?, Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("1")
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+
+            if let error = error {
+                NSLog("Error fetching vehicle: \(error)")
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                NSLog("No data returned from dataTask")
+                completion(nil, error)
+                return
+            }
+
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            do {
+
+                let vehicle = try decoder.decode(Vehicle.self, from: data)
+                completion(vehicle, nil)
+
+            } catch {
+                NSLog("Error decoding vehicle: \(error)")
+                completion(nil, error)
+            }
+            }.resume()
+        }
+
+    }
 
 
 
 
 
-}
+
+
