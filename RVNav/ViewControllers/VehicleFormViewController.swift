@@ -43,6 +43,10 @@ class VehicleFormViewController: UIViewController {
         }
     }
 
+    func checkVehicle() {
+
+    }
+
 
     @IBAction func saveButtonPressed(_ sender: Any) {
 
