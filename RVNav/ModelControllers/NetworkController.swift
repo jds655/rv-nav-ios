@@ -140,8 +140,8 @@ class NetworkController {
             }.resume()
     }
 
-    func editVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("1")
+    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
@@ -174,7 +174,7 @@ class NetworkController {
     }
 
     func getVehicle(completion: @escaping (Vehicle?, Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("1")
+        let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
@@ -197,7 +197,11 @@ class NetworkController {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
 
-                let vehicle = try decoder.decode(Vehicle.self, from: data)
+                let vehicles = try decoder.decode([Vehicle].self, from: data)
+                var vehicle: Vehicle?
+                if vehicles.count != 0 {
+                     vehicle = vehicles[0]
+                }
                 completion(vehicle, nil)
 
             } catch {

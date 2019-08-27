@@ -322,7 +322,7 @@
                         <outlet property="hasDualTiresSwitch" destination="l6Y-qz-XJR" id="CGZ-hZ-o8p"/>
                         <outlet property="hasTrailerSwitch" destination="vHb-g3-MVz" id="hay-Bo-uzd"/>
                         <outlet property="vehicleClassSegmentedControl" destination="zsd-Lk-AAi" id="w55-Gt-m1n"/>
-                        <outlet property="vehicleHeightTextField" destination="j6R-KV-39O" id="q68-JH-fuy"/>
+                        <outlet property="vehicleHeightTextField" destination="j6R-KV-39O" id="ago-eE-dLp"/>
                         <outlet property="vehicleLengthTextField" destination="9mr-7X-7NZ" id="SWH-8V-i0J"/>
                         <outlet property="vehicleWeightTextField" destination="gEm-lp-PHl" id="422-GA-aCP"/>
                         <outlet property="vehicleWidthTextField" destination="iLB-QP-jkz" id="od1-3h-Yt8"/>

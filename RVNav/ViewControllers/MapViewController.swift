@@ -17,6 +17,7 @@ import FirebaseAnalytics
 class MapViewController: UIViewController, MGLMapViewDelegate {
 
     let networkController = NetworkController()
+    let retreivedVehicle = UserDefaults.standard.integer(forKey: "VehicleId")
     @IBOutlet weak var navigateButton: UIButton!
     var mapView: NavigationMapView!
     var directionsRoute: Route!
@@ -40,6 +41,10 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         mapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
 
         Analytics.logEvent("app_opened", parameters: nil)
+        
+        print("Your Vehicle ID is: \(retreivedVehicle)")
+    
+        
 
     }
 
@@ -47,6 +52,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
+        
+           
         }
     }
 

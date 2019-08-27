@@ -9,7 +9,9 @@
 import UIKit
 
 class VehicleFormViewController: UIViewController {
-
+    
+    var storedVehicle: Vehicle?
+    var storedVehicleId: Int?
     let networkController = NetworkController()
     @IBOutlet weak var vehicleHeightTextField: UITextField!
     @IBOutlet weak var vehicleWeightTextField: UITextField!
@@ -22,9 +24,24 @@ class VehicleFormViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateViews()
     }
     
+    func updateViews() {
+        networkController.getVehicle { (vehicle, error) in
+            if let error = error {
+                NSLog("Error Pulling Vehcile from Server \(error)")
+                print("Couldn't load vehicle")
+                return
+            }
+            
+            UserDefaults.standard.set(vehicle?.id, forKey: "VehicleId")
+            print("Vehicle Set")
+            
+            self.storedVehicleId = UserDefaults.standard.integer(forKey: "VehicleId")
+            
+        }
+    }
 
 
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -48,18 +65,29 @@ class VehicleFormViewController: UIViewController {
             break;
         }
 
-        let vehicle = Vehicle(height: Float(height), weight: Float(weight), width: Float(width), length: Float(length), axelCount: Int(axleCount), vehicleClass: vehicleClass, dualTires: hasDualTiresSwitch.isOn, trailer: hasTrailerSwitch.isOn)
+        let vehicle = Vehicle(id: nil, height: Float(height), weight: Float(weight), width: Float(width), length: Float(length), axelCount: Int(axleCount), vehicleClass: vehicleClass, dualTires: hasDualTiresSwitch.isOn, trailer: hasTrailerSwitch.isOn)
 
+        
+        if storedVehicleId == nil {
         networkController.createVehicle(with: vehicle) { (error) in
             if let error = error {
                 NSLog("Error creating vehicle: \(error)")
             }
+            
         }
-
-
+        print("Vehicle Added")
+        } else {
+            networkController.editVehicle(with: vehicle, id: storedVehicleId!) { (error) in
+                if let error = error {
+                    NSLog("Error editing vehicle: \(error)")
+                }
+            }
+        print("Vehicle Edited")
+        }
     }
 
     @IBAction func vehicleClassChanged(_ sender: UISegmentedControl) {
+        print("Class Changed")
         }
 
 }
