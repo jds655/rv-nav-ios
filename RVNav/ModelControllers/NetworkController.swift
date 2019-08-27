@@ -49,7 +49,7 @@ class NetworkController {
     // Log In
     func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void) {
 
-        let url = baseURL.appendingPathComponent("login")
+        let url = baseURL.appendingPathComponent("users").appendingPathComponent("login")
 
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

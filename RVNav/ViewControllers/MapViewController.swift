@@ -38,7 +38,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
-        
+
         Analytics.logEvent("app_opened", parameters: nil)
 
     }
@@ -50,7 +50,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         }
     }
 
- 
+
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
@@ -83,7 +83,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
 
 
-    
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,7 +95,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
         performSegue(withIdentifier: "ShowLogin", sender: self)
         print("Remove successful: \(removeSuccessful)")
-        
+
     }
 }
+
+
 
