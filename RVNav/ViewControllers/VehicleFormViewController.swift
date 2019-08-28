@@ -10,9 +10,11 @@ import UIKit
 
 class VehicleFormViewController: UIViewController {
     
-    var storedVehicle: Vehicle?
-    var storedVehicleId: Int?
-    let networkController = NetworkController()
+    var vehicle: Vehicle?
+    var vehicles: [Vehicle]?
+    
+    var networkController = NetworkController()
+    @IBOutlet weak var vehicleNameTextField: UITextField!
     @IBOutlet weak var vehicleHeightTextField: UITextField!
     @IBOutlet weak var vehicleWeightTextField: UITextField!
     @IBOutlet weak var vehicleWidthTextField: UITextField!
@@ -27,21 +29,33 @@ class VehicleFormViewController: UIViewController {
         updateViews()
     }
     
+    
     func updateViews() {
-        networkController.getVehicle { (vehicle, error) in
-            if let error = error {
-                NSLog("Error Pulling Vehcile from Server \(error)")
-                print("Couldn't load vehicle")
-                return
-            }
-            
-            UserDefaults.standard.set(vehicle?.id, forKey: "VehicleId")
-            print("Vehicle Set")
-            
-            self.storedVehicleId = UserDefaults.standard.integer(forKey: "VehicleId")
-            
+        guard let vehicle = vehicle else { return }
+            vehicleNameTextField.text = vehicle.name
+            vehicleHeightTextField.text = "\(vehicle.height ?? 0)"
+            vehicleWeightTextField.text = "\(vehicle.weight ?? 0)"
+            vehicleWidthTextField.text = "\(vehicle.width ?? 0)"
+            vehicleLengthTextField.text = "\(vehicle.length ?? 0)"
+            axleCountTextField.text = "\(vehicle.axelCount ?? 0)"
+        switch vehicle.vehicleClass {
+        case "A":
+            vehicleClassSegmentedControl.selectedSegmentIndex = 0
+        case "B":
+            vehicleClassSegmentedControl.selectedSegmentIndex = 1
+        case "C":
+            vehicleClassSegmentedControl.selectedSegmentIndex = 2
+        case "D":
+            vehicleClassSegmentedControl.selectedSegmentIndex = 3
+        default:
+            print("No segment selected")
         }
-    }
+        
+        hasDualTiresSwitch.isOn = vehicle.dualTires!
+        hasTrailerSwitch.isOn = vehicle.trailer!
+        
+        }
+            
 
     func checkVehicle() {
 
@@ -54,7 +68,8 @@ class VehicleFormViewController: UIViewController {
             let weight = vehicleWeightTextField.text,
             let width = vehicleWidthTextField.text,
             let length = vehicleLengthTextField.text,
-            let axleCount = axleCountTextField.text else { return }
+            let axleCount = axleCountTextField.text,
+            let name = vehicleNameTextField.text else { return }
         var vehicleClass: String?
         switch vehicleClassSegmentedControl.selectedSegmentIndex {
         case 0:
@@ -69,29 +84,53 @@ class VehicleFormViewController: UIViewController {
             break;
         }
 
-        let vehicle = Vehicle(id: nil, height: Float(height), weight: Float(weight), width: Float(width), length: Float(length), axelCount: Int(axleCount), vehicleClass: vehicleClass, dualTires: hasDualTiresSwitch.isOn, trailer: hasTrailerSwitch.isOn)
-
+        let newVehicle = Vehicle(id: nil, name: name, height: Float(height), weight: Float(weight), width: Float(width), length: Float(length), axelCount: Int(axleCount), vehicleClass: vehicleClass, dualTires: hasDualTiresSwitch.isOn, trailer: hasTrailerSwitch.isOn)
         
-        if storedVehicleId == nil {
-        networkController.createVehicle(with: vehicle) { (error) in
-            if let error = error {
-                NSLog("Error creating vehicle: \(error)")
-            }
-            
-        }
-        print("Vehicle Added")
-        } else {
-            networkController.editVehicle(with: vehicle, id: storedVehicleId!) { (error) in
+        if self.vehicle == nil {
+            networkController.createVehicle(with: newVehicle) { (error) in
                 if let error = error {
-                    NSLog("Error editing vehicle: \(error)")
+                    NSLog("Error Creating Vehicle \(error)")
                 }
             }
-        print("Vehicle Edited")
+        } else {
+            guard let vehicle = vehicle else { return }
+            
+            networkController.editVehicle(with: newVehicle, id: vehicle.id!) { (error) in
+                if let error = error {
+                    NSLog("Error Creating Vehicle \(error)")
+            }
         }
+        
     }
+        navigationController?.popViewController(animated: true)
+}
+        
+
+
 
     @IBAction func vehicleClassChanged(_ sender: UISegmentedControl) {
         print("Class Changed")
         }
 
 }
+
+
+
+
+
+//        if storedVehicleId == nil {
+//        networkController.createVehicle(with: vehicle) { (error) in
+//            if let error = error {
+//                NSLog("Error creating vehicle: \(error)")
+//            }
+//
+//        }
+//        print("Vehicle Added")
+//        } else {
+//            networkController.editVehicle(with: vehicle, id: storedVehicleId!) { (error) in
+//                if let error = error {
+//                    NSLog("Error editing vehicle: \(error)")
+//                }
+//            }
+//        print("Vehicle Edited")
+//        }

@@ -11,6 +11,7 @@ import Foundation
 class Vehicle: Codable {
   
     let id: Int?
+    let name: String?
     let height: Float?
     let weight: Float?
     let width: Float?
@@ -20,9 +21,10 @@ class Vehicle: Codable {
     let dualTires: Bool?
     let trailer: Bool?
     
-    init(id: Int?, height: Float?, weight: Float?, width: Float?, length: Float?, axelCount: Int?, vehicleClass: String?, dualTires: Bool?, trailer: Bool?) {
+    init(id: Int?, name: String?, height: Float?, weight: Float?, width: Float?, length: Float?, axelCount: Int?, vehicleClass: String?, dualTires: Bool?, trailer: Bool?) {
         
         self.id = id
+        self.name = name
         self.height = height
         self.weight = weight
         self.width = width

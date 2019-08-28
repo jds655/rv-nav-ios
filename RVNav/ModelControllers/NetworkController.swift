@@ -11,9 +11,10 @@ import SwiftKeychainWrapper
 
 class NetworkController {
 
+    var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
     var result: Result?
-
+    
     func register(with user: User, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("register")
         var request = URLRequest(url: url)
@@ -173,7 +174,7 @@ class NetworkController {
             }.resume()
     }
 
-    func getVehicle(completion: @escaping (Vehicle?, Error?) -> Void) {
+    func getVehicle(completion: @escaping ([Vehicle], Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -184,12 +185,12 @@ class NetworkController {
 
             if let error = error {
                 NSLog("Error fetching vehicle: \(error)")
-                completion(nil, error)
+                completion([], error)
                 return
             }
             guard let data = data else {
                 NSLog("No data returned from dataTask")
-                completion(nil, error)
+                completion([], error)
                 return
             }
 
@@ -198,15 +199,11 @@ class NetworkController {
             do {
 
                 let vehicles = try decoder.decode([Vehicle].self, from: data)
-                var vehicle: Vehicle?
-                if vehicles.count != 0 {
-                     vehicle = vehicles[0]
-                }
-                completion(vehicle, nil)
+                completion(vehicles, nil)
 
             } catch {
                 NSLog("Error decoding vehicle: \(error)")
-                completion(nil, error)
+                completion([], error)
             }
             }.resume()
         }
