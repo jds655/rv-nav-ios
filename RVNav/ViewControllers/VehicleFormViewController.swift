@@ -116,21 +116,3 @@ class VehicleFormViewController: UIViewController {
 
 
 
-
-
-//        if storedVehicleId == nil {
-//        networkController.createVehicle(with: vehicle) { (error) in
-//            if let error = error {
-//                NSLog("Error creating vehicle: \(error)")
-//            }
-//
-//        }
-//        print("Vehicle Added")
-//        } else {
-//            networkController.editVehicle(with: vehicle, id: storedVehicleId!) { (error) in
-//                if let error = error {
-//                    NSLog("Error editing vehicle: \(error)")
-//                }
-//            }
-//        print("Vehicle Edited")
-//        }

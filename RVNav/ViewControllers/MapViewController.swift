@@ -13,16 +13,18 @@ import MapboxNavigation
 import MapboxDirections
 import SwiftKeychainWrapper
 import FirebaseAnalytics
+import MapboxGeocoder
+import Contacts
 
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
     var networkController = NetworkController()
     var mapView: NavigationMapView!
     var directionsRoute: Route?
-
+    let geocoder = Geocoder.shared
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      
         mapView = NavigationMapView(frame: view.bounds)
 
         view.addSubview(mapView)
@@ -38,10 +40,47 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
         Analytics.logEvent("app_opened", parameters: nil)
         mapView.addGestureRecognizer(longPress)
+        
+        search()
     }
 
+    func search() {
+      
+        
+        let options = ForwardGeocodeOptions(query: "106 Chippendale Ter")
+        options.allowedScopes = [.address, .pointOfInterest]
+        
+        let task = geocoder.geocode(options) { (placemarks, attribution, error) in
+            guard let placemark = placemarks?.first else {
+                return
+            }
+            
+            print(placemark.name)
+            // 200 Queen St
+            print(placemark.qualifiedName)
+            // 200 Queen St, Saint John, New Brunswick E2L 2X1, Canada
+            
+            let coordinate = placemark.location!.coordinate
+            print("\(coordinate.latitude), \(coordinate.longitude)")
+            // 45.270093, -66.050985
+            
+            #if !os(tvOS)
+            let formatter = CNPostalAddressFormatter()
+            print(formatter.string(from: placemark.postalAddress!))
+            // 200 Queen St
+            // Saint John New Brunswick E2L 2X1
+            // Canada
+            #endif
+        
+            self.calculateRoute(from: self.mapView.userLocation!.coordinate, to: coordinate, completion: { (route, error) in
+                if error != nil {
+                    print("Error calculating route")
+                }
+            })
+        }
+    }
 
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {

@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bJ-tk-ZZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="724.63768115942037" y="-1126.3392857142856"/>
+            <point key="canvasLocation" x="887" y="-1079"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="KHG-Jk-cXL">
@@ -125,18 +125,7 @@
                     <view key="view" contentMode="scaleToFill" id="wJy-Fb-NUD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uAY-Z8-8ns">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                            </mapView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="dOB-u0-snw" firstAttribute="trailing" secondItem="uAY-Z8-8ns" secondAttribute="trailing" id="Gc2-Ln-jgS"/>
-                            <constraint firstItem="uAY-Z8-8ns" firstAttribute="top" secondItem="dOB-u0-snw" secondAttribute="top" id="K9u-Ie-qox"/>
-                            <constraint firstItem="dOB-u0-snw" firstAttribute="bottom" secondItem="uAY-Z8-8ns" secondAttribute="bottom" id="ZKz-Bm-XCo"/>
-                            <constraint firstItem="uAY-Z8-8ns" firstAttribute="leading" secondItem="dOB-u0-snw" secondAttribute="leading" id="cYn-ad-DIh"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dOB-u0-snw"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dui-XS-zkh">
@@ -205,7 +194,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YOt-xp-kmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="25"/>
+            <point key="canvasLocation" x="2519" y="-291"/>
         </scene>
         <!--Vehicle Information-->
         <scene sceneID="bWw-be-24F">
@@ -395,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WS-ud-TvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3432" y="25"/>
+            <point key="canvasLocation" x="3368" y="-291"/>
         </scene>
         <!--Side Menu Table View Controller-->
         <scene sceneID="jna-ax-f8y">
@@ -436,7 +425,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5R8-oB-KjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="25"/>
+            <point key="canvasLocation" x="1714" y="-291"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="6i1-Wp-JON">
@@ -455,7 +444,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgT-UD-i7K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="888" y="25"/>
+            <point key="canvasLocation" x="887" y="-291"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g01-nj-CAp">
