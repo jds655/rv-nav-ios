@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +73,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         case .signUp:
 
-            let user = User( firstName: firstName, lastName: lastName, password: password, vehicleClass: email, username: username)
+            let user = User( firstName: firstName, lastName: lastName, password: password, email: email, username: username)
 
             networkController?.register(with: user) { (error) in
                 if let error = error {
@@ -89,12 +89,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             networkController?.signIn(with: signInInfo) { (error) in
                 if let error = error {
                     NSLog("Error signing up: \(error)")
-                    let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
-                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(alertAction)
+                    DispatchQueue.main.async {
 
-                    self.present(alert, animated: true)
-            }
+
+                        let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(alertAction)
+
+                        self.present(alert, animated: true)
+                    }
+                }
                 guard let message = self.networkController?.result?.message else { return }
                 print(message)
                 if self.networkController?.result?.token != nil {
@@ -103,10 +107,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
-                        }
+            }
 
 
-        self.view.endEditing(true)
+            self.view.endEditing(true)
 
 
 
