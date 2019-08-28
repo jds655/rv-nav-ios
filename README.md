@@ -2,7 +2,7 @@
 
 RV Nav
 
-1️⃣ You can find the deployed project at www.RVNav.Com (www.RVNav.Com).
+1️⃣ You can find the deployed project at [RVNav](www.RVNav.Com).
 
 ## 4️⃣ Contributors
 
@@ -28,19 +28,19 @@ RV Nav
 
 ## Project Overview
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the deployed project at [RVNav](www.RVNav.com).
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas](https://www.notion.so/5aa76f6aca86492baaad94c9557ca2f3?v=a47d5b273e12448a816af139b3aa7ef0)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+1️⃣ [UX Design files](https://www.figma.com/file/KGiH4omkur2KgDrckWclF9/🚍-RV-Life?node-id=0%3A1)
 
-🚫 One to two paragraph statement about your product and what it does.
 
-Quis hendrerit dolor magna eget. Pretium quam vulputate dignissim suspendisse. Ut aliquam purus sit amet luctus venenatis lectus magna fringilla. Orci dapibus ultrices in iaculis nunc sed augue. Euismod in pellentesque massa placerat duis ultricies. Bibendum at varius vel pharetra vel turpis nunc eget lorem. Lectus quam id leo in vitae. Purus sit amet luctus venenatis lectus magna fringilla urna porttitor.
 
-Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pellentesque diam volutpat. Id diam maecenas ultricies mi eget mauris. Est pellentesque elit ullamcorper dignissim. Orci dapibus ultrices in iaculis nunc.
+Traveling safely for RVers is difficult. RV Life will get you to where you need to go safely and with no hassle.
+
+Using several available data sources integrated into a map thats designed for RV travel, we supply you with the route you need. Trust RV Life to safely get you there.
 
 ![](header.png)
 
