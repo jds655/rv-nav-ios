@@ -15,16 +15,16 @@ import SwiftKeychainWrapper
 import FirebaseAnalytics
 import MapboxGeocoder
 import Contacts
+import Floaty
 
 
-class MapViewController: UIViewController, MGLMapViewDelegate, UISearchBarDelegate {
+class MapViewController: UIViewController, MGLMapViewDelegate {
     var networkController = NetworkController()
     var mapView: NavigationMapView!
     var directionsRoute: Route?
     let geocoder = Geocoder.shared
-  
-    
-    @IBOutlet weak var searchBar: UISearchBar!
+
+
     @IBOutlet weak var containerMapView: UIView!
     
     override func viewDidLoad() {
@@ -45,15 +45,28 @@ class MapViewController: UIViewController, MGLMapViewDelegate, UISearchBarDelega
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
         Analytics.logEvent("app_opened", parameters: nil)
         mapView.addGestureRecognizer(longPress)
+        setupFloaty()
         
-       searchBar.delegate = self
         
 //      search()
     }
 
+
+    func setupFloaty() {
+        let carIcon = UIImage(named: "car")
+        let floaty = Floaty()
+        floaty.addItem("Directions", icon: carIcon) { (item) in
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "ShowDirections", sender: self)
+            }
+        }
+        floaty.paddingY = 42
+        floaty.buttonColor = .black
+        floaty.plusColor = .green
+        self.view.addSubview(floaty)
+    }
+
     func search() {
-      
-        
         let options = ForwardGeocodeOptions(query: "106 Chippendale Ter")
         options.allowedScopes = [.address, .pointOfInterest]
         
