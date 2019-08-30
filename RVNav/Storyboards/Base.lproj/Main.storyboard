@@ -456,9 +456,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="ba7-7K-fy8" kind="show" identifier="ShowVehichleInfo" id="ajj-Y4-1eJ"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -467,6 +464,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="M9v-Iu-vgf"/>
+                    <connections>
+                        <segue destination="ba7-7K-fy8" kind="show" identifier="ShowVehichleInfo" id="nNE-Y8-bSr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5R8-oB-KjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

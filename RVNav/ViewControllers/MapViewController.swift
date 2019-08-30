@@ -57,16 +57,17 @@ class MapViewController: UIViewController, MGLMapViewDelegate, UISearchBarDelega
         let options = ForwardGeocodeOptions(query: "106 Chippendale Ter")
         options.allowedScopes = [.address, .pointOfInterest]
         
-        let task = geocoder.geocode(options) { (placemarks, attribution, error) in
+        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
             guard let placemark = placemarks?.first else {
                 return
             }
         
             print(placemark.name)
             // 200 Queen St
-            print(placemark.qualifiedName)
+            if let placemarkQualifiedName = placemark.qualifiedName {
+            print(placemarkQualifiedName)
             // 200 Queen St, Saint John, New Brunswick E2L 2X1, Canada
-            
+            }
             let coordinate = placemark.location!.coordinate
             print("\(coordinate.latitude), \(coordinate.longitude)")
             // 45.270093, -66.050985
@@ -122,13 +123,13 @@ class MapViewController: UIViewController, MGLMapViewDelegate, UISearchBarDelega
     }
 
     // Calculate route to be used for navigation
-    func calculateRoute(from origin: CLLocationCoordinate2D,
-                        to destination: CLLocationCoordinate2D,
+    func calculateRoute(from originCoor: CLLocationCoordinate2D,
+                        to destinationCoor: CLLocationCoordinate2D,
                         completion: @escaping (Route?, Error?) -> ()) {
 
         // Coordinate accuracy is the maximum distance away from the waypoint that the route may still be considered viable, measured in meters. Negative values indicate that a indefinite number of meters away from the route and still be considered viable.
-        let origin = Waypoint(coordinate: origin, coordinateAccuracy: -1, name: "Start")
-        let destination = Waypoint(coordinate: destination, coordinateAccuracy: -1, name: "Finish")
+        let origin = Waypoint(coordinate: originCoor, coordinateAccuracy: -1, name: "Start")
+        let destination = Waypoint(coordinate: destinationCoor, coordinateAccuracy: -1, name: "Finish")
 
         // Specify that the route is intended for automobiles avoiding traffic
         let options = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: .automobileAvoidingTraffic)
@@ -138,6 +139,10 @@ class MapViewController: UIViewController, MGLMapViewDelegate, UISearchBarDelega
             self.directionsRoute = routes?.first
             // Draw the route on the map after creating it
             self.drawRoute(route: self.directionsRoute!)
+            let coordinateBounds = MGLCoordinateBounds(sw: destinationCoor, ne: originCoor)
+            let insets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
+            let routeCam = self.mapView.cameraThatFitsCoordinateBounds(coordinateBounds, edgePadding: insets)
+            self.mapView.setCamera(routeCam, animated: true)
         }
     }
 
