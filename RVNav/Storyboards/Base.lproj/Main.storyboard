@@ -156,7 +156,7 @@
                     <connections>
                         <outlet property="containerMapView" destination="hJJ-Rh-RHl" id="a4b-bR-y2r"/>
                         <segue destination="yRP-zF-0Ep" kind="presentation" identifier="ShowLogin" id="RTs-Qa-E8T"/>
-                        <segue destination="oPi-24-sMM" kind="presentation" identifier="ShowDirections" id="4nl-5L-m9r"/>
+                        <segue destination="oPi-24-sMM" kind="presentation" identifier="ShowAddressSearch" id="4nl-5L-m9r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dn9-1o-3s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -172,32 +172,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="wgX-ko-Nwt">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="meo-bp-w2Y">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <rect key="frame" x="0.0" y="30" width="414" height="56"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Kfd-Qx-qZd">
-                                    <rect key="frame" x="0.0" y="56" width="414" height="56"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H10-WQ-FXV">
+                                    <rect key="frame" x="190" y="0.0" width="34" height="30"/>
+                                    <state key="normal" title="Back"/>
+                                    <connections>
+                                        <action selector="backButtonPressed:" destination="oPi-24-sMM" eventType="touchUpInside" id="tgu-JI-iJf"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="Kfd-Qx-qZd" firstAttribute="top" secondItem="meo-bp-w2Y" secondAttribute="bottom" id="0D9-8u-d4w"/>
-                                <constraint firstItem="meo-bp-w2Y" firstAttribute="top" secondItem="wgX-ko-Nwt" secondAttribute="top" id="10C-Xm-u5s"/>
-                                <constraint firstAttribute="bottom" secondItem="Kfd-Qx-qZd" secondAttribute="bottom" id="GKQ-zd-dEP"/>
-                                <constraint firstAttribute="trailing" secondItem="meo-bp-w2Y" secondAttribute="trailing" id="OKS-pD-G00"/>
-                                <constraint firstItem="meo-bp-w2Y" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" id="TSf-eZ-8OK"/>
-                                <constraint firstItem="Kfd-Qx-qZd" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" id="k91-4l-Ihg"/>
-                                <constraint firstAttribute="trailing" secondItem="Kfd-Qx-qZd" secondAttribute="trailing" id="v8b-fo-Zo7"/>
+                                <constraint firstItem="meo-bp-w2Y" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" id="Ib5-Bh-POb"/>
+                                <constraint firstItem="H10-WQ-FXV" firstAttribute="top" secondItem="wgX-ko-Nwt" secondAttribute="top" id="KRQ-Yl-sLB"/>
+                                <constraint firstItem="H10-WQ-FXV" firstAttribute="centerX" secondItem="wgX-ko-Nwt" secondAttribute="centerX" id="Kch-Rw-xTY"/>
+                                <constraint firstItem="meo-bp-w2Y" firstAttribute="top" secondItem="H10-WQ-FXV" secondAttribute="bottom" id="RmY-5A-Bu3"/>
+                                <constraint firstAttribute="trailing" secondItem="meo-bp-w2Y" secondAttribute="trailing" id="gTB-P2-roo"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressCell" textLabel="Emf-sT-NVE" style="IBUITableViewCellStyleDefault" id="gXa-sL-gWb">
-                                <rect key="frame" x="0.0" y="140" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gXa-sL-gWb" id="59q-8f-Hui">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -220,7 +221,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="destinationSearchBar" destination="Kfd-Qx-qZd" id="AAP-tV-DAE"/>
                         <outlet property="startSearchBar" destination="meo-bp-w2Y" id="qBE-kj-blM"/>
                     </connections>
                 </tableViewController>
@@ -463,7 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WS-ud-TvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3368" y="-291"/>
+            <point key="canvasLocation" x="3397" y="-388"/>
         </scene>
         <!--Side Menu Table View Controller-->
         <scene sceneID="jna-ax-f8y">

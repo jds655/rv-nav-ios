@@ -11,32 +11,31 @@ import MapboxGeocoder
 
 class DirectionsSearchTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var startSearchBar: UISearchBar!
-    @IBOutlet weak var destinationSearchBar: UISearchBar!
     let geocoder = Geocoder.shared
+    var directionsController: DirectionsController?
     var addresses: [Placemark] = []
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         startSearchBar.delegate = self
-        destinationSearchBar.delegate = self
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchTerm = startSearchBar.text else { return }
-        search(with: searchTerm)
-    }
-
-    func search(with address: String) {
-        let options = ForwardGeocodeOptions(query: address)
-        options.allowedScopes = [.address, .pointOfInterest]
-
-        _ = geocoder.geocode(options) { (placemarks, attribution, error) in
-            guard let placemarks = placemarks else { return }
-            self.addresses = placemarks
-            DispatchQueue.main.async {
+        guard let searchTerm = startSearchBar.text,
+        let directionsController = directionsController else { return }
+        directionsController.search(with: searchTerm) { (addresses) in
+            if let addresses = addresses {
+                self.addresses = addresses
                 self.tableView.reloadData()
             }
         }
     }
+
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
 
 
 
@@ -54,6 +53,13 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         cell.textLabel?.text = address.qualifiedName
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let directionsController = directionsController else { return }
+        let address = addresses[indexPath.row]
+        directionsController.destinationAddress = address
+        dismiss(animated: true, completion: nil)
     }
 
 
