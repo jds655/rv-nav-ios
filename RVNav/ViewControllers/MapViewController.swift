@@ -17,17 +17,22 @@ import MapboxGeocoder
 import Contacts
 
 
-class MapViewController: UIViewController, MGLMapViewDelegate {
+class MapViewController: UIViewController, MGLMapViewDelegate, UISearchBarDelegate {
     var networkController = NetworkController()
     var mapView: NavigationMapView!
     var directionsRoute: Route?
     let geocoder = Geocoder.shared
+  
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var containerMapView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        mapView = NavigationMapView(frame: view.bounds)
+        mapView = NavigationMapView(frame: containerMapView.bounds)
 
-        view.addSubview(mapView)
+        containerMapView.addSubview(mapView)
 
         // Set the map view's delegate
         mapView.delegate = self
@@ -41,7 +46,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         Analytics.logEvent("app_opened", parameters: nil)
         mapView.addGestureRecognizer(longPress)
         
-        search()
+       searchBar.delegate = self
+        
+//      search()
     }
 
     func search() {
@@ -54,7 +61,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             guard let placemark = placemarks?.first else {
                 return
             }
-            
+        
             print(placemark.name)
             // 200 Queen St
             print(placemark.qualifiedName)
@@ -176,9 +183,10 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                 }
             }
             @IBAction func logOutButtonTapped(_ sender: Any) {
-                let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-                performSegue(withIdentifier: "ShowLogin", sender: self)
-                print("Remove successful: \(removeSuccessful)")
+//                let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
+//                performSegue(withIdentifier: "ShowLogin", sender: self)
+//                print("Remove successful: \(removeSuccessful)")
+                search()
 
             }
 }

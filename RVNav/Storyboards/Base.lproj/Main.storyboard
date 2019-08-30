@@ -125,7 +125,32 @@
                     <view key="view" contentMode="scaleToFill" id="wJy-Fb-NUD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJJ-Rh-RHl">
+                                <rect key="frame" x="0.0" y="141" width="414" height="755"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="8Sz-nm-jTZ">
+                                <rect key="frame" x="0.0" y="97" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Sz-nm-jTZ" secondAttribute="height" multiplier="207:22" id="lDq-NF-i2L"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uGF-27-2IW" id="3dA-Er-IqV"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hJJ-Rh-RHl" firstAttribute="top" secondItem="8Sz-nm-jTZ" secondAttribute="bottom" id="77i-wU-hHa"/>
+                            <constraint firstItem="8Sz-nm-jTZ" firstAttribute="trailing" secondItem="dOB-u0-snw" secondAttribute="trailing" id="Cvp-7J-9Wl"/>
+                            <constraint firstItem="hJJ-Rh-RHl" firstAttribute="trailing" secondItem="dOB-u0-snw" secondAttribute="trailing" id="H8Y-5h-iEs"/>
+                            <constraint firstItem="8Sz-nm-jTZ" firstAttribute="leading" secondItem="dOB-u0-snw" secondAttribute="leading" id="TCl-R5-nfG"/>
+                            <constraint firstItem="8Sz-nm-jTZ" firstAttribute="top" secondItem="dOB-u0-snw" secondAttribute="top" constant="9" id="beo-pm-b95"/>
+                            <constraint firstItem="hJJ-Rh-RHl" firstAttribute="leading" secondItem="dOB-u0-snw" secondAttribute="leading" id="pXh-so-f8S"/>
+                            <constraint firstAttribute="bottom" secondItem="hJJ-Rh-RHl" secondAttribute="bottom" id="tEG-Fv-BUf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dOB-u0-snw"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dui-XS-zkh">
@@ -142,12 +167,32 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerMapView" destination="hJJ-Rh-RHl" id="a4b-bR-y2r"/>
+                        <outlet property="searchBar" destination="8Sz-nm-jTZ" id="RWm-iB-5yB"/>
+                        <outlet property="searchDisplayController" destination="L5J-UM-rwZ" id="cXY-Bg-s2J"/>
                         <segue destination="yRP-zF-0Ep" kind="presentation" identifier="ShowLogin" id="RTs-Qa-E8T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dn9-1o-3s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="39b-Pe-GCk">
+                    <connections>
+                        <outlet property="delegate" destination="uGF-27-2IW" id="81U-vI-NYu"/>
+                        <outlet property="searchContentsController" destination="uGF-27-2IW" id="Tib-7S-xEl"/>
+                        <outlet property="searchResultsDataSource" destination="uGF-27-2IW" id="FCl-My-NDb"/>
+                        <outlet property="searchResultsDelegate" destination="uGF-27-2IW" id="axB-9E-gKQ"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="L5J-UM-rwZ">
+                    <connections>
+                        <outlet property="delegate" destination="uGF-27-2IW" id="ZVz-ip-Km2"/>
+                        <outlet property="searchBar" destination="8Sz-nm-jTZ" id="BLt-ce-znP"/>
+                        <outlet property="searchContentsController" destination="uGF-27-2IW" id="Oj1-MF-eYW"/>
+                        <outlet property="searchResultsDataSource" destination="uGF-27-2IW" id="QZA-f3-veU"/>
+                        <outlet property="searchResultsDelegate" destination="uGF-27-2IW" id="yUX-Zq-3bo"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="62" y="-402"/>
+            <point key="canvasLocation" x="60.869565217391312" y="-402.45535714285711"/>
         </scene>
         <!--Vehicles-->
         <scene sceneID="51Z-7F-Byu">
