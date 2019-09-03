@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class VehiclesTableViewController: UITableViewController {
 
     var networkController = NetworkController()
@@ -17,8 +16,7 @@ class VehiclesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-    
+
         
     }
     
@@ -65,7 +63,6 @@ class VehiclesTableViewController: UITableViewController {
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddVehicleSegue" {
-            guard let destinationVC = segue.destination as? VehicleFormViewController else { return }
             
             
         }
