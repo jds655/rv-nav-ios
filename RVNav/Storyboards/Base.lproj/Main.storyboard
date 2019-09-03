@@ -172,13 +172,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="wgX-ko-Nwt">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="263"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="meo-bp-w2Y">
-                                    <rect key="frame" x="0.0" y="30" width="414" height="56"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H10-WQ-FXV">
                                     <rect key="frame" x="190" y="0.0" width="34" height="30"/>
                                     <state key="normal" title="Back"/>
@@ -186,19 +182,33 @@
                                         <action selector="backButtonPressed:" destination="oPi-24-sMM" eventType="touchUpInside" id="tgu-JI-iJf"/>
                                     </connections>
                                 </button>
+                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pv-8T-Hl9">
+                                    <rect key="frame" x="0.0" y="38" width="414" height="101"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="9Pv-8T-Hl9" secondAttribute="height" multiplier="414:101" id="atA-he-g1F"/>
+                                    </constraints>
+                                </pickerView>
+                                <searchBar contentMode="redraw" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="meo-bp-w2Y">
+                                    <rect key="frame" x="0.0" y="139" width="414" height="56"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="meo-bp-w2Y" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" id="Ib5-Bh-POb"/>
-                                <constraint firstItem="H10-WQ-FXV" firstAttribute="top" secondItem="wgX-ko-Nwt" secondAttribute="top" id="KRQ-Yl-sLB"/>
-                                <constraint firstItem="H10-WQ-FXV" firstAttribute="centerX" secondItem="wgX-ko-Nwt" secondAttribute="centerX" id="Kch-Rw-xTY"/>
-                                <constraint firstItem="meo-bp-w2Y" firstAttribute="top" secondItem="H10-WQ-FXV" secondAttribute="bottom" id="RmY-5A-Bu3"/>
-                                <constraint firstAttribute="trailing" secondItem="meo-bp-w2Y" secondAttribute="trailing" id="gTB-P2-roo"/>
+                                <constraint firstItem="H10-WQ-FXV" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" constant="190" id="Dvs-Cj-UBh"/>
+                                <constraint firstItem="meo-bp-w2Y" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" id="PZM-M5-fM1"/>
+                                <constraint firstAttribute="trailing" secondItem="H10-WQ-FXV" secondAttribute="trailing" constant="190" id="R64-zO-F0f"/>
+                                <constraint firstItem="H10-WQ-FXV" firstAttribute="top" secondItem="wgX-ko-Nwt" secondAttribute="top" id="ToK-rS-eRJ"/>
+                                <constraint firstAttribute="trailing" secondItem="9Pv-8T-Hl9" secondAttribute="trailing" id="UJF-KC-Gbj"/>
+                                <constraint firstItem="meo-bp-w2Y" firstAttribute="top" secondItem="9Pv-8T-Hl9" secondAttribute="bottom" id="aGJ-9b-x7c"/>
+                                <constraint firstAttribute="trailing" secondItem="meo-bp-w2Y" secondAttribute="trailing" id="oRm-H7-236"/>
+                                <constraint firstItem="9Pv-8T-Hl9" firstAttribute="top" secondItem="H10-WQ-FXV" secondAttribute="bottom" constant="8" id="zDe-ll-xqo"/>
+                                <constraint firstItem="9Pv-8T-Hl9" firstAttribute="leading" secondItem="wgX-ko-Nwt" secondAttribute="leading" id="zrA-Yk-VM2"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressCell" textLabel="Emf-sT-NVE" style="IBUITableViewCellStyleDefault" id="gXa-sL-gWb">
-                                <rect key="frame" x="0.0" y="114" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="291" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gXa-sL-gWb" id="59q-8f-Hui">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -222,6 +232,7 @@
                     </tableView>
                     <connections>
                         <outlet property="startSearchBar" destination="meo-bp-w2Y" id="qBE-kj-blM"/>
+                        <outlet property="vehiclePickerView" destination="9Pv-8T-Hl9" id="OU4-1u-3dS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8g-dN-hZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

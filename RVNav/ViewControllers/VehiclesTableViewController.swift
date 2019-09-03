@@ -27,7 +27,7 @@ class VehiclesTableViewController: UITableViewController {
     }
 
     private func fetchVehicles() {
-        networkController.getVehicle { (vehicles, error) in
+        networkController.getVehicles { (vehicles, error) in
             if let error = error {
                 NSLog("Error fetching Vehicles: \(error)")
                 return

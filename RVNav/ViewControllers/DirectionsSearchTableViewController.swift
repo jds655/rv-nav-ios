@@ -9,18 +9,67 @@
 import UIKit
 import MapboxGeocoder
 
-class DirectionsSearchTableViewController: UITableViewController, UISearchBarDelegate {
+class DirectionsSearchTableViewController: UITableViewController, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
+    @IBOutlet weak var vehiclePickerView: UIPickerView!
     @IBOutlet weak var startSearchBar: UISearchBar!
+    let networkController = NetworkController()
     let geocoder = Geocoder.shared
+    var vehicles: [Vehicle] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.vehiclePickerView.reloadAllComponents()
+                self.vehiclePickerView.selectRow(Settings.shared.selectedVehicleIndex, inComponent: 0, animated: false)
+            }
+        }
+    }
+    
     var directionsController: DirectionsController?
     var addresses: [Placemark] = []
-    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         startSearchBar.delegate = self
+        vehiclePickerView.delegate = self
+        vehiclePickerView.dataSource = self
+        fetchVehicles()
     }
+    
 
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    private func fetchVehicles() {
+        networkController.getVehicles { (vehicles, error) in
+            if let error = error {
+                NSLog("Error fetching Vehicles: \(error)")
+                return
+            }
+            self.vehicles = vehicles
+           
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return vehicles.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let vehicle = vehicles[row]
+        return vehicle.name
+    }
+    
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        Settings.shared.selectedVehicleIndex = vehiclePickerView.selectedRow(inComponent: 0)
+     
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = startSearchBar.text,
         let directionsController = directionsController else { return }
@@ -35,9 +84,6 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
-
-
 
     // MARK: - Table view data source
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,8 +105,11 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         guard let directionsController = directionsController else { return }
         let address = addresses[indexPath.row]
         directionsController.destinationAddress = address
+
         dismiss(animated: true, completion: nil)
     }
 
 
 }
+
+
