@@ -15,7 +15,6 @@ enum SignInType {
     case logIn
 }
 
-
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private weak var firstNameTextField: UITextField!

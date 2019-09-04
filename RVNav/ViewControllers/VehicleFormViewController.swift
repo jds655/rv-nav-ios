@@ -29,7 +29,6 @@ class VehicleFormViewController: UIViewController {
         updateViews()
     }
     
-    
     func updateViews() {
         guard let vehicle = vehicle else { return }
             vehicleNameTextField.text = vehicle.name
@@ -60,7 +59,6 @@ class VehicleFormViewController: UIViewController {
     func checkVehicle() {
 
     }
-
 
     @IBAction func saveButtonPressed(_ sender: Any) {
 
@@ -104,15 +102,10 @@ class VehicleFormViewController: UIViewController {
     }
         navigationController?.popViewController(animated: true)
 }
-        
-
-
 
     @IBAction func vehicleClassChanged(_ sender: UISegmentedControl) {
         print("Class Changed")
         }
 
 }
-
-
 
