@@ -17,7 +17,3 @@ class Settings {
     
 }
 
-extension String {
-    static var selectedVehicleIndexKey = "selectedVehicleIndexKey"
-    static var selectedVehicleKey = "selectedVehicleKey"
-}

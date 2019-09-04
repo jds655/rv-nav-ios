@@ -66,8 +66,12 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        if Settings.shared.selectedVehicleIndex > self.vehicles.count {
+         vehiclePickerView.selectRow(0, inComponent: 0, animated: false)
+        } else {
         Settings.shared.selectedVehicleIndex = vehiclePickerView.selectedRow(inComponent: 0)
-     
+        }
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
