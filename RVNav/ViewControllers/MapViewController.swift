@@ -6,6 +6,22 @@
 //  Copyright © 2019 RVNav. All rights reserved.
 //
 
+
+
+// guard let geo = firstRoute.routeGeometry else { return }
+//                    let part = geo.parts[0]
+//                    print(part.point(at: 3).x)
+//                    print(part.point(at: 3).y)
+//
+//                    for index in 0..<geo.parts[0].pointCount{
+//                        let coordinate = CLLocationCoordinate2D(latitude: part.point(at: index).x, longitude: part.point(at: index).y)
+//                        self.coordinates.append(coordinate)
+//                    }
+//                    print(self.coordinates)
+
+
+
+
 import UIKit
 import Mapbox
 import MapboxCoreNavigation
@@ -140,7 +156,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         // Convert the route’s coordinates into a polyline
         var routeCoordinates = route.coordinates!
         let polyline = MGLPolylineFeature(coordinates: &routeCoordinates, count: route.coordinateCount)
-
+        
         // If there's already a route line on the map, reset its shape to the new route
         if let source = mapView.style?.source(withIdentifier: "route-source") as? MGLShapeSource {
             source.shape = polyline
