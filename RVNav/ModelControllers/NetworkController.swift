@@ -174,7 +174,7 @@ class NetworkController {
             }.resume()
     }
 
-    func getVehicle(completion: @escaping ([Vehicle], Error?) -> Void) {
+    func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

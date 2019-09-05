@@ -29,7 +29,6 @@ class VehicleFormViewController: UIViewController {
         updateViews()
     }
     
-    
     func updateViews() {
         guard let vehicle = vehicle else { return }
             vehicleNameTextField.text = vehicle.name
@@ -60,7 +59,6 @@ class VehicleFormViewController: UIViewController {
     func checkVehicle() {
 
     }
-
 
     @IBAction func saveButtonPressed(_ sender: Any) {
 
@@ -104,9 +102,6 @@ class VehicleFormViewController: UIViewController {
     }
         navigationController?.popViewController(animated: true)
 }
-        
-
-
 
     @IBAction func vehicleClassChanged(_ sender: UISegmentedControl) {
         print("Class Changed")
@@ -114,23 +109,3 @@ class VehicleFormViewController: UIViewController {
 
 }
 
-
-
-
-
-//        if storedVehicleId == nil {
-//        networkController.createVehicle(with: vehicle) { (error) in
-//            if let error = error {
-//                NSLog("Error creating vehicle: \(error)")
-//            }
-//
-//        }
-//        print("Vehicle Added")
-//        } else {
-//            networkController.editVehicle(with: vehicle, id: storedVehicleId!) { (error) in
-//                if let error = error {
-//                    NSLog("Error editing vehicle: \(error)")
-//                }
-//            }
-//        print("Vehicle Edited")
-//        }

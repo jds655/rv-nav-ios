@@ -13,35 +13,70 @@ import MapboxNavigation
 import MapboxDirections
 import SwiftKeychainWrapper
 import FirebaseAnalytics
+import MapboxGeocoder
+import Contacts
+import Floaty
 
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
     var networkController = NetworkController()
     var mapView: NavigationMapView!
     var directionsRoute: Route?
+    let geocoder = Geocoder.shared
+    let directionsController = DirectionsController()
 
+
+    @IBOutlet weak var containerMapView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mapView = NavigationMapView(frame: view.bounds)
-
-        view.addSubview(mapView)
-
+      
+        mapView = NavigationMapView(frame: containerMapView.bounds)
+        containerMapView.addSubview(mapView)
         // Set the map view's delegate
         mapView.delegate = self
-
         // Allow the map to display the user's location
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
-
         // Add a gesture recognizer to the map view
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
         Analytics.logEvent("app_opened", parameters: nil)
         mapView.addGestureRecognizer(longPress)
+        setupFloaty()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if directionsController.destinationAddress != nil {
+            let currentLocation = mapView.userLocation!.coordinate
+            let destination = directionsController.destinationAddress!.location!.coordinate
+
+            calculateRoute(from: currentLocation, to: destination) { (route, error) in
+                if let error = error {
+                    NSLog("Error calculating route: \(error)")
+                }
+            }
+        }
+    }
+
+
+    func setupFloaty() {
+        let carIcon = UIImage(named: "car")
+        let floaty = Floaty()
+        floaty.addItem("Directions", icon: carIcon) { (item) in
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "ShowAddressSearch", sender: self)
+            }
+        }
+        floaty.paddingY = 42
+        floaty.buttonColor = .black
+        floaty.plusColor = .green
+        self.view.addSubview(floaty)
     }
 
 
 
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
@@ -58,17 +93,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         let point = sender.location(in: mapView)
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
 
-        // Create a basic point annotation and add it to the map
-        if let annotations = mapView.annotations {
-            mapView.removeAnnotations(annotations)
-        }
-        let annotation = MGLPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = "Start navigation"
-        mapView.addAnnotation(annotation)
-
         // Calculate the route from the user's location to the set destination
-        calculateRoute(from: (mapView.userLocation!.coordinate), to: annotation.coordinate) { (route, error) in
+        calculateRoute(from: (mapView.userLocation!.coordinate), to: coordinate) { (route, error) in
             if error != nil {
                 print("Error calculating route")
             }
@@ -76,14 +102,24 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     }
 
     // Calculate route to be used for navigation
-    func calculateRoute(from origin: CLLocationCoordinate2D,
-                        to destination: CLLocationCoordinate2D,
+    func calculateRoute(from originCoor: CLLocationCoordinate2D,
+                        to destinationCoor: CLLocationCoordinate2D,
                         completion: @escaping (Route?, Error?) -> ()) {
 
         // Coordinate accuracy is the maximum distance away from the waypoint that the route may still be considered viable, measured in meters. Negative values indicate that a indefinite number of meters away from the route and still be considered viable.
-        let origin = Waypoint(coordinate: origin, coordinateAccuracy: -1, name: "Start")
-        let destination = Waypoint(coordinate: destination, coordinateAccuracy: -1, name: "Finish")
+        let origin = Waypoint(coordinate: originCoor, coordinateAccuracy: -1, name: "Start")
+        let destination = Waypoint(coordinate: destinationCoor, coordinateAccuracy: -1, name: "Finish")
 
+        mapView.setUserTrackingMode(.none, animated: true, completionHandler: nil)
+
+        if let annotations = mapView.annotations {
+            mapView.removeAnnotations(annotations)
+        }
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = destinationCoor
+        annotation.title = "Start Navigation"
+
+        mapView.addAnnotation(annotation)
         // Specify that the route is intended for automobiles avoiding traffic
         let options = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: .automobileAvoidingTraffic)
 
@@ -92,6 +128,10 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             self.directionsRoute = routes?.first
             // Draw the route on the map after creating it
             self.drawRoute(route: self.directionsRoute!)
+            let coordinateBounds = MGLCoordinateBounds(sw: destinationCoor, ne: originCoor)
+            let insets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
+            let routeCam = self.mapView.cameraThatFitsCoordinateBounds(coordinateBounds, edgePadding: insets)
+            self.mapView.setCamera(routeCam, animated: true)
         }
     }
 
@@ -131,15 +171,18 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                if segue.identifier == "ShowLogin" {
-                    let destinationVC = segue.destination as! LoginViewController
-                    destinationVC.networkController = networkController
-                }
-            }
-            @IBAction func logOutButtonTapped(_ sender: Any) {
-                let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-                performSegue(withIdentifier: "ShowLogin", sender: self)
-                print("Remove successful: \(removeSuccessful)")
-
-            }
+        if segue.identifier == "ShowLogin" {
+            let destinationVC = segue.destination as! LoginViewController
+            destinationVC.networkController = networkController
+        }
+        if segue.identifier == "ShowAddressSearch" {
+            let destinationVC = segue.destination as! DirectionsSearchTableViewController
+            destinationVC.directionsController = directionsController
+        }
+    }
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+            let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
+            performSegue(withIdentifier: "ShowLogin", sender: self)
+            print("Remove successful: \(removeSuccessful)")
+        }
 }
