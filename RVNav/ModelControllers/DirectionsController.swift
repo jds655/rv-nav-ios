@@ -14,6 +14,7 @@ class DirectionsController {
     let geocoder = Geocoder.shared
     var destinationAddress: Placemark?
     
+    
     func search(with address: String, completion: @escaping ([Placemark]?) -> Void) {
         let options = ForwardGeocodeOptions(query: address)
         options.allowedScopes = [.address, .pointOfInterest]
@@ -22,7 +23,6 @@ class DirectionsController {
             guard let placemarks = placemarks else { return }
 
             completion(placemarks)
-
         }
     }
 }

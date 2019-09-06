@@ -40,7 +40,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     var directionsRoute: Route?
     let geocoder = Geocoder.shared
     let directionsController = DirectionsController()
-
+    var avoidances: [Avoid] = []
 
     @IBOutlet weak var containerMapView: UIView!
     
@@ -73,6 +73,24 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                 }
             }
         }
+    }
+
+    func plotAvoidance() {
+
+        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.longitude  else { return }
+
+        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
+
+        networkController.getAvoidence(with: routeInfo) { (avoidances, error) in
+            if let error = error {
+                NSLog("error fetching avoidances \(error)")
+            }
+            if let avoidances = avoidances {
+                self.avoidances = avoidances
+                print(avoidances.count)
+            }
+        }
+
     }
 
 
@@ -109,12 +127,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         let point = sender.location(in: mapView)
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
 
-        // Calculate the route from the user's location to the set destination
+//         Calculate the route from the user's location to the set destination
         calculateRoute(from: (mapView.userLocation!.coordinate), to: coordinate) { (route, error) in
             if error != nil {
                 print("Error calculating route")
             }
-        }
+                }
     }
 
     // Calculate route to be used for navigation

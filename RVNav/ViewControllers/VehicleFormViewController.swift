@@ -12,6 +12,7 @@ class VehicleFormViewController: UIViewController {
     
     var vehicle: Vehicle?
     var vehicles: [Vehicle]?
+    var avoidance: [Avoid] = []
     
     var networkController = NetworkController()
     @IBOutlet weak var vehicleNameTextField: UITextField!
@@ -28,6 +29,8 @@ class VehicleFormViewController: UIViewController {
         super.viewDidLoad()
         updateViews()
     }
+
+  
     
     func updateViews() {
         guard let vehicle = vehicle else { return }

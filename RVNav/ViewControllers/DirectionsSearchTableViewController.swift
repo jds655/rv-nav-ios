@@ -65,13 +65,16 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+
+        Settings.shared.selectedVehicle = vehicles[row]
+
         if Settings.shared.selectedVehicleIndex > self.vehicles.count {
          vehiclePickerView.selectRow(0, inComponent: 0, animated: false)
         } else {
         Settings.shared.selectedVehicleIndex = vehiclePickerView.selectedRow(inComponent: 0)
+
         }
-        
+        print(Settings.shared.selectedVehicle?.name)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -109,7 +112,6 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         guard let directionsController = directionsController else { return }
         let address = addresses[indexPath.row]
         directionsController.destinationAddress = address
-
         dismiss(animated: true, completion: nil)
     }
 
