@@ -13,7 +13,7 @@ class NetworkController {
 
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
-    let avoidURL = URL(string: "http://custom-nav-rv-dev.m8fmgkbk4i.us-east-1.elasticbeanstalk.com/fetch_low_clearance")!
+    let avoidURL = URL(string: "https://custom-nav-rv-dev.m8fmgkbk4i.us-east-1.elasticbeanstalk.com/fetch_low_clearance")!
     var result: Result?
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
@@ -212,17 +212,16 @@ class NetworkController {
 
     func getAvoidence(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
 
-
-
         var request = URLRequest(url: avoidURL)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
             request.httpBody = try jsonEncoder.encode(routeInfo)
         } catch {
+            NSLog("error encoding\(error)")
             completion(nil, error)
             return
         }
@@ -231,7 +230,7 @@ class NetworkController {
 
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(nil, NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(nil, NSError())
                 return
             }
 
@@ -245,19 +244,18 @@ class NetworkController {
                 return
             }
 
-            var avoidArray: [Avoid] = []
 
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                avoidArray = try jsonDecoder.decode([Avoid].self, from: data)
+                let avoidArray: [Avoid] = try jsonDecoder.decode([Avoid].self, from: data)
+                completion(avoidArray, nil)
 
             } catch {
                 completion(nil, error)
                 return
             }
 
-            completion(avoidArray, nil)
             }.resume()
     }
 

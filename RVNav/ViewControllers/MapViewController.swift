@@ -59,28 +59,30 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         Analytics.logEvent("app_opened", parameters: nil)
         mapView.addGestureRecognizer(longPress)
         setupFloaty()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        plotAvoidance()
         if directionsController.destinationAddress != nil {
             let currentLocation = mapView.userLocation!.coordinate
             let destination = directionsController.destinationAddress!.location!.coordinate
-
+            
             calculateRoute(from: currentLocation, to: destination) { (route, error) in
                 if let error = error {
                     NSLog("Error calculating route: \(error)")
                 }
-                self.plotAvoidance()
+                
             }
         }
     }
 
     func plotAvoidance() {
 
-        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.longitude  else { return }
+//        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.longitude  else { return }
 
-        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
+        let routeInfo = RouteInfo(height: 13  , startLon: -80.8431, startLat: 35.2271, endLon: -84.3880, endLat: 33.7490)
 
         networkController.getAvoidence(with: routeInfo) { (avoidances, error) in
             if let error = error {
@@ -168,6 +170,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             let routeCam = self.mapView.cameraThatFitsCoordinateBounds(coordinateBounds, edgePadding: insets)
             self.mapView.setCamera(routeCam, animated: true)
         }
+        plotAvoidance()
+
     }
 
     func drawRoute(route: Route) {
@@ -191,7 +195,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             mapView.style?.addSource(source)
             mapView.style?.addLayer(lineStyle)
         }
-    }
+            }
 
     // Implement the delegate method that allows annotations to show callouts when tapped
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
