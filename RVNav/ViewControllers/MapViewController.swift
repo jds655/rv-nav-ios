@@ -71,6 +71,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                 if let error = error {
                     NSLog("Error calculating route: \(error)")
                 }
+                self.plotAvoidance()
             }
         }
     }
