@@ -14,8 +14,8 @@
 
 import UIKit
 import Mapbox
-import MapboxCoreNavigation
 import MapboxNavigation
+import MapboxCoreNavigation
 import MapboxDirections
 import SwiftKeychainWrapper
 import FirebaseAnalytics
@@ -34,6 +34,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     var avoidances: [Avoid] = []
     let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     var coordinates: [CLLocationCoordinate2D] = []
+    var style = MGLStyle()
     @IBOutlet weak var containerMapView: UIView!
     
     override func viewDidLoad() {
@@ -66,9 +67,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 //                    NSLog("Error calculating route: \(error)")
 //                }
 //
-//                self.plotAvoidance()
-//
-//            }
+////                self.plotAvoidance()
+////
+//           }
         }
     }
 
@@ -159,7 +160,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                         let coordinate = CLLocationCoordinate2D(latitude: part.point(at: index).x, longitude: part.point(at: index).y)
                         self.coordinates.append(coordinate)
                     }
-                    print(self.coordinates)
+                   
                     self.drawRoute()
                 }
             })
@@ -239,31 +240,38 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             let insets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
             let routeCam = self.mapView.cameraThatFitsCoordinateBounds(coordinateBounds, edgePadding: insets)
             self.mapView.setCamera(routeCam, animated: true)
+            self.drawRoute()
         }
-        plotAvoidance()
+        
+        
 
     }
-
+   
     func drawRoute() {
-
-        let polyline = MGLPolylineFeature(coordinates: &coordinates, count: UInt(coordinates.count))
+        
+    }
+        
+        
+        
+        
         
         // If there's already a route line on the map, reset its shape to the new route
-        if let source = mapView.style?.source(withIdentifier: "route-source") as? MGLShapeSource {
-            source.shape = polyline
-        } else {
-            let source = MGLShapeSource(identifier: "route-source", features: [polyline], options: nil)
-
-            // Customize the route line color and width
-            let lineStyle = MGLLineStyleLayer(identifier: "route-style", source: source)
-            lineStyle.lineColor = NSExpression(forConstantValue: #colorLiteral(red: 0.1897518039, green: 0.3010634184, blue: 0.7994888425, alpha: 1))
-            lineStyle.lineWidth = NSExpression(forConstantValue: 3)
-
-            // Add the source and style layer of the route line to the map
-            mapView.style?.addSource(source)
-            mapView.style?.addLayer(lineStyle)
-        }
-    }
+//        if let source = mapView.style?.source(withIdentifier: "route-source") as? MGLShapeSource {
+//            source.shape = polyline
+//        } else {
+//            let source = MGLShapeSource(identifier: "route-source", features: [polyline], options: nil)
+//
+//            // Customize the route line color and width
+//            let lineStyle = MGLLineStyleLayer(identifier: "route-style", source: source)
+//            lineStyle.lineColor = NSExpression(forConstantValue: #colorLiteral(red: 0.1897518039, green: 0.3010634184, blue: 0.7994888425, alpha: 1))
+//            lineStyle.lineWidth = NSExpression(forConstantValue: 3)
+//
+//            // Add the source and style layer of the route line to the map
+//            mapView.style?.addSource(source)
+//            mapView.style?.addLayer(lineStyle)
+//        }
+    
+    
 
 
     // Implement the delegate method that allows annotations to show callouts when tapped

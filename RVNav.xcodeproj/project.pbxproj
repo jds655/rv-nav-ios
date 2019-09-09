@@ -11,6 +11,7 @@
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
 		447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E723146CE0007D50E7 /* VehicleFormViewController.swift */; };
 		447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447831EA23146D65007D50E7 /* GoogleService-Info.plist */; };
+		44864379232712A0009E04CD /* mapbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44864378232712A0009E04CD /* mapbox.swift */; };
 		449435622314784A00FC4680 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449435612314784A00FC4680 /* SideMenuTableViewController.swift */; };
 		44EAD664231EF5FC00094531 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* Settings.swift */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
 		447831E923146D65007D50E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447831EA23146D65007D50E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		44864378232712A0009E04CD /* mapbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapbox.swift; sourceTree = "<group>"; };
 		449435612314784A00FC4680 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		44EAD663231EF5FC00094531 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4FF49070387DFC10FBB9C48A /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				D18DAE71230B3C3D00D7C151 /* MapViewController.swift */,
+				44864378232712A0009E04CD /* mapbox.swift */,
 				D18DAE81230C85EC00D7C151 /* LoginViewController.swift */,
 				447831E723146CE0007D50E7 /* VehicleFormViewController.swift */,
 				449435612314784A00FC4680 /* SideMenuTableViewController.swift */,
@@ -285,6 +288,7 @@
 			files = (
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
 				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
+				44864379232712A0009E04CD /* mapbox.swift in Sources */,
 				D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */,
 				D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
