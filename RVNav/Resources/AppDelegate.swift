@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseCore
+import ArcGIS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
+        setupOAuthManager()
 
         return true
     }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            AppConfiguration.urlScheme == urlComponents.scheme,
+            AppConfiguration.urlAuthPath == urlComponents.host {setupOAuthManager()
+            AGSApplicationDelegate.shared().application(app, open: url, options: options)
+        }
+        return true
+    }
+
+    private func setupOAuthManager() {
+        let config = AGSOAuthConfiguration(portalURL: nil, clientID: AppConfiguration.clientID, redirectURL: "\(AppConfiguration.urlScheme)://\(AppConfiguration.urlAuthPath)")
+        AGSAuthenticationManager.shared().oAuthConfigurations.add(config)
+        AGSAuthenticationManager.shared().credentialCache.enableAutoSyncToKeychain(withIdentifier: AppConfiguration.keychainIdentifier, accessGroup: nil, acrossDevices: false)
+    }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

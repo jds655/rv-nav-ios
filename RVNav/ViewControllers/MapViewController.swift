@@ -8,16 +8,7 @@
 
 
 
-// guard let geo = firstRoute.routeGeometry else { return }
-//                    let part = geo.parts[0]
-//                    print(part.point(at: 3).x)
-//                    print(part.point(at: 3).y)
-//
-//                    for index in 0..<geo.parts[0].pointCount{
-//                        let coordinate = CLLocationCoordinate2D(latitude: part.point(at: index).x, longitude: part.point(at: index).y)
-//                        self.coordinates.append(coordinate)
-//                    }
-//                    print(self.coordinates)
+
 
 
 
@@ -42,7 +33,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     let directionsController = DirectionsController()
     var avoidances: [Avoid] = []
     let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
-
+    var coordinates: [CLLocationCoordinate2D] = []
     @IBOutlet weak var containerMapView: UIView!
     
     override func viewDidLoad() {
@@ -69,15 +60,15 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         if directionsController.destinationAddress != nil {
             let currentLocation = mapView.userLocation!.coordinate
             let destination = directionsController.destinationAddress!.location!.coordinate
-            
-            calculateRoute(from: currentLocation, to: destination) { (route, error) in
-                if let error = error {
-                    NSLog("Error calculating route: \(error)")
-                }
-
-                self.plotAvoidance()
-                
-            }
+            findRoute(with: destination)
+//            calculateRoute(from: currentLocation, to: destination) { (route, error) in
+//                if let error = error {
+//                    NSLog("Error calculating route: \(error)")
+//                }
+//
+//                self.plotAvoidance()
+//
+//            }
         }
     }
 
@@ -119,7 +110,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                 return
             }
 
-            guard let params = defaultParameters, let self = self, let start = mapView.userLocation.coordinate, let end = coordinates else { return }
+            guard let params = defaultParameters, let self = self, let start = self.mapView.userLocation?.coordinate, let end = self.directionsController.destinationAddress?.location?.coordinate else { return }
             let coordinate = CLLocationCoordinate2D(latitude: 40.616280, longitude: -74.026192)
             let lat = 40.616280
             let lon = -74.026192
@@ -130,7 +121,13 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon + const)))
             let gon = AGSPolygon(points: [point, point1, point2, point3])
             let barrier = AGSPolygonBarrier(polygon: gon)
-            params.setStops([AGSStop(point: start), AGSStop(point: end)])
+
+
+
+            let startCoordinate = AGSPoint(clLocationCoordinate2D: start)
+            let endCoordinate = AGSPoint(clLocationCoordinate2D: end)
+
+            params.setStops([AGSStop(point: startCoordinate), AGSStop(point: endCoordinate)])
 
             params.setPolygonBarriers([barrier])
 
@@ -140,11 +137,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                     return
                 }
 
-                if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
-                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
-                    self.graphicsOverlay.graphics.add(routeGraphic)
-                    print(firstRoute.routeGeometry?.parts[0])
+                if let firstRoute = result?.routes.first{
                     let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
                     let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
 
@@ -158,6 +151,18 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                         """, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
+
+
+                     guard let geo = firstRoute.routeGeometry else { return }
+                    let part = geo.parts[0]
+                    print(part.point(at: 3).x)
+                    print(part.point(at: 3).y)
+
+                    for index in 0..<geo.parts[0].pointCount{
+                        let coordinate = CLLocationCoordinate2D(latitude: part.point(at: index).x, longitude: part.point(at: index).y)
+                        self.coordinates.append(coordinate)
+                    }
+                    print(self.coordinates)
                 }
             })
         }

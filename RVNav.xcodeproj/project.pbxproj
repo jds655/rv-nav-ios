@@ -16,6 +16,7 @@
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
 		D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */; };
 		D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */; };
+		D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */; };
 		D185F9562322FABE00E4C64A /* Avoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D185F9552322FABE00E4C64A /* Avoid.swift */; };
 		D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */; };
 		D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE71230B3C3D00D7C151 /* MapViewController.swift */; };
@@ -40,6 +41,7 @@
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsSearchTableViewController.swift; sourceTree = "<group>"; };
 		D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
+		D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D185F9552322FABE00E4C64A /* Avoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avoid.swift; sourceTree = "<group>"; };
 		D18DAE6C230B3C3C00D7C151 /* RVNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RVNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */,
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
+				D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */,
 				447831EA23146D65007D50E7 /* GoogleService-Info.plist */,
 				447831E923146D65007D50E7 /* Info.plist */,
 			);
@@ -292,6 +295,7 @@
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
+				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				449435622314784A00FC4680 /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

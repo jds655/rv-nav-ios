@@ -74,7 +74,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         Settings.shared.selectedVehicleIndex = vehiclePickerView.selectedRow(inComponent: 0)
 
         }
-        print(Settings.shared.selectedVehicle?.name)
+
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
