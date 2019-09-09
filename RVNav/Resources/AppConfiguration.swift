@@ -10,7 +10,7 @@ import Foundation
 
 struct AppConfiguration {
 
-    static let clientID: String = "R3w6ircwrsGCHr3V"
+    static let clientID: String = "taIMz5a6FZ8j6ZCs"
     static let urlScheme: String = "my-devlab-app"
     static let urlAuthPath: String = "auth"
     static let keychainIdentifier: String = "\(Bundle.main.bundleIdentifier!).keychainIdentifier"

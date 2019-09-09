@@ -111,7 +111,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             }
 
             guard let params = defaultParameters, let self = self, let start = self.mapView.userLocation?.coordinate, let end = self.directionsController.destinationAddress?.location?.coordinate else { return }
-            let coordinate = CLLocationCoordinate2D(latitude: 40.616280, longitude: -74.026192)
             let lat = 40.616280
             let lon = -74.026192
             let const = 0.0001
@@ -155,14 +154,13 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
                      guard let geo = firstRoute.routeGeometry else { return }
                     let part = geo.parts[0]
-                    print(part.point(at: 3).x)
-                    print(part.point(at: 3).y)
 
                     for index in 0..<geo.parts[0].pointCount{
                         let coordinate = CLLocationCoordinate2D(latitude: part.point(at: index).x, longitude: part.point(at: index).y)
                         self.coordinates.append(coordinate)
                     }
                     print(self.coordinates)
+                    self.drawRoute()
                 }
             })
         }
@@ -236,7 +234,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         _ = Directions.shared.calculate(options) { [unowned self] (waypoints, routes, error) in
             self.directionsRoute = routes?.first
             // Draw the route on the map after creating it
-            self.drawRoute(route: self.directionsRoute!)
+
             let coordinateBounds = MGLCoordinateBounds(sw: destinationCoor, ne: originCoor)
             let insets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
             let routeCam = self.mapView.cameraThatFitsCoordinateBounds(coordinateBounds, edgePadding: insets)
@@ -246,11 +244,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
     }
 
-    func drawRoute(route: Route) {
-        guard route.coordinateCount > 0 else { return }
-        // Convert the route’s coordinates into a polyline
-        var routeCoordinates = route.coordinates!
-        let polyline = MGLPolylineFeature(coordinates: &routeCoordinates, count: route.coordinateCount)
+    func drawRoute() {
+
+        let polyline = MGLPolylineFeature(coordinates: &coordinates, count: UInt(coordinates.count))
         
         // If there's already a route line on the map, reset its shape to the new route
         if let source = mapView.style?.source(withIdentifier: "route-source") as? MGLShapeSource {
@@ -267,7 +263,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             mapView.style?.addSource(source)
             mapView.style?.addLayer(lineStyle)
         }
-            }
+    }
+
 
     // Implement the delegate method that allows annotations to show callouts when tapped
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
