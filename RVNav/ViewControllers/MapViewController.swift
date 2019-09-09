@@ -21,7 +21,6 @@
 
 
 
-
 import UIKit
 import Mapbox
 import MapboxCoreNavigation
@@ -32,6 +31,7 @@ import FirebaseAnalytics
 import MapboxGeocoder
 import Contacts
 import Floaty
+import ArcGIS
 
 
 class MapViewController: UIViewController, MGLMapViewDelegate {
@@ -41,6 +41,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     let geocoder = Geocoder.shared
     let directionsController = DirectionsController()
     var avoidances: [Avoid] = []
+    let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
 
     @IBOutlet weak var containerMapView: UIView!
     
@@ -82,11 +83,11 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
     func plotAvoidance() {
 
-        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.longitude  else { return }
+        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
 
         let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
 
-        networkController.getAvoidence(with: routeInfo) { (avoidances, error) in
+        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
@@ -109,6 +110,57 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             }
         }
 
+    }
+
+    private func findRoute(with coordinates: CLLocationCoordinate2D) {
+        routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
+            guard error == nil else {
+                print("Error getting default parameters: \(error!.localizedDescription)")
+                return
+            }
+
+            guard let params = defaultParameters, let self = self, let start = mapView.userLocation.coordinate, let end = coordinates else { return }
+            let coordinate = CLLocationCoordinate2D(latitude: 40.616280, longitude: -74.026192)
+            let lat = 40.616280
+            let lon = -74.026192
+            let const = 0.0001
+            let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon + const)))
+            let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon - const)))
+            let point2 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon - const)))
+            let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon + const)))
+            let gon = AGSPolygon(points: [point, point1, point2, point3])
+            let barrier = AGSPolygonBarrier(polygon: gon)
+            params.setStops([AGSStop(point: start), AGSStop(point: end)])
+
+            params.setPolygonBarriers([barrier])
+
+            self.routeTask.solveRoute(with: params, completion: { (result, error) in
+                guard error == nil else {
+                    print("Error solving route: \(error!.localizedDescription)")
+                    return
+                }
+
+                if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
+                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                    self.graphicsOverlay.graphics.add(routeGraphic)
+                    print(firstRoute.routeGeometry?.parts[0])
+                    let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
+                    let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
+
+                    let formatter = MeasurementFormatter()
+                    formatter.numberFormatter.maximumFractionDigits = 2
+                    formatter.unitOptions = .naturalScale
+
+                    let alert = UIAlertController(title: nil, message: """
+                        Total distance: \(formatter.string(from: totalDistance))
+                        Travel time: \(formatter.string(from: totalDuration))
+                        """, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        }
     }
 
 

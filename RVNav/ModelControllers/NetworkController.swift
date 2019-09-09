@@ -8,12 +8,14 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import ArcGIS
 
 class NetworkController {
 
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
     let avoidURL = URL(string: "https://rv-nav-clearance.com/fetch_low_clearance")!
+    
     var result: Result?
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
@@ -210,7 +212,7 @@ class NetworkController {
         }
 
 
-    func getAvoidence(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
+    func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
 
         var request = URLRequest(url: avoidURL)
         request.httpMethod = "POST"
