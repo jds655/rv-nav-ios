@@ -64,7 +64,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        plotAvoidance()
+
         if directionsController.destinationAddress != nil {
             let currentLocation = mapView.userLocation!.coordinate
             let destination = directionsController.destinationAddress!.location!.coordinate
@@ -73,6 +73,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                 if let error = error {
                     NSLog("Error calculating route: \(error)")
                 }
+
+                self.plotAvoidance()
                 
             }
         }
@@ -80,9 +82,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
     func plotAvoidance() {
 
-//        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.longitude  else { return }
+        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.longitude  else { return }
 
-        let routeInfo = RouteInfo(height: 13  , startLon: -80.8431, startLat: 35.2271, endLon: -84.3880, endLat: 33.7490)
+        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
 
         networkController.getAvoidence(with: routeInfo) { (avoidances, error) in
             if let error = error {
@@ -91,6 +93,19 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             if let avoidances = avoidances {
                 self.avoidances = avoidances
                 print(avoidances.count)
+                
+                DispatchQueue.main.async {
+
+                for avoid in avoidances {
+                    let coor = CLLocationCoordinate2D(latitude: avoid.latitude, longitude: avoid.longitude)
+                    let annotation = MGLPointAnnotation()
+                    annotation.coordinate = coor
+                    self.mapView.addAnnotation(annotation)
+
+                }
+                }
+
+
             }
         }
 

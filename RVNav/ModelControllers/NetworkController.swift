@@ -13,7 +13,7 @@ class NetworkController {
 
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
-    let avoidURL = URL(string: "https://custom-nav-rv-dev.m8fmgkbk4i.us-east-1.elasticbeanstalk.com/fetch_low_clearance")!
+    let avoidURL = URL(string: "https://rv-nav-clearance.com/fetch_low_clearance")!
     var result: Result?
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
