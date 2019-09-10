@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="40a-fn-Iwz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6tp-Mv-d9f">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -126,7 +126,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJJ-Rh-RHl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJJ-Rh-RHl" customClass="AGSMapView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -154,7 +154,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="containerMapView" destination="hJJ-Rh-RHl" id="a4b-bR-y2r"/>
+                        <outlet property="mapView" destination="hJJ-Rh-RHl" id="Rah-XS-NrW"/>
                         <segue destination="yRP-zF-0Ep" kind="presentation" identifier="ShowLogin" id="RTs-Qa-E8T"/>
                         <segue destination="oPi-24-sMM" kind="presentation" identifier="ShowAddressSearch" id="4nl-5L-m9r"/>
                     </connections>
@@ -162,36 +162,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dn9-1o-3s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="60.869565217391312" y="-402.45535714285711"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="MYd-WO-3UN">
-            <objects>
-                <viewController id="40a-fn-Iwz" customClass="ViewController" customModule="RVNav" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6ki-AX-c2F">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0VQ-zn-xNF" customClass="AGSMapView">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="0VQ-zn-xNF" firstAttribute="leading" secondItem="t6a-TE-IlX" secondAttribute="leading" id="GnC-7X-xxm"/>
-                            <constraint firstAttribute="bottom" secondItem="0VQ-zn-xNF" secondAttribute="bottom" id="QAr-IA-gAJ"/>
-                            <constraint firstItem="0VQ-zn-xNF" firstAttribute="top" secondItem="t6a-TE-IlX" secondAttribute="top" id="ZMP-7s-j9c"/>
-                            <constraint firstItem="t6a-TE-IlX" firstAttribute="trailing" secondItem="0VQ-zn-xNF" secondAttribute="trailing" id="pT5-km-5rV"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="t6a-TE-IlX"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="0VQ-zn-xNF" id="N0U-5Q-Zij"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q6a-EB-wAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1230.4347826086957" y="341.51785714285711"/>
         </scene>
         <!--Directions Search Table View Controller-->
         <scene sceneID="SNt-dp-P3C">

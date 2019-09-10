@@ -25,147 +25,73 @@ import Floaty
 import ArcGIS
 
 
-class MapViewController: UIViewController, MGLMapViewDelegate {
+class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     var networkController = NetworkController()
-    var mapView: NavigationMapView!
     var directionsRoute: Route?
     let geocoder = Geocoder.shared
     let directionsController = DirectionsController()
     var avoidances: [Avoid] = []
-    let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
+
     var coordinates: [CLLocationCoordinate2D] = []
     var style = MGLStyle()
-    @IBOutlet weak var containerMapView: UIView!
+
+    @IBOutlet weak var mapView: AGSMapView!
+
+
+
+
+    let graphicsOverlay = AGSGraphicsOverlay()
+    var start: AGSPoint?
+    var end: AGSPoint?
+    let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        mapView = NavigationMapView(frame: containerMapView.bounds)
-        containerMapView.addSubview(mapView)
-        // Set the map view's delegate
-        mapView.delegate = self
-        // Allow the map to display the user's location
-        mapView.showsUserLocation = true
-        mapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
-        // Add a gesture recognizer to the map view
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
         Analytics.logEvent("app_opened", parameters: nil)
-        mapView.addGestureRecognizer(longPress)
+        setupMap()
         setupFloaty()
-        
+        setupLocationDisplay()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         if directionsController.destinationAddress != nil {
-            let currentLocation = mapView.userLocation!.coordinate
             let destination = directionsController.destinationAddress!.location!.coordinate
-            findRoute(with: destination)
-//            calculateRoute(from: currentLocation, to: destination) { (route, error) in
-//                if let error = error {
-//                    NSLog("Error calculating route: \(error)")
-//                }
+
+        }
+    }
+
+
+//    func plotAvoidance() {
 //
-////                self.plotAvoidance()
-////
-//           }
-        }
-    }
+//        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
+//
+//        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
+//
+//        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+//            if let error = error {
+//                NSLog("error fetching avoidances \(error)")
+//            }
+//            if let avoidances = avoidances {
+//                self.avoidances = avoidances
+//                print(avoidances.count)
+//
+//                DispatchQueue.main.async {
+//
+//                for avoid in avoidances {
+//                    let coor = CLLocationCoordinate2D(latitude: avoid.latitude, longitude: avoid.longitude)
+//                    let annotation = MGLPointAnnotation()
+//                    annotation.coordinate = coor
+//                    self.mapView.addAnnotation(annotation)
+//
+//                }
+//                }
+//            }
+//        }
+//
+//    }
 
-    func plotAvoidance() {
-
-        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
-
-        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
-
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
-            if let error = error {
-                NSLog("error fetching avoidances \(error)")
-            }
-            if let avoidances = avoidances {
-                self.avoidances = avoidances
-                print(avoidances.count)
-                
-                DispatchQueue.main.async {
-
-                for avoid in avoidances {
-                    let coor = CLLocationCoordinate2D(latitude: avoid.latitude, longitude: avoid.longitude)
-                    let annotation = MGLPointAnnotation()
-                    annotation.coordinate = coor
-                    self.mapView.addAnnotation(annotation)
-
-                }
-                }
-
-
-            }
-        }
-
-    }
-
-    private func findRoute(with coordinates: CLLocationCoordinate2D) {
-        routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
-            guard error == nil else {
-                print("Error getting default parameters: \(error!.localizedDescription)")
-                return
-            }
-
-            guard let params = defaultParameters, let self = self, let start = self.mapView.userLocation?.coordinate, let end = self.directionsController.destinationAddress?.location?.coordinate else { return }
-            let lat = 40.616280
-            let lon = -74.026192
-            let const = 0.0001
-            let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon + const)))
-            let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon - const)))
-            let point2 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon - const)))
-            let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon + const)))
-            let gon = AGSPolygon(points: [point, point1, point2, point3])
-            let barrier = AGSPolygonBarrier(polygon: gon)
-
-
-
-            let startCoordinate = AGSPoint(clLocationCoordinate2D: start)
-            let endCoordinate = AGSPoint(clLocationCoordinate2D: end)
-
-            params.setStops([AGSStop(point: startCoordinate), AGSStop(point: endCoordinate)])
-
-            params.setPolygonBarriers([barrier])
-
-            self.routeTask.solveRoute(with: params, completion: { (result, error) in
-                guard error == nil else {
-                    print("Error solving route: \(error!.localizedDescription)")
-                    return
-                }
-
-                if let firstRoute = result?.routes.first{
-                    let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
-                    let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
-
-                    let formatter = MeasurementFormatter()
-                    formatter.numberFormatter.maximumFractionDigits = 2
-                    formatter.unitOptions = .naturalScale
-
-                    let alert = UIAlertController(title: nil, message: """
-                        Total distance: \(formatter.string(from: totalDistance))
-                        Travel time: \(formatter.string(from: totalDuration))
-                        """, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-
-
-                     guard let geo = firstRoute.routeGeometry else { return }
-                    let part = geo.parts[0]
-
-                    for index in 0..<geo.parts[0].pointCount{
-                        let coordinate = CLLocationCoordinate2D(latitude: part.point(at: index).x, longitude: part.point(at: index).y)
-                        self.coordinates.append(coordinate)
-                    }
-                   
-                    self.drawRoute()
-                }
-            })
-        }
-    }
 
 
     func setupFloaty() {
@@ -184,7 +110,6 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
 
 
 
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
@@ -194,96 +119,121 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         }
     }
 
-    @objc func didLongPress(_ sender: UILongPressGestureRecognizer) {
-        guard sender.state == .began else { return }
+    private func setupMap() {
 
-        // Converts point where user did a long press to map coordinates
-        let point = sender.location(in: mapView)
-        let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
 
-//         Calculate the route from the user's location to the set destination
-        calculateRoute(from: (mapView.userLocation!.coordinate), to: coordinate) { (route, error) in
-            if error != nil {
-                print("Error calculating route")
+        mapView.map = AGSMap(basemapType: .streetsNightVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+
+        mapView.touchDelegate = self
+
+        mapView.graphicsOverlays.add(graphicsOverlay)
+    }
+
+    private func setupLocationDisplay() {
+        mapView.locationDisplay.autoPanMode = .compassNavigation
+
+        mapView.locationDisplay.start { [weak self] (error:Error?) -> Void in
+            if let error = error {
+                self?.showAlert(withStatus: error.localizedDescription)
             }
+        }
+
+    }
+
+    private func showAlert(withStatus: String) {
+        let alertController = UIAlertController(title: "Alert", message:
+            withStatus, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func findRoute() {
+        routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
+            guard error == nil else {
+                print("Error getting default parameters: \(error!.localizedDescription)")
+                return
+            }
+
+            guard let params = defaultParameters, let self = self, let start = self.mapView.locationDisplay.mapLocation, let end = self.end else { return }
+            let lat = 40.616280
+            let lon = -74.026192
+            let const = 0.0001
+            let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon + const)))
+            let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon - const)))
+            let point2 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon - const)))
+            let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon + const)))
+            let gon = AGSPolygon(points: [point, point1, point2, point3])
+            let barrier = AGSPolygonBarrier(polygon: gon)
+            params.setStops([AGSStop(point: start), AGSStop(point: end)])
+
+            params.setPolygonBarriers([barrier])
+
+            self.routeTask.solveRoute(with: params, completion: { (result, error) in
+                guard error == nil else {
+                    print("Error solving route: \(error!.localizedDescription)")
+                    return
                 }
-    }
 
-    // Calculate route to be used for navigation
-    func calculateRoute(from originCoor: CLLocationCoordinate2D,
-                        to destinationCoor: CLLocationCoordinate2D,
-                        completion: @escaping (Route?, Error?) -> ()) {
-
-        // Coordinate accuracy is the maximum distance away from the waypoint that the route may still be considered viable, measured in meters. Negative values indicate that a indefinite number of meters away from the route and still be considered viable.
-        let origin = Waypoint(coordinate: originCoor, coordinateAccuracy: -1, name: "Start")
-        let destination = Waypoint(coordinate: destinationCoor, coordinateAccuracy: -1, name: "Finish")
-
-        mapView.setUserTrackingMode(.none, animated: true, completionHandler: nil)
-
-        if let annotations = mapView.annotations {
-            mapView.removeAnnotations(annotations)
+                if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 4)
+                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                    self.graphicsOverlay.graphics.add(routeGraphic)
+                    let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
+                    let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
+                    let formatter = MeasurementFormatter()
+                    formatter.numberFormatter.maximumFractionDigits = 2
+                    formatter.unitOptions = .naturalScale
+                    let alert = UIAlertController(title: nil, message: """
+                        Total distance: \(formatter.string(from: totalDistance))
+                        Travel time: \(formatter.string(from: totalDuration))
+                        """, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
         }
-        let annotation = MGLPointAnnotation()
-        annotation.coordinate = destinationCoor
-        annotation.title = "Start Navigation"
+    }
 
-        mapView.addAnnotation(annotation)
-        // Specify that the route is intended for automobiles avoiding traffic
-        let options = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: .automobileAvoidingTraffic)
+    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        if start == nil {
+            // Start is not set, set it to a tapped location.
+            setStartMarker(location: mapPoint)
 
-        // Generate the route object and draw it on the map
-        _ = Directions.shared.calculate(options) { [unowned self] (waypoints, routes, error) in
-            self.directionsRoute = routes?.first
-            // Draw the route on the map after creating it
 
-            let coordinateBounds = MGLCoordinateBounds(sw: destinationCoor, ne: originCoor)
-            let insets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
-            let routeCam = self.mapView.cameraThatFitsCoordinateBounds(coordinateBounds, edgePadding: insets)
-            self.mapView.setCamera(routeCam, animated: true)
-            self.drawRoute()
+
+        } else if end == nil {
+            // End is not set, set it to the tapped location then find the route.
+            setEndMarker(location: mapPoint)
+
+        } else {
+            // Both locations are set; re-set the start to the tapped location.
+            setStartMarker(location: mapPoint)
         }
-        
-        
-
-    }
-   
-    func drawRoute() {
-        
-    }
-        
-        
-        
-        
-        
-        // If there's already a route line on the map, reset its shape to the new route
-//        if let source = mapView.style?.source(withIdentifier: "route-source") as? MGLShapeSource {
-//            source.shape = polyline
-//        } else {
-//            let source = MGLShapeSource(identifier: "route-source", features: [polyline], options: nil)
-//
-//            // Customize the route line color and width
-//            let lineStyle = MGLLineStyleLayer(identifier: "route-style", source: source)
-//            lineStyle.lineColor = NSExpression(forConstantValue: #colorLiteral(red: 0.1897518039, green: 0.3010634184, blue: 0.7994888425, alpha: 1))
-//            lineStyle.lineWidth = NSExpression(forConstantValue: 3)
-//
-//            // Add the source and style layer of the route line to the map
-//            mapView.style?.addSource(source)
-//            mapView.style?.addLayer(lineStyle)
-//        }
-    
-    
-
-
-    // Implement the delegate method that allows annotations to show callouts when tapped
-    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
     }
 
-    // Present the navigation view controller when the callout is selected
-    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
-        let navigationViewController = NavigationViewController(for: directionsRoute!)
-        self.present(navigationViewController, animated: true, completion: nil)
+    private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
+        let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 8)
+        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
+        let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
+        graphicsOverlay.graphics.add(markerGraphic)
     }
+
+    private func setStartMarker(location: AGSPoint) {
+        graphicsOverlay.graphics.removeAllObjects()
+        let startMarkerColor = UIColor(red:0.886, green:0.467, blue:0.157, alpha:1.000)
+        addMapMarker(location: location, style: .diamond, fillColor: startMarkerColor, outlineColor: .blue)
+        start = location
+        end = nil
+    }
+
+    private func setEndMarker(location: AGSPoint) {
+        let endMarkerColor = UIColor(red:0.157, green:0.467, blue:0.886, alpha:1.000)
+        addMapMarker(location: location, style: .square, fillColor: endMarkerColor, outlineColor: .red)
+        end = location
+        findRoute()
+    }
+
+
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
