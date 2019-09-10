@@ -170,13 +170,28 @@
                     <view key="view" contentMode="scaleToFill" id="6ki-AX-c2F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0VQ-zn-xNF" customClass="AGSMapView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0VQ-zn-xNF" firstAttribute="leading" secondItem="t6a-TE-IlX" secondAttribute="leading" id="GnC-7X-xxm"/>
+                            <constraint firstAttribute="bottom" secondItem="0VQ-zn-xNF" secondAttribute="bottom" id="QAr-IA-gAJ"/>
+                            <constraint firstItem="0VQ-zn-xNF" firstAttribute="top" secondItem="t6a-TE-IlX" secondAttribute="top" id="ZMP-7s-j9c"/>
+                            <constraint firstItem="t6a-TE-IlX" firstAttribute="trailing" secondItem="0VQ-zn-xNF" secondAttribute="trailing" id="pT5-km-5rV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="t6a-TE-IlX"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="0VQ-zn-xNF" id="N0U-5Q-Zij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6a-EB-wAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1230" y="342"/>
+            <point key="canvasLocation" x="-1230.4347826086957" y="341.51785714285711"/>
         </scene>
         <!--Directions Search Table View Controller-->
         <scene sceneID="SNt-dp-P3C">
