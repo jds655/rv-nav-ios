@@ -6,12 +6,6 @@
 //  Copyright © 2019 RVNav. All rights reserved.
 //
 
-
-
-
-
-
-
 import UIKit
 import Mapbox
 import MapboxNavigation
@@ -27,23 +21,15 @@ import ArcGIS
 
 class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     var networkController = NetworkController()
-    var directionsRoute: Route?
-    let geocoder = Geocoder.shared
     let directionsController = DirectionsController()
-    var avoidances: [Avoid] = []
-
-    var coordinates: [CLLocationCoordinate2D] = []
-    var style = MGLStyle()
-
-    @IBOutlet weak var mapView: AGSMapView!
-
-
-
-
     let graphicsOverlay = AGSGraphicsOverlay()
     var start: AGSPoint?
     var end: AGSPoint?
+    let geocoder = Geocoder.shared
+    var avoidances: [Avoid] = []
+    var coordinates: [CLLocationCoordinate2D] = []
     let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
+    @IBOutlet weak var mapView: AGSMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +37,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         setupMap()
         setupFloaty()
         setupLocationDisplay()
+
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,39 +46,50 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
         if directionsController.destinationAddress != nil {
             let destination = directionsController.destinationAddress!.location!.coordinate
-
+            end = AGSPoint(clLocationCoordinate2D: destination)
+            findRoute()
         }
     }
 
 
-//    func plotAvoidance() {
-//
-//        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let startLon = mapView.userLocation?.coordinate.longitude, let startLat = mapView.userLocation?.coordinate.latitude, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
-//
-//        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
-//
-//        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
-//            if let error = error {
-//                NSLog("error fetching avoidances \(error)")
-//            }
-//            if let avoidances = avoidances {
-//                self.avoidances = avoidances
-//                print(avoidances.count)
-//
-//                DispatchQueue.main.async {
-//
-//                for avoid in avoidances {
-//                    let coor = CLLocationCoordinate2D(latitude: avoid.latitude, longitude: avoid.longitude)
-//                    let annotation = MGLPointAnnotation()
-//                    annotation.coordinate = coor
-//                    self.mapView.addAnnotation(annotation)
-//
-//                }
-//                }
-//            }
-//        }
-//
-//    }
+    func convert(toLongAndLat xPoint: Double, andYPoint yPoint: Double) ->
+        CLLocation {
+            let originShift: Double = 2 * .pi * 6378137 / 2.0
+            let lon: Double = (xPoint / originShift) * 180.0
+            var lat: Double = (yPoint / originShift) * 180.0
+            lat = 180 / .pi * (2 * atan(exp(lat * .pi / 180.0)) - .pi / 2.0)
+            return CLLocation(latitude: lat, longitude: lon)
+    }
+
+    func plotAvoidance() {
+
+        let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
+
+        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
+
+        let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
+
+        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+            if let error = error {
+                NSLog("error fetching avoidances \(error)")
+            }
+            if let avoidances = avoidances {
+                self.avoidances = avoidances
+                print(avoidances.count)
+
+                DispatchQueue.main.async {
+
+                for avoid in avoidances {
+                    let coor = CLLocationCoordinate2D(latitude: avoid.latitude, longitude: avoid.longitude)
+                    let point = AGSPoint(clLocationCoordinate2D: coor)
+                    self.addMapMarker(location: point, style: .X, fillColor: .yellow, outlineColor: .yellow)
+
+                }
+                }
+            }
+        }
+
+    }
 
 
 
@@ -102,6 +101,13 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 self.performSegue(withIdentifier: "ShowAddressSearch", sender: self)
             }
         }
+
+        floaty.addItem("Avoid", icon: carIcon) { (item) in
+            DispatchQueue.main.async {
+                self.plotAvoidance()
+            }
+        }
+
         floaty.paddingY = 42
         floaty.buttonColor = .black
         floaty.plusColor = .green
@@ -120,12 +126,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
 
     private func setupMap() {
-
-
         mapView.map = AGSMap(basemapType: .streetsNightVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-
         mapView.touchDelegate = self
-
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
 
@@ -175,8 +177,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 }
 
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 4)
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                    self.graphicsOverlay.graphics.removeAllObjects()
                     self.graphicsOverlay.graphics.add(routeGraphic)
                     let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
                     let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
