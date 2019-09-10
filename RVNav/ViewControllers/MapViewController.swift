@@ -61,13 +61,13 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             return CLLocation(latitude: lat, longitude: lon)
     }
 
-    func plotAvoidance() {
 
+    func plotAvoidance() {
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
 
         guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
 
-        let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
+        let routeInfo = RouteInfo(height: 15.5, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
 
         networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
@@ -82,7 +82,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 for avoid in avoidances {
                     let coor = CLLocationCoordinate2D(latitude: avoid.latitude, longitude: avoid.longitude)
                     let point = AGSPoint(clLocationCoordinate2D: coor)
-                    self.addMapMarker(location: point, style: .X, fillColor: .yellow, outlineColor: .yellow)
+                    self.addMapMarker(location: point, style: .X, fillColor: .red, outlineColor: .red)
 
                 }
                 }
@@ -91,8 +91,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
     }
 
-
-
+// This is for the Plus button floating on the map
     func setupFloaty() {
         let carIcon = UIImage(named: "car")
         let floaty = Floaty()
@@ -149,7 +148,47 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         present(alertController, animated: true, completion: nil)
     }
 
-    private func findRoute() {
+
+    func createBarriers() -> [AGSPolygonBarrier]{
+
+        let const = 0.001
+
+        var barriers: [AGSPolygonBarrier] = []
+        let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
+
+        guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return []}
+
+        let routeInfo = RouteInfo(height: 15.5, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
+
+        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+            if let error = error {
+                NSLog("error fetching avoidances \(error)")
+
+            }
+            if let avoidances = avoidances {
+                for avoid in avoidances {
+                    let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude + const)))
+                    let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude - const)))
+                    let point2 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude - const)))
+                    let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude + const)))
+                    let gon = AGSPolygon(points: [point, point1, point2, point3])
+                    let barrier = AGSPolygonBarrier(polygon: gon)
+                    barriers.append(barrier)
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
+                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
+                    self.graphicsOverlay.graphics.add(routeGraphic)
+
+                }
+            }
+        }
+
+
+
+        return barriers
+    }
+
+     func findRoute() {
+        let barriers = createBarriers()
         routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
             guard error == nil else {
                 print("Error getting default parameters: \(error!.localizedDescription)")
@@ -157,18 +196,10 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
             guard let params = defaultParameters, let self = self, let start = self.mapView.locationDisplay.mapLocation, let end = self.end else { return }
-            let lat = 40.616280
-            let lon = -74.026192
-            let const = 0.0001
-            let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon + const)))
-            let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat + const), longitude: (lon - const)))
-            let point2 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon - const)))
-            let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (lat - const), longitude: (lon + const)))
-            let gon = AGSPolygon(points: [point, point1, point2, point3])
-            let barrier = AGSPolygonBarrier(polygon: gon)
+
             params.setStops([AGSStop(point: start), AGSStop(point: end)])
 
-            params.setPolygonBarriers([barrier])
+            params.setPolygonBarriers(barriers)
 
             self.routeTask.solveRoute(with: params, completion: { (result, error) in
                 guard error == nil else {
@@ -179,7 +210,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
-                    self.graphicsOverlay.graphics.removeAllObjects()
+//                    self.graphicsOverlay.graphics.removeAllObjects()
                     self.graphicsOverlay.graphics.add(routeGraphic)
                     let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
                     let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
@@ -197,44 +228,44 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
 
-    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-        if start == nil {
-            // Start is not set, set it to a tapped location.
-            setStartMarker(location: mapPoint)
-
-
-
-        } else if end == nil {
-            // End is not set, set it to the tapped location then find the route.
-            setEndMarker(location: mapPoint)
-
-        } else {
-            // Both locations are set; re-set the start to the tapped location.
-            setStartMarker(location: mapPoint)
-        }
-    }
-
+//    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+//        if start == nil {
+//            // Start is not set, set it to a tapped location.
+//            setStartMarker(location: mapPoint)
+//
+//
+//
+//        } else if end == nil {
+//            // End is not set, set it to the tapped location then find the route.
+//            setEndMarker(location: mapPoint)
+//
+//        } else {
+//            // Both locations are set; re-set the start to the tapped location.
+//            setStartMarker(location: mapPoint)
+//        }
+//    }
+//
     private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
         let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 8)
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
     }
-
-    private func setStartMarker(location: AGSPoint) {
-        graphicsOverlay.graphics.removeAllObjects()
-        let startMarkerColor = UIColor(red:0.886, green:0.467, blue:0.157, alpha:1.000)
-        addMapMarker(location: location, style: .diamond, fillColor: startMarkerColor, outlineColor: .blue)
-        start = location
-        end = nil
-    }
-
-    private func setEndMarker(location: AGSPoint) {
-        let endMarkerColor = UIColor(red:0.157, green:0.467, blue:0.886, alpha:1.000)
-        addMapMarker(location: location, style: .square, fillColor: endMarkerColor, outlineColor: .red)
-        end = location
-        findRoute()
-    }
+//
+//    private func setStartMarker(location: AGSPoint) {
+//        graphicsOverlay.graphics.removeAllObjects()
+//        let startMarkerColor = UIColor(red:0.886, green:0.467, blue:0.157, alpha:1.000)
+//        addMapMarker(location: location, style: .diamond, fillColor: startMarkerColor, outlineColor: .blue)
+//        start = location
+//        end = nil
+//    }
+//
+//    private func setEndMarker(location: AGSPoint) {
+//        let endMarkerColor = UIColor(red:0.157, green:0.467, blue:0.886, alpha:1.000)
+//        addMapMarker(location: location, style: .square, fillColor: endMarkerColor, outlineColor: .red)
+//        end = location
+//        findRoute()
+//    }
 
 
 
