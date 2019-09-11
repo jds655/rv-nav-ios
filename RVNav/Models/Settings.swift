@@ -13,7 +13,7 @@ class Settings {
     private init() {}
     
     var selectedVehicle: Vehicle?
-    var selectedVehicleIndex: Int = 0
+    var selectedVehicleIndex: Int = 0 
     
 }
 

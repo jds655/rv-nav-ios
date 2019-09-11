@@ -21,7 +21,9 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
             DispatchQueue.main.async {
                 self.vehiclePickerView.reloadAllComponents()
                 self.vehiclePickerView.selectRow(Settings.shared.selectedVehicleIndex, inComponent: 0, animated: false)
+                Settings.shared.selectedVehicle = self.vehicles[self.vehiclePickerView.selectedRow(inComponent: 0)]
             }
+//
         }
     }
     
@@ -49,6 +51,9 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
                 return
             }
             self.vehicles = vehicles
+            if self.vehicles.count == 0 {
+                self.vehicles = [Vehicle(id: nil, name: "Default", height: 11, weight: 30_000.0, width: 9.5, length: 32, axelCount: 2, vehicleClass: "A", dualTires: true, trailer: false)]
+            }
            
         }
     }
@@ -67,13 +72,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
         Settings.shared.selectedVehicle = vehicles[row]
-
-        if Settings.shared.selectedVehicleIndex > self.vehicles.count {
-         vehiclePickerView.selectRow(0, inComponent: 0, animated: false)
-        } else {
-        Settings.shared.selectedVehicleIndex = vehiclePickerView.selectedRow(inComponent: 0)
-
-        }
+        Settings.shared.selectedVehicleIndex = row
 
     }
     

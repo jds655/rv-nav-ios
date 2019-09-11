@@ -67,7 +67,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
         guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
 
-        let routeInfo = RouteInfo(height: 15.5, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
+        let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
 
         networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
@@ -158,7 +158,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
         guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return []}
 
-        let routeInfo = RouteInfo(height: 15.5, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
+        let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
 
         networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
@@ -183,8 +183,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
 
 
-
+        print(barriers.count)
         return barriers
+        
     }
 
      func findRoute() {
