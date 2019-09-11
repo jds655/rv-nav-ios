@@ -131,8 +131,8 @@
 			children = (
 				446F3902230DA7FC00D57DE3 /* User.swift */,
 				D185F9552322FABE00E4C64A /* Avoid.swift */,
-				44EAD663231EF5FC00094531 /* Settings.swift */,
 				447831E523146AC5007D50E7 /* Vehicle.swift */,
+				44EAD663231EF5FC00094531 /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -50,9 +50,11 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
                 NSLog("Error fetching Vehicles: \(error)")
                 return
             }
-            self.vehicles = vehicles
-            if self.vehicles.count == 0 {
-                self.vehicles = [Vehicle(id: nil, name: "Default", height: 11, weight: 30_000.0, width: 9.5, length: 32, axelCount: 2, vehicleClass: "A", dualTires: true, trailer: false)]
+
+            if vehicles.count == 0 {
+                self.vehicles = [Vehicle(id: 0, name: "Default", height: 11, weight: 30_000.0, width: 9.5, length: 32, axelCount: 2, vehicleClass: "A", dualTires: true, trailer: false)]
+            } else {
+                self.vehicles = vehicles
             }
            
         }

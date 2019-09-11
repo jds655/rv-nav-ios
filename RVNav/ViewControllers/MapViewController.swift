@@ -47,7 +47,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if directionsController.destinationAddress != nil {
             let destination = directionsController.destinationAddress!.location!.coordinate
             end = AGSPoint(clLocationCoordinate2D: destination)
-            findRoute()
+            createBarriers()
         }
     }
 
@@ -151,9 +151,13 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
     func createBarriers() -> [AGSPolygonBarrier]{
 
-        let const = 0.001
+        let const = 0.0001
 
-        var barriers: [AGSPolygonBarrier] = []
+        var barriers: [AGSPolygonBarrier] = [] {
+            didSet {
+                self.findRoute(with: barriers)
+            }
+        }
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
 
         guard let vehicleInfo = Settings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return []}
@@ -166,6 +170,10 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
             }
             if let avoidances = avoidances {
+                var tempBarriers: [AGSPolygonBarrier] = []
+
+
+
                 for avoid in avoidances {
                     let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude + const)))
                     let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude - const)))
@@ -173,23 +181,28 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude + const)))
                     let gon = AGSPolygon(points: [point, point1, point2, point3])
                     let barrier = AGSPolygonBarrier(polygon: gon)
-                    barriers.append(barrier)
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
-                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
-                    self.graphicsOverlay.graphics.add(routeGraphic)
+                    tempBarriers.append(barrier)
+//                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
+//                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
+//                    self.graphicsOverlay.graphics.add(routeGraphic)
+                    }
 
-                }
+
+                barriers = tempBarriers
+                print(tempBarriers.count)
+
             }
+
         }
 
 
-        print(barriers.count)
+
         return barriers
         
     }
 
-     func findRoute() {
-        let barriers = createBarriers()
+    func findRoute(with barriers: [AGSPolygonBarrier]) {
+
         routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
             guard error == nil else {
                 print("Error getting default parameters: \(error!.localizedDescription)")
