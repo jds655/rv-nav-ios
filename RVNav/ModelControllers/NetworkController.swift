@@ -176,6 +176,50 @@ class NetworkController {
             completion(nil)
             }.resume()
     }
+    
+    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error Deleting entry to server: \(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+            }.resume()
+        
+    }
+    
+//    func deleteEntryFromServer(entry: Entry, completion: @escaping CompletionHandler = { _ in}) {
+//
+//        guard let identifier = entry.identifier else {
+//            NSLog("Entry identifier is nil")
+//            completion(NSError())
+//            return
+//        }
+//
+//        let requestURL = baseURL.appendingPathComponent("\(identifier)").appendingPathExtension("json")
+//        var request = URLRequest(url: requestURL)
+//        request.httpMethod = "Delete"
+//
+//        URLSession.shared.dataTask(with: request) { (_, _, error) in
+//            if let error = error {
+//                NSLog("Error PUTting entry to server: \(error)")
+//                completion(error)
+//                return
+//            }
+//            completion(nil)
+//            }.resume()
+//
+//    }
+    
+    
+        
 
     func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")

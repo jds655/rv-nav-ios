@@ -65,7 +65,7 @@ class VehicleFormViewController: UIViewController {
 
     @IBAction func saveButtonPressed(_ sender: Any) {
 
-        guard let height = vehicleWeightTextField.text,
+        guard let height = vehicleHeightTextField.text,
             let weight = vehicleWeightTextField.text,
             let width = vehicleWidthTextField.text,
             let length = vehicleLengthTextField.text,
