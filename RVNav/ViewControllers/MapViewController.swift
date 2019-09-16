@@ -231,12 +231,15 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     let formatter = MeasurementFormatter()
                     formatter.numberFormatter.maximumFractionDigits = 2
                     formatter.unitOptions = .naturalScale
-                    let alert = UIAlertController(title: nil, message: """
-                        Total distance: \(formatter.string(from: totalDistance))
-                        Travel time: \(formatter.string(from: totalDuration))
-                        """, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: nil, message: """
+                            Total distance: \(formatter.string(from: totalDistance))
+                            Travel time: \(formatter.string(from: totalDuration))
+                            """, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             })
         }
