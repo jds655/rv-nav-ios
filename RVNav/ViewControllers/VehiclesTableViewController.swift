@@ -56,6 +56,23 @@ class VehiclesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let vehicle = vehicles[indexPath.row]
+            guard let id = vehicle.id else { return }
+            networkController.deleteVehicle(id: id) { (error) in
+                if let error = error {
+                    NSLog("Error deleting: \(error)")
+                }
+                self.vehicles.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
+    }
     
     
     // MARK: - Navigation

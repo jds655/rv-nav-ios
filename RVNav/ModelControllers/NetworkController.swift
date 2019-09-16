@@ -8,11 +8,14 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import ArcGIS
 
 class NetworkController {
 
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
+    let avoidURL = URL(string: "https://rv-nav-clearance.com/fetch_low_clearance")!
+    
     var result: Result?
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
@@ -163,7 +166,7 @@ class NetworkController {
                 response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
-            }
+                }
 
             if let error = error {
                 completion(error)
@@ -173,6 +176,50 @@ class NetworkController {
             completion(nil)
             }.resume()
     }
+    
+    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error Deleting entry to server: \(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+            }.resume()
+        
+    }
+    
+//    func deleteEntryFromServer(entry: Entry, completion: @escaping CompletionHandler = { _ in}) {
+//
+//        guard let identifier = entry.identifier else {
+//            NSLog("Entry identifier is nil")
+//            completion(NSError())
+//            return
+//        }
+//
+//        let requestURL = baseURL.appendingPathComponent("\(identifier)").appendingPathExtension("json")
+//        var request = URLRequest(url: requestURL)
+//        request.httpMethod = "Delete"
+//
+//        URLSession.shared.dataTask(with: request) { (_, _, error) in
+//            if let error = error {
+//                NSLog("Error PUTting entry to server: \(error)")
+//                completion(error)
+//                return
+//            }
+//            completion(nil)
+//            }.resume()
+//
+//    }
+    
+    
+        
 
     func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
@@ -207,6 +254,56 @@ class NetworkController {
             }
             }.resume()
         }
+
+
+    func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
+
+        var request = URLRequest(url: avoidURL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+            request.httpBody = try jsonEncoder.encode(routeInfo)
+        } catch {
+            NSLog("error encoding\(error)")
+            completion(nil, error)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(nil, NSError())
+                return
+            }
+
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let data = data else {
+                completion(nil, NSError())
+                return
+            }
+
+
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            do {
+                let avoidArray: [Avoid] = try jsonDecoder.decode([Avoid].self, from: data)
+                completion(avoidArray, nil)
+
+            } catch {
+                completion(nil, error)
+                return
+            }
+
+            }.resume()
+    }
 
     }
 

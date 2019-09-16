@@ -33,8 +33,6 @@ struct User: Codable, Equatable {
         self.password = password
         self.email = email
         self.username = username
-        
-        
     }
     
     static func ==(lhs: User, rhs: User) -> Bool {

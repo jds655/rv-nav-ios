@@ -21,7 +21,9 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
             DispatchQueue.main.async {
                 self.vehiclePickerView.reloadAllComponents()
                 self.vehiclePickerView.selectRow(Settings.shared.selectedVehicleIndex, inComponent: 0, animated: false)
+                Settings.shared.selectedVehicle = self.vehicles[self.vehiclePickerView.selectedRow(inComponent: 0)]
             }
+//
         }
     }
     
@@ -48,7 +50,12 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
                 NSLog("Error fetching Vehicles: \(error)")
                 return
             }
-            self.vehicles = vehicles
+
+            if vehicles.count == 0 {
+                self.vehicles = [Vehicle(id: 0, name: "Default", height: 11, weight: 30_000.0, width: 9.5, length: 32, axelCount: 2, vehicleClass: "A", dualTires: true, trailer: false)]
+            } else {
+                self.vehicles = vehicles
+            }
            
         }
     }
@@ -65,13 +72,10 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        if Settings.shared.selectedVehicleIndex > self.vehicles.count {
-         vehiclePickerView.selectRow(0, inComponent: 0, animated: false)
-        } else {
-        Settings.shared.selectedVehicleIndex = vehiclePickerView.selectedRow(inComponent: 0)
-        }
-        
+
+        Settings.shared.selectedVehicle = vehicles[row]
+        Settings.shared.selectedVehicleIndex = row
+
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -109,7 +113,6 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         guard let directionsController = directionsController else { return }
         let address = addresses[indexPath.row]
         directionsController.destinationAddress = address
-
         dismiss(animated: true, completion: nil)
     }
 

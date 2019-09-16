@@ -126,7 +126,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJJ-Rh-RHl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJJ-Rh-RHl" customClass="AGSMapView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -154,7 +154,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="containerMapView" destination="hJJ-Rh-RHl" id="a4b-bR-y2r"/>
+                        <outlet property="mapView" destination="hJJ-Rh-RHl" id="Rah-XS-NrW"/>
                         <segue destination="yRP-zF-0Ep" kind="presentation" identifier="ShowLogin" id="RTs-Qa-E8T"/>
                         <segue destination="oPi-24-sMM" kind="presentation" identifier="ShowAddressSearch" id="4nl-5L-m9r"/>
                     </connections>
