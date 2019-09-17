@@ -20,6 +20,7 @@ import ArcGIS
 
 
 class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
+    
     var networkController = NetworkController()
     let directionsController = DirectionsController()
     let graphicsOverlay = AGSGraphicsOverlay()
@@ -31,13 +32,14 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     @IBOutlet weak var mapView: AGSMapView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
         setupFloaty()
         setupLocationDisplay()
-
+        
 
     }
 
@@ -203,6 +205,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
     func findRoute(with barriers: [AGSPolygonBarrier]) {
 
+        var customConfig = URLSessionConfiguration.default
+        customConfig.timeoutIntervalForRequest = 120
+        
         routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
             guard error == nil else {
                 print("Error getting default parameters: \(error!.localizedDescription)")
@@ -210,7 +215,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
             guard let params = defaultParameters, let self = self, let start = self.mapView.locationDisplay.mapLocation, let end = self.end else { return }
-
+            
+            
+            
             params.setStops([AGSStop(point: start), AGSStop(point: end)])
 
             params.setPolygonBarriers(barriers)
