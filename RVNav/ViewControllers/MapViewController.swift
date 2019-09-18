@@ -127,7 +127,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
 
     private func setupMap() {
-        mapView.map = AGSMap(basemapType: .streetsNightVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
         mapView.touchDelegate = self
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
@@ -226,7 +226,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 }
 
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 8)
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
                     self.graphicsOverlay.graphics.removeAllObjects()
                     self.graphicsOverlay.graphics.add(routeGraphic)

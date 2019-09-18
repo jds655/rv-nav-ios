@@ -141,7 +141,7 @@
                         <viewLayoutGuide key="safeArea" id="dOB-u0-snw"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dui-XS-zkh">
-                        <barButtonItem key="leftBarButtonItem" image="database" id="DAm-oh-qwH">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="DAm-oh-qwH">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="X4K-m0-2IZ" kind="presentation" id="xYp-vg-fGc"/>
@@ -326,7 +326,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Feet.Inches eg. 12.3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6R-KV-39O">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. 12.3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6R-KV-39O">
                                                         <rect key="frame" x="0.0" y="30.5" width="258" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="j6R-KV-39O" secondAttribute="height" multiplier="43:5" id="47U-en-0yy"/>
@@ -341,7 +341,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pounds eg. 1300.25" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEm-lp-PHl">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. 1300.25" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEm-lp-PHl">
                                                         <rect key="frame" x="0.0" y="101" width="258" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gEm-lp-PHl" secondAttribute="height" multiplier="43:5" id="EeG-ul-KU1"/>
@@ -356,7 +356,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Feet.Inches eg. 10.3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iLB-QP-jkz">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. 10.3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iLB-QP-jkz">
                                                         <rect key="frame" x="0.0" y="171.5" width="258" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="iLB-QP-jkz" secondAttribute="height" multiplier="43:5" id="O0h-f1-dHO"/>
@@ -371,7 +371,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Feet.Inches eg. 42.3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9mr-7X-7NZ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. 42.3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9mr-7X-7NZ">
                                                         <rect key="frame" x="0.0" y="242" width="258" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="9mr-7X-7NZ" secondAttribute="height" multiplier="43:5" id="zep-Ov-y39"/>
@@ -386,7 +386,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number eg. 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnS-Fs-uDI">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnS-Fs-uDI">
                                                         <rect key="frame" x="0.0" y="312.5" width="258" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="EnS-Fs-uDI" secondAttribute="height" multiplier="43:5" id="OgL-ba-eBg"/>
@@ -557,7 +557,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="database" width="30" height="30"/>
         <image name="eugene-quek-d7_fyuufaeo-unsplash_720" width="720" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
