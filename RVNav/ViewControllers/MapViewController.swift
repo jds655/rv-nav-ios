@@ -228,7 +228,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
-//                    self.graphicsOverlay.graphics.removeAllObjects()
+                    self.graphicsOverlay.graphics.removeAllObjects()
                     self.graphicsOverlay.graphics.add(routeGraphic)
                     let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
                     let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
