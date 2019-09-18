@@ -205,9 +205,6 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
     func findRoute(with barriers: [AGSPolygonBarrier]) {
 
-        var customConfig = URLSessionConfiguration.default
-        customConfig.timeoutIntervalForRequest = 120
-        
         routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
             guard error == nil else {
                 print("Error getting default parameters: \(error!.localizedDescription)")

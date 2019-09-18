@@ -141,7 +141,8 @@
                         <viewLayoutGuide key="safeArea" id="dOB-u0-snw"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dui-XS-zkh">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="DAm-oh-qwH">
+                        <barButtonItem key="leftBarButtonItem" image="database" id="DAm-oh-qwH">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="X4K-m0-2IZ" kind="presentation" id="xYp-vg-fGc"/>
                             </connections>
@@ -556,6 +557,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="database" width="30" height="30"/>
         <image name="eugene-quek-d7_fyuufaeo-unsplash_720" width="720" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
