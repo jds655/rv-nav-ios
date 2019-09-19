@@ -10,14 +10,16 @@ import UIKit
 import FirebaseCore
 import ArcGIS
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let globalConfiguration = AGSRequestConfiguration.global()
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        globalConfiguration.timeoutInterval = 300.0
         FirebaseApp.configure()
         setupOAuthManager()
 

@@ -20,6 +20,7 @@ import ArcGIS
 
 
 class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
+    
     var networkController = NetworkController()
     let directionsController = DirectionsController()
     let graphicsOverlay = AGSGraphicsOverlay()
@@ -31,13 +32,14 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     @IBOutlet weak var mapView: AGSMapView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
         setupFloaty()
         setupLocationDisplay()
-
+        
 
     }
 
@@ -125,7 +127,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
 
     private func setupMap() {
-        mapView.map = AGSMap(basemapType: .streetsNightVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
         mapView.touchDelegate = self
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
@@ -210,7 +212,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
             guard let params = defaultParameters, let self = self, let start = self.mapView.locationDisplay.mapLocation, let end = self.end else { return }
-
+            
+            
+            
             params.setStops([AGSStop(point: start), AGSStop(point: end)])
 
             params.setPolygonBarriers(barriers)
@@ -222,9 +226,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 }
 
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .yellow, width: 8)
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
-//                    self.graphicsOverlay.graphics.removeAllObjects()
+                    self.graphicsOverlay.graphics.removeAllObjects()
                     self.graphicsOverlay.graphics.add(routeGraphic)
                     let totalDistance = Measurement(value: firstRoute.totalLength, unit: UnitLength.meters)
                     let totalDuration = Measurement(value: firstRoute.travelTime, unit: UnitDuration.minutes)
