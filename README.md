@@ -13,11 +13,10 @@
 
 🚫 Optional examples of using badges with links for your tech stack, make sure to change these to fit your project
 
-[![Swift Version][swift-image]][swift-url]
+[![Swift Version 5.0][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
 
