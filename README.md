@@ -22,13 +22,13 @@
 
 ## Project Overview
 
-1️⃣ You can find the deployed project at [RVNav](www.RVNav.com).
+You can find the deployed project at [RVNav](www.RVNav.com).
 
-1️⃣ [Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
+[Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
 
-1️⃣ [Product Canvas](https://www.notion.so/5aa76f6aca86492baaad94c9557ca2f3?v=a47d5b273e12448a816af139b3aa7ef0)
+[Product Canvas](https://www.notion.so/5aa76f6aca86492baaad94c9557ca2f3?v=a47d5b273e12448a816af139b3aa7ef0)
 
-1️⃣ [UX Design files](https://www.figma.com/file/KGiH4omkur2KgDrckWclF9/🚍-RV-Life?node-id=0%3A1)
+[UX Design files](https://www.figma.com/file/KGiH4omkur2KgDrckWclF9/🚍-RV-Life?node-id=0%3A1)
 
 
 
