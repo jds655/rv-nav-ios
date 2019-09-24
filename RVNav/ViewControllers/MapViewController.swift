@@ -118,6 +118,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
 
     override func viewDidAppear(_ animated: Bool) {
+
+
+        
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
