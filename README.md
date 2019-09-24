@@ -1,4 +1,4 @@
-# RV Nav
+# RV Nav (iOS)
 
 ##  Contributors
 
@@ -73,12 +73,6 @@ Using several available data sources integrated into a map thats designed for RV
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a [code of conduct](./code_of_conduct.md). Please follow it in all your interactions with the project.
-
-### Issue/Bug Request
-
-    ## Contributing
-
-When contributing to this repository, please first discuss the c.hange you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 
 ### Issue/Bug Request
