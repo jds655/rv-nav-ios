@@ -63,6 +63,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             return CLLocation(latitude: lat, longitude: lon)
     }
 
+// Used to display barrier points retrieved from the DS backend.
 
     func plotAvoidance() {
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
@@ -118,16 +119,13 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
 
     override func viewDidAppear(_ animated: Bool) {
-
-
-        
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
-
-
         }
     }
+
+    // Creates a new instance of AGSMap and sets it to the mapView.
 
     private func setupMap() {
         mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
@@ -135,16 +133,18 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
 
+    // Allows users location to be used and displayed on the main mapView.
+
     private func setupLocationDisplay() {
         mapView.locationDisplay.autoPanMode = .compassNavigation
-
         mapView.locationDisplay.start { [weak self] (error:Error?) -> Void in
             if let error = error {
                 self?.showAlert(withStatus: error.localizedDescription)
             }
         }
-
     }
+
+    // Shows alert if there was an error displaying location.
 
     private func showAlert(withStatus: String) {
         let alertController = UIAlertController(title: "Alert", message:
@@ -153,6 +153,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         present(alertController, animated: true, completion: nil)
     }
 
+
+// Used to call DS backend for getting barriers coordinates.  Each coordinate is turned into a AGSPolygonBarrier and appended to an array.  The array is then returned.
 
     func createBarriers() -> [AGSPolygonBarrier]{
 
@@ -172,12 +174,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
-
             }
             if let avoidances = avoidances {
                 var tempBarriers: [AGSPolygonBarrier] = []
-
-
 
                 for avoid in avoidances {
                     let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude + const)))
@@ -186,10 +185,16 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude + const)))
                     let gon = AGSPolygon(points: [point, point1, point2, point3])
                     let barrier = AGSPolygonBarrier(polygon: gon)
+
                     tempBarriers.append(barrier)
+
+// Used to print out the barriers for testing purposes.
+
 //                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
 //                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
 //                    self.graphicsOverlay.graphics.add(routeGraphic)
+
+
                     }
 
 
@@ -199,12 +204,11 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
         }
-
-
-
         return barriers
-        
     }
+
+
+// This function sets the default paramaters for finding a route between 2 locations.  Barrier points are used as a parameter.  The route is drawn to the screen.
 
     func findRoute(with barriers: [AGSPolygonBarrier]) {
 
@@ -215,11 +219,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
             guard let params = defaultParameters, let self = self, let start = self.mapView.locationDisplay.mapLocation, let end = self.end else { return }
-            
-            
-            
-            params.setStops([AGSStop(point: start), AGSStop(point: end)])
 
+            params.setStops([AGSStop(point: start), AGSStop(point: end)])
             params.setPolygonBarriers(barriers)
 
             self.routeTask.solveRoute(with: params, completion: { (result, error) in
@@ -252,47 +253,14 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
 
-//    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-//        if start == nil {
-//            // Start is not set, set it to a tapped location.
-//            setStartMarker(location: mapPoint)
-//
-//
-//
-//        } else if end == nil {
-//            // End is not set, set it to the tapped location then find the route.
-//            setEndMarker(location: mapPoint)
-//
-//        } else {
-//            // Both locations are set; re-set the start to the tapped location.
-//            setStartMarker(location: mapPoint)
-//        }
-//    }
-//
+    // adds a mapmarker at a given location.
+
     private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
         let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 8)
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
     }
-//
-//    private func setStartMarker(location: AGSPoint) {
-//        graphicsOverlay.graphics.removeAllObjects()
-//        let startMarkerColor = UIColor(red:0.886, green:0.467, blue:0.157, alpha:1.000)
-//        addMapMarker(location: location, style: .diamond, fillColor: startMarkerColor, outlineColor: .blue)
-//        start = location
-//        end = nil
-//    }
-//
-//    private func setEndMarker(location: AGSPoint) {
-//        let endMarkerColor = UIColor(red:0.157, green:0.467, blue:0.886, alpha:1.000)
-//        addMapMarker(location: location, style: .square, fillColor: endMarkerColor, outlineColor: .red)
-//        end = location
-//        findRoute()
-//    }
-
-
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowLogin" {
