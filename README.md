@@ -74,15 +74,14 @@ Using several available data sources integrated into a map thats designed for RV
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
+Please note we have a [code of conduct](./code_of_conduct.md). Please follow it in all your interactions with the project.
 
 ### Issue/Bug Request
 
     ## Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+When contributing to this repository, please first discuss the c.hange you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Please note we have a [code of conduct](./code_of_conduct.md). Please follow it in all your interactions with the project.
 
 ### Issue/Bug Request
 
@@ -117,7 +116,7 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs15-rv-life/backend) for details on the backend of our project.
 
 
 [swift-image]: https://img.shields.io/badge/swift-5.0-orange.svg
