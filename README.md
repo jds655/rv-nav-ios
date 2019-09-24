@@ -13,16 +13,15 @@ You can find the deployed project at [RVNav](https://www.rvnav.com).
 
 
 
+[![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![Swift Version 5.0][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
-[![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-You can find the deployed project at [RVNav](www.RVNav.com).
+You can find a webversion of the deployed project at [RVNav](www.RVNav.com).
 
 [Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
 
@@ -32,9 +31,9 @@ You can find the deployed project at [RVNav](www.RVNav.com).
 
 
 
-Traveling safely for RVers is difficult. RV Life will get you to where you need to go safely and with no hassle.
+Traveling safely for RVers is difficult. RV Nav will get you to where you need to go safely and with no hassle.
 
-Using several available data sources integrated into a map thats designed for RV travel, we supply you with the route you need. Trust RV Life to safely get you there.
+Using several available data sources integrated into a map thats designed for RV travel, we supply you with the route you need. Trust RVNav to safely get you there.
 
 ![](header.png)
 
@@ -53,7 +52,9 @@ Using several available data sources integrated into a map thats designed for RV
 
 ArcGIS is a mapping platform that allows for the calling and plotting of a user specified route. It also presents functionality to avoid specific hazards related to a vehicles height, weight, length and other relevant factors. 
 
-### Misc API here
+### SideMenu
+
+[SideMenu]( https://github.com/jonkykong/SideMenu)
 
 🚫Replace text below with a description of the API
 
