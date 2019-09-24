@@ -1,8 +1,8 @@
 ## RV Nav
 
-1️⃣ You can find the deployed project at [RVNav](www.RVNav.Com).
+You can find the deployed project at [RVNav](www.RVNav.Com).
 
-## 4️⃣ Contributors
+##  Contributors
 
 
 |                                       [Ryan Murphy](https://www.github.com/MurphDirt879)                                        |                                       [Jonathan Ferrer](https://github.com/JayFenam)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
