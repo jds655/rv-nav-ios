@@ -69,11 +69,7 @@ class VehicleFormViewController: UIViewController {
         hasTrailerSwitch.isOn = vehicle.trailer!
         
         }
-            
 
-    func checkVehicle() {
-
-    }
 
     @IBAction func saveButtonPressed(_ sender: Any) {
 

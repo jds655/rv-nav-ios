@@ -17,7 +17,9 @@ class NetworkController {
     let avoidURL = URL(string: "https://rv-nav-clearance.com/fetch_low_clearance")!
     
     var result: Result?
-    
+
+    // Register
+
     func register(with user: User, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("register")
         var request = URLRequest(url: url)
@@ -112,6 +114,8 @@ class NetworkController {
             }.resume()
     }
 
+    // Creates vehicle in api for the current user.
+
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
@@ -143,6 +147,8 @@ class NetworkController {
             completion(nil)
             }.resume()
     }
+
+    // Edit a stored vehicle with a vehivle id.
 
     func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
@@ -176,6 +182,8 @@ class NetworkController {
             completion(nil)
             }.resume()
     }
+
+    // Delete a stored vehicle with vehivle id.
     
     func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
@@ -195,31 +203,7 @@ class NetworkController {
         
     }
     
-//    func deleteEntryFromServer(entry: Entry, completion: @escaping CompletionHandler = { _ in}) {
-//
-//        guard let identifier = entry.identifier else {
-//            NSLog("Entry identifier is nil")
-//            completion(NSError())
-//            return
-//        }
-//
-//        let requestURL = baseURL.appendingPathComponent("\(identifier)").appendingPathExtension("json")
-//        var request = URLRequest(url: requestURL)
-//        request.httpMethod = "Delete"
-//
-//        URLSession.shared.dataTask(with: request) { (_, _, error) in
-//            if let error = error {
-//                NSLog("Error PUTting entry to server: \(error)")
-//                completion(error)
-//                return
-//            }
-//            completion(nil)
-//            }.resume()
-//
-//    }
-    
-    
-        
+    // Gets all currently stored vehicles for a user
 
     func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
@@ -255,6 +239,7 @@ class NetworkController {
             }.resume()
         }
 
+    // Gets an array of avoidance coordinates from DS backend.
 
     func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
 
@@ -305,7 +290,7 @@ class NetworkController {
             }.resume()
     }
 
-    }
+}
 
 
 
