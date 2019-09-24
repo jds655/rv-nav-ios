@@ -39,26 +39,25 @@ Using several available data sources integrated into a map thats designed for RV
 
 ### Features
 
--    Feature 1
--    Feature 2
--    Feature 3
--    Feature 4
--    Feature 5
+-    Register and Log in from the app.
 
+-    Save and modify vehicle information.
+
+-    Search for addresses.
+
+-    Generate a route between two end points based on the given vehicle data and display it on a map view.
+
+-    Location tracking.
 
 
 
 ### ArcGIS RunTime SDK
 
-ArcGIS is a mapping platform that allows for the calling and plotting of a user specified route. It also presents functionality to avoid specific hazards related to a vehicles height, weight, length and other relevant factors. 
+[ArcGIS](https://developers.arcgis.com/ios/) is a mapping platform that allows for the calling and plotting of a user specified route. It also presents functionality to avoid specific hazards related to a vehicles height, weight, length and other relevant factors. 
 
 ### SideMenu
 
-[SideMenu]( https://github.com/jonkykong/SideMenu)
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
+[SideMenu]( https://github.com/jonkykong/SideMenu) Simple side/slide menu control for iOS, no code necessary! Lots of customization.
 
 ### Misc API here
 
@@ -70,8 +69,8 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 
 🚫 These are examples, make sure this matches your project's requirements
 
--   iOS 8.0+
--   Xcode 7.3
+-   iOS 12
+-   Xcode 10
 -   Cocoa Pods
 
 ## Contributing
