@@ -59,15 +59,12 @@ Using several available data sources integrated into a map thats designed for RV
 
 [SideMenu]( https://github.com/jonkykong/SideMenu) Simple side/slide menu control for iOS, no code necessary! Lots of customization.
 
-### Misc API here
+### Mapbox Geocoder
 
-🚫Replace text below with a description of the API
+[Mapbox Geocoder](https://github.com/mapbox/MapboxGeocoder.swift) is an iOS SDK that allows for the search for an addresses that is then turned into coordinates.
 
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
 ## Requirements
-
-🚫 These are examples, make sure this matches your project's requirements
 
 -   iOS 12
 -   Xcode 10
