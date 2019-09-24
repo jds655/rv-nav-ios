@@ -1,6 +1,6 @@
 ## RV Nav
 
-You can find the deployed project at [https://www.rvnav.com](https://www.rvnav.com).
+You can find the deployed project at [RVNav](https://www.rvnav.com).
 
 ##  Contributors
 
