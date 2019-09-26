@@ -8,6 +8,8 @@
 
 import Foundation
 
+// This file stores the app configuration for ArcGIS
+
 struct AppConfiguration {
 
     static let clientID: String = "taIMz5a6FZ8j6ZCs"

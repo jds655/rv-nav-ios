@@ -36,7 +36,10 @@ class SideMenuTableViewController: UITableViewController {
 
         return cell
     }
-    
+
+    // The switch determines which index of the menu array you are tapping.
+    // TODO: - Set up a case for 1 - "Settings", 2 - "Contact Us", 3 - "Privacy Agreement"
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
         case 0:

@@ -12,6 +12,7 @@ import MapboxGeocoder
 
 class DirectionsController {
 
+    // instance of the geocoder (address look up and converter)
     let geocoder = Geocoder.shared
     var destinationAddress: Placemark?
 
