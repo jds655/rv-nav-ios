@@ -9,6 +9,9 @@
 import UIKit
 
 class SideMenuTableViewController: UITableViewController {
+
+
+    // This is the array that the tableview data source uses for menu options.
     
     let menu: [String] = ["Vehicle Information", "Settings", "Contact Us", "Privacy Agreement"]
 

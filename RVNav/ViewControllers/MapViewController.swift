@@ -63,6 +63,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             return CLLocation(latitude: lat, longitude: lon)
     }
 
+
     // Used to display barrier points retrieved from the DS backend.
 
     func plotAvoidance() {
@@ -122,8 +123,6 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         super.viewDidAppear(animated)
         if KeychainWrapper.standard.string(forKey: "accessToken") == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
-
-
         }
     }
 
@@ -139,14 +138,13 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
     private func setupLocationDisplay() {
         mapView.locationDisplay.autoPanMode = .compassNavigation
-
         mapView.locationDisplay.start { [weak self] (error:Error?) -> Void in
             if let error = error {
                 self?.showAlert(withStatus: error.localizedDescription)
             }
         }
-
     }
+
 
         // Shows alert if there was an error displaying location.
 
@@ -158,8 +156,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
 
 
-    // Used to call DS backend for getting barriers coordinates.  Each coordinate is turned into a AGSPolygonBarrier and appended to an array.  The array is then returned.
-
+// Used to call DS backend for getting barriers coordinates.  Each coordinate is turned into a AGSPolygonBarrier and appended to an array.  The array is then returned.
 
     func createBarriers() -> [AGSPolygonBarrier]{
 
@@ -179,12 +176,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
-
             }
             if let avoidances = avoidances {
                 var tempBarriers: [AGSPolygonBarrier] = []
-
-
 
                 for avoid in avoidances {
                     let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude + const)))
@@ -193,6 +187,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude + const)))
                     let gon = AGSPolygon(points: [point, point1, point2, point3])
                     let barrier = AGSPolygonBarrier(polygon: gon)
+
                     tempBarriers.append(barrier)
 
                     // Used to print out the barriers for testing purposes.
@@ -200,6 +195,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 //                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
 //                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
 //                    self.graphicsOverlay.graphics.add(routeGraphic)
+
+
                     }
 
 
@@ -209,12 +206,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
         }
-
-
-
         return barriers
-        
     }
+
 
     // This function sets the default paramaters for finding a route between 2 locations.  Barrier points are used as a parameter.  The route is drawn to the screen.
 
@@ -227,11 +221,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
 
             guard let params = defaultParameters, let self = self, let start = self.mapView.locationDisplay.mapLocation, let end = self.end else { return }
-            
-            
-            
-            params.setStops([AGSStop(point: start), AGSStop(point: end)])
 
+            params.setStops([AGSStop(point: start), AGSStop(point: end)])
             params.setPolygonBarriers(barriers)
 
             self.routeTask.solveRoute(with: params, completion: { (result, error) in
@@ -272,7 +263,6 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
     }
-
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

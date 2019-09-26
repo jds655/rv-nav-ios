@@ -37,7 +37,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         vehiclePickerView.delegate = self
         vehiclePickerView.dataSource = self
         fetchVehicles()
-        
+
         // Line 41 to 52 dismiss keyboard when user taps off of the text field.
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -50,13 +50,14 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
 
     // Gets all the vehicles for the current user from the backend.  If there are no vehicles currently stored, a default vehicle is used.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
+    // Gets all the vehicles for the current user from the backend.  If there are no vehicles currently stored, a default vehicle is used.
+
     private func fetchVehicles() {
         networkController.getVehicles { (vehicles, error) in
             if let error = error {
@@ -83,14 +84,10 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         let vehicle = vehicles[row]
         return vehicle.name
     }
-    
-    
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         Settings.shared.selectedVehicle = vehicles[row]
         Settings.shared.selectedVehicleIndex = row
-
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

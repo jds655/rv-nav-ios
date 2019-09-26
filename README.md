@@ -1,105 +1,79 @@
-## RV Nav
+# RV Nav (iOS)
 
-1️⃣ You can find the deployed project at [RVNav](www.RVNav.Com).
-
-## 4️⃣ Contributors
+##  Contributors
 
 
-|                                       [Ryan Murphy](https://www.github.com/MurphDirt879)                                        |                                       [Jonathan Ferrer](https://github.com/JayFenam)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Ryan Murphy](https://tryanmurphy.com/)                                        |                                       [Jonathan Ferrer](https://www.jonathanferrer.dev)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 |                      [<img src="https://media.licdn.com/dms/image/C4D03AQGlHnkj67kkIQ/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=l06yZViaeRx_F7TedurhJxqEBIz1bnmnd07t32JQbdw" width = "200" />](https://github.com/)                       |                      [<img src="https://media.licdn.com/dms/image/C5603AQFasjNpUIVxQA/profile-displayphoto-shrink_200_200/0?e=1572480000&v=beta&t=CWkr7Rz-506_6zvpcYV7_ciavR2nDw8Njf2kjnCwuNA" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MurphDirt879)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JayFenam)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/thomasryanmurphy/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ferrer-jonathan/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
-🚫 Optional examples of using badges with links for your tech stack, make sure to change these to fit your project
 
-[![Swift Version][swift-image]][swift-url]
+
+[![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
+[![Swift Version 5.0][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)  
-[![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ You can find the deployed project at [RVNav](www.RVNav.com).
+You can find a webversion of the deployed project at [RVNav](www.RVNav.com).
 
-1️⃣ [Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
+[Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
 
-1️⃣ [Product Canvas](https://www.notion.so/5aa76f6aca86492baaad94c9557ca2f3?v=a47d5b273e12448a816af139b3aa7ef0)
+[Product Canvas](https://www.notion.so/5aa76f6aca86492baaad94c9557ca2f3?v=a47d5b273e12448a816af139b3aa7ef0)
 
-1️⃣ [UX Design files](https://www.figma.com/file/KGiH4omkur2KgDrckWclF9/🚍-RV-Life?node-id=0%3A1)
+[UX Design files](https://www.figma.com/file/KGiH4omkur2KgDrckWclF9/🚍-RV-Life?node-id=0%3A1)
 
 
 
-Traveling safely for RVers is difficult. RV Life will get you to where you need to go safely and with no hassle.
+Traveling safely for RVers is difficult. RV Nav will get you to where you need to go safely and with no hassle.
 
-Using several available data sources integrated into a map thats designed for RV travel, we supply you with the route you need. Trust RV Life to safely get you there.
+Using several available data sources integrated into a map thats designed for RV travel, we supply you with the route you need. Trust RVNav to safely get you there.
 
 ![](header.png)
 
 ### Features
 
--    Feature 1
--    Feature 2
--    Feature 3
--    Feature 4
--    Feature 5
+-    Register and Log in from the app.
 
-### Authentication API here
+-    Save and modify vehicle information.
 
-🚫Replace text below with a description of the API
+-    Search for addresses.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+-    Generate a route between two end points based on the given vehicle data and display it on a map view.
 
-### Payment API here
+-    Location tracking.
 
-🚫Replace text below with a description of the API
+## API's & SDK's
 
-This is the way you take out your frustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+### ArcGIS RunTime SDK
 
-### Misc API here
+[ArcGIS](https://developers.arcgis.com/ios/) is a mapping platform that allows for the calling and plotting of a user specified route. It also presents functionality to avoid specific hazards related to a vehicles height, weight, length and other relevant factors. 
 
-🚫Replace text below with a description of the API
+### SideMenu
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+[SideMenu]( https://github.com/jonkykong/SideMenu) Simple side/slide menu control for iOS, no code necessary! Lots of customization.
 
-### Misc API here
+### Mapbox Geocoder
 
-🚫Replace text below with a description of the API
+[Mapbox Geocoder](https://github.com/mapbox/MapboxGeocoder.swift) is an iOS SDK that allows for the search for an addresses that is then turned into coordinates.
 
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-### Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
 ## Requirements
 
-🚫 These are examples, make sure this matches your project's requirements
-
--   iOS 8.0+
--   Xcode 7.3
+-   iOS 12
+-   Xcode 10
 -   Cocoa Pods
 
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
-
-### Issue/Bug Request
-
-    ## Contributing
-
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
-
 Please note we have a [code of conduct](./code_of_conduct.md). Please follow it in all your interactions with the project.
+
 
 ### Issue/Bug Request
 
@@ -134,10 +108,10 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs15-rv-life/backend) for details on the backend of our project.
 
 
-[swift-image]: https://img.shields.io/badge/swift-3.0-orange.svg
+[swift-image]: https://img.shields.io/badge/swift-5.0-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
