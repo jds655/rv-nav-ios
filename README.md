@@ -119,3 +119,9 @@ See [Backend Documentation](https://github.com/labs15-rv-life/backend) for detai
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
 [codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
+
+## Know Issues:
+
+- Timeout error on SDK route requests when barrier count is greater than 25.
+- SideMenu SDK will cause black out of background. 
+
