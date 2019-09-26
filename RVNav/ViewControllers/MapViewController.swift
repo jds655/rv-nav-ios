@@ -190,7 +190,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
                     tempBarriers.append(barrier)
 
-                    // Used to print out the barriers for testing purposes.
+                    // Used to print out the barriers for testing cxpurposes.
 
 //                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
 //                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
