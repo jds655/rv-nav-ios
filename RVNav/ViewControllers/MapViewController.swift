@@ -63,7 +63,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             return CLLocation(latitude: lat, longitude: lon)
     }
 
-// Used to display barrier points retrieved from the DS backend.
+
+    // Used to display barrier points retrieved from the DS backend.
 
     func plotAvoidance() {
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
@@ -144,14 +145,15 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
 
-    // Shows alert if there was an error displaying location.
 
-    private func showAlert(withStatus: String) {
-        let alertController = UIAlertController(title: "Alert", message:
-            withStatus, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        // Shows alert if there was an error displaying location.
+
+        private func showAlert(withStatus: String) {
+            let alertController = UIAlertController(title: "Alert", message:
+                withStatus, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
 
 
 // Used to call DS backend for getting barriers coordinates.  Each coordinate is turned into a AGSPolygonBarrier and appended to an array.  The array is then returned.
@@ -188,7 +190,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
                     tempBarriers.append(barrier)
 
-// Used to print out the barriers for testing purposes.
+                    // Used to print out the barriers for testing purposes.
 
 //                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
 //                    let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
@@ -208,7 +210,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
 
 
-// This function sets the default paramaters for finding a route between 2 locations.  Barrier points are used as a parameter.  The route is drawn to the screen.
+    // This function sets the default paramaters for finding a route between 2 locations.  Barrier points are used as a parameter.  The route is drawn to the screen.
 
     func findRoute(with barriers: [AGSPolygonBarrier]) {
 
@@ -261,6 +263,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
     }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowLogin" {

@@ -51,6 +51,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         view.endEditing(true)
     }
 
+    // Gets all the vehicles for the current user from the backend.  If there are no vehicles currently stored, a default vehicle is used.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -69,11 +70,12 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
             } else {
                 self.vehicles = vehicles
             }
-           
         }
     }
 
+
     // Line 75 to 89 setup the pickerView with fetched user vehicles.
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return vehicles.count
     }

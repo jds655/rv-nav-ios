@@ -14,8 +14,8 @@ class NetworkController {
 
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
-    let avoidURL = URL(string: "https://rv-nav-clearance.com/fetch_low_clearance")!
-    
+    let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
+
     var result: Result?
 
     // Register
@@ -92,19 +92,19 @@ class NetworkController {
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 self.result = try jsonDecoder.decode(Result.self, from: data)
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
-                
+
                 if let parseJSON = json {
                     let accessToken = parseJSON["token"] as? String
-                    
+
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
                     print("The access token save result: \(saveAccessToken)")
-                    
+
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
                         return
                     }
                 }
-                
+
             } catch {
                 completion(error)
                 return
@@ -184,14 +184,14 @@ class NetworkController {
     }
 
     // Delete a stored vehicle with vehivle id.
-    
+
     func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
         request.httpMethod = "DELETE"
-        
+
         URLSession.shared.dataTask(with: request) { (_, _, error) in
             if let error = error {
                 NSLog("Error Deleting entry to server: \(error)")
@@ -200,9 +200,9 @@ class NetworkController {
             }
             completion(nil)
             }.resume()
-        
+
     }
-    
+
     // Gets all currently stored vehicles for a user
 
     func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
