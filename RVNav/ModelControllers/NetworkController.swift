@@ -14,7 +14,7 @@ class NetworkController {
 
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
-    let avoidURL = URL(string: "https://rv-nav-clearance.com/fetch_low_clearance")!
+    let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
     
     var result: Result?
     
