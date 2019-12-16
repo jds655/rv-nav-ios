@@ -13,6 +13,8 @@
 		321DE98D23A83D6F00521AAB /* Heebo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321DE98C23A83D6F00521AAB /* Heebo-Bold.ttf */; };
 		321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321DE98E23A83D7800521AAB /* Heebo-ExtraBold.ttf */; };
 		321DE99123A83D8100521AAB /* Heebo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321DE99023A83D8100521AAB /* Heebo-Black.ttf */; };
+		321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE99423A8464E00521AAB /* SignInViewController.swift */; };
+		321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE99723A84AD800521AAB /* UIColor+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
 		447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E723146CE0007D50E7 /* VehicleFormViewController.swift */; };
@@ -34,7 +36,7 @@
 		D8D1C32546DCAF7850A23C2F /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF49070387DFC10FBB9C48A /* Pods_RVNav.framework */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */; };
-		FBAA2B7D23A839D100D6E4B7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */; };
+		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */; };
 		FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */; };
 		FBAA2B8523A83B8F00D6E4B7 /* Mobile-sign in-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8223A83B8F00D6E4B7 /* Mobile-sign in-background.svg */; };
@@ -48,6 +50,8 @@
 		321DE98C23A83D6F00521AAB /* Heebo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Bold.ttf"; sourceTree = "<group>"; };
 		321DE98E23A83D7800521AAB /* Heebo-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-ExtraBold.ttf"; sourceTree = "<group>"; };
 		321DE99023A83D8100521AAB /* Heebo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Black.ttf"; sourceTree = "<group>"; };
+		321DE99423A8464E00521AAB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		321DE99723A84AD800521AAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +76,7 @@
 		FAD10D91F6469EDBAF57EDA8 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
-		FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-Background.svg"; sourceTree = "<group>"; };
 		FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mobile-sign up-background.svg"; sourceTree = "<group>"; };
 		FBAA2B8223A83B8F00D6E4B7 /* Mobile-sign in-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-sign in-background.svg"; sourceTree = "<group>"; };
@@ -90,6 +94,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		321DE99623A84A5600521AAB /* Text Files */ = {
+			isa = PBXGroup;
+			children = (
+				321DE98623A83D5300521AAB /* Heebo-Light.ttf */,
+				321DE98823A83D5D00521AAB /* Heebo-Regular.ttf */,
+				321DE98A23A83D6600521AAB /* Heebo-Medium.ttf */,
+				321DE98C23A83D6F00521AAB /* Heebo-Bold.ttf */,
+				321DE98E23A83D7800521AAB /* Heebo-ExtraBold.ttf */,
+				321DE99023A83D8100521AAB /* Heebo-Black.ttf */,
+			);
+			path = "Text Files";
+			sourceTree = "<group>";
+		};
+		321DE99923A84AE000521AAB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				321DE99723A84AD800521AAB /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		37762777621EC0174A835EA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +155,7 @@
 			children = (
 				FBAA2B7323A8370100D6E4B7 /* Features */,
 				D1BCDD84230E0F9500986A18 /* Resources */,
+				321DE99923A84AE000521AAB /* Extensions */,
 				D1BCDD80230E0F4C00986A18 /* ViewControllers */,
 				D1BCDD81230E0F5D00986A18 /* Models */,
 				D1BCDD82230E0F6900986A18 /* ModelControllers */,
@@ -184,12 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAA2B7F23A83B6A00D6E4B7 /* SVG */,
-				321DE98623A83D5300521AAB /* Heebo-Light.ttf */,
-				321DE98823A83D5D00521AAB /* Heebo-Regular.ttf */,
-				321DE98A23A83D6600521AAB /* Heebo-Medium.ttf */,
-				321DE98C23A83D6F00521AAB /* Heebo-Bold.ttf */,
-				321DE98E23A83D7800521AAB /* Heebo-ExtraBold.ttf */,
-				321DE99023A83D8100521AAB /* Heebo-Black.ttf */,
+				321DE99623A84A5600521AAB /* Text Files */,
 				D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */,
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
 				D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */,
@@ -221,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */,
-				FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */,
+				FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -230,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */,
+				321DE99423A8464E00521AAB /* SignInViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -316,7 +338,7 @@
 				447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */,
 				FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */,
 				FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */,
-				FBAA2B7D23A839D100D6E4B7 /* Login.storyboard in Resources */,
+				FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */,
 				321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				FBAA2B8523A83B8F00D6E4B7 /* Mobile-sign in-background.svg in Resources */,
@@ -382,6 +404,7 @@
 				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
 				D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */,
 				D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */,
+				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
 				D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
@@ -390,6 +413,7 @@
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
 				FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */,
+				321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */,
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				449435622314784A00FC4680 /* SideMenuTableViewController.swift in Sources */,
