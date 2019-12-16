@@ -29,6 +29,9 @@
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */; };
 		FBAA2B7D23A839D100D6E4B7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */; };
+		FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */; };
+		FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */; };
+		FBAA2B8523A83B8F00D6E4B7 /* Mobile-sign in-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8223A83B8F00D6E4B7 /* Mobile-sign in-background.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-Background.svg"; sourceTree = "<group>"; };
+		FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mobile-sign up-background.svg"; sourceTree = "<group>"; };
+		FBAA2B8223A83B8F00D6E4B7 /* Mobile-sign in-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-sign in-background.svg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 		D1BCDD84230E0F9500986A18 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FBAA2B7F23A83B6A00D6E4B7 /* SVG */,
 				D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */,
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
 				D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */,
@@ -214,6 +221,16 @@
 			children = (
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		FBAA2B7F23A83B6A00D6E4B7 /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */,
+				FBAA2B8223A83B8F00D6E4B7 /* Mobile-sign in-background.svg */,
+				FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */,
+			);
+			path = SVG;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,8 +295,11 @@
 			files = (
 				D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */,
 				447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */,
+				FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */,
+				FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */,
 				FBAA2B7D23A839D100D6E4B7 /* Login.storyboard in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
+				FBAA2B8523A83B8F00D6E4B7 /* Mobile-sign in-background.svg in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
 				D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */,
 			);
