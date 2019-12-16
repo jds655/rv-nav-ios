@@ -26,6 +26,9 @@
 		D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */; };
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
 		D8D1C32546DCAF7850A23C2F /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF49070387DFC10FBB9C48A /* Pods_RVNav.framework */; };
+		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
+		FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */; };
+		FBAA2B7D23A839D100D6E4B7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTableViewController.swift; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FAD10D91F6469EDBAF57EDA8 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
+		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
+		FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
+		FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 		D18DAE6E230B3C3D00D7C151 /* RVNav */ = {
 			isa = PBXGroup;
 			children = (
+				FBAA2B7323A8370100D6E4B7 /* Features */,
 				D1BCDD84230E0F9500986A18 /* Resources */,
 				D1BCDD80230E0F4C00986A18 /* ViewControllers */,
 				D1BCDD81230E0F5D00986A18 /* Models */,
@@ -165,6 +172,48 @@
 				447831E923146D65007D50E7 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FBAA2B7323A8370100D6E4B7 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FBAA2B7423A8372300D6E4B7 /* UX17OnboardingLogin */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		FBAA2B7423A8372300D6E4B7 /* UX17OnboardingLogin */ = {
+			isa = PBXGroup;
+			children = (
+				FBAA2B7723A8381100D6E4B7 /* Custom Views */,
+				FBAA2B7623A8378500D6E4B7 /* View Controllers */,
+				FBAA2B7523A8376D00D6E4B7 /* Storyboards */,
+			);
+			path = UX17OnboardingLogin;
+			sourceTree = "<group>";
+		};
+		FBAA2B7523A8376D00D6E4B7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */,
+				FBAA2B7C23A839D100D6E4B7 /* Login.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FBAA2B7623A8378500D6E4B7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FBAA2B7723A8381100D6E4B7 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +278,8 @@
 			files = (
 				D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */,
 				447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */,
+				FBAA2B7D23A839D100D6E4B7 /* Login.storyboard in Resources */,
+				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
 				D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */,
 			);
@@ -294,6 +345,7 @@
 				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
+				FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */,
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				449435622314784A00FC4680 /* SideMenuTableViewController.swift in Sources */,
