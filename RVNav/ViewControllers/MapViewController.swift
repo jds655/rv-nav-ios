@@ -267,7 +267,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowLogin" {
-            let destinationVC = segue.destination as! LoginViewController
+            let destinationVC = segue.destination as! SignInViewController
             destinationVC.networkController = networkController
         }
         if segue.identifier == "ShowAddressSearch" {

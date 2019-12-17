@@ -15,6 +15,7 @@
 		321DE99123A83D8100521AAB /* Heebo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321DE99023A83D8100521AAB /* Heebo-Black.ttf */; };
 		321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE99423A8464E00521AAB /* SignInViewController.swift */; };
 		321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE99723A84AD800521AAB /* UIColor+Extension.swift */; };
+		321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321DE9BE23A97BD700521AAB /* LandingPage.storyboard */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
 		447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E723146CE0007D50E7 /* VehicleFormViewController.swift */; };
@@ -55,6 +56,7 @@
 		321DE99423A8464E00521AAB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		321DE99723A84AD800521AAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
+		321DE9BE23A97BD700521AAB /* LandingPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		321DE99623A84A5600521AAB /* Text Files */ = {
+		321DE99623A84A5600521AAB /* Font Files */ = {
 			isa = PBXGroup;
 			children = (
 				321DE98623A83D5300521AAB /* Heebo-Light.ttf */,
@@ -110,7 +112,7 @@
 				321DE98E23A83D7800521AAB /* Heebo-ExtraBold.ttf */,
 				321DE99023A83D8100521AAB /* Heebo-Black.ttf */,
 			);
-			path = "Text Files";
+			path = "Font Files";
 			sourceTree = "<group>";
 		};
 		321DE99923A84AE000521AAB /* Extensions */ = {
@@ -216,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAA2B7F23A83B6A00D6E4B7 /* SVG */,
-				321DE99623A84A5600521AAB /* Text Files */,
+				321DE99623A84A5600521AAB /* Font Files */,
 				D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */,
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
 				D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */,
@@ -249,6 +251,7 @@
 			children = (
 				FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */,
 				FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */,
+				321DE9BE23A97BD700521AAB /* LandingPage.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */,
 				FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */,
 				321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */,
+				321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				FBAA2B8523A83B8F00D6E4B7 /* Mobile-signin-background.svg in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
