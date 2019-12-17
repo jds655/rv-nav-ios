@@ -14,5 +14,6 @@ pod ‘SideMenu’
 pod ‘MapboxGeocoder.swift’, ‘~> 0.11’
 pod ‘Floaty’
 pod ‘ArcGIS-Runtime-SDK-iOS’, ‘100.6’
+pod 'PocketSVG', '~> 2.0'
 
 end

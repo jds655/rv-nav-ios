@@ -10,18 +10,26 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    
+    // MARK: - View LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navbarUISetUp()
     }
     
+    // MARK: - IBActions & Methods
+    
     func navbarUISetUp() {
         let rvWayTitle = UIBarButtonItem(title: "RV WAY", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        rvWayTitle.isEnabled = false
+        //rvWayTitle.isEnabled = false
         rvWayTitle.tintColor = .navigationBarTextColor
+        navigationController?.navigationBar.barTintColor = .navigationBarBackground
         self.navigationItem.leftBarButtonItem = rvWayTitle
     }
+    
+
     
     
     

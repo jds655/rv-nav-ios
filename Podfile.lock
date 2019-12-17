@@ -76,6 +76,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - PocketSVG (2.5.0)
   - Polyline (4.2.1)
   - SideMenu (6.4.7)
   - Solar (2.1.0)
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - Floaty
   - MapboxGeocoder.swift (~> 0.11)
   - MapboxNavigation
+  - PocketSVG (~> 2.0)
   - SideMenu
   - SwiftKeychainWrapper (~> 3.0)
 
@@ -113,6 +115,7 @@ SPEC REPOS:
     - MapboxNavigationNative
     - MapboxSpeech
     - nanopb
+    - PocketSVG
     - Polyline
     - SideMenu
     - Solar
@@ -140,12 +143,13 @@ SPEC CHECKSUMS:
   MapboxNavigationNative: 11dc22140f4698d3f26989f2b6379dc81ef0d4c1
   MapboxSpeech: 59b3984d3f433a443d24acf53097f918c5cc70f9
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PocketSVG: 9d9c4bc8e7d8dbbc208bd21e5c92814fd3c6c34d
   Polyline: 0e9890790292741c8186201a536b6bb6a78d02dd
   SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
   Solar: 2dc6e7cc39186cb0c8228fa08df76fb50c7d8f24
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   Turf: c6bdf62d6a70c647874f295dd1cf4eefc0c3e9e6
 
-PODFILE CHECKSUM: 49851f66398f71545303e5019de6e820bcd110c9
+PODFILE CHECKSUM: ad94206c4159f45880287a83002cc6bef0526b03
 
 COCOAPODS: 1.8.4
