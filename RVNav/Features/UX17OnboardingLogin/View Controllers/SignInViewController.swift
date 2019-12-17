@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SVGKit
-
 
 class SignInViewController: UIViewController {
 
@@ -16,18 +14,29 @@ class SignInViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundImageContainerView: UIView!
+    @IBOutlet weak var googleSignInButton: UIButton!
+    @IBOutlet weak var facebookSignInButton: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     
     // MARK: - View LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navbarUISetUp()
+        UISetup()
     }
     
     // MARK: - IBActions & Methods
     
-    func navbarUISetUp() {
+    private func UISetup() {
+        navbarUISetup()
+        googleFacebookButtonUISetup()
+        signInButtonButtonUISetup()
+    }
+    
+    func navbarUISetup() {
         let rvWayTitle = UIBarButtonItem(title: "RV WAY", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         //rvWayTitle.isEnabled = false
         rvWayTitle.tintColor = .navigationBarTextColor
@@ -35,7 +44,26 @@ class SignInViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = rvWayTitle
     }
     
-
+    func googleFacebookButtonUISetup() {
+        //Google Button UI Set Up
+        googleSignInButton.layer.cornerRadius = 4
+        googleSignInButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        googleSignInButton.layer.borderWidth = 0.2
+        
+        //Facebook Button UI Set Up
+        facebookSignInButton.layer.cornerRadius = 4
+        facebookSignInButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        googleSignInButton.layer.borderWidth = 0.2
+    }
+    
+    func signInButtonButtonUISetup() {
+        signInButton.layer.borderWidth = 0.4
+        signInButton.layer.cornerRadius = 4
+    }
+    
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+    }
+    
     
 
     
