@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ipC-bh-xZJ">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Heebo-Bold.ttf">
+            <string>Heebo-Bold</string>
+        </array>
+        <array key="Heebo-Medium.ttf">
+            <string>Heebo-Medium</string>
+        </array>
+        <array key="Heebo-Regular.ttf">
+            <string>Heebo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Sign In View Controller-->
         <scene sceneID="oki-8c-gI9">
@@ -19,29 +30,168 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKn-m2-2Zk">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8QI-Fg-LS0">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInBackground2" translatesAutoresizingMaskIntoConstraints="NO" id="8QI-Fg-LS0">
+                                        <rect key="frame" x="0.0" y="0.0" width="414.00000000000006" height="808"/>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CHR-Gs-Fnz">
+                                        <rect key="frame" x="20.000000000000014" y="39.999999999999993" width="254.33333333333337" height="93.333333333333314"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="4oc-rj-YiR">
+                                                <rect key="frame" x="0.0" y="0.0" width="254.33333333333334" height="53"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Bold" family="Heebo" pointSize="36"/>
+                                                <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's great to see you agian." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="tMR-Yt-8Gh">
+                                                <rect key="frame" x="0.0" y="61" width="254.33333333333334" height="32.333333333333343"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="22"/>
+                                                <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Az0-HW-vry">
+                                        <rect key="frame" x="20" y="178.33333333333331" width="374" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1e-wr-PJT">
+                                                <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="SignIn with Google"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ija-T7-WjX">
+                                                <rect key="frame" x="187" y="0.0" width="187" height="40"/>
+                                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="SignIn with facebook">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="diD-aX-5Pi"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vQ-j7-q4s">
+                                        <rect key="frame" x="186" y="228.33333333333331" width="15" height="23.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                        <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="tIh-s8-efN">
+                                        <rect key="frame" x="20" y="258.33333333333331" width="374" height="206.33333333333331"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwi-Nc-11y">
+                                                <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="23.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N8x-Rb-R1q">
+                                                <rect key="frame" x="0.0" y="29.666666666666686" width="374" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="WLC-eC-Pdf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y78-PP-apo">
+                                                <rect key="frame" x="0.0" y="80.666666666666686" width="71" height="23.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EGd-7O-Ric">
+                                                <rect key="frame" x="0.0" y="110.33333333333337" width="374" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="f7g-nD-4Ef"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KnM-Mr-ffs">
+                                                <rect key="frame" x="0.0" y="161.33333333333337" width="374" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="EGq-Oz-cXF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Heebo-Medium" family="Heebo" pointSize="18"/>
+                                                <state key="normal" title="Let's Go!">
+                                                    <color key="titleColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="KnM-Mr-ffs" firstAttribute="top" secondItem="EGd-7O-Ric" secondAttribute="bottom" constant="6" id="0tT-2S-LIX"/>
+                                            <constraint firstAttribute="trailing" secondItem="N8x-Rb-R1q" secondAttribute="trailing" id="1rz-Mg-tJs"/>
+                                            <constraint firstItem="N8x-Rb-R1q" firstAttribute="top" secondItem="Hwi-Nc-11y" secondAttribute="bottom" constant="6" id="5k1-OB-vmr"/>
+                                            <constraint firstItem="EGd-7O-Ric" firstAttribute="leading" secondItem="tIh-s8-efN" secondAttribute="leading" id="GMT-UR-fON"/>
+                                            <constraint firstItem="N8x-Rb-R1q" firstAttribute="leading" secondItem="tIh-s8-efN" secondAttribute="leading" id="Kqi-aV-Nvw"/>
+                                            <constraint firstItem="EGd-7O-Ric" firstAttribute="top" secondItem="Y78-PP-apo" secondAttribute="bottom" constant="6" id="Peu-N2-Qs8"/>
+                                            <constraint firstAttribute="trailing" secondItem="KnM-Mr-ffs" secondAttribute="trailing" id="ZRj-BN-Ylm"/>
+                                            <constraint firstAttribute="trailing" secondItem="EGd-7O-Ric" secondAttribute="trailing" id="d5q-UQ-mRf"/>
+                                            <constraint firstItem="KnM-Mr-ffs" firstAttribute="leading" secondItem="tIh-s8-efN" secondAttribute="leading" id="n3b-ST-ft0"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d7d-eu-V0I">
+                                        <rect key="frame" x="78" y="484.66666666666663" width="259" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need to create an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyB-gZ-apq">
+                                                <rect key="frame" x="0.0" y="3.3333333333333712" width="205" height="23.666666666666668"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="205" id="gch-T3-Ui3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUt-HJ-Yde">
+                                                <rect key="frame" x="205" y="0.0" width="54" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="BVR-Mf-nGl"/>
+                                                </constraints>
+                                                <state key="normal" title="Sign Up"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="8QI-Fg-LS0" secondAttribute="trailing" id="KBQ-fL-BYA"/>
-                                    <constraint firstAttribute="bottom" secondItem="8QI-Fg-LS0" secondAttribute="bottom" id="ZS0-NT-atz"/>
-                                    <constraint firstItem="8QI-Fg-LS0" firstAttribute="top" secondItem="SKn-m2-2Zk" secondAttribute="top" id="bKp-dA-oHA"/>
-                                    <constraint firstItem="8QI-Fg-LS0" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" id="eFV-Ge-Hrq"/>
+                                    <constraint firstItem="d7d-eu-V0I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SKn-m2-2Zk" secondAttribute="leading" constant="8" id="17R-9a-oHh"/>
+                                    <constraint firstItem="CHR-Gs-Fnz" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" constant="20" id="402-ux-Gzw"/>
+                                    <constraint firstItem="Az0-HW-vry" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" constant="20" id="4gF-tY-NBL"/>
+                                    <constraint firstItem="tIh-s8-efN" firstAttribute="top" secondItem="Az0-HW-vry" secondAttribute="bottom" constant="40" id="6GN-Rn-F6I"/>
+                                    <constraint firstAttribute="trailing" secondItem="Az0-HW-vry" secondAttribute="trailing" constant="20" id="6UV-bH-Yuv"/>
+                                    <constraint firstItem="tIh-s8-efN" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" constant="20" id="8Bb-WL-pAA"/>
+                                    <constraint firstItem="CHR-Gs-Fnz" firstAttribute="top" secondItem="SKn-m2-2Zk" secondAttribute="top" constant="40" id="EUC-O4-wS0"/>
+                                    <constraint firstItem="Az0-HW-vry" firstAttribute="top" secondItem="CHR-Gs-Fnz" secondAttribute="bottom" constant="45" id="Fac-f6-gSm"/>
+                                    <constraint firstItem="8QI-Fg-LS0" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" id="HWC-DQ-hiA"/>
+                                    <constraint firstAttribute="trailing" secondItem="CHR-Gs-Fnz" secondAttribute="trailing" constant="139.66999999999999" id="Jey-73-oiA"/>
+                                    <constraint firstAttribute="trailing" secondItem="8QI-Fg-LS0" secondAttribute="trailing" id="KQc-eZ-vgO"/>
+                                    <constraint firstItem="Az0-HW-vry" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" constant="20" id="ShU-qc-u8g"/>
+                                    <constraint firstItem="7vQ-j7-q4s" firstAttribute="top" secondItem="Az0-HW-vry" secondAttribute="bottom" constant="10" id="UWq-lV-RyU"/>
+                                    <constraint firstAttribute="trailing" secondItem="7vQ-j7-q4s" secondAttribute="trailing" constant="213" id="Udw-fI-Pyc"/>
+                                    <constraint firstAttribute="trailing" secondItem="tIh-s8-efN" secondAttribute="trailing" constant="20" id="aZn-yB-4Mm"/>
+                                    <constraint firstAttribute="trailing" secondItem="d7d-eu-V0I" secondAttribute="trailing" constant="77" id="kZy-2k-DFK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Az0-HW-vry" secondAttribute="trailing" constant="20" id="o8Z-pb-qMW"/>
+                                    <constraint firstItem="7vQ-j7-q4s" firstAttribute="leading" secondItem="SKn-m2-2Zk" secondAttribute="leading" constant="186" id="qug-tD-ZdT"/>
+                                    <constraint firstItem="8QI-Fg-LS0" firstAttribute="top" secondItem="SKn-m2-2Zk" secondAttribute="top" id="rHS-la-CPn"/>
+                                    <constraint firstAttribute="bottom" secondItem="8QI-Fg-LS0" secondAttribute="bottom" id="yO9-BY-NBk"/>
+                                    <constraint firstItem="d7d-eu-V0I" firstAttribute="top" secondItem="tIh-s8-efN" secondAttribute="bottom" constant="20" id="zPv-R4-JlG"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="SKn-m2-2Zk" firstAttribute="trailing" secondItem="3wi-Fg-5aR" secondAttribute="trailing" id="3ws-jA-4jp"/>
-                            <constraint firstItem="SKn-m2-2Zk" firstAttribute="leading" secondItem="3wi-Fg-5aR" secondAttribute="leading" id="Pty-ix-Xvm"/>
-                            <constraint firstAttribute="bottom" secondItem="SKn-m2-2Zk" secondAttribute="bottom" id="SnC-FA-Oc6"/>
-                            <constraint firstItem="SKn-m2-2Zk" firstAttribute="top" secondItem="3wi-Fg-5aR" secondAttribute="top" id="Y0v-QS-io0"/>
+                            <constraint firstItem="SKn-m2-2Zk" firstAttribute="leading" secondItem="3wi-Fg-5aR" secondAttribute="leading" id="9l1-aP-p9K"/>
+                            <constraint firstItem="SKn-m2-2Zk" firstAttribute="trailing" secondItem="3wi-Fg-5aR" secondAttribute="trailing" id="cuv-2I-9ck"/>
+                            <constraint firstAttribute="bottom" secondItem="SKn-m2-2Zk" secondAttribute="bottom" id="hhs-iu-0BX"/>
+                            <constraint firstItem="SKn-m2-2Zk" firstAttribute="top" secondItem="3wi-Fg-5aR" secondAttribute="top" id="vPz-Iy-Cgz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3wi-Fg-5aR"/>
                     </view>
                     <navigationItem key="navigationItem" id="OZ6-Hj-YGr"/>
+                    <connections>
+                        <outlet property="backgroundImageContainerView" destination="SKn-m2-2Zk" id="RGu-1m-JKQ"/>
+                        <outlet property="backgroundImageView" destination="8QI-Fg-LS0" id="XmY-6C-8bM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rd2-tO-ohF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,4 +219,7 @@
             <point key="canvasLocation" x="1098.5507246376812" y="428.57142857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SignInBackground2" width="374" height="812"/>
+    </resources>
 </document>

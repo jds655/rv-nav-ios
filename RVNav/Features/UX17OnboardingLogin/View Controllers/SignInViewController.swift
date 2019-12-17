@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import SVGKit
+
 
 class SignInViewController: UIViewController {
 
+    // MARK: - IBOutlets & Properties
+
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var backgroundImageContainerView: UIView!
     
     // MARK: - View LifeCycle
     
@@ -28,6 +34,8 @@ class SignInViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .navigationBarBackground
         self.navigationItem.leftBarButtonItem = rvWayTitle
     }
+    
+
     
 
     
