@@ -9,22 +9,44 @@
 import UIKit
 
 class LandingPageViewController: UIViewController {
+    
+    // MARK: - IBOutlets & Properties
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var getStartedButton: UIButton!
+    
+    // MARK: - View LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        buttonUISetup()
+    }
+    
+    // MARK: - IBActions & Methods
+    
+    private func buttonUISetup() {
+        // Login Button UI
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.babyBlue.cgColor
+        loginButton.titleLabel?.textColor = .babyBlue
+        loginButton.layer.cornerRadius = 4
+        
+        // Get Started Button UI
+        getStartedButton.backgroundColor = .mustardYellow
+        getStartedButton.layer.cornerRadius = 4
+    }
+    
+    // Any of the three buttons (Login, Get Started or Let's GO) lead to the "Sign Up" Flow
+    @IBAction func anyButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+        self.present(OnboardingLoginViewController, animated: true, completion: nil)
     }
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+// MARK: - Extensions
 
+extension LandingPageViewController: UIScrollViewDelegate {
 }
