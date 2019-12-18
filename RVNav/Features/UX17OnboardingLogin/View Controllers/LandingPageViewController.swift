@@ -37,10 +37,12 @@ class LandingPageViewController: UIViewController {
         getStartedButton.layer.cornerRadius = 4
     }
     
-    // Any of the three buttons (Login, Get Started or Let's GO) lead to the "Sign Up" Flow
-    @IBAction func anyButtonTapped(_ sender: UIButton) {
+    //Get Started or Let's GO lead to the "Sign Up" Flow
+    @IBAction func SignUpLetsGoButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "SignUpSegue", sender: self)
+    }
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        self.present(OnboardingLoginViewController, animated: true, completion: nil)
     }
     
 

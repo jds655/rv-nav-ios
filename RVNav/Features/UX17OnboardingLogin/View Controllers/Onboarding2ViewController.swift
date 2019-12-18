@@ -47,7 +47,7 @@ class Onboarding2ViewController: ShiftableViewController {
         signUpButton.layer.cornerRadius = 4
         if formData.readyPage2() {
             signUpButton.isEnabled = true
-        signUpButton.backgroundColor = .navigationBarTextColor
+            signUpButton.backgroundColor = .babyBlue
         } else {
             signUpButton.isEnabled = false
             signUpButton.backgroundColor = .clear

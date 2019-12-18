@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -47,7 +48,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="anyButtonTapped:" destination="rsF-c8-yCq" eventType="touchUpInside" id="WW9-A5-tuf"/>
+                                                    <action selector="SignUpLetsGoButtonTapped:" destination="rsF-c8-yCq" eventType="touchUpInside" id="WW9-A5-tuf"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhy-vg-7i9">
@@ -61,7 +62,7 @@
                                                     <color key="titleColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="anyButtonTapped:" destination="rsF-c8-yCq" eventType="touchUpInside" id="HtW-Bq-FEd"/>
+                                                    <action selector="SignUpLetsGoButtonTapped:" destination="rsF-c8-yCq" eventType="touchUpInside" id="HtW-Bq-FEd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kZ-pl-UDW">
@@ -75,7 +76,7 @@
                                                     <color key="titleColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="anyButtonTapped:" destination="rsF-c8-yCq" eventType="touchUpInside" id="bah-fU-VjT"/>
+                                                    <action selector="loginButtonTapped:" destination="rsF-c8-yCq" eventType="touchUpInside" id="baR-hh-0Gg"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -115,17 +116,27 @@
                             <constraint firstItem="zZw-U2-yki" firstAttribute="leading" secondItem="QdG-ux-Mfk" secondAttribute="leading" id="Wg6-7m-VBq"/>
                             <constraint firstItem="zZw-U2-yki" firstAttribute="top" secondItem="QdG-ux-Mfk" secondAttribute="top" id="cV8-TE-7AW"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="gwN-Zb-H70"/>
                     </view>
                     <size key="freeformSize" width="414" height="1070"/>
                     <connections>
                         <outlet property="getStartedButton" destination="c3A-bK-BmH" id="UGt-xY-SyF"/>
                         <outlet property="loginButton" destination="6kZ-pl-UDW" id="1AY-jz-GNE"/>
                         <outlet property="scrollView" destination="zZw-U2-yki" id="awQ-RA-6e2"/>
+                        <segue destination="YqG-fm-N6e" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="agX-Mi-3Ft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgk-3v-Fd3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-110.14492753623189" y="164.73214285714286"/>
+        </scene>
+        <!--OnboardingLogin-->
+        <scene sceneID="lzf-9y-hS2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OnboardingLogin" id="YqG-fm-N6e" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1wS-FN-FoA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="165"/>
         </scene>
     </scenes>
     <resources>

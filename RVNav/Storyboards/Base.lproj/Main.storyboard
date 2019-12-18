@@ -47,7 +47,9 @@
                     <connections>
                         <outlet property="mapView" destination="hJJ-Rh-RHl" id="Rah-XS-NrW"/>
                         <segue destination="oPi-24-sMM" kind="presentation" identifier="ShowAddressSearch" modalPresentationStyle="fullScreen" id="4nl-5L-m9r"/>
-                        <segue destination="KuS-3I-H11" kind="presentation" identifier="ShowLogin" modalPresentationStyle="fullScreen" id="5gd-uh-OoF"/>
+                        <segue destination="KuS-3I-H11" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="5gd-uh-OoF"/>
+                        <segue destination="xWm-Ls-rQJ" kind="modal" identifier="LandingPageSegue" modalPresentationStyle="fullScreen" id="UNq-21-I43"/>
+                        <segue destination="1MF-aP-uMF" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="Umf-Xl-c8l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dn9-1o-3s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -412,6 +414,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTj-lg-aez" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="586" y="-924"/>
+        </scene>
+        <!--LandingPage-->
+        <scene sceneID="wO7-KY-i3x">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LandingPage" id="xWm-Ls-rQJ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Qnr-Mp-BNJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XYJ-uk-sQY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="614" y="-889"/>
+        </scene>
+        <!--OnboardingLogin-->
+        <scene sceneID="YVz-sz-ni2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OnboardingLogin" id="1MF-aP-uMF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZkS-CW-gIx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="-854"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="6i1-Wp-JON">
