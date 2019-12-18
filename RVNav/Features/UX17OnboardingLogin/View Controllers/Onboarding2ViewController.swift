@@ -27,6 +27,7 @@ class Onboarding2ViewController: ShiftableViewController {
         super.viewDidLoad()
         UISetup()
         tapOutsideToDismissKeyBoard()
+        firstNameTextField.becomeFirstResponder()
     }
     
     // MARK: - IBActions
@@ -34,6 +35,9 @@ class Onboarding2ViewController: ShiftableViewController {
     }
     
     @IBAction func onwardTapped(_ sender: Any) {
+        #warning("Add code for API signup")
+        
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Private Methods
@@ -47,7 +51,7 @@ class Onboarding2ViewController: ShiftableViewController {
         signUpButton.layer.cornerRadius = 4
         if formData.readyPage2() {
             signUpButton.isEnabled = true
-        signUpButton.backgroundColor = .navigationBarTextColor
+        signUpButton.backgroundColor = .babyBlue
         } else {
             signUpButton.isEnabled = false
             signUpButton.backgroundColor = .clear
@@ -80,6 +84,8 @@ extension Onboarding2ViewController {
                 !firstName.isEmpty else {
                 return false
             }
+            formData?.firstname = firstName
+            dismissKeyboard()
             lastNameTextField.becomeFirstResponder()
             return true
         case lastNameTextField:
@@ -87,6 +93,8 @@ extension Onboarding2ViewController {
                 !lastName.isEmpty else {
                 return false
             }
+            formData?.lastname = lastName
+            dismissKeyboard()
             usernameTextField.becomeFirstResponder()
             return true
         case usernameTextField:
@@ -94,6 +102,8 @@ extension Onboarding2ViewController {
                 !username.isEmpty else {
                 return false
             }
+            formData?.username = username
+            dismissKeyboard()
             ageTextField.becomeFirstResponder()
             return true
         case ageTextField:
@@ -103,6 +113,9 @@ extension Onboarding2ViewController {
                 age > 0 && age < 120 else {
                 return false
             }
+            formData?.age = age
+            dismissKeyboard()
+            signUpButtonButtonUISetup()
             return true
         default:
             return true

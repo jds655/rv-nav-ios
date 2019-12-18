@@ -59,11 +59,12 @@ class OnboardingViewController: ShiftableViewController {
         super.viewDidLoad()
         UISetup()
         tapOutsideToDismissKeyBoard()
+        emailTextField.becomeFirstResponder()
     }
     
     // MARK: - IBActions
     @IBAction func onwardTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "Onboarding2", sender: self)
+        //performSegue(withIdentifier: "Onboarding2", sender: self)
     }
     
     @IBAction func signinTapped(_ sender: UIButton) {
@@ -92,11 +93,11 @@ class OnboardingViewController: ShiftableViewController {
         signUpButton.layer.borderWidth = 0.4
         signUpButton.layer.cornerRadius = 4
         if self.formData.readyPage1() {
-            signInButton.isEnabled = true
-        signInButton.backgroundColor = .navigationBarTextColor
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = .babyBlue
         } else {
-            signInButton.isEnabled = false
-            signInButton.backgroundColor = .clear
+            signUpButton.isEnabled = false
+            signUpButton.backgroundColor = .clear
             
         }
     }
@@ -141,6 +142,7 @@ extension OnboardingViewController {
                     return false
             }
             formData.password = password
+            dismissKeyboard()
             password2TextField.becomeFirstResponder()
             return true
         case password2TextField:
@@ -153,6 +155,7 @@ extension OnboardingViewController {
                 return false
             }
             signUpButtonButtonUISetup()
+            password2TextField.resignFirstResponder()
             return true
         default:
             return true

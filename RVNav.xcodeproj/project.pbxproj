@@ -37,7 +37,6 @@
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
-		FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */; };
 		FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */; };
@@ -55,8 +54,8 @@
 		321DE99023A83D8100521AAB /* Heebo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Black.ttf"; sourceTree = "<group>"; };
 		321DE99423A8464E00521AAB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		321DE99723A84AD800521AAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		321DE9BE23A97BD700521AAB /* LandingPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
+		4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +80,6 @@
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
-		FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-Background.svg"; sourceTree = "<group>"; };
 		FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mobile-sign up-background.svg"; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 		FBAA2B7623A8378500D6E4B7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */,
 				321DE99423A8464E00521AAB /* SignInViewController.swift */,
 				FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */,
 				FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */,
@@ -428,7 +425,6 @@
 				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
-				FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */,
 				321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */,
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
