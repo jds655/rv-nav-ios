@@ -10,8 +10,10 @@ import UIKit
 
 class LandingPageViewController: UIViewController {
     
-    // MARK: - IBOutlets & Properties
-
+    // MARK: - Properties
+    var networkController: NetworkController?
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var getStartedButton: UIButton!
@@ -23,8 +25,25 @@ class LandingPageViewController: UIViewController {
         buttonUISetup()
     }
     
-    // MARK: - IBActions & Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SignUpSegue" {
+            if let destinationVC = segue.destination as? OnboardingViewController {
+                destinationVC.networkController = networkController
+            }
+        }
+    }
     
+    // MARK: - IBActions & Methods
+    //Get Started or Let's GO lead to the "Sign Up" Flow
+    @IBAction func SignUpLetsGoButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "SignUpSegue", sender: self)
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Private Methods
     private func buttonUISetup() {
         // Login Button UI
         loginButton.layer.borderWidth = 1
@@ -36,19 +55,8 @@ class LandingPageViewController: UIViewController {
         getStartedButton.backgroundColor = .mustardYellow
         getStartedButton.layer.cornerRadius = 4
     }
-    
-    //Get Started or Let's GO lead to the "Sign Up" Flow
-    @IBAction func SignUpLetsGoButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "SignUpSegue", sender: self)
-    }
-    @IBAction func loginButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-
 }
 
 // MARK: - Extensions
-
 extension LandingPageViewController: UIScrollViewDelegate {
 }

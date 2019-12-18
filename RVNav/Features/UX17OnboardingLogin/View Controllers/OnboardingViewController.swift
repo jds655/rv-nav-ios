@@ -42,6 +42,7 @@ class OnboardingViewController: ShiftableViewController {
     
     // MARK: - Properties
     private var formData = FormData()
+    var networkController: NetworkController!
     
     // MARK: - IBOutlets
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -60,6 +61,17 @@ class OnboardingViewController: ShiftableViewController {
         UISetup()
         tapOutsideToDismissKeyBoard()
         emailTextField.becomeFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "Onboarding2":
+            guard let vc = segue.destination as? Onboarding2ViewController else { return }
+            vc.formData = self.formData
+            vc.networkController = networkController
+        default:
+            break
+        }
     }
     
     // MARK: - IBActions
@@ -110,17 +122,6 @@ class OnboardingViewController: ShiftableViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "Onboarding2":
-            guard let vc = segue.destination as? Onboarding2ViewController else { return }
-            vc.formData = self.formData
-        default:
-            break
-        }
-    }
-    
 }
 
 // MARK: - Extensions

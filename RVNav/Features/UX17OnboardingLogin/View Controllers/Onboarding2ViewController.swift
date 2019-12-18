@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class Onboarding2ViewController: ShiftableViewController {
     
     // MARK: - Properties
     var formData: FormData?
-
+    var networkController: NetworkController!
+    
     // MARK: - IBOutlets
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundImageContainerView: UIView!
@@ -35,9 +37,25 @@ class Onboarding2ViewController: ShiftableViewController {
     }
     
     @IBAction func onwardTapped(_ sender: Any) {
-        #warning("Add code for API signup")
-        
-        dismiss(animated: true, completion: nil)
+        guard let formData = formData else { return }
+        let user = User(firstName: formData.firstname!,
+                        lastName: formData.lastname!,
+                        password: formData.password!,
+                        email: formData.email!,
+                        username: formData.username!)
+        #warning("Uncomment when API is back up")
+//        networkController?.register(with: user) { (error) in
+//            if let error = error {
+//                NSLog("\(error)")
+//                #warning("Add alert of failure to register")
+//            } else {
+//                Analytics.logEvent("register", parameters: nil)
+//                DispatchQueue.main.async {
+//                    self.performSegue(withIdentifier: "unwindToMapView", sender: self)
+//                }
+//            }
+//        }
+        self.performSegue(withIdentifier: "unwindToMapView", sender: self)
     }
     
     // MARK: - Private Methods

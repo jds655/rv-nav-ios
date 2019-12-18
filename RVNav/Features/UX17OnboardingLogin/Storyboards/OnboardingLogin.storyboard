@@ -566,9 +566,11 @@
                         <outlet property="lastNameTextField" destination="Ye4-ul-LmQ" id="IWV-L9-tBe"/>
                         <outlet property="signUpButton" destination="NvB-HH-WPk" id="V9x-7D-biO"/>
                         <outlet property="usernameTextField" destination="6wS-LA-5Qp" id="xO0-Sb-QXy"/>
+                        <segue destination="erc-jb-GTd" kind="unwind" identifier="unwindToMapView" unwindAction="unwindToMapViewWithSegue:" id="qUG-rP-d4w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIH-xt-PUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="erc-jb-GTd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1365" y="139"/>
         </scene>
@@ -577,6 +579,6 @@
         <image name="SignupBlank" width="375" height="812"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tco-uN-LD5"/>
+        <segue reference="fqo-5M-DND"/>
     </inferredMetricsTieBreakers>
 </document>
