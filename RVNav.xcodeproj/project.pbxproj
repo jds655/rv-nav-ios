@@ -21,7 +21,7 @@
 		447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447831EA23146D65007D50E7 /* GoogleService-Info.plist */; };
 		449435622314784A00FC4680 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449435612314784A00FC4680 /* SideMenuTableViewController.swift */; };
 		44EAD664231EF5FC00094531 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* Settings.swift */; };
-		BA870EE6ECF3BF40CD58D857 /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98EC21B5C19607E7B413F7B /* Pods_RVNav.framework */; };
+		71BB14FE87BBBDF8470B088D /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A85F416B417F34AE3964742 /* Pods_RVNav.framework */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
 		D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */; };
 		D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */; };
@@ -34,17 +34,18 @@
 		D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE81230C85EC00D7C151 /* LoginViewController.swift */; };
 		D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */; };
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
+		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */; };
 		FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */; };
 		FBAA2B8523A83B8F00D6E4B7 /* Mobile-signin-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8223A83B8F00D6E4B7 /* Mobile-signin-background.svg */; };
+		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
+		FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C9E8D353B9E5D4BAD7BCD28 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
-		2949825930948A06D8C9BE75 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		321DE98623A83D5300521AAB /* Heebo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Light.ttf"; sourceTree = "<group>"; };
 		321DE98823A83D5D00521AAB /* Heebo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Regular.ttf"; sourceTree = "<group>"; };
 		321DE98A23A83D6600521AAB /* Heebo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Medium.ttf"; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		321DE99023A83D8100521AAB /* Heebo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Black.ttf"; sourceTree = "<group>"; };
 		321DE99423A8464E00521AAB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		321DE99723A84AD800521AAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 		447831EA23146D65007D50E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		449435612314784A00FC4680 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		44EAD663231EF5FC00094531 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		7A85F416B417F34AE3964742 /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3D9891E65A7E70B55FB646 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsSearchTableViewController.swift; sourceTree = "<group>"; };
 		D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
@@ -73,13 +77,15 @@
 		D18DAE81230C85EC00D7C151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTableViewController.swift; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
-		D98EC21B5C19607E7B413F7B /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-Background.svg"; sourceTree = "<group>"; };
 		FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mobile-sign up-background.svg"; sourceTree = "<group>"; };
 		FBAA2B8223A83B8F00D6E4B7 /* Mobile-signin-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-signin-background.svg"; sourceTree = "<group>"; };
+		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA870EE6ECF3BF40CD58D857 /* Pods_RVNav.framework in Frameworks */,
+				71BB14FE87BBBDF8470B088D /* Pods_RVNav.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,21 +121,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		490CE115C3BE2152F3377097 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D98EC21B5C19607E7B413F7B /* Pods_RVNav.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9326FAB956C45CAD0A34795B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2949825930948A06D8C9BE75 /* Pods-RVNav.debug.xcconfig */,
-				0C9E8D353B9E5D4BAD7BCD28 /* Pods-RVNav.release.xcconfig */,
+				BA3D9891E65A7E70B55FB646 /* Pods-RVNav.debug.xcconfig */,
+				4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A78429DE402180D85B087CB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A85F416B417F34AE3964742 /* Pods_RVNav.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D18DAE63230B3C3C00D7C151 = {
@@ -138,7 +144,7 @@
 				D18DAE6E230B3C3D00D7C151 /* RVNav */,
 				D18DAE6D230B3C3C00D7C151 /* Products */,
 				9326FAB956C45CAD0A34795B /* Pods */,
-				490CE115C3BE2152F3377097 /* Frameworks */,
+				A78429DE402180D85B087CB6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,6 +258,8 @@
 			children = (
 				FBAA2B7A23A8389500D6E4B7 /* OnboardingLoginViewController.swift */,
 				321DE99423A8464E00521AAB /* SignInViewController.swift */,
+				FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */,
+				FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 		FBAA2B7723A8381100D6E4B7 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -280,11 +289,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D18DAE7E230B3C3F00D7C151 /* Build configuration list for PBXNativeTarget "RVNav" */;
 			buildPhases = (
-				FE8FB9573A3A65F8A9FF28DF /* [CP] Check Pods Manifest.lock */,
+				9CD0338014282DCBD15219F5 /* [CP] Check Pods Manifest.lock */,
 				D18DAE68230B3C3C00D7C151 /* Sources */,
 				D18DAE69230B3C3C00D7C151 /* Frameworks */,
 				D18DAE6A230B3C3C00D7C151 /* Resources */,
-				9B1C7A4A02630A59DEDBD3A6 /* [CP] Embed Pods Frameworks */,
+				EF0D507BC56EDFB2F7808E6B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -354,24 +363,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9B1C7A4A02630A59DEDBD3A6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FE8FB9573A3A65F8A9FF28DF /* [CP] Check Pods Manifest.lock */ = {
+		9CD0338014282DCBD15219F5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -393,6 +385,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF0D507BC56EDFB2F7808E6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -401,13 +410,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
+				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
 				D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */,
 				D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
 				D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */,
+				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
+				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				44EAD664231EF5FC00094531 /* Settings.swift in Sources */,
 				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
@@ -560,7 +572,7 @@
 		};
 		D18DAE7F230B3C3F00D7C151 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2949825930948A06D8C9BE75 /* Pods-RVNav.debug.xcconfig */;
+			baseConfigurationReference = BA3D9891E65A7E70B55FB646 /* Pods-RVNav.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -583,7 +595,7 @@
 		};
 		D18DAE80230B3C3F00D7C151 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C9E8D353B9E5D4BAD7BCD28 /* Pods-RVNav.release.xcconfig */;
+			baseConfigurationReference = 4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
