@@ -13,7 +13,7 @@ import ArcGIS
 class NetworkController {
 
     var vehicle: Vehicle?
-    let baseURL = URL(string: "https://labs15rvlife.herokuapp.com/")!
+    let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
 
     var result: Result?
@@ -25,11 +25,15 @@ class NetworkController {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
+        
+        guard let username = user.username,
+            let password = user.password else { return }
+        let userSignInInfo = SignInInfo(username: username, password: password)
 
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-            request.httpBody = try jsonEncoder.encode(user)
+            request.httpBody = try jsonEncoder.encode(userSignInInfo)
         } catch {
             completion(error)
             return
