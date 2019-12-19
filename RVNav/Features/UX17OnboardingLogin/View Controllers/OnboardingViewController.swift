@@ -136,6 +136,7 @@ extension OnboardingViewController {
             }
             formData.email = email
             passwordTextField.becomeFirstResponder()
+            signUpButtonButtonUISetup()
             return true
         case passwordTextField:
             guard let password = passwordTextField.text,
@@ -145,6 +146,7 @@ extension OnboardingViewController {
             formData.password = password
             dismissKeyboard()
             password2TextField.becomeFirstResponder()
+            signUpButtonButtonUISetup()
             return true
         case password2TextField:
             guard let passwordconf = password2TextField.text,
@@ -152,7 +154,14 @@ extension OnboardingViewController {
                     return false
             }
             guard passwordconf == formData.password else {
-                #warning("Display alert about passwords not matching")
+                let alert = UIAlertController(title: "Error", message: "The passwords do not match.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    DispatchQueue.main.async {
+                        self.password2TextField.text = ""
+                        self.password2TextField.becomeFirstResponder()
+                    }
+                }))
+                present(alert, animated: true, completion: nil)
                 return false
             }
             signUpButtonButtonUISetup()

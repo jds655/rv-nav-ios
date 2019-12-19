@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAnalytics
 
-class SignInViewController: UIViewController {
+class SignInViewController: ShiftableViewController {
 
     // MARK: - IBOutlets & Properties
 
@@ -55,6 +55,18 @@ class SignInViewController: UIViewController {
     private func signInButtonButtonUISetup() {
         signInButton.layer.borderWidth = 0.4
         signInButton.layer.cornerRadius = 4
+        if let email = emailTextField.text,
+                !email.isEmpty,
+            let password = passwordTextField.text,
+            !password.isEmpty
+        {
+            signInButton.isEnabled = true
+            signInButton.backgroundColor = .babyBlue
+        } else {
+            signInButton.isEnabled = false
+            signInButton.backgroundColor = .clear
+            
+        }
     }
     
     private func tapOutsideToDismissKeyBoard() {
@@ -97,15 +109,32 @@ class SignInViewController: UIViewController {
     }
 }
 
-extension SignInViewController: UITextFieldDelegate {
+extension SignInViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1
-        
-        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
-            nextResponder.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
+        switch textField {
+        case emailTextField:
+            if let email = emailTextField.text,
+                !email.isEmpty {
+                signInButtonButtonUISetup()
+                dismissKeyboard()
+                passwordTextField.becomeFirstResponder()
+                return true
+            } else {
+                signInButtonButtonUISetup()
+                return false
+            }
+        case passwordTextField:
+            if let password = passwordTextField.text,
+                !password.isEmpty {
+                signInButtonButtonUISetup()
+                dismissKeyboard()
+                signInButton.becomeFirstResponder()
+                return true
+            } else {
+                return false
+            }
+        default:
+            return true
         }
-        return true
     }
 }

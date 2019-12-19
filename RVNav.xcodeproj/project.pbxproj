@@ -432,7 +432,6 @@
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
-				FBAA2B7B23A8389500D6E4B7 /* OnboardingLoginViewController.swift in Sources */,
 				321DE9C123A9927400521AAB /* LandingPageViewController.swift in Sources */,
 				321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */,
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
@@ -598,7 +597,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -621,7 +620,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

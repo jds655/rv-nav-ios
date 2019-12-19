@@ -105,6 +105,7 @@ extension Onboarding2ViewController {
             formData?.firstname = firstName
             dismissKeyboard()
             lastNameTextField.becomeFirstResponder()
+            signUpButtonButtonUISetup()
             return true
         case lastNameTextField:
             guard let lastName = lastNameTextField.text,
@@ -114,6 +115,7 @@ extension Onboarding2ViewController {
             formData?.lastname = lastName
             dismissKeyboard()
             usernameTextField.becomeFirstResponder()
+            signUpButtonButtonUISetup()
             return true
         case usernameTextField:
             guard let username = usernameTextField.text,
@@ -123,6 +125,7 @@ extension Onboarding2ViewController {
             formData?.username = username
             dismissKeyboard()
             ageTextField.becomeFirstResponder()
+            signUpButtonButtonUISetup()
             return true
         case ageTextField:
             guard let ageString = ageTextField.text,
