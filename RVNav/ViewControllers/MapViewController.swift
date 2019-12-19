@@ -64,7 +64,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowLogin" {
+        if segue.identifier == "SignInSegue" {
             let destinationVC = segue.destination as! SignInViewController
             destinationVC.networkController = networkController
         }
@@ -81,7 +81,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     // MARK: - IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        performSegue(withIdentifier: "ShowLogin", sender: self)
+        performSegue(withIdentifier: "SignInSegue", sender: self)
         print("Remove successful: \(removeSuccessful)")
     }
     

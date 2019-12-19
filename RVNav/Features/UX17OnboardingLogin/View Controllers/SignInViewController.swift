@@ -32,6 +32,14 @@ class SignInViewController: ShiftableViewController {
         tapOutsideToDismissKeyBoard()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SignUpSegue" {
+            if let destinationVC = segue.destination as? OnboardingViewController {
+                destinationVC.networkController = networkController
+            }
+        }
+    }
+    
     // MARK: - IBActions & Methods
     
     private func UISetup() {
@@ -40,6 +48,7 @@ class SignInViewController: ShiftableViewController {
         signInButtonButtonUISetup()
     }
     
+    // MARK: - Private Methods
     private func googleFacebookButtonUISetup() {
         //Google Button UI Set Up
         googleSignInButton.layer.cornerRadius = 4
@@ -78,6 +87,8 @@ class SignInViewController: ShiftableViewController {
         view.endEditing(true)
     }
     
+    
+    // MARK: - IBActions
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         
         guard let email = emailTextField.text,
@@ -85,7 +96,7 @@ class SignInViewController: ShiftableViewController {
         !email.isEmpty,
         !password.isEmpty else { return }
         
-        let signInInfo = SignInInfo(username: email, password: password)
+        let signInInfo = SignInInfo(email: email, password: password)
         networkController?.signIn(with: signInInfo) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
@@ -109,6 +120,8 @@ class SignInViewController: ShiftableViewController {
     }
 }
 
+
+// MARK: - Extensions
 extension SignInViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {

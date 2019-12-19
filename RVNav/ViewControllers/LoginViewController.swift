@@ -84,7 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
 
         case .logIn:
-            let signInInfo = SignInInfo(username: username, password: password)
+            let signInInfo = SignInInfo(email: username, password: password)
             networkController?.signIn(with: signInInfo) { (error) in
                 if let error = error {
                     NSLog("Error signing up: \(error)")

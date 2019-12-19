@@ -31,6 +31,9 @@ class Onboarding2ViewController: ShiftableViewController {
         tapOutsideToDismissKeyBoard()
         firstNameTextField.becomeFirstResponder()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
     // MARK: - IBActions
     @IBAction func signinTapped(_ sender: Any) {
@@ -44,17 +47,18 @@ class Onboarding2ViewController: ShiftableViewController {
                         email: formData.email!,
                         username: formData.username!)
         networkController?.register(with: user) { (error) in
-            if let error = error {
-                NSLog("\(error)")
-                #warning("Add alert of failure to register")
-            } else {
-                Analytics.logEvent("register", parameters: nil)
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let error = error {
+                    NSLog("\(error)")
+                    let alert = UIAlertController(title: "Error", message: "Registration Failed:  \(error)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    Analytics.logEvent("register", parameters: nil)
                     self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                 }
             }
         }
-        self.performSegue(withIdentifier: "unwindToMapView", sender: self)
     }
     
     // MARK: - Private Methods
@@ -93,6 +97,13 @@ class Onboarding2ViewController: ShiftableViewController {
 
 // MARK: - Extensions
 extension Onboarding2ViewController {
+    
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        return textFieldShouldReturn(textField)
+//    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        let _ = textFieldShouldReturn(textField)
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {

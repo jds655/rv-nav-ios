@@ -22,6 +22,7 @@ class LandingPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //scrollView.widthAnchor.constraint(equalTo: view.widthAnchor) 
         buttonUISetup()
     }
     

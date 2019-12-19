@@ -26,9 +26,9 @@ class NetworkController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         
-        guard let username = user.username,
+        guard let username = user.email,
             let password = user.password else { return }
-        let userSignInInfo = SignInInfo(username: username, password: password)
+        let userSignInInfo = SignInInfo(email: username, password: password)
 
         do {
             let jsonEncoder = JSONEncoder()
@@ -42,7 +42,7 @@ class NetworkController {
         URLSession.shared.dataTask(with: request) { (_, response, error) in
 
             if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
+                response.statusCode != 200 && response.statusCode != 201 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }

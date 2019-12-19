@@ -11,6 +11,7 @@ import UIKit
 struct FormData {
     var email: String?
     var password: String?
+    var password2: String?
     var username: String?
     var firstname: String?
     var lastname: String?
@@ -19,7 +20,10 @@ struct FormData {
         guard let email = self.email,
             !email.isEmpty,
             let password = self.password,
-            !password.isEmpty else {
+            !password.isEmpty,
+            let password2 = self.password2,
+            !password2.isEmpty,
+            self.password == self.password2 else {
                 return false
         }
         return true
@@ -127,6 +131,14 @@ class OnboardingViewController: ShiftableViewController {
 // MARK: - Extensions
 extension OnboardingViewController {
     
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        return textFieldShouldReturn(textField)
+//    }
+//    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        let _ = textFieldShouldReturn(textField)
+//    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case emailTextField:
@@ -164,6 +176,7 @@ extension OnboardingViewController {
                 present(alert, animated: true, completion: nil)
                 return false
             }
+            formData.password2 = passwordconf
             signUpButtonButtonUISetup()
             password2TextField.resignFirstResponder()
             return true
