@@ -43,18 +43,17 @@ class Onboarding2ViewController: ShiftableViewController {
                         password: formData.password!,
                         email: formData.email!,
                         username: formData.username!)
-        #warning("Uncomment when API is back up")
-//        networkController?.register(with: user) { (error) in
-//            if let error = error {
-//                NSLog("\(error)")
-//                #warning("Add alert of failure to register")
-//            } else {
-//                Analytics.logEvent("register", parameters: nil)
-//                DispatchQueue.main.async {
-//                    self.performSegue(withIdentifier: "unwindToMapView", sender: self)
-//                }
-//            }
-//        }
+        networkController?.register(with: user) { (error) in
+            if let error = error {
+                NSLog("\(error)")
+                #warning("Add alert of failure to register")
+            } else {
+                Analytics.logEvent("register", parameters: nil)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "unwindToMapView", sender: self)
+                }
+            }
+        }
         self.performSegue(withIdentifier: "unwindToMapView", sender: self)
     }
     
