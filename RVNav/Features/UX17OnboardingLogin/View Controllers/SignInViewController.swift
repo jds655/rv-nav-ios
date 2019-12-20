@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAnalytics
 import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
 class SignInViewController: ShiftableViewController {
 
@@ -17,7 +19,8 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundImageContainerView: UIView!
     @IBOutlet weak var googleSignInButton: UIButton!
-    @IBOutlet weak var facebookSignInButton: UIButton!
+    //@IBOutlet weak var facebookSignInButton: FBLoginButton!
+    @IBOutlet weak var facebookSignInButton: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -47,6 +50,7 @@ class SignInViewController: ShiftableViewController {
         
         googleFacebookButtonUISetup()
         signInButtonButtonUISetup()
+        facebookButtonPermissions()
     }
     
     // MARK: - Private Methods
@@ -60,6 +64,12 @@ class SignInViewController: ShiftableViewController {
         facebookSignInButton.layer.cornerRadius = 4
         facebookSignInButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         googleSignInButton.layer.borderWidth = 0.2
+    }
+    
+    private func facebookButtonPermissions() {
+        let FBButton = FBLoginButton(permissions: [.publicProfile])
+        FBButton.center = facebookSignInButton.center
+        facebookSignInButton.addSubview(FBButton)
     }
     
     private func signInButtonButtonUISetup() {
@@ -86,6 +96,8 @@ class SignInViewController: ShiftableViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    
     
     
     // MARK: - IBActions
@@ -158,6 +170,7 @@ extension SignInViewController {
     }
 }
 
+#warning("Clean up this Extension")
 extension SignInViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {

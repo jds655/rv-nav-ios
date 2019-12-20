@@ -20,8 +20,8 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         didSet {
             DispatchQueue.main.async {
                 self.vehiclePickerView.reloadAllComponents()
-                self.vehiclePickerView.selectRow(Settings.shared.selectedVehicleIndex, inComponent: 0, animated: false)
-                Settings.shared.selectedVehicle = self.vehicles[self.vehiclePickerView.selectedRow(inComponent: 0)]
+                self.vehiclePickerView.selectRow(RVSettings.shared.selectedVehicleIndex, inComponent: 0, animated: false)
+                RVSettings.shared.selectedVehicle = self.vehicles[self.vehiclePickerView.selectedRow(inComponent: 0)]
             }
 //
         }
@@ -86,8 +86,8 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        Settings.shared.selectedVehicle = vehicles[row]
-        Settings.shared.selectedVehicleIndex = row
+        RVSettings.shared.selectedVehicle = vehicles[row]
+        RVSettings.shared.selectedVehicleIndex = row
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

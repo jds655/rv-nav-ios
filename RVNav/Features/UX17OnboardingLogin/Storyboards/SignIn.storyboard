@@ -64,13 +64,13 @@
                                                     <action selector="signInWithGoogleButtonTapped:" destination="1zY-kg-8ku" eventType="touchUpInside" id="1Es-pc-eX7"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ija-T7-WjX">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOR-hO-qyW">
                                                 <rect key="frame" x="187" y="0.0" width="187" height="40"/>
                                                 <color key="backgroundColor" red="0.3784842491" green="0.4334404469" blue="0.74962478880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" image="signInWithFaceBookBlank">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                </state>
-                                            </button>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="nIF-OA-OhI"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="diD-aX-5Pi"/>
@@ -247,7 +247,7 @@
                         <outlet property="backgroundImageContainerView" destination="SKn-m2-2Zk" id="RGu-1m-JKQ"/>
                         <outlet property="backgroundImageView" destination="8QI-Fg-LS0" id="XmY-6C-8bM"/>
                         <outlet property="emailTextField" destination="N8x-Rb-R1q" id="dIg-eu-Jon"/>
-                        <outlet property="facebookSignInButton" destination="ija-T7-WjX" id="Sv3-Nm-ZZo"/>
+                        <outlet property="facebookSignInButton" destination="HOR-hO-qyW" id="TAb-3q-rE8"/>
                         <outlet property="googleSignInButton" destination="h1e-wr-PJT" id="rFc-up-4Rk"/>
                         <outlet property="passwordTextField" destination="EGd-7O-Ric" id="8lC-b9-649"/>
                         <outlet property="signInButton" destination="KnM-Mr-ffs" id="Hmc-m2-Dsv"/>
@@ -269,7 +269,6 @@
     </scenes>
     <resources>
         <image name="SignInBlank" width="374" height="812"/>
-        <image name="signInWithFaceBookBlank" width="170" height="41"/>
         <image name="signInWithGoogle" width="170" height="41"/>
     </resources>
 </document>

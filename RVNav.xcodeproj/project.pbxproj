@@ -18,14 +18,12 @@
 		321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321DE9BE23A97BD700521AAB /* LandingPage.storyboard */; };
 		321DE9C123A9927400521AAB /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE9C023A9927400521AAB /* LandingPageViewController.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
-		32F788B723AC32E100C234FC /* SignInViewController+Extension+3rdParthAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788B623AC32E100C234FC /* SignInViewController+Extension+3rdParthAuth.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
 		447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E723146CE0007D50E7 /* VehicleFormViewController.swift */; };
 		447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447831EA23146D65007D50E7 /* GoogleService-Info.plist */; };
 		449435622314784A00FC4680 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449435612314784A00FC4680 /* SideMenuTableViewController.swift */; };
-		44EAD664231EF5FC00094531 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* Settings.swift */; };
-		71BB14FE87BBBDF8470B088D /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A85F416B417F34AE3964742 /* Pods_RVNav.framework */; };
+		44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* RVSettings.swift */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
 		D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */; };
 		D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */; };
@@ -38,6 +36,7 @@
 		D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE81230C85EC00D7C151 /* LoginViewController.swift */; };
 		D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */; };
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
+		D772B7A18CA5BC8F0D47FA9D /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EF5AEF983FA1D177C133D5 /* Pods_RVNav.framework */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
@@ -60,17 +59,15 @@
 		321DE9BE23A97BD700521AAB /* LandingPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
 		321DE9C023A9927400521AAB /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		32F788B623AC32E100C234FC /* SignInViewController+Extension+3rdParthAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInViewController+Extension+3rdParthAuth.swift"; sourceTree = "<group>"; };
-		4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		447831E723146CE0007D50E7 /* VehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFormViewController.swift; sourceTree = "<group>"; };
 		447831E923146D65007D50E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447831EA23146D65007D50E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		449435612314784A00FC4680 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
-		44EAD663231EF5FC00094531 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		7A85F416B417F34AE3964742 /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA3D9891E65A7E70B55FB646 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
+		44EAD663231EF5FC00094531 /* RVSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVSettings.swift; sourceTree = "<group>"; };
+		53EF5AEF983FA1D177C133D5 /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF03792F758E982DB6E9D821 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsSearchTableViewController.swift; sourceTree = "<group>"; };
 		D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
@@ -84,6 +81,7 @@
 		D18DAE81230C85EC00D7C151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTableViewController.swift; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		F4E004B70AB3A02D1C530DD3 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
@@ -99,13 +97,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71BB14FE87BBBDF8470B088D /* Pods_RVNav.framework in Frameworks */,
+				D772B7A18CA5BC8F0D47FA9D /* Pods_RVNav.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		114CE52C85F2B3711355C79C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53EF5AEF983FA1D177C133D5 /* Pods_RVNav.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		321DE99623A84A5600521AAB /* Font Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,18 +137,10 @@
 		9326FAB956C45CAD0A34795B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BA3D9891E65A7E70B55FB646 /* Pods-RVNav.debug.xcconfig */,
-				4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */,
+				F4E004B70AB3A02D1C530DD3 /* Pods-RVNav.debug.xcconfig */,
+				CF03792F758E982DB6E9D821 /* Pods-RVNav.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		A78429DE402180D85B087CB6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7A85F416B417F34AE3964742 /* Pods_RVNav.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D18DAE63230B3C3C00D7C151 = {
@@ -151,7 +149,7 @@
 				D18DAE6E230B3C3D00D7C151 /* RVNav */,
 				D18DAE6D230B3C3C00D7C151 /* Products */,
 				9326FAB956C45CAD0A34795B /* Pods */,
-				A78429DE402180D85B087CB6 /* Frameworks */,
+				114CE52C85F2B3711355C79C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,7 +194,7 @@
 				446F3902230DA7FC00D57DE3 /* User.swift */,
 				D185F9552322FABE00E4C64A /* Avoid.swift */,
 				447831E523146AC5007D50E7 /* Vehicle.swift */,
-				44EAD663231EF5FC00094531 /* Settings.swift */,
+				44EAD663231EF5FC00094531 /* RVSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,7 +204,6 @@
 			children = (
 				D1BCDD7E230DB69B00986A18 /* NetworkController.swift */,
 				D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */,
-				32F788B623AC32E100C234FC /* SignInViewController+Extension+3rdParthAuth.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -298,12 +295,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D18DAE7E230B3C3F00D7C151 /* Build configuration list for PBXNativeTarget "RVNav" */;
 			buildPhases = (
-				9CD0338014282DCBD15219F5 /* [CP] Check Pods Manifest.lock */,
+				A7B2D101328CE0F3FC64AF06 /* [CP] Check Pods Manifest.lock */,
 				D18DAE68230B3C3C00D7C151 /* Sources */,
 				D18DAE69230B3C3C00D7C151 /* Frameworks */,
 				D18DAE6A230B3C3C00D7C151 /* Resources */,
-				EF0D507BC56EDFB2F7808E6B /* [CP] Embed Pods Frameworks */,
-				05B76B3A2A43024CE4FC87C8 /* [CP] Copy Pods Resources */,
+				4598457C8797621A0A0ECBB4 /* [CP] Embed Pods Frameworks */,
+				0CC913C865507909BD9703D3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -374,7 +371,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05B76B3A2A43024CE4FC87C8 /* [CP] Copy Pods Resources */ = {
+		0CC913C865507909BD9703D3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -391,7 +388,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9CD0338014282DCBD15219F5 /* [CP] Check Pods Manifest.lock */ = {
+		4598457C8797621A0A0ECBB4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7B2D101328CE0F3FC64AF06 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -413,23 +427,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF0D507BC56EDFB2F7808E6B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -448,12 +445,11 @@
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
-				44EAD664231EF5FC00094531 /* Settings.swift in Sources */,
+				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,
 				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */,
-				32F788B723AC32E100C234FC /* SignInViewController+Extension+3rdParthAuth.swift in Sources */,
 				321DE9C123A9927400521AAB /* LandingPageViewController.swift in Sources */,
 				321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */,
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
@@ -539,6 +535,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -593,6 +591,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -602,7 +602,7 @@
 		};
 		D18DAE7F230B3C3F00D7C151 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA3D9891E65A7E70B55FB646 /* Pods-RVNav.debug.xcconfig */;
+			baseConfigurationReference = F4E004B70AB3A02D1C530DD3 /* Pods-RVNav.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -625,7 +625,7 @@
 		};
 		D18DAE80230B3C3F00D7C151 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4443A37DB9F5E82CE2655446 /* Pods-RVNav.release.xcconfig */;
+			baseConfigurationReference = CF03792F758E982DB6E9D821 /* Pods-RVNav.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
