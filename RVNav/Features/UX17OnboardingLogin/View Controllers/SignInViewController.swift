@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAnalytics
+import GoogleSignIn
 
 class SignInViewController: ShiftableViewController {
 
@@ -74,7 +75,6 @@ class SignInViewController: ShiftableViewController {
         } else {
             signInButton.isEnabled = false
             signInButton.backgroundColor = .clear
-            
         }
     }
     
@@ -92,9 +92,9 @@ class SignInViewController: ShiftableViewController {
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         
         guard let email = emailTextField.text,
-        let password = passwordTextField.text,
-        !email.isEmpty,
-        !password.isEmpty else { return }
+            let password = passwordTextField.text,
+            !email.isEmpty,
+            !password.isEmpty else { return }
         
         let signInInfo = SignInInfo(email: email, password: password)
         networkController?.signIn(with: signInInfo) { (error) in
@@ -104,7 +104,7 @@ class SignInViewController: ShiftableViewController {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(alertAction)
-
+                    
                     self.present(alert, animated: true)
                 }
             }
@@ -114,9 +114,15 @@ class SignInViewController: ShiftableViewController {
                 Analytics.logEvent("login", parameters: nil)
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
-                                    }
+                }
             }
         }
+    }
+    
+    @IBAction func signInWithGoogleButtonTapped(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
 }
 
@@ -151,3 +157,42 @@ extension SignInViewController {
         }
     }
 }
+
+extension SignInViewController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            NSLog("Error logging in user with google :\(error)")
+            return
+        }
+        
+        guard let googleUser = user,
+              let googleEmail = googleUser.profile.email,
+              let googlePassword = googleUser.userID else { return }
+        
+        emailTextField.text = googleEmail
+        passwordTextField.text = googlePassword
+        print("Password: \(googlePassword)")
+        let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
+        networkController?.signIn(with: signInInfo) { (error) in
+            if let error = error {
+                NSLog("Error signing up: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+                    
+                    self.present(alert, animated: true)
+                }
+            }
+            guard let message = self.networkController?.result?.message else { return }
+            print(message)
+            if self.networkController?.result?.token != nil {
+                Analytics.logEvent("login", parameters: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+}
+

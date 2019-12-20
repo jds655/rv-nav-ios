@@ -9,11 +9,12 @@
 import UIKit
 import FirebaseCore
 import ArcGIS
+import GoogleSignIn
 
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
     let globalConfiguration = AGSRequestConfiguration.global()
     var window: UIWindow?
 
@@ -21,19 +22,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         globalConfiguration.timeoutInterval = 300.0
         FirebaseApp.configure()
+        GIDSignIn.sharedInstance().clientID = "199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4.apps.googleusercontent.com"
+
         setupOAuthManager()
 
         return true
     }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-            AppConfiguration.urlScheme == urlComponents.scheme,
-            AppConfiguration.urlAuthPath == urlComponents.host {setupOAuthManager()
-            AGSApplicationDelegate.shared().application(app, open: url, options: options)
-        }
-        return true
+    
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
     }
+    
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//      return GIDSignIn.sharedInstance().handle(url)
+//    }
+
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
+//            AppConfiguration.urlScheme == urlComponents.scheme,
+//            AppConfiguration.urlAuthPath == urlComponents.host {setupOAuthManager()
+//            AGSApplicationDelegate.shared().application(app, open: url, options: options)
+//        }
+//        return true
+//    }
 
     private func setupOAuthManager() {
         let config = AGSOAuthConfiguration(portalURL: nil, clientID: AppConfiguration.clientID, redirectURL: "\(AppConfiguration.urlScheme)://\(AppConfiguration.urlAuthPath)")
