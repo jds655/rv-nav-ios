@@ -19,8 +19,7 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundImageContainerView: UIView!
     @IBOutlet weak var googleSignInButton: UIButton!
-    //@IBOutlet weak var facebookSignInButton: FBLoginButton!
-    @IBOutlet weak var facebookSignInButton: UIView!
+    @IBOutlet weak var facebookSignInButton: FBLoginButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -67,9 +66,7 @@ class SignInViewController: ShiftableViewController {
     }
     
     private func facebookButtonPermissions() {
-        let FBButton = FBLoginButton(permissions: [.publicProfile])
-        FBButton.center = facebookSignInButton.center
-        facebookSignInButton.addSubview(FBButton)
+        facebookSignInButton.permissions = ["public_profile", "email"]
     }
     
     private func signInButtonButtonUISetup() {
@@ -96,9 +93,6 @@ class SignInViewController: ShiftableViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    
-    
     
     // MARK: - IBActions
     @IBAction func signInButtonTapped(_ sender: UIButton) {
