@@ -35,5 +35,4 @@ class Vehicle: Codable {
         self.trailer = trailer
     
     }
-    
 }

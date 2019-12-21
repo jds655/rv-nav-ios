@@ -32,7 +32,7 @@ class SignInViewController: ShiftableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UISetup()
-        tapOutsideToDismissKeyBoard()
+        //tapOutsideToDismissKeyBoard()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,7 +46,6 @@ class SignInViewController: ShiftableViewController {
     // MARK: - IBActions & Methods
     
     private func UISetup() {
-        
         googleFacebookButtonUISetup()
         signInButtonButtonUISetup()
         facebookButtonPermissions()
