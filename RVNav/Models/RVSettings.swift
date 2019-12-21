@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  RVSettings.swift
 //  RVNav
 //
 //  Created by Ryan Murphy on 9/3/19.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Settings {
-    static let shared = Settings()
+class RVSettings {
+    static let shared = RVSettings()
     private init() {}
     
     var selectedVehicle: Vehicle?
