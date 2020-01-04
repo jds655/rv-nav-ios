@@ -28,10 +28,4 @@ class DirectionsController {
             completion(placemarks)
         }
     }
-
-   
-
-
-
-    
 }
