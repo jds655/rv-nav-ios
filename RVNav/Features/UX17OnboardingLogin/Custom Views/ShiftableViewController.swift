@@ -15,13 +15,13 @@ import UIKit
 
 class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
+    // MARK: - Properties
     var currentYShiftForKeyboard: CGFloat = 0
-    
     var textFieldBeingEdited: UITextField?
     var textViewBeingEdited: UITextView?
-    
     var keyboardDismissTapGestureRecognizer: UITapGestureRecognizer!
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,10 +29,10 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
-    @objc func stopEditingTextInput() {
+    // MARK: - Private Methods
+    @objc private func stopEditingTextInput() {
         if let textField = self.textFieldBeingEdited {
             
             textField.resignFirstResponder()
@@ -52,16 +52,16 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
         keyboardDismissTapGestureRecognizer.isEnabled = false
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    internal func textFieldDidBeginEditing(_ textField: UITextField) {
         textFieldBeingEdited = textField
     }
     
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+    internal func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         textViewBeingEdited = textView
         return true
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
+    @objc private func keyboardWillShow(notification: Notification) {
         
         keyboardDismissTapGestureRecognizer.isEnabled = true
         
@@ -91,7 +91,7 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
         }
     }
     
-    @objc func yShiftWhenKeyboardAppearsFor(textInput: UIView, keyboardSize: CGRect, nextY: CGFloat) -> CGFloat {
+    @objc private func yShiftWhenKeyboardAppearsFor(textInput: UIView, keyboardSize: CGRect, nextY: CGFloat) -> CGFloat {
         
         let textFieldOrigin = self.view.convert(textInput.frame, from: textInput.superview!).origin.y
         let textFieldBottomY = textFieldOrigin + textInput.frame.size.height
@@ -108,7 +108,7 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
         }
     }
     
-    @objc func keyboardWillHide(notification: Notification) {
+    @objc private func keyboardWillHide(notification: Notification) {
         
         if self.view.frame.origin.y != 0 {
             
@@ -118,7 +118,7 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
         stopEditingTextInput()
     }
     
-    @objc func setupKeyboardDismissTapGestureRecognizer() {
+    @objc private func setupKeyboardDismissTapGestureRecognizer() {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(stopEditingTextInput))
         tapGestureRecognizer.numberOfTapsRequired = 1

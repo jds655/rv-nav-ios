@@ -65,7 +65,9 @@ class SignInViewController: ShiftableViewController {
     }
     
     private func facebookButtonPermissions() {
-        facebookSignInButton.permissions = ["public_profile", "email"]
+        DispatchQueue.main.async {
+            self.facebookSignInButton.permissions = ["public_profile", "email"]
+        }
     }
     
     private func signInButtonButtonUISetup() {
@@ -84,10 +86,10 @@ class SignInViewController: ShiftableViewController {
         }
     }
     
-    private func tapOutsideToDismissKeyBoard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
+//    private func tapOutsideToDismissKeyBoard() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+//    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
