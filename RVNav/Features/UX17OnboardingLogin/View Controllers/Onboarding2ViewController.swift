@@ -27,8 +27,11 @@ class Onboarding2ViewController: ShiftableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         UISetup()
-        //tapOutsideToDismissKeyBoard()
+        tapOutsideToDismissKeyBoard()
         //firstNameTextField.becomeFirstResponder()
     }
     override func viewWillAppear(_ animated: Bool) {

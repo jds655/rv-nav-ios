@@ -31,8 +31,11 @@ class SignInViewController: ShiftableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         UISetup()
-        //tapOutsideToDismissKeyBoard()
+        tapOutsideToDismissKeyBoard()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,10 +89,10 @@ class SignInViewController: ShiftableViewController {
         }
     }
     
-//    private func tapOutsideToDismissKeyBoard() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        view.addGestureRecognizer(tap)
-//    }
+    private func tapOutsideToDismissKeyBoard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)

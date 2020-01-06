@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FirebaseAnalytics
+import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
 struct FormData {
     var email: String?
@@ -62,8 +66,11 @@ class OnboardingViewController: ShiftableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         UISetup()
-        //tapOutsideToDismissKeyBoard()
+        tapOutsideToDismissKeyBoard()
         //emailTextField.becomeFirstResponder()
     }
     
@@ -84,6 +91,12 @@ class OnboardingViewController: ShiftableViewController {
     }
     
     @IBAction func signinTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
     
     // MARK: - Private Methods
@@ -191,3 +204,43 @@ extension OnboardingViewController {
         return true
     }
 }
+
+extension OnboardingViewController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            NSLog("Error logging in user with google :\(error)")
+            return
+        }
+        
+        guard let googleUser = user,
+            let firstName = googleUser.profile.givenName,
+            let lastName = googleUser.profile.familyName,
+              let googleEmail = googleUser.profile.email,
+              let googlePassword = googleUser.userID else { return }
+        
+        let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, username: googleEmail)
+        print("This is what you get back as a user: \(userToRegister)")
+        
+        networkController.register(with: userToRegister) { (error) in
+            if let error = error {
+                NSLog("Error signing up: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+                    
+                    self.present(alert, animated: true)
+                }
+            }
+            guard let message = self.networkController?.result?.message else { return }
+            print(message)
+            if self.networkController?.result?.token != nil {
+                Analytics.logEvent("register", parameters: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+}
+
