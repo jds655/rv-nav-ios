@@ -86,7 +86,7 @@
                                                                 <rect key="frame" x="187" y="0.0" width="187" height="40"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" image="signInWithFaceBook">
+                                                                <state key="normal" image="sign">
                                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
                                                             </button>
@@ -606,7 +606,7 @@
     </scenes>
     <resources>
         <image name="SignupBlank" width="375" height="812"/>
-        <image name="signInWithFaceBook" width="171" height="41"/>
+        <image name="sign" width="16" height="16"/>
         <image name="signInWithGoogle" width="170" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
