@@ -28,11 +28,16 @@ class Onboarding2ViewController: ShiftableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UISetup()
-        tapOutsideToDismissKeyBoard()
-        firstNameTextField.becomeFirstResponder()
+        //tapOutsideToDismissKeyBoard()
+        //firstNameTextField.becomeFirstResponder()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
     
     // MARK: - IBActions
@@ -72,7 +77,7 @@ class Onboarding2ViewController: ShiftableViewController {
         signUpButton.layer.cornerRadius = 4
         if formData.readyPage2() {
             signUpButton.isEnabled = true
-        signUpButton.backgroundColor = .babyBlue
+            signUpButton.backgroundColor = .babyBlue
         } else {
             signUpButton.isEnabled = false
             signUpButton.backgroundColor = .clear
@@ -84,33 +89,17 @@ class Onboarding2ViewController: ShiftableViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-}
-
-// MARK: - Extensions
-extension Onboarding2ViewController {
-    
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        return textFieldShouldReturn(textField)
-//    }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        let _ = textFieldShouldReturn(textField)
-//    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    fileprivate func textFieldValidation (_ textField: UITextField) -> Bool {
         switch textField {
         case firstNameTextField:
             guard let firstName = firstNameTextField.text,
                 !firstName.isEmpty else {
-                return false
+                    textField.resignFirstResponder()
+                    return true
             }
             formData?.firstname = firstName
             dismissKeyboard()
@@ -120,7 +109,8 @@ extension Onboarding2ViewController {
         case lastNameTextField:
             guard let lastName = lastNameTextField.text,
                 !lastName.isEmpty else {
-                return false
+                    textField.resignFirstResponder()
+                    return true
             }
             formData?.lastname = lastName
             dismissKeyboard()
@@ -130,7 +120,8 @@ extension Onboarding2ViewController {
         case usernameTextField:
             guard let username = usernameTextField.text,
                 !username.isEmpty else {
-                return false
+                    textField.resignFirstResponder()
+                    return true
             }
             formData?.username = username
             dismissKeyboard()
@@ -139,10 +130,13 @@ extension Onboarding2ViewController {
             return true
         case ageTextField:
             guard let ageString = ageTextField.text,
-                !ageString.isEmpty,
-                let age = Int(ageString),
+                !ageString.isEmpty else {
+                    textField.resignFirstResponder()
+                    return true
+            }
+            guard let age = Int(ageString),
                 age > 0 && age < 120 else {
-                return false
+                    return false
             }
             formData?.age = age
             dismissKeyboard()
@@ -151,5 +145,19 @@ extension Onboarding2ViewController {
         default:
             return true
         }
+    }
+}
+
+// MARK: - Extensions
+extension Onboarding2ViewController {
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return textFieldValidation(textField)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
 }

@@ -63,8 +63,8 @@ class OnboardingViewController: ShiftableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UISetup()
-        tapOutsideToDismissKeyBoard()
-        emailTextField.becomeFirstResponder()
+        //tapOutsideToDismissKeyBoard()
+        //emailTextField.becomeFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,7 +88,6 @@ class OnboardingViewController: ShiftableViewController {
     
     // MARK: - Private Methods
     private func UISetup() {
-        
         googleFacebookButtonUISetup()
         signUpButtonButtonUISetup()
     }
@@ -114,7 +113,6 @@ class OnboardingViewController: ShiftableViewController {
         } else {
             signUpButton.isEnabled = false
             signUpButton.backgroundColor = .clear
-            
         }
     }
     
@@ -123,29 +121,20 @@ class OnboardingViewController: ShiftableViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-}
-
-// MARK: - Extensions
-extension OnboardingViewController {
     
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        return textFieldShouldReturn(textField)
-//    }
-//    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        let _ = textFieldShouldReturn(textField)
-//    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    fileprivate func textFieldValidation (_ textField: UITextField) -> Bool {
         switch textField {
         case emailTextField:
             guard let email = emailTextField.text,
                 !email.isEmpty else {
-                    return false
+                    textField.resignFirstResponder()
+                    return true
             }
+            guard email.isValidEmail() else { return false}
+            
             formData.email = email
             passwordTextField.becomeFirstResponder()
             signUpButtonButtonUISetup()
@@ -153,7 +142,8 @@ extension OnboardingViewController {
         case passwordTextField:
             guard let password = passwordTextField.text,
                 !password.isEmpty else {
-                    return false
+                    textField.resignFirstResponder()
+                    return true
             }
             formData.password = password
             dismissKeyboard()
@@ -163,7 +153,8 @@ extension OnboardingViewController {
         case password2TextField:
             guard let passwordconf = password2TextField.text,
                 !passwordconf.isEmpty else {
-                    return false
+                    textField.resignFirstResponder()
+                    return true
             }
             guard passwordconf == formData.password else {
                 let alert = UIAlertController(title: "Error", message: "The passwords do not match.", preferredStyle: .alert)
@@ -183,5 +174,20 @@ extension OnboardingViewController {
         default:
             return true
         }
+    }
+}
+
+// MARK: - Extensions
+extension OnboardingViewController {
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return textFieldValidation(textField)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
 }

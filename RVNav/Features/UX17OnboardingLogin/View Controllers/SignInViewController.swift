@@ -32,7 +32,7 @@ class SignInViewController: ShiftableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UISetup()
-        tapOutsideToDismissKeyBoard()
+        //tapOutsideToDismissKeyBoard()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,7 +46,6 @@ class SignInViewController: ShiftableViewController {
     // MARK: - IBActions & Methods
     
     private func UISetup() {
-        
         googleFacebookButtonUISetup()
         signInButtonButtonUISetup()
         facebookButtonPermissions()
@@ -66,7 +65,9 @@ class SignInViewController: ShiftableViewController {
     }
     
     private func facebookButtonPermissions() {
-        facebookSignInButton.permissions = ["public_profile", "email"]
+        DispatchQueue.main.async {
+            self.facebookSignInButton.permissions = ["public_profile", "email"]
+        }
     }
     
     private func signInButtonButtonUISetup() {
@@ -85,10 +86,10 @@ class SignInViewController: ShiftableViewController {
         }
     }
     
-    private func tapOutsideToDismissKeyBoard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
+//    private func tapOutsideToDismissKeyBoard() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+//    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
