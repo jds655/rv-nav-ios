@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,12 +81,15 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="SignIn with Google" image="signInWithGoogle"/>
+                                                                <connections>
+                                                                    <action selector="signupWithGoogleTapped:" destination="6vx-Fn-8uu" eventType="touchUpInside" id="OT0-dS-hLU"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwH-Uu-3Gb">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwH-Uu-3Gb" customClass="FBSDKButton">
                                                                 <rect key="frame" x="187" y="0.0" width="187" height="40"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" red="0.3784842491" green="0.4334404469" blue="0.74962478880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" image="sign">
+                                                                <state key="normal" image="signInWithFaceBookBlank">
                                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
                                                             </button>
@@ -147,7 +150,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="ryU-Hj-Gk9"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="6vx-Fn-8uu" id="9JU-4V-rRY"/>
                                                                 </connections>
@@ -174,7 +177,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="EN9-9k-kjJ"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="6vx-Fn-8uu" id="n0Z-KY-8ko"/>
                                                                 </connections>
@@ -606,7 +609,7 @@
     </scenes>
     <resources>
         <image name="SignupBlank" width="375" height="812"/>
-        <image name="sign" width="16" height="16"/>
+        <image name="signInWithFaceBookBlank" width="170" height="41"/>
         <image name="signInWithGoogle" width="170" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
