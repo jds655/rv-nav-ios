@@ -131,6 +131,15 @@ class SignInViewController: ShiftableViewController {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signIn()
     }
+    
+    @IBAction func signInFacebookButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func getFBSignInToken(_ sender: UIButton) {
+        print("Facebook USER ID: \(AccessToken.current!.userID)")
+    }
+    
 }
 
 
