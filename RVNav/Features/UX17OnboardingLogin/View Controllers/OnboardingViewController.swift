@@ -209,14 +209,13 @@ extension OnboardingViewController: GIDSignInDelegate {
             return
         }
         
-        guard let googleUser = user,
-            let firstName = googleUser.profile.givenName,
+        guard let googleUser = user else { return }
+        guard let firstName = googleUser.profile.givenName,
             let lastName = googleUser.profile.familyName,
-              let googleEmail = googleUser.profile.email,
-              let googlePassword = googleUser.userID else { return }
+            let googleEmail = googleUser.profile.email,
+            let googlePassword = googleUser.userID else { return }
         
         let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, username: googleEmail)
-        print("This is what you get back as a user: \(userToRegister)")
         
         networkController.register(with: userToRegister) { (error) in
             if let error = error {
@@ -229,12 +228,17 @@ extension OnboardingViewController: GIDSignInDelegate {
                     self.present(alert, animated: true)
                 }
             }
-            guard let message = self.networkController?.result?.message else { return }
-            print(message)
-            if self.networkController?.result?.token != nil {
-                Analytics.logEvent("register", parameters: nil)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+            
+            Analytics.logEvent("register", parameters: nil)
+            DispatchQueue.main.async {
+                let googleSignInInfo = SignInInfo(email: googleEmail, password: googlePassword)
+                self.networkController.signIn(with: googleSignInInfo) { (error) in
+                    if let error = error {
+                        NSLog("Error when signing in with google after registration:\(error)")
+                    }
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "unwindToMapView", sender: self)                        
+                    }
                 }
             }
         }
