@@ -85,14 +85,6 @@ class OnboardingViewController: ShiftableViewController {
         }
     }
     
-    // MARK: - IBActions
-
-    @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
-        GIDSignIn.sharedInstance().presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
     // MARK: - Private Methods
     private func UISetup() {
         googleFacebookButtonUISetup()
@@ -183,6 +175,73 @@ class OnboardingViewController: ShiftableViewController {
             return true
         }
     }
+    
+    
+    // MARK: - IBActions
+
+    @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction func signUpWithFacebookTapped(_ sender: UIButton) {
+        LoginManager().logIn(permissions: ["email", "public_profile"], from: self) { (result, error) in
+            if let error = error {
+                NSLog("Error signing up with facebook:\(error)")
+                return
+            }
+            self.signUpWithFacebook()
+        }
+    }
+    
+    private func signUpWithFacebook() {
+        GraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
+            if let error = error {
+                NSLog("Error getting FB graph request: \(error)")
+                return
+            }
+            guard let result = result as? [String: String],
+                let emailFromFacebook: String = result["email"],
+                let idFromFacebook: String = result["id"],
+                let fullNameFromFacebook: String = result["name"] else { return }
+            
+            var names = fullNameFromFacebook.components(separatedBy: " ")
+            var firstName = ""
+            var lastName = ""
+            if names.count > 0 {
+                firstName = names.removeFirst()
+                lastName = names.joined(separator: " ")
+            }
+            
+            let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, username: fullNameFromFacebook)
+            self.networkController.register(with: facebookUser) { (error) in
+                if let error = error {
+                    NSLog("Error signing up with Facebook: \(error)")
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(alertAction)
+                        
+                        self.present(alert, animated: true)
+                    }
+                }
+                
+                Analytics.logEvent("register", parameters: nil)
+                DispatchQueue.main.async {
+                    let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
+                    self.networkController.signIn(with: facebookSignInInfo) { (error) in
+                        if let error = error {
+                            NSLog("Error when signing in with google after registration:\(error)")
+                        }
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "unwindToMapView", sender: self)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -237,11 +296,21 @@ extension OnboardingViewController: GIDSignInDelegate {
                         NSLog("Error when signing in with google after registration:\(error)")
                     }
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "unwindToMapView", sender: self)                        
+                        self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                     }
                 }
             }
         }
     }
+}
+
+extension OnboardingViewController: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+    }
+    
+    
 }
 

@@ -80,18 +80,21 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3A-Y8-LOy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" title="SignIn with Google" image="signInWithGoogle"/>
+                                                                <state key="normal" title="SignIn with Google" image="signUpGoogleBlank"/>
                                                                 <connections>
                                                                     <action selector="signupWithGoogleTapped:" destination="6vx-Fn-8uu" eventType="touchUpInside" id="OT0-dS-hLU"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwH-Uu-3Gb" customClass="FBSDKButton">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwH-Uu-3Gb">
                                                                 <rect key="frame" x="187" y="0.0" width="187" height="40"/>
                                                                 <color key="backgroundColor" red="0.3784842491" green="0.4334404469" blue="0.74962478880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" image="signInWithFaceBookBlank">
+                                                                <state key="normal" image="signUpFacebookBlank">
                                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="signUpWithFacebookTapped:" destination="6vx-Fn-8uu" eventType="touchUpInside" id="ped-xB-4QZ"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -609,10 +612,10 @@
     </scenes>
     <resources>
         <image name="SignupBlank" width="375" height="812"/>
-        <image name="signInWithFaceBookBlank" width="170" height="41"/>
-        <image name="signInWithGoogle" width="170" height="41"/>
+        <image name="signUpFacebookBlank" width="169" height="40"/>
+        <image name="signUpGoogleBlank" width="169" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fqo-5M-DND"/>
+        <segue reference="Tco-uN-LD5"/>
     </inferredMetricsTieBreakers>
 </document>
