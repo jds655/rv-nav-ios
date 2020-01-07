@@ -12,7 +12,9 @@ import UIKit
 class PasswordTextField: UITextField {
     
     private var showPassword: Bool = false
+    private let rightViewPadding: CGFloat = 40
     private let eyeButton = UIButton()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,9 +39,15 @@ class PasswordTextField: UITextField {
     private func setupView() {
         eyeButton.setImage(UIImage(named: "eye-off"), for: .normal)
         eyeButton.addTarget(self, action: #selector (self.toggleShowPassword), for: .touchUpInside)
+        
         self.rightViewMode = .always
         self.rightView = eyeButton
         self.isSecureTextEntry = true
+    }
+    
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let rightBounds = CGRect(x: bounds.size.width - rightViewPadding, y: 10, width: 24, height: 24)
+        return rightBounds
     }
 }
 
