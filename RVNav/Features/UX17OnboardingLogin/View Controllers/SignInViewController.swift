@@ -91,27 +91,49 @@ class SignInViewController: ShiftableViewController {
         view.endEditing(true)
     }
     
-    private func getFacebookUser() {
+    private func loginWithFacebook() {
+        var facebookSignInInfo: SignInInfo?
         GraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
             if let error = error {
                 NSLog("Error getting FB graph request: \(error)")
                 return
             }
             guard let facebookUser = result as? [String: String],
-                let email: String = facebookUser["email"],
-                let id: String = facebookUser["id"],
-                let name: String = facebookUser["name"] else { return }
-            
-            print("User email is \(email)")
-            print("User id is \(id)")
-            print("User name is \(name)")
+                let emailFromFacebook: String = facebookUser["email"],
+                let idFromFacebook: String = facebookUser["id"],
+                let nameFromFacebook: String = facebookUser["name"] else { return }
+            DispatchQueue.main.async {
+                let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
+                self.emailTextField.text = emailFromFacebook
+                self.passwordTextField.text = idFromFacebook
+                self.networkController?.signIn(with: facebookSignInInfo) { (error) in
+                    if let error = error {
+                        NSLog("Error signing up: \(error)")
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alert.addAction(alertAction)
+                            
+                            self.present(alert, animated: true)
+                        }
+                    }
+                    guard let message = self.networkController?.result?.message else { return }
+                    print(message)
+                    if self.networkController?.result?.token != nil {
+                        Analytics.logEvent("login", parameters: nil)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
         }
+        
     }
     
     // MARK: - IBActions
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
             !email.isEmpty,
@@ -152,8 +174,7 @@ class SignInViewController: ShiftableViewController {
                 NSLog("Error signing up with facebook:\(error)")
                 return
             }
-            print("Login with FB Successful!!")
-            self.getFacebookUser()
+            self.loginWithFacebook()
         }
     }
 }
@@ -200,6 +221,7 @@ extension SignInViewController: GIDSignInDelegate {
         guard let googleUser = user,
               let googleEmail = googleUser.profile.email,
               let googlePassword = googleUser.userID else { return }
+        #warning("Remove print before production push")
         print(googlePassword)
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
@@ -231,17 +253,9 @@ extension SignInViewController: GIDSignInDelegate {
 
 extension SignInViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            NSLog("Error with Facebook login :\(error)")
-            return
-        }
-        getFacebookUser()
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        #warning("Add better logout handling")
         print("user has logged out of facebook")
     }
-    
-    
 }
