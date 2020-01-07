@@ -248,10 +248,3 @@ class NetworkController {
         }.resume()
     }
 }
-
-
-
-
-
-
-
