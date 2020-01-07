@@ -86,13 +86,7 @@ class OnboardingViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func onwardTapped(_ sender: UIButton) {
-        //performSegue(withIdentifier: "Onboarding2", sender: self)
-    }
-    
-    @IBAction func signinTapped(_ sender: UIButton) {
-    }
-    
+
     @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
@@ -102,7 +96,7 @@ class OnboardingViewController: ShiftableViewController {
     // MARK: - Private Methods
     private func UISetup() {
         googleFacebookButtonUISetup()
-        signUpButtonButtonUISetup()
+        signUpButtonUISetup()
     }
     
     private func googleFacebookButtonUISetup() {
@@ -117,7 +111,7 @@ class OnboardingViewController: ShiftableViewController {
         googleSignInButton.layer.borderWidth = 0.2
     }
     
-    private func signUpButtonButtonUISetup() {
+    private func signUpButtonUISetup() {
         signUpButton.layer.borderWidth = 0.4
         signUpButton.layer.cornerRadius = 4
         if self.formData.readyPage1() {
@@ -144,13 +138,14 @@ class OnboardingViewController: ShiftableViewController {
             guard let email = emailTextField.text,
                 !email.isEmpty else {
                     textField.resignFirstResponder()
+                    dismissKeyboard()
                     return true
             }
             guard email.isValidEmail() else { return false}
             
             formData.email = email
             passwordTextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
+            signUpButtonUISetup()
             return true
         case passwordTextField:
             guard let password = passwordTextField.text,
@@ -159,9 +154,9 @@ class OnboardingViewController: ShiftableViewController {
                     return true
             }
             formData.password = password
-            dismissKeyboard()
+            //textField.resignFirstResponder()
             password2TextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
+            signUpButtonUISetup()
             return true
         case password2TextField:
             guard let passwordconf = password2TextField.text,
@@ -181,7 +176,7 @@ class OnboardingViewController: ShiftableViewController {
                 return false
             }
             formData.password2 = passwordconf
-            signUpButtonButtonUISetup()
+            signUpButtonUISetup()
             password2TextField.resignFirstResponder()
             return true
         default:
@@ -197,10 +192,12 @@ extension OnboardingViewController {
         return textFieldValidation(textField)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text,
+            !text.isEmpty else {
+                return textFieldValidation(textField)
+        }
+        dismissKeyboard()
         return true
     }
 }

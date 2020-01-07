@@ -44,9 +44,6 @@ class Onboarding2ViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func signinTapped(_ sender: Any) {
-    }
-    
     @IBAction func onwardTapped(_ sender: Any) {
         guard let formData = formData else { return }
         let user = User(firstName: formData.firstname!,
@@ -161,6 +158,6 @@ extension Onboarding2ViewController {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+        return textFieldValidation(textField)
     }
 }

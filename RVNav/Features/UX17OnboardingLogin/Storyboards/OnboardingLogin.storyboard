@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,22 +43,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFb-v1-L7i">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1624"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupBlank" translatesAutoresizingMaskIntoConstraints="NO" id="SRq-sj-vsq">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1624"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W69-sL-xbk">
-                                                <rect key="frame" x="20" y="140" width="374" height="102.5"/>
+                                                <rect key="frame" x="20" y="140" width="374" height="83"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Home!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Sf3-73-LGz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="53"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="42"/>
                                                         <fontDescription key="fontDescription" name="Heebo-Bold" family="Heebo" pointSize="36"/>
                                                         <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get you settled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="G4m-pW-rZJ">
-                                                        <rect key="frame" x="0.0" y="61" width="374" height="41.5"/>
+                                                        <rect key="frame" x="0.0" y="50" width="374" height="33"/>
                                                         <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="28"/>
                                                         <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -66,16 +66,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cKJ-mq-lUP">
-                                                <rect key="frame" x="20" y="287.5" width="374" height="71.5"/>
+                                                <rect key="frame" x="20" y="268" width="374" height="67"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up with social media" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsc-Zl-YJM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GjD-c9-ljw">
-                                                        <rect key="frame" x="0.0" y="31.5" width="374" height="40"/>
+                                                        <rect key="frame" x="0.0" y="27" width="374" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3A-Y8-LOy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
@@ -101,25 +101,25 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsl-ri-9H4">
-                                                <rect key="frame" x="199.5" y="375" width="15" height="23.5"/>
+                                                <rect key="frame" x="199.5" y="351" width="15" height="19"/>
                                                 <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                                 <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9Lc-0b-8FD">
-                                                <rect key="frame" x="20" y="405" width="374" height="316.5"/>
+                                                <rect key="frame" x="20" y="376.5" width="374" height="303"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Bl3-lw-rSC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="74.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeC-qu-Bzg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="23.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="39.5" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                                                 <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ate-Tz-tgl">
-                                                                <rect key="frame" x="0.0" y="29.5" width="374" height="45"/>
+                                                                <rect key="frame" x="0.0" y="25" width="374" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="5pL-WQ-mQ5"/>
                                                                 </constraints>
@@ -136,16 +136,16 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dZl-PM-TPC">
-                                                        <rect key="frame" x="0.0" y="90.5" width="374" height="74.5"/>
+                                                        <rect key="frame" x="0.0" y="86" width="374" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3z-8h-82s">
-                                                                <rect key="frame" x="0.0" y="0.0" width="71" height="23.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="71" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                                                 <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2DL-av-Fep">
-                                                                <rect key="frame" x="0.0" y="29.5" width="374" height="45"/>
+                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2DL-av-Fep" customClass="PasswordTextField" customModule="RVNav" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="25" width="374" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="ryU-Hj-Gk9"/>
                                                                 </constraints>
@@ -162,16 +162,16 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9Ku-m5-IxC">
-                                                        <rect key="frame" x="0.0" y="181" width="374" height="74.5"/>
+                                                        <rect key="frame" x="0.0" y="172" width="374" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5g-rk-26g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="132.5" height="23.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="132.5" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                                                 <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CXv-9e-e0o">
-                                                                <rect key="frame" x="0.0" y="29.5" width="374" height="45"/>
+                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CXv-9e-e0o" customClass="PasswordTextField" customModule="RVNav" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="25" width="374" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="8Db-DU-5LJ"/>
                                                                     <constraint firstAttribute="height" constant="45" id="EN9-9k-kjJ"/>
@@ -191,7 +191,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f70-qp-8pM">
-                                                        <rect key="frame" x="0.0" y="271.5" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="258" width="374" height="45"/>
                                                         <color key="backgroundColor" red="0.2086662054" green="0.76367813350000002" blue="0.88562649490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="7Y3-UA-h8M"/>
@@ -221,7 +221,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RV WAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YD-hy-c7D">
-                                                        <rect key="frame" x="20" y="39" width="128.5" height="53"/>
+                                                        <rect key="frame" x="20" y="39" width="132.5" height="53"/>
                                                         <fontDescription key="fontDescription" name="Heebo-Bold" family="Heebo" pointSize="36"/>
                                                         <color key="textColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -236,22 +236,21 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="84Q-Ak-bqw">
-                                                <rect key="frame" x="92.5" y="751.5" width="229" height="30"/>
+                                                <rect key="frame" x="91" y="709.5" width="232.5" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-gy-D8l">
-                                                        <rect key="frame" x="0.0" y="3.5" width="182" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="5.5" width="185.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                                         <color key="textColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0O-IX-PYa">
-                                                        <rect key="frame" x="182" y="0.0" width="47" height="30"/>
+                                                        <rect key="frame" x="185.5" y="0.0" width="47" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="gc9-7C-3wZ"/>
                                                         </constraints>
                                                         <state key="normal" title="Sign In"/>
                                                         <connections>
-                                                            <action selector="signinTapped:" destination="6vx-Fn-8uu" eventType="touchUpInside" id="HYr-X9-yxd"/>
                                                             <segue destination="MxV-Em-dUE" kind="presentation" modalPresentationStyle="fullScreen" id="Tco-uN-LD5"/>
                                                         </connections>
                                                     </button>
@@ -537,7 +536,6 @@
                                                         </constraints>
                                                         <state key="normal" title="Sign In"/>
                                                         <connections>
-                                                            <action selector="signinTapped:" destination="ogU-Oi-ur8" eventType="touchUpInside" id="MOG-Ro-seh"/>
                                                             <segue destination="MxV-Em-dUE" kind="presentation" modalPresentationStyle="fullScreen" id="fqo-5M-DND"/>
                                                         </connections>
                                                     </button>
@@ -613,6 +611,6 @@
         <image name="signInWithGoogle" width="170" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tco-uN-LD5"/>
+        <segue reference="fqo-5M-DND"/>
     </inferredMetricsTieBreakers>
 </document>
