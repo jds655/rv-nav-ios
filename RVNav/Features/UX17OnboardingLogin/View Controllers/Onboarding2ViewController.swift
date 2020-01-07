@@ -27,8 +27,11 @@ class Onboarding2ViewController: ShiftableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         UISetup()
-        //tapOutsideToDismissKeyBoard()
+        tapOutsideToDismissKeyBoard()
         //firstNameTextField.becomeFirstResponder()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -41,9 +44,6 @@ class Onboarding2ViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func signinTapped(_ sender: Any) {
-    }
-    
     @IBAction func onwardTapped(_ sender: Any) {
         guard let formData = formData else { return }
         let user = User(firstName: formData.firstname!,
@@ -158,6 +158,6 @@ extension Onboarding2ViewController {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+        return textFieldValidation(textField)
     }
 }

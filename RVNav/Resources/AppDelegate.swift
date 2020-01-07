@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     let globalConfiguration = AGSRequestConfiguration.global()
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         globalConfiguration.timeoutInterval = 300.0
         FirebaseApp.configure()
@@ -31,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
         return true
     }
-    
-    
     
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
@@ -70,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         AGSAuthenticationManager.shared().oAuthConfigurations.add(config)
         AGSAuthenticationManager.shared().credentialCache.enableAutoSyncToKeychain(withIdentifier: AppConfiguration.keychainIdentifier, accessGroup: nil, acrossDevices: false)
     }
-
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

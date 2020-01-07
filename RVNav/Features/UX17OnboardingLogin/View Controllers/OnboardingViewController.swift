@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FirebaseAnalytics
+import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
 struct FormData {
     var email: String?
@@ -62,8 +66,11 @@ class OnboardingViewController: ShiftableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         UISetup()
-        //tapOutsideToDismissKeyBoard()
+        tapOutsideToDismissKeyBoard()
         //emailTextField.becomeFirstResponder()
     }
     
@@ -79,17 +86,17 @@ class OnboardingViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func onwardTapped(_ sender: UIButton) {
-        //performSegue(withIdentifier: "Onboarding2", sender: self)
-    }
-    
-    @IBAction func signinTapped(_ sender: UIButton) {
+
+    @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
     
     // MARK: - Private Methods
     private func UISetup() {
         googleFacebookButtonUISetup()
-        signUpButtonButtonUISetup()
+        signUpButtonUISetup()
     }
     
     private func googleFacebookButtonUISetup() {
@@ -104,7 +111,7 @@ class OnboardingViewController: ShiftableViewController {
         googleSignInButton.layer.borderWidth = 0.2
     }
     
-    private func signUpButtonButtonUISetup() {
+    private func signUpButtonUISetup() {
         signUpButton.layer.borderWidth = 0.4
         signUpButton.layer.cornerRadius = 4
         if self.formData.readyPage1() {
@@ -131,13 +138,14 @@ class OnboardingViewController: ShiftableViewController {
             guard let email = emailTextField.text,
                 !email.isEmpty else {
                     textField.resignFirstResponder()
+                    dismissKeyboard()
                     return true
             }
             guard email.isValidEmail() else { return false}
             
             formData.email = email
             passwordTextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
+            signUpButtonUISetup()
             return true
         case passwordTextField:
             guard let password = passwordTextField.text,
@@ -146,9 +154,9 @@ class OnboardingViewController: ShiftableViewController {
                     return true
             }
             formData.password = password
-            dismissKeyboard()
+            //textField.resignFirstResponder()
             password2TextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
+            signUpButtonUISetup()
             return true
         case password2TextField:
             guard let passwordconf = password2TextField.text,
@@ -168,7 +176,7 @@ class OnboardingViewController: ShiftableViewController {
                 return false
             }
             formData.password2 = passwordconf
-            signUpButtonButtonUISetup()
+            signUpButtonUISetup()
             password2TextField.resignFirstResponder()
             return true
         default:
@@ -184,10 +192,52 @@ extension OnboardingViewController {
         return textFieldValidation(textField)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text,
+            !text.isEmpty else {
+                return textFieldValidation(textField)
+        }
+        dismissKeyboard()
         return true
     }
 }
+
+extension OnboardingViewController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            NSLog("Error logging in user with google :\(error)")
+            return
+        }
+        
+        guard let googleUser = user,
+            let firstName = googleUser.profile.givenName,
+            let lastName = googleUser.profile.familyName,
+              let googleEmail = googleUser.profile.email,
+              let googlePassword = googleUser.userID else { return }
+        
+        let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, username: googleEmail)
+        print("This is what you get back as a user: \(userToRegister)")
+        
+        networkController.register(with: userToRegister) { (error) in
+            if let error = error {
+                NSLog("Error signing up: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+                    
+                    self.present(alert, animated: true)
+                }
+            }
+            guard let message = self.networkController?.result?.message else { return }
+            print(message)
+            if self.networkController?.result?.token != nil {
+                Analytics.logEvent("register", parameters: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+}
+
