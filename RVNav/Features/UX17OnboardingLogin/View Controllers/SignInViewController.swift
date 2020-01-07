@@ -19,7 +19,7 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundImageContainerView: UIView!
     @IBOutlet weak var googleSignInButton: UIButton!
-    @IBOutlet weak var facebookSignInButton: FBLoginButton!
+    @IBOutlet weak var facebookSignInButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -46,31 +46,24 @@ class SignInViewController: ShiftableViewController {
         }
     }
     
-    // MARK: - IBActions & Methods
+    // MARK: - Private Methods
     
     private func UISetup() {
-        googleFacebookButtonUISetup()
+        googleSignInButtonSetup()
+        facebookSignInButtonSetup()
         signInButtonButtonUISetup()
-        facebookButtonPermissions()
     }
     
-    // MARK: - Private Methods
-    private func googleFacebookButtonUISetup() {
-        //Google Button UI Set Up
+    private func googleSignInButtonSetup() {
         googleSignInButton.layer.cornerRadius = 4
         googleSignInButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         googleSignInButton.layer.borderWidth = 0.2
-        
-        //Facebook Button UI Set Up
-        facebookSignInButton.layer.cornerRadius = 4
-        facebookSignInButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        googleSignInButton.layer.borderWidth = 0.2
     }
     
-    private func facebookButtonPermissions() {
-        DispatchQueue.main.async {
-            self.facebookSignInButton.permissions = ["public_profile", "email"]
-        }
+    private func facebookSignInButtonSetup() {
+        facebookSignInButton.layer.cornerRadius = 4
+        facebookSignInButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        facebookSignInButton.layer.borderWidth = 0.2
     }
     
     private func signInButtonButtonUISetup() {
@@ -98,9 +91,49 @@ class SignInViewController: ShiftableViewController {
         view.endEditing(true)
     }
     
-    // MARK: - IBActions
-    @IBAction func signInButtonTapped(_ sender: UIButton) {
+    private func loginWithFacebook() {
+        var facebookSignInInfo: SignInInfo?
+        GraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
+            if let error = error {
+                NSLog("Error getting FB graph request: \(error)")
+                return
+            }
+            guard let facebookUser = result as? [String: String],
+                let emailFromFacebook: String = facebookUser["email"],
+                let idFromFacebook: String = facebookUser["id"],
+                let nameFromFacebook: String = facebookUser["name"] else { return }
+            DispatchQueue.main.async {
+                let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
+                self.emailTextField.text = emailFromFacebook
+                self.passwordTextField.text = idFromFacebook
+                self.networkController?.signIn(with: facebookSignInInfo) { (error) in
+                    if let error = error {
+                        NSLog("Error signing up: \(error)")
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alert.addAction(alertAction)
+                            
+                            self.present(alert, animated: true)
+                        }
+                    }
+                    guard let message = self.networkController?.result?.message else { return }
+                    print(message)
+                    if self.networkController?.result?.token != nil {
+                        Analytics.logEvent("login", parameters: nil)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
         
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
             !email.isEmpty,
@@ -136,17 +169,18 @@ class SignInViewController: ShiftableViewController {
     }
     
     @IBAction func signInFacebookButtonTapped(_ sender: UIButton) {
-        
+        LoginManager().logIn(permissions: ["email", "public_profile"], from: self) { (result, error) in
+            if let error = error {
+                NSLog("Error signing up with facebook:\(error)")
+                return
+            }
+            self.loginWithFacebook()
+        }
     }
-    
-    @IBAction func getFBSignInToken(_ sender: UIButton) {
-        print("Facebook USER ID: \(AccessToken.current!.userID)")
-    }
-    
 }
 
-
 // MARK: - Extensions
+
 extension SignInViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
@@ -177,7 +211,6 @@ extension SignInViewController {
     }
 }
 
-#warning("Clean up this Extension")
 extension SignInViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -188,11 +221,13 @@ extension SignInViewController: GIDSignInDelegate {
         guard let googleUser = user,
               let googleEmail = googleUser.profile.email,
               let googlePassword = googleUser.userID else { return }
-        
+        #warning("Remove print before production push")
+        print(googlePassword)
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
-        print("Password: \(googlePassword)")
+        
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
+        
         networkController?.signIn(with: signInInfo) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
@@ -216,3 +251,11 @@ extension SignInViewController: GIDSignInDelegate {
     }
 }
 
+extension SignInViewController: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("user has logged out of facebook")
+    }
+}
