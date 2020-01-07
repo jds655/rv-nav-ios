@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class PasswordTextField: UITextField {
     
     private var showPassword: Bool = false
