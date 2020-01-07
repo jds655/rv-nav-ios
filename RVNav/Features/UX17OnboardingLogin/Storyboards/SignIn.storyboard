@@ -62,7 +62,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1e-wr-PJT">
                                                         <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="SignIn with Google" image="signInWithGoogle"/>
+                                                        <state key="normal" title="SignIn with Google" image="signInWithGoogleBlank"/>
                                                         <connections>
                                                             <action selector="signInWithGoogleButtonTapped:" destination="1zY-kg-8ku" eventType="touchUpInside" id="F4g-uZ-isB"/>
                                                         </connections>
@@ -128,7 +128,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EGd-7O-Ric" customClass="PasswordTextField" customModule="RVNav" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="25" width="374" height="45"/>
+                                                                <rect key="frame" x="0.0" y="29.5" width="374" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="f7g-nD-4Ef"/>
                                                                 </constraints>
@@ -290,6 +290,6 @@
     <resources>
         <image name="SignInBlank" width="374" height="812"/>
         <image name="signInWithFaceBookBlank" width="170" height="41"/>
-        <image name="signInWithGoogle" width="170" height="41"/>
+        <image name="signInWithGoogleBlank" width="170" height="41"/>
     </resources>
 </document>

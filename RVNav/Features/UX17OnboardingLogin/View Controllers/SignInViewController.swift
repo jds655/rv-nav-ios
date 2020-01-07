@@ -92,7 +92,6 @@ class SignInViewController: ShiftableViewController {
     }
     
     private func loginWithFacebook() {
-        var facebookSignInInfo: SignInInfo?
         GraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
             if let error = error {
                 NSLog("Error getting FB graph request: \(error)")
@@ -100,8 +99,7 @@ class SignInViewController: ShiftableViewController {
             }
             guard let facebookUser = result as? [String: String],
                 let emailFromFacebook: String = facebookUser["email"],
-                let idFromFacebook: String = facebookUser["id"],
-                let nameFromFacebook: String = facebookUser["name"] else { return }
+                let idFromFacebook: String = facebookUser["id"] else { return }
             DispatchQueue.main.async {
                 let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                 self.emailTextField.text = emailFromFacebook
@@ -128,7 +126,6 @@ class SignInViewController: ShiftableViewController {
                 }
             }
         }
-        
     }
     
     // MARK: - IBActions
@@ -221,8 +218,7 @@ extension SignInViewController: GIDSignInDelegate {
         guard let googleUser = user,
               let googleEmail = googleUser.profile.email,
               let googlePassword = googleUser.userID else { return }
-        #warning("Remove print before production push")
-        print(googlePassword)
+        
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
         
