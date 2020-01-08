@@ -89,6 +89,7 @@ class OnboardingViewController: ShiftableViewController {
     private func UISetup() {
         googleFacebookButtonUISetup()
         signUpButtonUISetup()
+        signInButton.setTitleColor(.babyBlue, for: .normal)
     }
     
     private func googleFacebookButtonUISetup() {
@@ -146,7 +147,7 @@ class OnboardingViewController: ShiftableViewController {
                     return true
             }
             formData.password = password
-            //textField.resignFirstResponder()
+            dismissKeyboard()
             password2TextField.becomeFirstResponder()
             signUpButtonUISetup()
             return true
@@ -175,7 +176,6 @@ class OnboardingViewController: ShiftableViewController {
             return true
         }
     }
-    
     
     // MARK: - IBActions
 
@@ -248,16 +248,17 @@ class OnboardingViewController: ShiftableViewController {
 extension OnboardingViewController {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
         return textFieldValidation(textField)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text,
             !text.isEmpty else {
-                return textFieldValidation(textField)
+                dismissKeyboard()
+                return true
         }
-        dismissKeyboard()
-        return true
+        return textFieldValidation(textField)
     }
 }
 

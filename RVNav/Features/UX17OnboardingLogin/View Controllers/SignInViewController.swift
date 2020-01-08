@@ -52,6 +52,7 @@ class SignInViewController: ShiftableViewController {
         googleSignInButtonSetup()
         facebookSignInButtonSetup()
         signInButtonButtonUISetup()
+        signUpButton.setTitleColor(.babyBlue, for: .normal)
     }
     
     private func googleSignInButtonSetup() {
@@ -221,6 +222,7 @@ extension SignInViewController: GIDSignInDelegate {
         
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
+        print ("GoogleID: \(googlePassword)")
         
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
         

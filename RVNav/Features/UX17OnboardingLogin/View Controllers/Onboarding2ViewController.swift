@@ -23,6 +23,7 @@ class Onboarding2ViewController: ShiftableViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -39,18 +40,16 @@ class Onboarding2ViewController: ShiftableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
     // MARK: - IBActions
     @IBAction func onwardTapped(_ sender: Any) {
         guard let formData = formData else { return }
-        let user = User(firstName: formData.firstname!,
-                        lastName: formData.lastname!,
-                        password: formData.password!,
-                        email: formData.email!,
-                        username: formData.username!)
+        let user = User(firstName: formData.firstname,
+                        lastName: formData.lastname,
+                        password: formData.password,
+                        email: formData.email,
+                        username: formData.username)
         networkController?.register(with: user) { (error) in
             DispatchQueue.main.async {
                 if let error = error {
@@ -60,15 +59,35 @@ class Onboarding2ViewController: ShiftableViewController {
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     Analytics.logEvent("register", parameters: nil)
-                    self.performSegue(withIdentifier: "unwindToMapView", sender: self)
+                    guard let email = formData.email,
+                        let password = formData.password,
+                        !email.isEmpty,
+                        !password.isEmpty else { return }
+                    
+                    let signInInfo = SignInInfo(email: email, password: password)
+                    self.networkController.signIn(with: signInInfo) { (error) in
+                        if let error = error {
+                            NSLog("Error signing in: \(error)")
+                        } else {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "unwindToMapView", sender: self)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
+    @IBAction func skipTapped(_ sender: Any) {
+        onwardTapped(self)
+    }
+    
+    
     // MARK: - Private Methods
     private func UISetup() {
         signUpButtonButtonUISetup()
+        skipButton.setTitleColor(.skipTextColor, for: .normal)
     }
     
     private func signUpButtonButtonUISetup() {
@@ -152,9 +171,12 @@ class Onboarding2ViewController: ShiftableViewController {
 extension Onboarding2ViewController {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        guard let text = textField.text,
+            !text.isEmpty else {
+                dismissKeyboard()
+                return true
+        }
         return textFieldValidation(textField)
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
