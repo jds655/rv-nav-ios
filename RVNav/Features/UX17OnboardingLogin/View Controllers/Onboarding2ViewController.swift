@@ -112,74 +112,134 @@ class Onboarding2ViewController: ShiftableViewController {
         view.endEditing(true)
     }
     
-    fileprivate func textFieldValidation (_ textField: UITextField) -> Bool {
-        switch textField {
-        case firstNameTextField:
-            guard let firstName = firstNameTextField.text,
-                !firstName.isEmpty else {
-                    textField.resignFirstResponder()
-                    return true
-            }
-            formData?.firstname = firstName
-            dismissKeyboard()
-            lastNameTextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
-            return true
-        case lastNameTextField:
-            guard let lastName = lastNameTextField.text,
-                !lastName.isEmpty else {
-                    textField.resignFirstResponder()
-                    return true
-            }
-            formData?.lastname = lastName
-            dismissKeyboard()
-            usernameTextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
-            return true
-        case usernameTextField:
-            guard let username = usernameTextField.text,
-                !username.isEmpty else {
-                    textField.resignFirstResponder()
-                    return true
-            }
-            formData?.username = username
-            dismissKeyboard()
-            ageTextField.becomeFirstResponder()
-            signUpButtonButtonUISetup()
-            return true
-        case ageTextField:
-            guard let ageString = ageTextField.text,
-                !ageString.isEmpty else {
-                    textField.resignFirstResponder()
-                    return true
-            }
-            guard let age = Int(ageString),
-                age > 0 && age < 120 else {
-                    return false
-            }
-            formData?.age = age
-            dismissKeyboard()
-            signUpButtonButtonUISetup()
-            return true
-        default:
-            return true
-        }
-    }
+//    fileprivate func textFieldValidation (_ textField: UITextField) -> Bool {
+//        switch textField {
+//        case firstNameTextField:
+//            guard let firstName = firstNameTextField.text,
+//                !firstName.isEmpty else {
+//                    textField.resignFirstResponder()
+//                    return true
+//            }
+//            formData?.firstname = firstName
+//            dismissKeyboard()
+//            lastNameTextField.becomeFirstResponder()
+//            signUpButtonButtonUISetup()
+//            return true
+//        case lastNameTextField:
+//            guard let lastName = lastNameTextField.text,
+//                !lastName.isEmpty else {
+//                    textField.resignFirstResponder()
+//                    return true
+//            }
+//            formData?.lastname = lastName
+//            dismissKeyboard()
+//            usernameTextField.becomeFirstResponder()
+//            signUpButtonButtonUISetup()
+//            return true
+//        case usernameTextField:
+//            guard let username = usernameTextField.text,
+//                !username.isEmpty else {
+//                    textField.resignFirstResponder()
+//                    return true
+//            }
+//            formData?.username = username
+//            dismissKeyboard()
+//            ageTextField.becomeFirstResponder()
+//            signUpButtonButtonUISetup()
+//            return true
+//        case ageTextField:
+//            guard let ageString = ageTextField.text,
+//                !ageString.isEmpty else {
+//                    textField.resignFirstResponder()
+//                    return true
+//            }
+//            guard let age = Int(ageString),
+//                age > 0 && age < 120 else {
+//                    return false
+//            }
+//            formData?.age = age
+//            dismissKeyboard()
+//            signUpButtonButtonUISetup()
+//            return true
+//        default:
+//            return true
+//        }
+//    }
 }
 
 // MARK: - Extensions
 extension Onboarding2ViewController {
-    
+
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        guard let text = textField.text,
-            !text.isEmpty else {
-                dismissKeyboard()
-                return true
+        switch textField {
+        case firstNameTextField:
+            guard let firstName = firstNameTextField.text,
+                !firstName.isEmpty else { return true }
+            formData?.firstname = firstName
+            dismissKeyboard()
+            firstNameTextField.resignFirstResponder()
+
+        case lastNameTextField:
+            guard let lastName = lastNameTextField.text,
+                !lastName.isEmpty else { return true }
+            formData?.lastname = lastName
+            dismissKeyboard()
+            lastNameTextField.resignFirstResponder()
+
+        case usernameTextField:
+            guard let username = usernameTextField.text,
+                !username.isEmpty else { return true }
+            formData?.username = username
+            dismissKeyboard()
+            usernameTextField.resignFirstResponder()
+            
+        case ageTextField:
+        guard let age = ageTextField.text,
+            !age.isEmpty else { return true }
+        formData?.age = Int(age)
+        dismissKeyboard()
+        signUpButtonButtonUISetup()
+        ageTextField.resignFirstResponder()
+        default:
+            return true
         }
-        return textFieldValidation(textField)
+        return true
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textFieldValidation(textField)
+        switch textField {
+        case firstNameTextField:
+            guard let firstName = firstNameTextField.text,
+                !firstName.isEmpty else { return true }
+            formData?.firstname = firstName
+            dismissKeyboard()
+            lastNameTextField.becomeFirstResponder()
+
+        case lastNameTextField:
+            guard let lastName = lastNameTextField.text,
+                !lastName.isEmpty else { return true }
+            formData?.lastname = lastName
+            dismissKeyboard()
+            usernameTextField.becomeFirstResponder()
+
+        case usernameTextField:
+            guard let username = usernameTextField.text,
+                !username.isEmpty else { return true }
+            formData?.username = username
+            dismissKeyboard()
+            ageTextField.becomeFirstResponder()
+            
+        case ageTextField:
+            guard let age = ageTextField.text,
+                !age.isEmpty else { return true }
+            formData?.username = age
+            dismissKeyboard()
+            signUpButtonButtonUISetup()
+            ageTextField.resignFirstResponder()
+            
+        default:
+            return true
+        }
+        return true
     }
 }
