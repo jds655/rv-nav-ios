@@ -83,7 +83,6 @@ class Onboarding2ViewController: ShiftableViewController {
         onwardTapped(self)
     }
     
-    
     // MARK: - Private Methods
     private func UISetup() {
         signUpButtonButtonUISetup()
@@ -111,60 +110,6 @@ class Onboarding2ViewController: ShiftableViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-//    fileprivate func textFieldValidation (_ textField: UITextField) -> Bool {
-//        switch textField {
-//        case firstNameTextField:
-//            guard let firstName = firstNameTextField.text,
-//                !firstName.isEmpty else {
-//                    textField.resignFirstResponder()
-//                    return true
-//            }
-//            formData?.firstname = firstName
-//            dismissKeyboard()
-//            lastNameTextField.becomeFirstResponder()
-//            signUpButtonButtonUISetup()
-//            return true
-//        case lastNameTextField:
-//            guard let lastName = lastNameTextField.text,
-//                !lastName.isEmpty else {
-//                    textField.resignFirstResponder()
-//                    return true
-//            }
-//            formData?.lastname = lastName
-//            dismissKeyboard()
-//            usernameTextField.becomeFirstResponder()
-//            signUpButtonButtonUISetup()
-//            return true
-//        case usernameTextField:
-//            guard let username = usernameTextField.text,
-//                !username.isEmpty else {
-//                    textField.resignFirstResponder()
-//                    return true
-//            }
-//            formData?.username = username
-//            dismissKeyboard()
-//            ageTextField.becomeFirstResponder()
-//            signUpButtonButtonUISetup()
-//            return true
-//        case ageTextField:
-//            guard let ageString = ageTextField.text,
-//                !ageString.isEmpty else {
-//                    textField.resignFirstResponder()
-//                    return true
-//            }
-//            guard let age = Int(ageString),
-//                age > 0 && age < 120 else {
-//                    return false
-//            }
-//            formData?.age = age
-//            dismissKeyboard()
-//            signUpButtonButtonUISetup()
-//            return true
-//        default:
-//            return true
-//        }
-//    }
 }
 
 // MARK: - Extensions

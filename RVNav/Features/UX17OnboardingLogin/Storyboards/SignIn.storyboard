@@ -107,7 +107,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="WLC-eC-Pdf"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="1zY-kg-8ku" id="xJ4-Lu-adi"/>
                                                                 </connections>
