@@ -34,16 +34,12 @@
 		D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE71230B3C3D00D7C151 /* MapViewController.swift */; };
 		D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE73230B3C3D00D7C151 /* Main.storyboard */; };
 		D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */; };
-		D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE81230C85EC00D7C151 /* LoginViewController.swift */; };
 		D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */; };
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
-		FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */; };
-		FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */; };
-		FBAA2B8523A83B8F00D6E4B7 /* Mobile-signin-background.svg in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B8223A83B8F00D6E4B7 /* Mobile-signin-background.svg */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
 		FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */; };
 		FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */; };
@@ -82,16 +78,12 @@
 		D18DAE71230B3C3D00D7C151 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D18DAE74230B3C3D00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D18DAE79230B3C3F00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D18DAE81230C85EC00D7C151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTableViewController.swift; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
-		FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-Background.svg"; sourceTree = "<group>"; };
-		FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mobile-sign up-background.svg"; sourceTree = "<group>"; };
-		FBAA2B8223A83B8F00D6E4B7 /* Mobile-signin-background.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Mobile-signin-background.svg"; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSignupBackground.swift; sourceTree = "<group>"; };
@@ -171,12 +163,13 @@
 		D18DAE6E230B3C3D00D7C151 /* RVNav */ = {
 			isa = PBXGroup;
 			children = (
-				FBAA2B7323A8370100D6E4B7 /* Features */,
+				D1BCDD81230E0F5D00986A18 /* Models */,
+				D1BCDD82230E0F6900986A18 /* ModelControllers */,
+				FBAA2B7423A8372300D6E4B7 /* Signup+SignIn */,
+				FBAA2B7323A8370100D6E4B7 /* AddVehicle */,
 				D1BCDD84230E0F9500986A18 /* Resources */,
 				321DE99923A84AE000521AAB /* Extensions */,
 				D1BCDD80230E0F4C00986A18 /* ViewControllers */,
-				D1BCDD81230E0F5D00986A18 /* Models */,
-				D1BCDD82230E0F6900986A18 /* ModelControllers */,
 				D1BCDD83230E0F8400986A18 /* Storyboards */,
 			);
 			path = RVNav;
@@ -186,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				D18DAE71230B3C3D00D7C151 /* MapViewController.swift */,
-				D18DAE81230C85EC00D7C151 /* LoginViewController.swift */,
 				447831E723146CE0007D50E7 /* VehicleFormViewController.swift */,
 				449435612314784A00FC4680 /* SideMenuTableViewController.swift */,
 				D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */,
@@ -227,7 +219,6 @@
 		D1BCDD84230E0F9500986A18 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FBAA2B7F23A83B6A00D6E4B7 /* SVG */,
 				321DE99623A84A5600521AAB /* Font Files */,
 				D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */,
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
@@ -238,22 +229,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FBAA2B7323A8370100D6E4B7 /* Features */ = {
+		FBAA2B7323A8370100D6E4B7 /* AddVehicle */ = {
 			isa = PBXGroup;
 			children = (
-				FBAA2B7423A8372300D6E4B7 /* UX17OnboardingLogin */,
 			);
-			path = Features;
+			path = AddVehicle;
 			sourceTree = "<group>";
 		};
-		FBAA2B7423A8372300D6E4B7 /* UX17OnboardingLogin */ = {
+		FBAA2B7423A8372300D6E4B7 /* Signup+SignIn */ = {
 			isa = PBXGroup;
 			children = (
 				FBAA2B7723A8381100D6E4B7 /* Custom Views */,
 				FBAA2B7623A8378500D6E4B7 /* View Controllers */,
 				FBAA2B7523A8376D00D6E4B7 /* Storyboards */,
 			);
-			path = UX17OnboardingLogin;
+			path = "Signup+SignIn";
 			sourceTree = "<group>";
 		};
 		FBAA2B7523A8376D00D6E4B7 /* Storyboards */ = {
@@ -285,16 +275,6 @@
 				FBD1AFE623C3E2F900377F7C /* PasswordTextField.swift */,
 			);
 			path = "Custom Views";
-			sourceTree = "<group>";
-		};
-		FBAA2B7F23A83B6A00D6E4B7 /* SVG */ = {
-			isa = PBXGroup;
-			children = (
-				FBAA2B8023A83B8D00D6E4B7 /* Mobile-Background.svg */,
-				FBAA2B8223A83B8F00D6E4B7 /* Mobile-signin-background.svg */,
-				FBAA2B8123A83B8E00D6E4B7 /* Mobile-sign up-background.svg */,
-			);
-			path = SVG;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,13 +341,10 @@
 				321DE99123A83D8100521AAB /* Heebo-Black.ttf in Resources */,
 				D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */,
 				447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */,
-				FBAA2B8323A83B8F00D6E4B7 /* Mobile-Background.svg in Resources */,
-				FBAA2B8423A83B8F00D6E4B7 /* Mobile-sign up-background.svg in Resources */,
 				FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */,
 				321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */,
 				321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
-				FBAA2B8523A83B8F00D6E4B7 /* Mobile-signin-background.svg in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
 				321DE98B23A83D6600521AAB /* Heebo-Medium.ttf in Resources */,
@@ -447,7 +424,6 @@
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */,
 				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
-				D18DAE82230C85EC00D7C151 /* LoginViewController.swift in Sources */,
 				D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
