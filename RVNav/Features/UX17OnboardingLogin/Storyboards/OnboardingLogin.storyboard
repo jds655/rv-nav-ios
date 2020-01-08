@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -127,7 +127,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="5pL-WQ-mQ5"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="6vx-Fn-8uu" id="y3s-1c-FzB"/>
                                                                 </connections>
@@ -385,7 +385,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="05h-Cv-bht"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="given-name"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="ogU-Oi-ur8" id="RCp-Zq-oIr"/>
                                                                 </connections>
@@ -411,7 +411,7 @@
                                                                     <constraint firstAttribute="height" constant="45" id="WF4-LA-hwq"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="family-name"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="ogU-Oi-ur8" id="N5D-4e-d8e"/>
                                                                 </connections>
@@ -438,7 +438,7 @@
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="hDo-20-bpJ"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" textContentType="username"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="ogU-Oi-ur8" id="LYY-xA-PPR"/>
                                                                 </connections>
@@ -466,7 +466,7 @@
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="PHq-B2-r8P"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="ogU-Oi-ur8" id="VGi-gZ-lh3"/>
                                                                 </connections>
@@ -546,6 +546,14 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-33-fbB">
+                                                <rect key="frame" x="149" y="757" width="93" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Skip this step"/>
+                                                <connections>
+                                                    <action selector="skipTapped:" destination="ogU-Oi-ur8" eventType="touchUpInside" id="YR8-Jt-ehi"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -600,6 +608,7 @@
                         <outlet property="firstNameTextField" destination="aPx-fZ-ILK" id="6AG-PJ-e7x"/>
                         <outlet property="lastNameTextField" destination="Ye4-ul-LmQ" id="IWV-L9-tBe"/>
                         <outlet property="signUpButton" destination="NvB-HH-WPk" id="V9x-7D-biO"/>
+                        <outlet property="skipButton" destination="ut8-33-fbB" id="c2Q-dU-48L"/>
                         <outlet property="usernameTextField" destination="6wS-LA-5Qp" id="xO0-Sb-QXy"/>
                         <segue destination="erc-jb-GTd" kind="unwind" identifier="unwindToMapView" unwindAction="unwindToMapViewWithSegue:" id="qUG-rP-d4w"/>
                     </connections>
@@ -616,6 +625,6 @@
         <image name="signUpGoogleBlank" width="169" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tco-uN-LD5"/>
+        <segue reference="fqo-5M-DND"/>
     </inferredMetricsTieBreakers>
 </document>
