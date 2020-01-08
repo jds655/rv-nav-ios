@@ -71,7 +71,6 @@ class OnboardingViewController: ShiftableViewController {
         }
         UISetup()
         tapOutsideToDismissKeyBoard()
-        //emailTextField.becomeFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -123,59 +122,6 @@ class OnboardingViewController: ShiftableViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    fileprivate func textFieldValidation (_ textField: UITextField) -> Bool {
-        switch textField {
-        case emailTextField:
-            guard let email = emailTextField.text,
-                !email.isEmpty else {
-                    textField.resignFirstResponder()
-                    dismissKeyboard()
-                    return true
-            }
-            guard email.isValidEmail() else { return false}
-            
-            formData.email = email
-            passwordTextField.becomeFirstResponder()
-            signUpButtonUISetup()
-            return true
-        case passwordTextField:
-            guard let password = passwordTextField.text,
-                !password.isEmpty else {
-                    textField.resignFirstResponder()
-                    return true
-            }
-            formData.password = password
-            //textField.resignFirstResponder()
-            password2TextField.becomeFirstResponder()
-            signUpButtonUISetup()
-            return true
-        case password2TextField:
-            guard let passwordconf = password2TextField.text,
-                !passwordconf.isEmpty else {
-                    textField.resignFirstResponder()
-                    return true
-            }
-            guard passwordconf == formData.password else {
-                let alert = UIAlertController(title: "Error", message: "The passwords do not match.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                    DispatchQueue.main.async {
-                        self.password2TextField.text = ""
-                        self.password2TextField.becomeFirstResponder()
-                    }
-                }))
-                present(alert, animated: true, completion: nil)
-                return false
-            }
-            formData.password2 = passwordconf
-            signUpButtonUISetup()
-            password2TextField.resignFirstResponder()
-            return true
-        default:
-            return true
-        }
-    }
-    
     
     // MARK: - IBActions
 
@@ -246,17 +192,138 @@ class OnboardingViewController: ShiftableViewController {
 
 // MARK: - Extensions
 extension OnboardingViewController {
-    
+
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return textFieldValidation(textField)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text,
-            !text.isEmpty else {
-                return textFieldValidation(textField)
+        switch textField {
+        case emailTextField:
+            guard let email = emailTextField.text,
+                !email.isEmpty,
+                email.isValidEmail() else {
+                    let emailAlert = UIAlertController(title: "Error", message: "This email is invalid.", preferredStyle: .alert)
+                    emailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(emailAlert, animated: true) {
+                        DispatchQueue.main.async {
+                            self.emailTextField.resignFirstResponder()
+                        }
+                    }
+                    return true
+            }
+            formData.email = email
+            dismissKeyboard()
+            emailTextField.resignFirstResponder()
+
+        case passwordTextField:
+            guard let password = passwordTextField.text,
+                !password.isEmpty else {
+                    let password1Alert = UIAlertController(title: "Error", message: "You must enter a password.", preferredStyle: .alert)
+                    password1Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(password1Alert, animated: true) {
+                        DispatchQueue.main.async {
+                            self.passwordTextField.resignFirstResponder()
+                        }
+                    }
+                    return true
+            }
+            formData.password = password
+            dismissKeyboard()
+            passwordTextField.resignFirstResponder()
+
+        case password2TextField:
+            guard let password2 = password2TextField.text,
+                !password2.isEmpty else {
+                    let password2Alert = UIAlertController(title: "Error", message: "You must enter the matching password.", preferredStyle: .alert)
+                    password2Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(password2Alert, animated: true) {
+                        DispatchQueue.main.async {
+                            self.password2TextField.resignFirstResponder()
+                        }
+                    }
+                    return true
+            }
+            if password2 != formData.password {
+                let passwordMatchAlert = UIAlertController(title: "Error", message: "Passwords do not match.", preferredStyle: .alert)
+                passwordMatchAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(passwordMatchAlert, animated: true) {
+                    DispatchQueue.main.async {
+                        self.password2TextField.text = ""
+                        self.password2TextField.resignFirstResponder()
+                    }
+                }
+            }
+            formData.password2 = password2
+            dismissKeyboard()
+            signUpButtonUISetup()
+            password2TextField.resignFirstResponder()
+        default:
+            return true
         }
-        dismissKeyboard()
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailTextField:
+            guard let email = emailTextField.text,
+                !email.isEmpty,
+                email.isValidEmail() else {
+                    let emailAlert = UIAlertController(title: "Error", message: "This email is invalid.", preferredStyle: .alert)
+                    emailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(emailAlert, animated: true) {
+                        DispatchQueue.main.async {
+                            self.emailTextField.resignFirstResponder()
+                        }
+                    }
+                    return true
+            }
+            formData.email = email
+            dismissKeyboard()
+            passwordTextField.becomeFirstResponder()
+
+        case passwordTextField:
+            guard let password = passwordTextField.text,
+                !password.isEmpty else {
+                    let password1Alert = UIAlertController(title: "Error", message: "You must enter a password.", preferredStyle: .alert)
+                    password1Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(password1Alert, animated: true) {
+                        DispatchQueue.main.async {
+                            self.passwordTextField.resignFirstResponder()
+                        }
+                    }
+                    return true
+            }
+            formData.password = password
+            dismissKeyboard()
+            password2TextField.becomeFirstResponder()
+
+        case password2TextField:
+            guard let password2 = password2TextField.text,
+                !password2.isEmpty else {
+                    let password2Alert = UIAlertController(title: "Error", message: "You must enter the matching password.", preferredStyle: .alert)
+                    password2Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(password2Alert, animated: true) {
+                        DispatchQueue.main.async {
+                            self.password2TextField.resignFirstResponder()
+                        }
+                    }
+                    return true
+            }
+            if password2 != formData.password {
+                let passwordMatchAlert = UIAlertController(title: "Error", message: "Passwords do not match.", preferredStyle: .alert)
+                passwordMatchAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(passwordMatchAlert, animated: true) {
+                    DispatchQueue.main.async {
+                        self.password2TextField.text = ""
+                        self.password2TextField.resignFirstResponder()
+                    }
+                }
+            }
+            formData.password2 = password2
+            dismissKeyboard()
+            signUpButtonUISetup()
+            password2TextField.resignFirstResponder()
+        default:
+            return true
+        }
         return true
     }
 }
