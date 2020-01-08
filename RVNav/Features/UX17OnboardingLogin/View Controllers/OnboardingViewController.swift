@@ -88,6 +88,7 @@ class OnboardingViewController: ShiftableViewController {
     private func UISetup() {
         googleFacebookButtonUISetup()
         signUpButtonUISetup()
+        signInButton.setTitleColor(.babyBlue, for: .normal)
     }
     
     private func googleFacebookButtonUISetup() {
