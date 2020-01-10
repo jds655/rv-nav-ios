@@ -13,7 +13,7 @@ class SideMenuTableViewController: UITableViewController {
 
     // This is the array that the tableview data source uses for menu options.
     
-    let menu: [String] = ["Vehicle Information", "Settings", "Contact Us", "Privacy Agreement"]
+    let menu: [String] = ["Vehicle Information", "RVSettings", "Contact Us", "Privacy Agreement"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class SideMenuTableViewController: UITableViewController {
     }
 
     // The switch determines which index of the menu array you are tapping.
-    // TODO: - Set up a case for 1 - "Settings", 2 - "Contact Us", 3 - "Privacy Agreement"
+    // TODO: - Set up a case for 1 - "RVSettings", 2 - "Contact Us", 3 - "Privacy Agreement"
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {

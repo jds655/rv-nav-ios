@@ -14,5 +14,10 @@ pod ‘SideMenu’
 pod ‘MapboxGeocoder.swift’, ‘~> 0.11’
 pod ‘Floaty’
 pod ‘ArcGIS-Runtime-SDK-iOS’, ‘100.6’
+pod 'GoogleSignIn'
+pod 'FBSDKLoginKit'
+pod 'FBSDKCoreKit'
+pod 'FacebookCore'
+pod 'FacebookLogin'
 
 end

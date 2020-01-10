@@ -116,3 +116,7 @@ iOSInjectionProject/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+.gitignore.swp
+
+Podfile
