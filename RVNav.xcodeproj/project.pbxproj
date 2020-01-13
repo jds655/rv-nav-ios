@@ -38,6 +38,8 @@
 		D1BCDD7F230DB69B00986A18 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* NetworkController.swift */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
+		FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */; };
+		FB27EFFC23CD148600C7EA9A /* ux17InitialStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* ux17InitialStoryboard.storyboard */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -82,6 +84,8 @@
 		D1BCDD7E230DB69B00986A18 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
+		FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingBackground.swift; sourceTree = "<group>"; };
+		FB27EFFB23CD148600C7EA9A /* ux17InitialStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ux17InitialStoryboard.storyboard; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -229,9 +233,34 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		FB27EFF723CD139400C7EA9A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FB27EFFB23CD148600C7EA9A /* ux17InitialStoryboard.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FB27EFF823CD13AB00C7EA9A /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Controls";
+			sourceTree = "<group>";
+		};
+		FB27EFF923CD13C700C7EA9A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		FBAA2B7323A8370100D6E4B7 /* AddVehicle */ = {
 			isa = PBXGroup;
 			children = (
+				FB27EFF923CD13C700C7EA9A /* View Controllers */,
+				FB27EFF823CD13AB00C7EA9A /* Custom Controls */,
+				FB27EFF723CD139400C7EA9A /* Storyboards */,
 			);
 			path = AddVehicle;
 			sourceTree = "<group>";
@@ -273,6 +302,7 @@
 				FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */,
 				FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */,
 				FBD1AFE623C3E2F900377F7C /* PasswordTextField.swift */,
+				FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -344,6 +374,7 @@
 				FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */,
 				321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */,
 				321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */,
+				FB27EFFC23CD148600C7EA9A /* ux17InitialStoryboard.storyboard in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
@@ -428,6 +459,7 @@
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
 				D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */,
+				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
