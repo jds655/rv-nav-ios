@@ -53,7 +53,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if directionsController.destinationAddress != nil {
             let destination = directionsController.destinationAddress!.location!.coordinate
             end = AGSPoint(clLocationCoordinate2D: destination)
-            createBarriers()
+            let _ = createBarriers()
         }
     }
     
