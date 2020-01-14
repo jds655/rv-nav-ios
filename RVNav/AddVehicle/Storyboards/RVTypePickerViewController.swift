@@ -22,7 +22,7 @@ class RVTypePickerViewController: UIViewController {
     
     // MARK: - Properties
     
-    let RVTypes = ["Class A", "Class B", "Class C", "5th Wheel", "Tagalong Camper"]
+    let RVTypes = ["", "Class A", "Class B", "Class C", "5th Wheel", "Bumper Pull"]
     var rvTypeDelegate: RVTypePickerDelegate?
     
     // MARK: - View LifeCycle
@@ -41,8 +41,6 @@ class RVTypePickerViewController: UIViewController {
         typePickerContainerView.layer.shadowOpacity = 0.2
         
         selectTypeButton.layer.cornerRadius = 4
-        
-        
     }
     
     // MARK: - IBActions
@@ -56,9 +54,6 @@ class RVTypePickerViewController: UIViewController {
     @IBAction func blankSpaceTapped(_ sender: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
 }
 
 // MARK: - Extensions
@@ -83,7 +78,4 @@ extension RVTypePickerViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         return NSAttributedString(string: self.RVTypes[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
-
-
-
 }

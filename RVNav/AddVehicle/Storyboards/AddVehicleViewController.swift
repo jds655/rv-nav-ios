@@ -36,6 +36,14 @@ class AddVehicleViewController: ShiftableViewController {
             overrideUserInterfaceStyle = .light
         }
         buttonUISetup()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    // MARK: - Private Methods
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     private func buttonUISetup() {
@@ -46,7 +54,14 @@ class AddVehicleViewController: ShiftableViewController {
         //add button
         addButton.layer.cornerRadius = 4
     }
-
+    
+   override func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == rvTypeTextField {
+            view.endEditing(true)
+            performSegue(withIdentifier: "ShowRVTypesSegue", sender: self)
+        }
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,13 +70,14 @@ class AddVehicleViewController: ShiftableViewController {
             pickerVC.rvTypeDelegate = self
         }
     }
-
     
-   override func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == rvTypeTextField {
-            view.endEditing(true)
-            performSegue(withIdentifier: "ShowRVTypesSegue", sender: self)
-        }
+    // MARK: - IBActions
+    
+    @IBAction func addVehicleTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func cancelTapped(_ sender: UIButton) {
     }
 }
 
