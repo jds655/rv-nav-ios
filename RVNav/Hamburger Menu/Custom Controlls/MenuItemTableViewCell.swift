@@ -17,6 +17,10 @@ class MenuItemTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - IBOutlets
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +34,7 @@ class MenuItemTableViewCell: UITableViewCell {
 
     private func updateViews() {
         guard let menuItem = menuItem else { return }
-        
+        self.imageView.image = UIImage(named: menuItem.imageName)
+        self.label.text = menuItem.label
     }
 }

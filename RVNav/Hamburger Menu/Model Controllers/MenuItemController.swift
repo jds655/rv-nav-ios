@@ -1,5 +1,5 @@
 //
-//  MenuItemModelController.swift
+//  MenuItemController.swift
 //  RVNav
 //
 //  Created by Lambda_School_Loaner_214 on 1/13/20.
@@ -9,9 +9,8 @@
 import Foundation
 
 class MenuItemController {
-    private(set) var menuItems: [MenuItem] = []
     private static let sectionNames = ["MAP VIEWS","ROUTING PREFERENCES","PROFILE"]
-    var sections: [MenuItemSection] = []
+    private(set) var sections: [MenuItemSection] = []
     
     init () {
         //Creat Sections
@@ -24,17 +23,11 @@ class MenuItemController {
             MenuItem(label: "Routing options", imageName: "settings", order: 2)]))
         self.sections.append(MenuItemSection(name: MenuItemController.sectionNames[2], order: 2, menuItems: [
             MenuItem(label: "Logout", imageName: "log-out", order: 0)]))
-        
-        self.menuItems = []
     }
     
-    convenience init(with list: [MenuItem]) {
+    convenience init(with sections: [MenuItemSection]) {
         self.init()
-        self.menuItems = list
-    }
-    
-    func addMenuItem (item: MenuItem) {
-        menuItems.append(item)
+        self.sections = sections
     }
     
     func getMenuItem (for index: IndexPath) -> MenuItem {

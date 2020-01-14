@@ -51,7 +51,7 @@
 		FBE19F9C23CD72200046837C /* ux17SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE19F9B23CD72200046837C /* ux17SideMenuTableViewController.swift */; };
 		FBE19F9F23CD78140046837C /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE19F9E23CD78140046837C /* MenuItemTableViewCell.swift */; };
 		FBE19FA123CD78550046837C /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE19FA023CD78550046837C /* MenuItem.swift */; };
-		FBE19FA423CD7B1E0046837C /* MenuItemModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE19FA323CD7B1E0046837C /* MenuItemModelController.swift */; };
+		FBE19FA423CD7B1E0046837C /* MenuItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE19FA323CD7B1E0046837C /* MenuItemController.swift */; };
 		FBE19FA823CD831F0046837C /* Menu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBE19FA723CD831F0046837C /* Menu.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +104,7 @@
 		FBE19F9B23CD72200046837C /* ux17SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ux17SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		FBE19F9E23CD78140046837C /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		FBE19FA023CD78550046837C /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		FBE19FA323CD7B1E0046837C /* MenuItemModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemModelController.swift; sourceTree = "<group>"; };
+		FBE19FA323CD7B1E0046837C /* MenuItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemController.swift; sourceTree = "<group>"; };
 		FBE19FA723CD831F0046837C /* Menu.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Menu.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -395,7 +395,7 @@
 		FBE19FA523CD7B2A0046837C /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FBE19FA323CD7B1E0046837C /* MenuItemModelController.swift */,
+				FBE19FA323CD7B1E0046837C /* MenuItemController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -569,7 +569,7 @@
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,
 				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
-				FBE19FA423CD7B1E0046837C /* MenuItemModelController.swift in Sources */,
+				FBE19FA423CD7B1E0046837C /* MenuItemController.swift in Sources */,
 				FBD1AFE723C3E2F900377F7C /* PasswordTextField.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */,

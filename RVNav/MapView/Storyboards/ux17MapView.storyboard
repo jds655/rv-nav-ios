@@ -30,6 +30,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cF-06-7MF">
                                                 <rect key="frame" x="18" y="39" width="39" height="53"/>
                                                 <state key="normal" image="hamburger"/>
+                                                <connections>
+                                                    <segue destination="da3-te-a0q" kind="presentation" modalPresentationStyle="fullScreen" id="N4V-m2-76I"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RV WAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6v-fE-h4x">
                                                 <rect key="frame" x="77" y="39" width="128.5" height="53"/>
@@ -97,6 +100,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ji4-UG-pdq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-284" y="-199"/>
+        </scene>
+        <!--HamburgerMenu-->
+        <scene sceneID="unE-QV-5sQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HamburgerMenu" id="da3-te-a0q" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-ga-K0Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="426" y="-293"/>
         </scene>
         <!--SignIn-->
         <scene sceneID="L91-av-yD8">
