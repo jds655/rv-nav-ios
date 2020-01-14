@@ -44,20 +44,18 @@ class AddVehicleViewController: ShiftableViewController {
         cancelButton.layer.borderColor = UIColor.babyBlue.cgColor
         cancelButton.layer.cornerRadius = 4
         //add button
-        addButton.layer.borderWidth = 0.4
-        addButton.layer.borderColor = UIColor.babyBlue.cgColor
         addButton.layer.cornerRadius = 4
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowRVTypesSegue" {
+            guard let pickerVC = segue.destination as? RVTypePickerViewController else { return }
+            pickerVC.rvTypeDelegate = self
+        }
     }
-    */
+
     
    override func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == rvTypeTextField {
@@ -65,6 +63,12 @@ class AddVehicleViewController: ShiftableViewController {
             performSegue(withIdentifier: "ShowRVTypesSegue", sender: self)
         }
     }
-    
 }
 
+// MARK: - Extensions
+
+extension AddVehicleViewController: RVTypePickerDelegate {
+    func typeOfRVWasChosen(RVType: String) {
+        rvTypeTextField.text = RVType
+    }
+}
