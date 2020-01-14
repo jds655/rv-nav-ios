@@ -79,5 +79,11 @@ extension RVTypePickerViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.rvTypeDelegate?.typeOfRVWasChosen(RVType: RVTypes[row])
     }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: self.RVTypes[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+
+
 
 }

@@ -588,9 +588,12 @@
                                 <rect key="frame" x="0.0" y="432" width="414" height="410"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rws-NU-xuw">
-                                        <rect key="frame" x="0.0" y="69" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="52" width="414" height="149"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="149" id="SDM-9l-8Vi"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="dataSource" destination="bcU-7P-iOv" id="FUt-nI-ul0"/>
                                             <outlet property="delegate" destination="bcU-7P-iOv" id="T6e-wK-eIN"/>
@@ -618,20 +621,29 @@
                                             <action selector="selectTypeButtonTapped:" destination="bcU-7P-iOv" eventType="touchUpInside" id="L9T-rM-HQR"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RVMountains" translatesAutoresizingMaskIntoConstraints="NO" id="bkv-Ec-254">
+                                        <rect key="frame" x="-51" y="209" width="287" height="192.00000000000011"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="191.99999999999989" id="Iqi-lR-tvb"/>
+                                            <constraint firstAttribute="width" constant="287" id="axh-P5-zvI"/>
+                                        </constraints>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Rws-NU-xuw" firstAttribute="leading" secondItem="iM8-qf-xDI" secondAttribute="leading" id="052-Iv-Hgx"/>
-                                    <constraint firstAttribute="trailing" secondItem="Rws-NU-xuw" secondAttribute="trailing" id="3CW-1o-rMB"/>
                                     <constraint firstAttribute="trailing" secondItem="ice-2j-M56" secondAttribute="trailing" constant="20" id="5Qs-Le-iW1"/>
                                     <constraint firstItem="ZtT-O5-oew" firstAttribute="top" secondItem="iM8-qf-xDI" secondAttribute="top" constant="20" id="Ja4-Xc-rpp"/>
-                                    <constraint firstItem="Rws-NU-xuw" firstAttribute="leading" secondItem="iM8-qf-xDI" secondAttribute="leading" id="KOu-z4-XkT"/>
                                     <constraint firstAttribute="width" constant="414" id="PDv-t9-sBO"/>
-                                    <constraint firstItem="Rws-NU-xuw" firstAttribute="top" secondItem="ZtT-O5-oew" secondAttribute="bottom" constant="25" id="Pg7-D7-u1x"/>
-                                    <constraint firstAttribute="trailing" secondItem="Rws-NU-xuw" secondAttribute="trailing" id="WIK-cU-2xy"/>
+                                    <constraint firstItem="Rws-NU-xuw" firstAttribute="leading" secondItem="iM8-qf-xDI" secondAttribute="leading" id="Veq-4R-EgP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rws-NU-xuw" secondAttribute="trailing" id="YVD-x8-HNN"/>
+                                    <constraint firstItem="bkv-Ec-254" firstAttribute="top" secondItem="Rws-NU-xuw" secondAttribute="bottom" constant="8" id="fDs-sw-ADc"/>
+                                    <constraint firstItem="Rws-NU-xuw" firstAttribute="top" secondItem="ZtT-O5-oew" secondAttribute="bottom" constant="8" id="fPz-kW-gXU"/>
                                     <constraint firstAttribute="bottom" secondItem="ice-2j-M56" secondAttribute="bottom" constant="42" id="g7A-R8-jiD"/>
+                                    <constraint firstItem="ice-2j-M56" firstAttribute="leading" secondItem="bkv-Ec-254" secondAttribute="trailing" constant="8" id="kxp-Mr-OYh"/>
                                     <constraint firstAttribute="height" constant="410" id="muV-ny-NaP"/>
                                     <constraint firstAttribute="trailing" secondItem="ZtT-O5-oew" secondAttribute="trailing" constant="20" id="p2c-Ua-Lka"/>
+                                    <constraint firstAttribute="bottom" secondItem="bkv-Ec-254" secondAttribute="bottom" constant="9" id="y16-Pn-XVy"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiK-mG-USU">
@@ -668,10 +680,11 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2047.826086956522" y="114.50892857142857"/>
+            <point key="canvasLocation" x="2047.826086956522" y="113.83928571428571"/>
         </scene>
     </scenes>
     <resources>
+        <image name="RVMountains" width="607.5" height="424.5"/>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="closeX1x" width="24" height="24"/>
     </resources>
