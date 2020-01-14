@@ -17,6 +17,9 @@
 		321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE99723A84AD800521AAB /* UIColor+Extension.swift */; };
 		321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321DE9BE23A97BD700521AAB /* LandingPage.storyboard */; };
 		321DE9C123A9927400521AAB /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE9C023A9927400521AAB /* LandingPageViewController.swift */; };
+		3231CA3F23CD28EC008CDBA5 /* AddVehicle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3231CA3E23CD28EC008CDBA5 /* AddVehicle.storyboard */; };
+		3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231CA4023CD2BAD008CDBA5 /* AddVehicleViewController.swift */; };
+		3231CA4523CD5B1F008CDBA5 /* RVTypePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
@@ -61,6 +64,9 @@
 		321DE99723A84AD800521AAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		321DE9BE23A97BD700521AAB /* LandingPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
 		321DE9C023A9927400521AAB /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
+		3231CA3E23CD28EC008CDBA5 /* AddVehicle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddVehicle.storyboard; sourceTree = "<group>"; };
+		3231CA4023CD2BAD008CDBA5 /* AddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddVehicleViewController.swift; path = RVNav/AddVehicle/Storyboards/AddVehicleViewController.swift; sourceTree = SOURCE_ROOT; };
+		3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RVTypePickerViewController.swift; path = RVNav/AddVehicle/Storyboards/RVTypePickerViewController.swift; sourceTree = SOURCE_ROOT; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3633CBCE01B89D25C153A07B /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -239,6 +245,8 @@
 		FB27EFF723CD139400C7EA9A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FB27EFFB23CD148600C7EA9A /* ux17InitialStoryboard.storyboard */,
+				3231CA3E23CD28EC008CDBA5 /* AddVehicle.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -253,6 +261,8 @@
 		FB27EFF923CD13C700C7EA9A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3231CA4023CD2BAD008CDBA5 /* AddVehicleViewController.swift */,
+				3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -406,6 +416,7 @@
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
 				321DE98B23A83D6600521AAB /* Heebo-Medium.ttf in Resources */,
+				3231CA3F23CD28EC008CDBA5 /* AddVehicle.storyboard in Resources */,
 				321DE98D23A83D6F00521AAB /* Heebo-Bold.ttf in Resources */,
 				D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */,
 				321DE98923A83D5D00521AAB /* Heebo-Regular.ttf in Resources */,
@@ -479,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
+				3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */,
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */,
 				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
@@ -493,6 +505,7 @@
 				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,
 				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
 				FBD1AFE723C3E2F900377F7C /* PasswordTextField.swift in Sources */,
+				3231CA4523CD5B1F008CDBA5 /* RVTypePickerViewController.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
