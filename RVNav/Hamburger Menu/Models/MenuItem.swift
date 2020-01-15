@@ -12,6 +12,8 @@ struct MenuItem {
     var label: String
     var imageName: String
     var order: Int
+    var segueID: String = ""
+    var selector: String = ""
 }
 
 struct MenuItemSection {

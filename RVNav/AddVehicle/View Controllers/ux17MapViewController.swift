@@ -20,9 +20,9 @@ import MapboxGeocoder
 import Contacts
 import Floaty
 import ArcGIS
-import GoogleSignIn
-import FacebookCore
-import FacebookLogin
+//import GoogleSignIn
+//import FacebookCore
+//import FacebookLogin
 
 
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
@@ -86,12 +86,11 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        GIDSignIn.sharedInstance().signOut()
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
-        performSegue(withIdentifier: "SignInSegue", sender: self)
-        print("Remove successful: \(removeSuccessful)")
+        networkController.logout {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+            }
+        }
     }
     
     @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }

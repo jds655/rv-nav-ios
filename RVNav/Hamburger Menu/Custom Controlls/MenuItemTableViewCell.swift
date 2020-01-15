@@ -33,6 +33,13 @@ class MenuItemTableViewCell: UITableViewCell {
     }
 
     private func updateViews() {
+        self.backgroundColor = .darkBlue
+        self.tintColor = .babyBlue
+        label.backgroundColor = .clear
+        label.textColor = .white
+        label.tintColor = .babyBlue
+        icon.backgroundColor = .clear
+        icon.tintColor = .babyBlue
         guard let menuItem = menuItem else { return }
         self.icon.image = UIImage(named: menuItem.imageName)
         self.label.text = menuItem.label
