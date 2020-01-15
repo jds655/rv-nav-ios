@@ -20,6 +20,11 @@ class FirebaseNetworkController {
     let firebaseURL = URL(string: "https://rvnav-ios.firebaseio.com/")!
     var result: Result?
     var userID: Int?
+    let userDefaults = UserDefaults.standard
+    
+    init() {
+        userID = userDefaults.integer(forKey: "userID")
+    }
     
     // MARK: - Public Methods
     // Register
@@ -90,8 +95,9 @@ class FirebaseNetworkController {
                 if let parseJSON = json {
                     let accessToken = parseJSON["token"] as? String
                     let userDictionary = parseJSON["user"] as? NSDictionary
-                    self.userID = (userDictionary!["id"] as? Int) ?? 0
+                    let userID = (userDictionary!["id"] as? Int) ?? 0
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
+                    self.userDefaults.set(userID, forKey: "UserID")
                     print("The access token save result: \(saveAccessToken)")
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
@@ -103,6 +109,7 @@ class FirebaseNetworkController {
                 completion(error)
                 return
             }
+            self.userID = self.userDefaults.object(forKey: "userID") as? Int
             completion(nil)
         }.resume()
     }
@@ -111,8 +118,6 @@ class FirebaseNetworkController {
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
         
         //creating cutom ID for Firebase
-        
-        
         vehicle.id = UUID().uuidString
         
         guard let userID = userID,
