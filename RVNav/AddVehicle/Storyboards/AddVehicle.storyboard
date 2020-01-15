@@ -79,6 +79,9 @@
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cancelTapped:" destination="cqA-23-rmb" eventType="touchUpInside" id="GMc-ha-4rC"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUA-uI-iXF">
                                                 <rect key="frame" x="244" y="913" width="150" height="45"/>
@@ -91,6 +94,9 @@
                                                 <state key="normal" title="Add">
                                                     <color key="titleColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addVehicleTapped:" destination="cqA-23-rmb" eventType="touchUpInside" id="fbp-YL-4RK"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSE-mU-Apt">
                                                 <rect key="frame" x="0.0" y="108" width="414" height="50"/>
@@ -209,7 +215,6 @@
                                                                     <constraint firstAttribute="height" constant="45" id="VG1-Pn-itY"/>
                                                                     <constraint firstAttribute="width" constant="55" id="WFf-nC-PNq"/>
                                                                 </constraints>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                 <connections>
@@ -229,7 +234,6 @@
                                                                     <constraint firstAttribute="height" constant="45" id="IuZ-oL-RHD"/>
                                                                     <constraint firstAttribute="width" constant="55" id="JgM-b6-wsC"/>
                                                                 </constraints>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                 <connections>

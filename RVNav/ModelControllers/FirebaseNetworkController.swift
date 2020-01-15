@@ -1,16 +1,16 @@
 //
-//  NetworkController.swift
+//  FirebaseNetworkController.swift
 //  RVNav
 //
-//  Created by Jonathan Ferrer on 8/21/19.
-//  Copyright © 2019 RVNav. All rights reserved.
+//  Created by Jake Connerly on 1/15/20.
+//  Copyright © 2020 RVNav. All rights reserved.
 //
 
 import Foundation
 import SwiftKeychainWrapper
 import ArcGIS
 
-class NetworkController {
+class FirebaseNetworkController {
     
     // MARK: - Properties
     var vehicle: Vehicle?
@@ -249,3 +249,4 @@ class NetworkController {
         }.resume()
     }
 }
+
