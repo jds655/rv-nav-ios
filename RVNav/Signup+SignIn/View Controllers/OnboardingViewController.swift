@@ -50,7 +50,7 @@ class OnboardingViewController: ShiftableViewController {
     
     // MARK: - Properties
     private var formData = FormData()
-    var networkController: NetworkController!
+    var networkController: NetworkControllerProtocol!
     
     // MARK: - IBOutlets
     @IBOutlet weak var backgroundImageView: UIImageView!
