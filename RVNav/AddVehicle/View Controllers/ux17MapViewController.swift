@@ -28,7 +28,7 @@ import ArcGIS
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var networkController = NetworkController()
+    private var networkController: NetworkControllerProtocol = NetworkController()
     private let directionsController = DirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
@@ -81,6 +81,10 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
             destinationVC.networkController = networkController
+        }
+        if segue.identifier == "HamburgerMenu" {
+            let destinationVC = segue.destination as! ux17SideMenuTableViewController
+            destinationVC.delegate = self
         }
     }
     
@@ -273,5 +277,11 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
+    }
+}
+
+extension ux17MapViewController: MenuDelegateProtocol {
+    func performSegue(segueIdentifier: String) {
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
 }

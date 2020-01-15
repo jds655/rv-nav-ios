@@ -14,6 +14,7 @@ class ux17SideMenuTableViewController: UITableViewController {
     // MARK: - Properties
     // This is the array that the tableview data source uses for menu options.
     var menuItemController = MenuItemController()
+    var delegate: MenuDelegateProtocol?
     
     // MARK: - IBOutlets
     @IBOutlet weak var topView: UIView!
@@ -65,7 +66,7 @@ class ux17SideMenuTableViewController: UITableViewController {
         NetworkController.shared.logout(completion: {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
-                //self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                self.delegate?.performSegue(segueIdentifier: "SignInSegue")
             }
         })
 
@@ -99,7 +100,7 @@ class ux17SideMenuTableViewController: UITableViewController {
 //        default:
 //            break
 //        }
-        //TODO: write this in a dynamic "right" way...got stuck on how
+        //TODO: write this in a dynamic "right" way...
         if !menuItem.segueID.isEmpty {
             performSegue(withIdentifier: menuItem.segueID, sender: self)
         } else if !menuItem.selector.isEmpty {

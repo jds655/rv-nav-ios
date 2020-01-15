@@ -14,7 +14,7 @@ import FacebookCore
 import FacebookLogin
 
 @objc
-class NetworkController : NSObject {
+class NetworkController : NSObject, NetworkControllerProtocol {
     
     // MARK: - Properties
     static var shared = NetworkController()
