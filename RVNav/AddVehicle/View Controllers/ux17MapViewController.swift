@@ -20,15 +20,15 @@ import MapboxGeocoder
 import Contacts
 import Floaty
 import ArcGIS
-import GoogleSignIn
-import FacebookCore
-import FacebookLogin
+//import GoogleSignIn
+//import FacebookCore
+//import FacebookLogin
 
 
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var networkController = NetworkController()
+    private var networkController: NetworkControllerProtocol = NetworkController()
     private let directionsController = DirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
@@ -82,16 +82,19 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             let destinationVC = segue.destination as! LandingPageViewController
             destinationVC.networkController = networkController
         }
+        if segue.identifier == "HamburgerMenu" {
+            let destinationVC = segue.destination as! ux17SideMenuTableViewController
+            destinationVC.delegate = self
+        }
     }
     
     // MARK: - IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        GIDSignIn.sharedInstance().signOut()
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
-        performSegue(withIdentifier: "SignInSegue", sender: self)
-        print("Remove successful: \(removeSuccessful)")
+        networkController.logout {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+            }
+        }
     }
     
     @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
@@ -274,5 +277,11 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
+    }
+}
+
+extension ux17MapViewController: MenuDelegateProtocol {
+    func performSegue(segueIdentifier: String) {
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
 }

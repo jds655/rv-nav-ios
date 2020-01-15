@@ -44,6 +44,9 @@
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
 		FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */; };
 		FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */; };
+		FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */; };
+		FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */; };
+		FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -101,6 +104,9 @@
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
 		FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingBackground.swift; sourceTree = "<group>"; };
 		FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ux17MapView.storyboard; sourceTree = "<group>"; };
+		FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionTableViewCell.swift; sourceTree = "<group>"; };
+		FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDelegateProtocol.swift; sourceTree = "<group>"; };
+		FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkControllerProtocol.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +238,7 @@
 				D1BCDD7E230DB69B00986A18 /* NetworkController.swift */,
 				3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */,
 				D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */,
+				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -392,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				FBE19F9E23CD78140046837C /* MenuItemTableViewCell.swift */,
+				FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */,
 			);
 			path = "Custom Controlls";
 			sourceTree = "<group>";
@@ -400,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				FBE19FA023CD78550046837C /* MenuItem.swift */,
+				FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -570,9 +579,12 @@
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
 				3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */,
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
+				FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */,
 				FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */,
 				FBE19F9F23CD78140046837C /* MenuItemTableViewCell.swift in Sources */,
 				447831E823146CE0007D50E7 /* VehicleFormViewController.swift in Sources */,
+				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,
+				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
 				D18DAE72230B3C3D00D7C151 /* MapViewController.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
