@@ -1,23 +1,18 @@
 //
-//  NetworkController.swift
+//  FirebaseNetworkController.swift
 //  RVNav
 //
-//  Created by Jonathan Ferrer on 8/21/19.
-//  Copyright © 2019 RVNav. All rights reserved.
+//  Created by Jake Connerly on 1/15/20.
+//  Copyright © 2020 RVNav. All rights reserved.
 //
 
 import Foundation
 import SwiftKeychainWrapper
 import ArcGIS
-import GoogleSignIn
-import FacebookCore
-import FacebookLogin
 
-@objc
-class NetworkController : NSObject {
+class FirebaseNetworkController {
     
     // MARK: - Properties
-    static var shared = NetworkController()
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
@@ -104,17 +99,6 @@ class NetworkController : NSObject {
             }
             completion(nil)
         }.resume()
-    }
-    
-    //Logout all sessions and remove autologin from Userdefaults
-    @objc public func logout(completion: @escaping () -> Void = { }) {
-        print(#function)
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        GIDSignIn.sharedInstance().signOut()
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
-        print("Remove successful: \(removeSuccessful)")
-        completion()
     }
     
     // Creates vehicle in api for the current user.
@@ -265,3 +249,4 @@ class NetworkController : NSObject {
         }.resume()
     }
 }
+

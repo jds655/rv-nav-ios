@@ -8,6 +8,22 @@
 
 import Foundation
 
+enum VehicleClassDataBaseRepresentation: String, Codable {
+    case classA = "ClassA"
+    case classB = "ClassB"
+    case classC = "ClassC"
+    case fifthWheel = "5thWheel"
+    case tagalong = "tagalong"
+}
+
+enum VehicleClassDisplayString: String, CaseIterable {
+    case classA = "Class A"
+    case classB = "Class B"
+    case classC = "Class C"
+    case fifthWheel = "5th Wheel"
+    case tagalong = "Bumper Pull"
+}
+
 class Vehicle: Codable {
   
     let id: Int?
