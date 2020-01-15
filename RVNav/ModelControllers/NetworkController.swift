@@ -108,7 +108,6 @@ class NetworkController : NSObject, NetworkControllerProtocol {
     
     //Logout all sessions and remove autologin from Userdefaults
     @objc public func logout(completion: @escaping () -> Void = { }) {
-        print(#function)
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
         GIDSignIn.sharedInstance().signOut()
         let fbLoginManager = LoginManager()
