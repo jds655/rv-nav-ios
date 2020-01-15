@@ -13,16 +13,16 @@ class MenuItemController {
     private(set) var sections: [MenuItemSection] = []
     
     init () {
-        //Creat Sections
+        //Create Sections
         self.sections.append(MenuItemSection(name: MenuItemController.sectionNames[0], order: 0, menuItems: [
-            MenuItem(label: "Satelite", imageName: "satelite", order: 0),
-            MenuItem(label: "Terrain", imageName: "terrain", order: 1)]))
+            MenuItem(label: "Satelite", imageName: "satelite", order: 0, segueID: ""),
+            MenuItem(label: "Terrain", imageName: "terrain", order: 1, segueID: "")]))
         self.sections.append(MenuItemSection(name: MenuItemController.sectionNames[1], order: 1, menuItems: [
-            MenuItem(label: "My Vehicles", imageName: "car", order: 0),
-            MenuItem(label: "Saved Routes", imageName: "savedroute", order: 1),
-            MenuItem(label: "Routing options", imageName: "settings", order: 2)]))
+            MenuItem(label: "My Vehicles", imageName: "car", order: 0, segueID: "ShowVehichleInfo"),
+            MenuItem(label: "Saved Routes", imageName: "savedroute", order: 1, segueID: ""),
+            MenuItem(label: "Routing options", imageName: "settings", order: 2, segueID: "")]))
         self.sections.append(MenuItemSection(name: MenuItemController.sectionNames[2], order: 2, menuItems: [
-            MenuItem(label: "Logout", imageName: "log-out", order: 0)]))
+            MenuItem(label: "Logout", imageName: "log-out", order: 0, segueID: "", selector: "logout")]))
     }
     
     convenience init(with sections: [MenuItemSection]) {
