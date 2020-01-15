@@ -84,13 +84,13 @@ class VehiclesTableViewController: UITableViewController {
             
         }
         
-        if segue.identifier == "EditVehicleSegue" {
-            guard let destinationVC = segue.destination as? VehicleFormViewController,
-            let index = tableView.indexPathForSelectedRow else { return }
-            let vehicle = vehicles[index.row]
-            destinationVC.vehicle = vehicle
-            
-        }
+//        if segue.identifier == "EditVehicleSegue" {
+//            guard let destinationVC = segue.destination as? VehicleFormViewController,
+//            let index = tableView.indexPathForSelectedRow else { return }
+//            let vehicle = vehicles[index.row]
+//            destinationVC.vehicle = vehicle
+//            
+//        }
         
     }
     

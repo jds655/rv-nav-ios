@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class VehicleFormViewController: UIViewController {
     
     var vehicle: Vehicle?
@@ -79,7 +81,7 @@ class VehicleFormViewController: UIViewController {
             let length = vehicleLengthTextField.text,
             let axleCount = axleCountTextField.text,
             let name = vehicleNameTextField.text else { return }
-        var vehicleClass: String?
+        var vehicleClass: VehicleClass?
         switch vehicleClassSegmentedControl.selectedSegmentIndex {
         case 0:
             vehicleClass = "A"

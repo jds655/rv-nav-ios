@@ -22,13 +22,14 @@ class RVTypePickerViewController: UIViewController {
     
     // MARK: - Properties
     
-    let RVTypes = ["", "Class A", "Class B", "Class C", "5th Wheel", "Bumper Pull"]
+    var RVTypes = [""]
     var rvTypeDelegate: RVTypePickerDelegate?
     
     // MARK: - View LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadRVTypes()
         setupUI()
     }
     
@@ -41,6 +42,13 @@ class RVTypePickerViewController: UIViewController {
         typePickerContainerView.layer.shadowOpacity = 0.2
         
         selectTypeButton.layer.cornerRadius = 4
+    }
+    
+    private func loadRVTypes() {
+        for type in VehicleClassDisplayString.allCases {
+            let rvTypeString = type.rawValue
+            RVTypes.append(rvTypeString)
+        }
     }
     
     // MARK: - IBActions
