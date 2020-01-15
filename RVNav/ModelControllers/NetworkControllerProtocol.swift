@@ -10,6 +10,10 @@ import Foundation
 
 protocol NetworkControllerProtocol {
     
+    var result: Result? {get set}
+    var vehicle: Vehicle? {get set}
+    
+    
     func register(with user: User, completion: @escaping (Error?) -> Void)
     
     func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void)
@@ -23,4 +27,6 @@ protocol NetworkControllerProtocol {
     func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void)
     
     func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void)
+    
+    func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void)
 }

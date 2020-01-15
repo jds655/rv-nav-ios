@@ -11,7 +11,7 @@ import UIKit
 class LandingPageViewController: UIViewController {
     
     // MARK: - Properties
-    var networkController: NetworkController?
+    var networkController: NetworkControllerProtocol?
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
