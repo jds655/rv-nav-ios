@@ -13,10 +13,13 @@ import ArcGIS
 class FirebaseNetworkController {
     
     // MARK: - Properties
+    
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
+    let firebaseURL = URL(string: "https://rvnav-ios.firebaseio.com/")!
     var result: Result?
+    var userID: Int?
     
     // MARK: - Public Methods
     // Register
@@ -86,6 +89,8 @@ class FirebaseNetworkController {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = json {
                     let accessToken = parseJSON["token"] as? String
+                    let userDictionary = parseJSON["user"] as? NSDictionary
+                    self.userID = (userDictionary!["id"] as? Int) ?? 0
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
                     print("The access token save result: \(saveAccessToken)")
                     if (accessToken?.isEmpty)! {
@@ -93,6 +98,7 @@ class FirebaseNetworkController {
                         return
                     }
                 }
+                completion(nil)
             } catch {
                 completion(error)
                 return
@@ -101,14 +107,22 @@ class FirebaseNetworkController {
         }.resume()
     }
     
-    // Creates vehicle in api for the current user.
-    
+    // Create Vehicle
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle")
+        
+        //creating cutom ID for Firebase
+        
+        
+        vehicle.id = UUID().uuidString
+        
+        guard let userID = userID,
+            let vehicleID = vehicle.id else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent("\(vehicleID)").appendingPathExtension("json")
+        
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
-        request.httpMethod = "POST"
+        request.httpMethod = "PUT"
         
         do {
             let jsonEncoder = JSONEncoder()
@@ -132,12 +146,14 @@ class FirebaseNetworkController {
         }.resume()
     }
     
-    // Edit a stored vehicle with a vehivle id.
-    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
+    // Edit a stored vehicle with a vehicle id.
+    func editVehicle(with vehicle: Vehicle, id: String, completion: @escaping (Error?) -> Void) {
+        
+        guard let userID = userID else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent(id).appendingPathExtension("json")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
         request.httpMethod = "PUT"
         do {
             let jsonEncoder = JSONEncoder()
@@ -162,12 +178,15 @@ class FirebaseNetworkController {
     }
     
     // Delete a stored vehicle with vehivle id.
-    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
+    func deleteVehicle(id: String, completion: @escaping (Error?) -> Void) {
+        guard let userID = userID else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent(id).appendingPathExtension("json")
+        
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
         request.httpMethod = "DELETE"
+        
         URLSession.shared.dataTask(with: request) { (_, _, error) in
             if let error = error {
                 NSLog("Error Deleting entry to server: \(error)")
@@ -180,10 +199,12 @@ class FirebaseNetworkController {
     
     // Gets all currently stored vehicles for a user
     func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle")
+        guard let userID = userID else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathExtension("json")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+
         request.httpMethod = "GET"
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
