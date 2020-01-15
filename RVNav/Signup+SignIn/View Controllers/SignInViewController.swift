@@ -25,7 +25,7 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
-    var networkController: NetworkController?
+    var networkController: NetworkControllerProtocol?
     
     // MARK: - View LifeCycle
     
