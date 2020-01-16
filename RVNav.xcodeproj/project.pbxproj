@@ -51,7 +51,6 @@
 		FB67983A23D1055B009E0D87 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983923D1055B009E0D87 /* UserController.swift */; };
 		FB67983C23D10F38009E0D87 /* UserControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */; };
 		FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */; };
-		FB67984223D11EAB009E0D87 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984123D11EAA009E0D87 /* NetworkController.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -116,7 +115,6 @@
 		FB67983923D1055B009E0D87 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserControllerProtocol.swift; sourceTree = "<group>"; };
 		FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModelControllerProtocol.swift; sourceTree = "<group>"; };
-		FB67984123D11EAA009E0D87 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 		D1BCDD82230E0F6900986A18 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FB67984123D11EAA009E0D87 /* NetworkController.swift */,
 				D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */,
 				3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */,
 				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
@@ -630,7 +627,6 @@
 				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				FBE19F9C23CD72200046837C /* ux17SideMenuTableViewController.swift in Sources */,
-				FB67984223D11EAB009E0D87 /* NetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
