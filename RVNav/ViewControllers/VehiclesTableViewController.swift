@@ -11,8 +11,10 @@ import UIKit
 
 class VehiclesTableViewController: UITableViewController {
 
-    var networkController = NetworkController()
+    var networkController = WebRESTAPINetworkController()
     var vehicles: [Vehicle] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

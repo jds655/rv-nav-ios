@@ -25,7 +25,7 @@ import ArcGIS
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var networkController: NetworkControllerProtocol = NetworkController()
+    private var networkController: NetworkControllerProtocol = WebRESTAPINetworkController()
     private let directionsController = DirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?

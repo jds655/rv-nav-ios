@@ -33,7 +33,7 @@ class AddVehicleViewController: ShiftableViewController {
     var vehicle: Vehicle?
     var vehicles: [Vehicle]?
     var avoidance: [Avoid] = []
-    var networkController = NetworkController()
+    var networkController: NetworkControllerProtocol = WebRESTAPINetworkController()
     
     // MARK: - View LifeCycle
     

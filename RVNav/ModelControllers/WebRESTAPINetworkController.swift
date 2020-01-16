@@ -1,42 +1,27 @@
 //
-//  FirebaseNetworkController.swift
+//  NetworkController.swift
 //  RVNav
 //
-//  Created by Jake Connerly on 1/15/20.
-//  Copyright © 2020 RVNav. All rights reserved.
+//  Created by Jonathan Ferrer on 8/21/19.
+//  Copyright © 2019 RVNav. All rights reserved.
 //
 
 import Foundation
 import SwiftKeychainWrapper
 import ArcGIS
+import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
-class FirebaseNetworkController: NetworkControllerProtocol {
-    func logout(completion: @escaping () -> Void) {
-        
-    }
-    
-    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
-        
-    }
-    
-    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
-        
-    }
-    
+@objc
+class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // MARK: - Properties
-    
+    static var shared = WebRESTAPINetworkController()
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
-    let firebaseURL = URL(string: "https://rvnav-ios.firebaseio.com/")!
     var result: Result?
-    var userID: Int?
-    let userDefaults = UserDefaults.standard
-    
-    init() {
-        userID = userDefaults.integer(forKey: "userID")
-    }
     
     // MARK: - Public Methods
     // Register
@@ -106,39 +91,39 @@ class FirebaseNetworkController: NetworkControllerProtocol {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = json {
                     let accessToken = parseJSON["token"] as? String
-                    let userDictionary = parseJSON["user"] as? NSDictionary
-                    let userID = (userDictionary!["id"] as? Int) ?? 0
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
-                    self.userDefaults.set(userID, forKey: "UserID")
                     print("The access token save result: \(saveAccessToken)")
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
                         return
                     }
                 }
-                completion(nil)
             } catch {
                 completion(error)
                 return
             }
-            self.userID = self.userDefaults.object(forKey: "userID") as? Int
             completion(nil)
         }.resume()
     }
     
-    // Create Vehicle
+    //Logout all sessions and remove autologin from Userdefaults
+    @objc public func logout(completion: @escaping () -> Void = { }) {
+        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
+        GIDSignIn.sharedInstance().signOut()
+        let fbLoginManager = LoginManager()
+        fbLoginManager.logOut()
+        print("Remove successful: \(removeSuccessful)")
+        completion()
+    }
+    
+    // Creates vehicle in api for the current user.
+    
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
-        
-        guard let userID = userID else { return }
-        //creating cutom ID for Firebase
-        vehicle.id = getNextFBVehicleID()
-        guard let vehicleID = vehicle.id else { return }
-        
-        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent("\(vehicleID)").appendingPathExtension("json")
-        
+        let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
         
         do {
             let jsonEncoder = JSONEncoder()
@@ -162,14 +147,12 @@ class FirebaseNetworkController: NetworkControllerProtocol {
         }.resume()
     }
     
-    // Edit a stored vehicle with a vehicle id.
-    func editVehicle(with vehicle: Vehicle, id: String, completion: @escaping (Error?) -> Void) {
-        
-        guard let userID = userID else { return }
-        
-        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent(id).appendingPathExtension("json")
+    // Edit a stored vehicle with a vehivle id.
+    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
         request.httpMethod = "PUT"
         do {
             let jsonEncoder = JSONEncoder()
@@ -194,15 +177,12 @@ class FirebaseNetworkController: NetworkControllerProtocol {
     }
     
     // Delete a stored vehicle with vehivle id.
-    func deleteVehicle(id: String, completion: @escaping (Error?) -> Void) {
-        guard let userID = userID else { return }
-        
-        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent(id).appendingPathExtension("json")
-        
+    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
         request.httpMethod = "DELETE"
-        
         URLSession.shared.dataTask(with: request) { (_, _, error) in
             if let error = error {
                 NSLog("Error Deleting entry to server: \(error)")
@@ -215,17 +195,15 @@ class FirebaseNetworkController: NetworkControllerProtocol {
     
     // Gets all currently stored vehicles for a user
     func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
-        guard let userID = userID else { return }
-        
-        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathExtension("json")
+        let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 NSLog("Error fetching vehicle: \(error)")
-                completion([], error)
+                completion(nil, error)
                 return
             }
             guard let data = data else {
@@ -241,40 +219,10 @@ class FirebaseNetworkController: NetworkControllerProtocol {
             } catch {
                 NSLog("Error decoding vehicle: \(error)")
                 completion([], error)
-                return
             }
         }.resume()
     }
     
-    //Get next vehicle ID based on what's in FB
-    func getNextFBVehicleID () -> Int {
-        let group = DispatchGroup()
-        var nextID: Int = 0
-        
-        group.enter()
-        getVehicles { (vehicles, error) in
-            if let error = error {
-                NSLog("FirebaseNetworkController - Error fetching vehicles for next ID: \(error)")
-                group.leave()
-                return
-            }
-            guard let vehicles = vehicles else
-            {
-                group.leave()
-                return
-            }
-            if let lastid = vehicles.compactMap ( {$0.id} ).sorted (by: {$0 < $1}).last
-             {
-                DispatchQueue.main.sync {
-                    nextID =  lastid + 1
-                }
-            }
-            group.leave()
-        }
-        group.wait()
-        return nextID
-    }
-        
     // Gets an array of avoidance coordinates from DS backend.
     func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
         var request = URLRequest(url: avoidURL)
@@ -316,4 +264,3 @@ class FirebaseNetworkController: NetworkControllerProtocol {
         }.resume()
     }
 }
-

@@ -12,12 +12,12 @@ import MapboxGeocoder
 
 class DirectionsController {
 
+    // MARK: - Properties
     // instance of the geocoder (address look up and converter)
     let geocoder = Geocoder.shared
     var destinationAddress: Placemark?
 
-
-    
+    // MARK: - Public Methods
     func search(with address: String, completion: @escaping ([Placemark]?) -> Void) {
         let options = ForwardGeocodeOptions(query: address)
         options.allowedScopes = [.address, .pointOfInterest]
