@@ -83,8 +83,9 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             destinationVC.networkController = networkController
         }
         if segue.identifier == "HamburgerMenu" {
-            let destinationVC = segue.destination as! ux17SideMenuTableViewController
-            destinationVC.delegate = self
+            let destinationVC = segue.destination as! CustomSideMenuNavigationController
+            destinationVC.networkController = self.networkController
+            destinationVC.menuDelegate = self
         }
     }
     
