@@ -43,14 +43,18 @@ class AddVehicleViewController: ShiftableViewController {
             overrideUserInterfaceStyle = .light
         }
         buttonUISetup()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        dismissTapGestureRecogniser()
     }
     
     // MARK: - Private Methods
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    private func dismissTapGestureRecogniser() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     private func buttonUISetup() {
