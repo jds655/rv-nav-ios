@@ -26,7 +26,7 @@ protocol NetworkControllerProtocol {
     
     func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void)
     
-    func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void)
+    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void)
     
     func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void)
 }

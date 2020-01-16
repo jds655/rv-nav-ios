@@ -175,7 +175,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeN-SY-QRa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="C1s-fc-09S" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2784.057971014493" y="641.51785714285711"/>
+            <point key="canvasLocation" x="2606" y="642"/>
         </scene>
         <!--AddVehicle-->
         <scene sceneID="5wf-b5-Bk2">
@@ -185,12 +185,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVS-hk-Oci" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3364" y="587"/>
+            <point key="canvasLocation" x="3141" y="581"/>
         </scene>
-        <!--Side Menu Navigation Controller-->
+        <!--Custom Side Menu Navigation Controller-->
         <scene sceneID="mCz-26-91T">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rMx-yi-kT3" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rMx-yi-kT3" customClass="CustomSideMenuNavigationController" customModule="RVNav" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sja-L2-QV9">

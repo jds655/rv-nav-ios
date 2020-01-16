@@ -194,7 +194,7 @@ class NetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Gets all currently stored vehicles for a user
-    func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
+    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -203,7 +203,7 @@ class NetworkController : NSObject, NetworkControllerProtocol {
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 NSLog("Error fetching vehicle: \(error)")
-                completion([], error)
+                completion(nil, error)
                 return
             }
             guard let data = data else {
