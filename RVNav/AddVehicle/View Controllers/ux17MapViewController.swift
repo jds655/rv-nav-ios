@@ -20,9 +20,6 @@ import MapboxGeocoder
 import Contacts
 import Floaty
 import ArcGIS
-//import GoogleSignIn
-//import FacebookCore
-//import FacebookLogin
 
 
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
@@ -83,8 +80,9 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             destinationVC.networkController = networkController
         }
         if segue.identifier == "HamburgerMenu" {
-            let destinationVC = segue.destination as! ux17SideMenuTableViewController
-            destinationVC.delegate = self
+            let destinationVC = segue.destination as! CustomSideMenuNavigationController
+            destinationVC.networkController = self.networkController
+            destinationVC.menuDelegate = self
         }
     }
     

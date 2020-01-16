@@ -12,9 +12,10 @@ class ux17SideMenuTableViewController: UITableViewController {
 
   
     // MARK: - Properties
+    var networkController: NetworkControllerProtocol?
     // This is the array that the tableview data source uses for menu options.
     var menuItemController = MenuItemController()
-    var delegate: MenuDelegateProtocol?
+    var menuDelegate: MenuDelegateProtocol?
     
     // MARK: - IBOutlets
     @IBOutlet weak var topView: UIView!
@@ -66,7 +67,7 @@ class ux17SideMenuTableViewController: UITableViewController {
         NetworkController.shared.logout(completion: {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
-                self.delegate?.performSegue(segueIdentifier: "SignInSegue")
+                self.menuDelegate?.performSegue(segueIdentifier: "SignInSegue")
             }
         })
 
