@@ -20,9 +20,6 @@ import MapboxGeocoder
 import Contacts
 import Floaty
 import ArcGIS
-//import GoogleSignIn
-//import FacebookCore
-//import FacebookLogin
 
 
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {

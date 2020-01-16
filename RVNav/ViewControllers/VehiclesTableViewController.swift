@@ -31,10 +31,12 @@ class VehiclesTableViewController: UITableViewController {
             if let error = error {
                 NSLog("Error fetching Vehicles: \(error)")
                 return
-        }
-            self.vehicles = vehicles
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            }
+            if let vehicles = vehicles {
+                self.vehicles = vehicles
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }

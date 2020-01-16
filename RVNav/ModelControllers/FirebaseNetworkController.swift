@@ -117,11 +117,10 @@ class FirebaseNetworkController {
     // Create Vehicle
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
         
+        guard let userID = userID else { return }
         //creating cutom ID for Firebase
-        vehicle.id = UUID().uuidString
-        
-        guard let userID = userID,
-            let vehicleID = vehicle.id else { return }
+        vehicle.id = getNextFBVehicleID()
+        guard let vehicleID = vehicle.id else { return }
         
         let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent("\(vehicleID)").appendingPathExtension("json")
         
@@ -203,7 +202,7 @@ class FirebaseNetworkController {
     }
     
     // Gets all currently stored vehicles for a user
-    func getVehicles(completion: @escaping ([Vehicle], Error?) -> Void) {
+    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
         guard let userID = userID else { return }
         
         let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathExtension("json")
@@ -230,10 +229,35 @@ class FirebaseNetworkController {
             } catch {
                 NSLog("Error decoding vehicle: \(error)")
                 completion([], error)
+                return
             }
         }.resume()
     }
     
+    //Get next vehicle ID based on what's in FB
+    func getNextFBVehicleID () -> Int {
+        let group = DispatchGroup()
+        var nextID: Int = 0
+        
+        group.enter()
+        getVehicles { (vehicles, error) in
+            if let error = error {
+                NSLog("FirebaseNetworkController - Error fetching vehicles for next ID: \(error)")
+                return
+            }
+            guard let vehicles = vehicles else { return }
+            if let lastid = vehicles.compactMap ( {$0.id} ).sorted (by: {$0 < $1}).last
+             {
+                DispatchQueue.main.sync {
+                    nextID =  lastid + 1
+                }
+            }
+            group.leave()
+        }
+        group.wait()
+        return nextID
+    }
+        
     // Gets an array of avoidance coordinates from DS backend.
     func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
         var request = URLRequest(url: avoidURL)

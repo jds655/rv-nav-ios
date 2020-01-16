@@ -26,7 +26,7 @@ enum VehicleClassDisplayString: String, CaseIterable {
 
 class Vehicle: Codable {
     
-    var id: String?
+    var id: Int?
     let name: String?
     let height: Float?
     let weight: Float?
@@ -37,7 +37,7 @@ class Vehicle: Codable {
     let dualTires: Bool?
     let trailer: Bool?
     
-    init(id: String?, name: String?, height: Float?, weight: Float?, width: Float?, length: Float?, axelCount: Int?, vehicleClass: String?, dualTires: Bool?, trailer: Bool?) {
+    init(id: Int?, name: String?, height: Float?, weight: Float?, width: Float?, length: Float?, axelCount: Int?, vehicleClass: String?, dualTires: Bool?, trailer: Bool?) {
         
         self.id = id
         self.name = name
