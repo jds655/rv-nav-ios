@@ -12,6 +12,8 @@ class AddVehicleViewController: ShiftableViewController {
     
     // MARK: - IBOutlets
 
+    @IBOutlet weak var addEditVehicleBarLabel: UILabel!
+    @IBOutlet weak var addEditVehicleLabel: UILabel!
     @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var vehicleNameTextField: UITextField!
@@ -30,10 +32,10 @@ class AddVehicleViewController: ShiftableViewController {
     
     // MARK: - Properties
     
-    var vehicle: Vehicle?
+    var vehicle: Vehicle? 
     var vehicles: [Vehicle]?
     var avoidance: [Avoid] = []
-    var networkController = NetworkController()
+    var networkController: NetworkControllerProtocol?
     
     // MARK: - View LifeCycle
     
@@ -44,9 +46,66 @@ class AddVehicleViewController: ShiftableViewController {
         }
         buttonUISetup()
         dismissTapGestureRecogniser()
+        updateViews()
     }
     
     // MARK: - Private Methods
+    
+    private func updateViews() {
+        if let vehicle = vehicle,
+            let vehicleName = vehicle.name,
+            let vehicleWeight = vehicle.weight,
+            let axelCount = vehicle.axelCount,
+            let duelTire = vehicle.dualTires,
+            let vehicleTypeFromDB = vehicle.vehicleClass,
+            let height = vehicle.height,
+            let width = vehicle.width,
+            let length = vehicle.length {
+            
+            let heightFeet = feetAndInchesHandlerFromDB(totalFeet: height).feet
+            let heightInches = feetAndInchesHandlerFromDB(totalFeet: height).inches
+            
+            let widthFeet = feetAndInchesHandlerFromDB(totalFeet: width).feet
+            let widthInches = feetAndInchesHandlerFromDB(totalFeet: width).inches
+            
+            let lengthFeet = feetAndInchesHandlerFromDB(totalFeet: length).feet
+            let lengthInches = feetAndInchesHandlerFromDB(totalFeet: length).inches
+            
+            vehicleNameTextField.text = vehicleName
+            heightFeetTextField.text = String(heightFeet)
+            heightInchesTextField.text = String(heightInches)
+            widthFeetTextField.text = String(widthFeet)
+            widthInchesTextField.text = String(widthInches)
+            lengthFeetTextField.text = String(lengthFeet)
+            lengthInchesTextField.text = String(lengthInches)
+            weightTextField.text = String(vehicleWeight)
+            axelCountTextField.text = String(axelCount)
+            duelWheelSwitch.isOn = duelTire
+            
+            let vehicleType: String
+            switch vehicleTypeFromDB {
+            case VehicleClassDataBaseRepresentation.classA.rawValue:
+                vehicleType = VehicleClassDisplayString.classA.rawValue
+            case VehicleClassDataBaseRepresentation.classB.rawValue:
+                vehicleType = VehicleClassDisplayString.classB.rawValue
+            case VehicleClassDataBaseRepresentation.classC.rawValue:
+                vehicleType = VehicleClassDisplayString.classC.rawValue
+            case VehicleClassDataBaseRepresentation.fifthWheel.rawValue:
+                vehicleType = VehicleClassDisplayString.fifthWheel.rawValue
+            case VehicleClassDataBaseRepresentation.tagalong.rawValue:
+                vehicleType = VehicleClassDisplayString.tagalong.rawValue
+            default:
+                return
+            }
+            rvTypeTextField.text = vehicleType
+            
+            addEditVehicleBarLabel.text = "Edit Vehicle"
+            addEditVehicleLabel.text = "Edit \(vehicleName)"
+        } else {
+            addEditVehicleBarLabel.text = "Add Vehicle"
+            addEditVehicleLabel.text = "Add New Vehicle"
+        }
+    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -73,15 +132,23 @@ class AddVehicleViewController: ShiftableViewController {
         }
     }
     
-    private func feetAndInchesHandler(height: String, inches: String) -> Float {
-        guard let heightFloat = Float(height),
+    private func feetAndInchesHandlerToDB(feet: String, inches: String) -> Float {
+        guard let feetFloat = Float(feet),
             let inchesFloat = Float(inches) else { return 0.0 }
         //convert heightFloat to inches
-        let heightFeetInInches: Float = heightFloat * 12.0
+        let feetInInches: Float = feetFloat * 12.0
         
-        var heightTotalInInches: Float = heightFeetInInches + inchesFloat
-        heightTotalInInches /= 12
-        return heightTotalInInches
+        var totalInInches: Float = feetInInches + inchesFloat
+        totalInInches /= 12
+        return totalInInches
+    }
+    
+    private func feetAndInchesHandlerFromDB(totalFeet: Float) -> (feet: Int, inches: Int) {
+        let feet = Int(floor(totalFeet))
+        var decimal = totalFeet.truncatingRemainder(dividingBy: 1)
+        decimal *= 12
+        let inches = Int(roundf(decimal))
+        return (feet, inches)
     }
     
     // MARK: - Navigation
@@ -125,20 +192,17 @@ class AddVehicleViewController: ShiftableViewController {
             return
         }
         
-        let vehicleHeight = feetAndInchesHandler(height: heightFeet, inches: heightInches)
-        let vehicleWidth = feetAndInchesHandler(height: widthFeet, inches: widthInches)
-        let vehicleLength = feetAndInchesHandler(height: lengthFeet, inches: lengthInches)
+        let vehicleHeight = feetAndInchesHandlerToDB(feet: heightFeet, inches: heightInches)
+        let vehicleWidth = feetAndInchesHandlerToDB(feet: widthFeet, inches: widthInches)
+        let vehicleLength = feetAndInchesHandlerToDB(feet: lengthFeet, inches: lengthInches)
         
         let newVehicle = Vehicle(id: nil, name: vehicleName, height: vehicleHeight, weight: vehicleWeight, width: vehicleWidth, length: vehicleLength, axelCount: vehicleAxelCount, vehicleClass: vehicleType, dualTires: duelWheelSwitch.isOn, trailer: nil)
         
-        networkController.createVehicle(with: newVehicle) { error in
+        networkController?.createVehicle(with: newVehicle) { error in
                             if let error = error {
                 NSLog("Error Creating Vehicle \(error)")
             }
         }
-    }
-    
-    @IBAction func cancelTapped(_ sender: UIButton) {
     }
 }
 
