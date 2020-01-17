@@ -1,0 +1,202 @@
+//
+//  FirebaseNetworkController.swift
+//  RVNav
+//
+//  Created by Jake Connerly on 1/15/20.
+//  Copyright © 2020 RVNav. All rights reserved.
+//
+
+import Foundation
+import SwiftKeychainWrapper
+import ArcGIS
+
+class FirebaseNetworkController: NetworkControllerProtocol {
+    
+    // MARK: - Properties
+    
+    let webAPIController: NetworkControllerProtocol = WebRESTAPINetworkController()
+    var vehicle: Vehicle?
+    let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
+    let firebaseURL = URL(string: "https://rvnav-ios.firebaseio.com/")!
+    var result: Result?
+    var userID: Int?
+    let userDefaults = UserDefaults.standard
+    
+    init() {
+        userID = userDefaults.integer(forKey: "userID")
+    }
+    
+    // MARK: - Public Methods
+    // Register
+    func register(with user: User, completion: @escaping (Error?) -> Void) {
+        webAPIController.register(with: user, completion: completion)
+    }
+    
+    // Log In
+    func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void) {
+        webAPIController.signIn(with: signInInfo, completion: completion)
+    }
+    
+    func logout(completion: @escaping () -> Void) {
+        webAPIController.logout(completion: completion)
+    }
+
+    
+    // Create Vehicle
+    func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
+        
+        guard let userID = userID else { return }
+        //creating cutom ID for Firebase
+        vehicle.id = getNextFBVehicleID()
+        guard let vehicleID = vehicle.id else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent("\(vehicleID)").appendingPathExtension("json")
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        
+        do {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+            request.httpBody = try jsonEncoder.encode(vehicle)
+        } catch {
+            completion(error)
+            return
+        }
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            if let error = error {
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    // Edit a stored vehicle with a vehicle id.
+    func editVehicle(with vehicle: Vehicle, id: String, completion: @escaping (Error?) -> Void) {
+        
+        guard let userID = userID else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent(id).appendingPathExtension("json")
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+            request.httpBody = try jsonEncoder.encode(vehicle)
+        } catch {
+            completion(error)
+            return
+        }
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            if let error = error {
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    // Delete a stored vehicle with vehivle id.
+    func deleteVehicle(id: String, completion: @escaping (Error?) -> Void) {
+        guard let userID = userID else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathComponent(id).appendingPathExtension("json")
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            if let error = error {
+                NSLog("Error Deleting entry to server: \(error)")
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
+        
+    }
+    
+    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
+        
+    }
+    
+    // Gets all currently stored vehicles for a user
+    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
+        guard let userID = userID else { return }
+        
+        let url = firebaseURL.appendingPathComponent("vehicles").appendingPathComponent("\(userID)").appendingPathExtension("json")
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "GET"
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                NSLog("Error fetching vehicle: \(error)")
+                completion([], error)
+                return
+            }
+            guard let data = data else {
+                NSLog("No data returned from dataTask")
+                completion([], error)
+                return
+            }
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            do {
+                let vehicles = try decoder.decode([Vehicle].self, from: data)
+                completion(vehicles, nil)
+            } catch {
+                NSLog("Error decoding vehicle: \(error)")
+                completion([], error)
+                return
+            }
+        }.resume()
+    }
+    
+    //Get next vehicle ID based on what's in FB
+    func getNextFBVehicleID () -> Int {
+        let group = DispatchGroup()
+        var nextID: Int = 0
+        
+        group.enter()
+        getVehicles { (vehicles, error) in
+            if let error = error {
+                NSLog("FirebaseNetworkController - Error fetching vehicles for next ID: \(error)")
+                group.leave()
+                return
+            }
+            guard let vehicles = vehicles else
+            {
+                group.leave()
+                return
+            }
+            if let lastid = vehicles.compactMap ( {$0.id} ).sorted (by: {$0 < $1}).last
+             {
+                DispatchQueue.main.sync {
+                    nextID =  lastid + 1
+                }
+            }
+            group.leave()
+        }
+        group.wait()
+        return nextID
+    }
+}
+

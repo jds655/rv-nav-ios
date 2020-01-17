@@ -29,7 +29,7 @@
 		8BBC317DD08B231FEC646732 /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11321C96E6A7079557B2F0C7 /* Pods_RVNav.framework */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
 		D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */; };
-		D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */; };
+		D11ABC302318EA240046F7D3 /* MapBoxDirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */; };
 		D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */; };
 		D185F9562322FABE00E4C64A /* Avoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D185F9552322FABE00E4C64A /* Avoid.swift */; };
 		D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */; };
@@ -51,6 +51,9 @@
 		FB67983A23D1055B009E0D87 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983923D1055B009E0D87 /* UserController.swift */; };
 		FB67983C23D10F38009E0D87 /* UserControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */; };
 		FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */; };
+		FB67984423D121E1009E0D87 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984323D121E1009E0D87 /* ModelController.swift */; };
+		FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984623D12E52009E0D87 /* AvoidanceController.swift */; };
+		FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -92,7 +95,7 @@
 		80D357CCD59793445EA2F617 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsSearchTableViewController.swift; sourceTree = "<group>"; };
-		D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
+		D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxDirectionsController.swift; sourceTree = "<group>"; };
 		D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D185F9552322FABE00E4C64A /* Avoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avoid.swift; sourceTree = "<group>"; };
 		D18DAE6C230B3C3C00D7C151 /* RVNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RVNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +118,9 @@
 		FB67983923D1055B009E0D87 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserControllerProtocol.swift; sourceTree = "<group>"; };
 		FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModelControllerProtocol.swift; sourceTree = "<group>"; };
+		FB67984323D121E1009E0D87 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		FB67984623D12E52009E0D87 /* AvoidanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceController.swift; sourceTree = "<group>"; };
+		FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceControllerProtocol.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 				FBE19F9323CD43100046837C /* MapView */,
 				D1BCDD82230E0F6900986A18 /* ModelControllers */,
 				D1BCDD81230E0F5D00986A18 /* Models */,
+				FB67984523D123A4009E0D87 /* NetworkingControllers */,
 				D1BCDD84230E0F9500986A18 /* Resources */,
 				FBAA2B7423A8372300D6E4B7 /* Signup+SignIn */,
 				D1BCDD83230E0F8400986A18 /* Storyboards */,
@@ -240,14 +247,14 @@
 		D1BCDD82230E0F6900986A18 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D11ABC2F2318EA240046F7D3 /* DirectionsController.swift */,
-				3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */,
-				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
+				FB67984623D12E52009E0D87 /* AvoidanceController.swift */,
+				FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */,
+				D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */,
+				FB67984323D121E1009E0D87 /* ModelController.swift */,
 				FB67983923D1055B009E0D87 /* UserController.swift */,
 				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
 				FB67983623CFD5CA009E0D87 /* VehicleModelController.swift */,
 				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
-				D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -298,6 +305,16 @@
 				FB67983423CFD32F009E0D87 /* VehicleListTableViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FB67984523D123A4009E0D87 /* NetworkingControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */,
+				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
+				D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */,
+			);
+			path = NetworkingControllers;
 			sourceTree = "<group>";
 		};
 		FBAA2B7323A8370100D6E4B7 /* AddVehicle */ = {
@@ -599,14 +616,17 @@
 				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,
 				FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
+				FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
 				FB67983523CFD32F009E0D87 /* VehicleListTableViewController.swift in Sources */,
 				3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */,
-				D11ABC302318EA240046F7D3 /* DirectionsController.swift in Sources */,
+				FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */,
+				D11ABC302318EA240046F7D3 /* MapBoxDirectionsController.swift in Sources */,
 				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
+				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				FB67983A23D1055B009E0D87 /* UserController.swift in Sources */,
 				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,

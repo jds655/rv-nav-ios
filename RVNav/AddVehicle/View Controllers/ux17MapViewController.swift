@@ -25,8 +25,9 @@ import ArcGIS
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var networkController: NetworkControllerProtocol = WebRESTAPINetworkController()
-    private let directionsController = DirectionsController()
+    private var modelController: ModelController = ModelController(userController: UserController(), vehicleController: VehicleModelController())
+    private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
+    private let directionsController = MapBoxDirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
@@ -69,7 +70,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignInSegue" {
             let destinationVC = segue.destination as! SignInViewController
-            destinationVC.networkController = networkController
+            destinationVC.userController = modelController.userController
         }
         if segue.identifier == "ShowAddressSearch" {
             let destinationVC = segue.destination as! DirectionsSearchTableViewController
@@ -77,18 +78,18 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
-            destinationVC.networkController = networkController
+            destinationVC.userController = modelController.userController
         }
         if segue.identifier == "HamburgerMenu" {
             let destinationVC = segue.destination as! CustomSideMenuNavigationController
-            destinationVC.networkController = self.networkController
+            destinationVC.modelController = modelController
             destinationVC.menuDelegate = self
         }
     }
     
     // MARK: - IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
-        networkController.logout {
+        modelController.userController.logout {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "SignInSegue", sender: self)
             }
@@ -115,7 +116,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
@@ -194,7 +195,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }

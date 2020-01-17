@@ -27,7 +27,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         }
     }
     
-    var directionsController: DirectionsController?
+    var directionsController: MapBoxDirectionsController?
     var addresses: [Placemark] = []
     let defaults = UserDefaults.standard
 

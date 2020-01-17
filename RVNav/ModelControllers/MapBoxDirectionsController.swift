@@ -1,5 +1,5 @@
 //
-//  DirectionsController.swift
+//  MapBoxDirectionsController.swift
 //  RVNav
 //
 //  Created by Jonathan Ferrer on 8/30/19.
@@ -10,12 +10,18 @@ import Foundation
 import MapboxGeocoder
 
 
-class DirectionsController {
+class MapBoxDirectionsController {
 
     // MARK: - Properties
     // instance of the geocoder (address look up and converter)
+    let avoidanceController: AvoidanceControllerProtocol
     let geocoder = Geocoder.shared
     var destinationAddress: Placemark?
+    let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
+    
+    init (avaoidanceController: AvoidanceControllerProtocol = AvoidanceController()) {
+        self.avoidanceController = avaoidanceController
+    }
 
     // MARK: - Public Methods
     func search(with address: String, completion: @escaping ([Placemark]?) -> Void) {

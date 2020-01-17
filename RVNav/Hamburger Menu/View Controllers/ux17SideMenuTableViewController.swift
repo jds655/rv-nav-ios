@@ -12,7 +12,7 @@ class ux17SideMenuTableViewController: UITableViewController {
 
   
     // MARK: - Properties
-    var networkController: NetworkControllerProtocol?
+    var modelController: ModelController?
     // This is the array that the tableview data source uses for menu options.
     var menuItemController = MenuItemController()
     var menuDelegate: MenuDelegateProtocol?
@@ -57,9 +57,7 @@ class ux17SideMenuTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as? MenuItemTableViewCell else { return UITableViewCell() }
 
         let menuItem = menuItemController.sections[indexPath.section].menuItems[indexPath.row]
-        
         cell.menuItem = menuItem
-
         return cell
     }
 
@@ -76,32 +74,6 @@ class ux17SideMenuTableViewController: UITableViewController {
     // The switch determines which index of the menu array you are tapping.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuItem = menuItemController.sections[indexPath.section].menuItems[indexPath.row]
-        //The quick and "working" way
-//        switch menuItem.label {
-//        case "Satelite":
-//            //TODO: Switch mapView Mode
-//            break
-//        case "Terrain":
-//            //TODO: Switch mapView Mode
-//            break
-//        case "My Vehicles":
-//            performSegue(withIdentifier: "ShowVehichleInfo", sender: self)
-//        case "Saved Routes":
-//            //TODO - segue to routes table
-//            break
-//        case "Routing Options":
-//            //TODO
-//            break
-//        case "Logout":
-//            NetworkController.shared.logout {
-//                DispatchQueue.main.async {
-//                    self.performSegue(withIdentifier: "SignInSegue", sender: self)
-//                }
-//            }
-//        default:
-//            break
-//        }
-        //TODO: write this in a dynamic "right" way...
         if !menuItem.segueID.isEmpty {
             performSegue(withIdentifier: menuItem.segueID, sender: self)
         } else if !menuItem.selector.isEmpty {

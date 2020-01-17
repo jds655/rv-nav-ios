@@ -10,6 +10,7 @@ import Foundation
 
 class UserController: UserControllerProtocol {
     let networkController: NetworkControllerProtocol
+    var result: Result?
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
@@ -21,6 +22,8 @@ class UserController: UserControllerProtocol {
     
     func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void) {
         networkController.signIn(with: signInInfo, completion: completion)
+        guard let result = networkController.result else { return }
+        self.result = result
     }
     
     func logout(completion: @escaping () -> Void = { }) {
