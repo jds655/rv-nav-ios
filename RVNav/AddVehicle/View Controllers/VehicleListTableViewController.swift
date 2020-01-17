@@ -21,7 +21,7 @@ class VehicleListTableViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    var networkController: NetworkControllerProtocol?
+    var modelController: ModelController?
     
     // MARK: - View LifeCycle
     
@@ -47,19 +47,18 @@ class VehicleListTableViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let modelController = modelController else { return }
         if segue.identifier == "EditVehicleSegue" {
             guard let indexPath = tableView.indexPathForSelectedRow,
                 let editVehicleVC = segue.destination as? AddVehicleViewController else {
                     print("error getting segue destination")
                     return }
-            let vehicle = mockVehicles[indexPath.row]
-            #warning("Need to pass network controller. Commented out to test segue")
-            //editVehicleVC.networkController = networkController
+            let vehicle = modelController.vehicleController.vehicles[indexPath.row]
+            editVehicleVC.modelController = modelController
             editVehicleVC.vehicle = vehicle
         } else {
-            guard let editVehicleVC = segue.destination as? AddVehicleViewController,
-            let networkController = networkController else { return }
-            editVehicleVC.networkController = networkController
+            guard let editVehicleVC = segue.destination as? AddVehicleViewController else { return }
+            editVehicleVC.modelController = modelController
         }
     }
 }
@@ -74,7 +73,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return mockVehicles.count
+            return modelController?.vehicleController.vehicles.count
         } else {
             return 1
         }
@@ -84,8 +83,8 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
         if indexPath.section == 0 {
             let vehicleCell = tableView.dequeueReusableCell(withIdentifier: "VehicleCell", for: indexPath)
             
-            let vehicle = mockVehicles[indexPath.row]
-            vehicleCell.textLabel?.text = vehicle.name
+            let vehicle = modelController?.vehicleController.vehicles[indexPath.row]
+            vehicleCell.textLabel?.text = vehicle?.name
             vehicleCell.textLabel?.textColor = .white
             
             return vehicleCell
