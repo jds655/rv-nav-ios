@@ -11,7 +11,7 @@ import UIKit
 class LandingPageViewController: UIViewController {
     
     // MARK: - Properties
-    var networkController: NetworkControllerProtocol?
+    var userController: UserControllerProtocol?
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -28,7 +28,7 @@ class LandingPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignUpSegue" {
             if let destinationVC = segue.destination as? OnboardingViewController {
-                destinationVC.networkController = networkController
+                destinationVC.userController = userController
             }
         }
     }

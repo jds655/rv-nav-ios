@@ -25,7 +25,7 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
-    var networkController: NetworkControllerProtocol?
+    var userController: UserControllerProtocol?
     
     // MARK: - View LifeCycle
     
@@ -41,7 +41,7 @@ class SignInViewController: ShiftableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignUpSegue" {
             if let destinationVC = segue.destination as? OnboardingViewController {
-                destinationVC.networkController = networkController
+                destinationVC.userController = userController
             }
         }
     }
@@ -105,7 +105,7 @@ class SignInViewController: ShiftableViewController {
                 let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                 self.emailTextField.text = emailFromFacebook
                 self.passwordTextField.text = idFromFacebook
-                self.networkController?.signIn(with: facebookSignInInfo) { (error) in
+                self.userController?.signIn(with: facebookSignInInfo, group: nil) { (error) in
                     if let error = error {
                         NSLog("Error signing up: \(error)")
                         DispatchQueue.main.async {
@@ -116,9 +116,9 @@ class SignInViewController: ShiftableViewController {
                             self.present(alert, animated: true)
                         }
                     }
-                    guard let message = self.networkController?.result?.message else { return }
+                    guard let message = self.userController?.result?.message else { return }
                     print(message)
-                    if self.networkController?.result?.token != nil {
+                    if self.userController?.result?.token != nil {
                         Analytics.logEvent("login", parameters: nil)
                         DispatchQueue.main.async {
                             self.dismiss(animated: true, completion: nil)
@@ -138,7 +138,7 @@ class SignInViewController: ShiftableViewController {
             !password.isEmpty else { return }
         
         let signInInfo = SignInInfo(email: email, password: password)
-        networkController?.signIn(with: signInInfo) { (error) in
+        userController?.signIn(with: signInInfo, group: nil) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -149,9 +149,9 @@ class SignInViewController: ShiftableViewController {
                     self.present(alert, animated: true)
                 }
             }
-            guard let message = self.networkController?.result?.message else { return }
+            guard let message = self.userController?.result?.message else { return }
             print(message)
-            if self.networkController?.result?.token != nil {
+            if self.userController?.result?.token != nil {
                 Analytics.logEvent("login", parameters: nil)
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
@@ -211,6 +211,8 @@ extension SignInViewController {
 
 extension SignInViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let group = DispatchGroup()
+        
         if let error = error {
             NSLog("Error logging in user with google :\(error)")
             return
@@ -225,7 +227,7 @@ extension SignInViewController: GIDSignInDelegate {
         
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
         
-        networkController?.signIn(with: signInInfo) { (error) in
+        userController?.signIn(with: signInInfo, group: group) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -236,9 +238,12 @@ extension SignInViewController: GIDSignInDelegate {
                     self.present(alert, animated: true)
                 }
             }
-            guard let message = self.networkController?.result?.message else { return }
+            print ("Awaiting Group 1 within SigninController: \(#line)")
+            group.wait()
+            print ("Done Awaiting Group 1 within SigninController: \(#line)")
+            guard let message = self.userController?.result?.message else { return }
             print(message)
-            if self.networkController?.result?.token != nil {
+            if self.userController?.result?.token != nil {
                 Analytics.logEvent("login", parameters: nil)
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)

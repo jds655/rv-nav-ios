@@ -10,7 +10,7 @@ import Foundation
 import SideMenu
 
 class CustomSideMenuNavigationController: SideMenuNavigationController {
-    var networkController: NetworkControllerProtocol?
+    var modelController: ModelController?
     var menuDelegate: MenuDelegateProtocol?
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class CustomSideMenuNavigationController: SideMenuNavigationController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ux17SideMenuTableViewController
-        destinationVC.networkController = self.networkController
+        destinationVC.modelController = self.modelController
         destinationVC.menuDelegate = self.menuDelegate
     }
 }
@@ -30,7 +30,7 @@ extension CustomSideMenuNavigationController: UINavigationControllerDelegate {
     internal func navigationController(_: UINavigationController, willShow: UIViewController, animated: Bool) {
         if willShow is ux17SideMenuTableViewController {
             let destinationVC = willShow as! ux17SideMenuTableViewController
-            destinationVC.networkController = self.networkController
+            destinationVC.modelController = self.modelController
             destinationVC.menuDelegate = self.menuDelegate
         }
     }

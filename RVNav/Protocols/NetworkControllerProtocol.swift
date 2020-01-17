@@ -16,7 +16,7 @@ protocol NetworkControllerProtocol {
     
     func register(with user: User, completion: @escaping (Error?) -> Void)
     
-    func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void)
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup?, completion: @escaping (Error?) -> Void)
     
     func logout(completion: @escaping () -> Void)
     
@@ -27,6 +27,4 @@ protocol NetworkControllerProtocol {
     func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void)
     
     func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void)
-    
-    func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void)
 }

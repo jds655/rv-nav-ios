@@ -35,7 +35,7 @@ class AddVehicleViewController: ShiftableViewController {
     var vehicle: Vehicle? 
     var vehicles: [Vehicle]?
     var avoidance: [Avoid] = []
-    var networkController: NetworkControllerProtocol?
+    var modelController = ModelController()
     
     // MARK: - View LifeCycle
     
@@ -198,7 +198,7 @@ class AddVehicleViewController: ShiftableViewController {
         
         let newVehicle = Vehicle(id: nil, name: vehicleName, height: vehicleHeight, weight: vehicleWeight, width: vehicleWidth, length: vehicleLength, axelCount: vehicleAxelCount, vehicleClass: vehicleType, dualTires: duelWheelSwitch.isOn, trailer: nil)
         
-        networkController?.createVehicle(with: newVehicle) { error in
+        modelController.vehicleController.createVehicle(with: newVehicle) { error in
                             if let error = error {
                 NSLog("Error Creating Vehicle \(error)")
             }

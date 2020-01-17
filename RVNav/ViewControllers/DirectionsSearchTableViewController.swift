@@ -14,7 +14,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
     
     @IBOutlet weak var vehiclePickerView: UIPickerView!
     @IBOutlet weak var startSearchBar: UISearchBar!
-    let networkController = NetworkController()
+    let networkController = WebRESTAPINetworkController()
     let geocoder = Geocoder.shared
     var vehicles: [Vehicle] = [] {
         didSet {
@@ -27,7 +27,7 @@ class DirectionsSearchTableViewController: UITableViewController, UISearchBarDel
         }
     }
     
-    var directionsController: DirectionsController?
+    var directionsController: MapBoxDirectionsController?
     var addresses: [Placemark] = []
     let defaults = UserDefaults.standard
 

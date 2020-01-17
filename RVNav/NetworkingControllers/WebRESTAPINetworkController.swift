@@ -1,5 +1,5 @@
 //
-//  NetworkController.swift
+//  WebRESTAPINetworkController.swift
 //  RVNav
 //
 //  Created by Jonathan Ferrer on 8/21/19.
@@ -14,10 +14,10 @@ import FacebookCore
 import FacebookLogin
 
 @objc
-class NetworkController : NSObject, NetworkControllerProtocol {
+class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // MARK: - Properties
-    static var shared = NetworkController()
+    static var shared = WebRESTAPINetworkController()
     var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
@@ -56,10 +56,11 @@ class NetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Log In
-    func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void) {
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("login")
         var request = URLRequest(url: url)
-        
+        group?.enter()
+        print ("Entering Group 2 within WebAPI: \(#line)")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         do {
@@ -67,21 +68,28 @@ class NetworkController : NSObject, NetworkControllerProtocol {
             request.httpBody = try jsonEncoder.encode(signInInfo)
         } catch {
             completion(error)
+            group?.leave()
+            print ("Left Group 2 within WebAPI: \(#line)")
             return
         }
-        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                group?.leave()
+                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             if let error = error {
                 completion(error)
+                group?.leave()
+                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             guard let data = data else {
                 completion(NSError())
+                group?.leave()
+                print ("Left Group 2 within WebAPI): \(#line)")
                 return
             }
             do {
@@ -95,14 +103,21 @@ class NetworkController : NSObject, NetworkControllerProtocol {
                     print("The access token save result: \(saveAccessToken)")
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
+                        group?.leave()
+                        print ("Left Group 2 within WebAPI: \(#line)")
                         return
                     }
                 }
             } catch {
                 completion(error)
+                group?.leave()
+                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
+            
+            group?.leave()
             completion(nil)
+            print ("Left Group 2 within WebAPI): \(#line)")
         }.resume()
     }
     
@@ -219,47 +234,6 @@ class NetworkController : NSObject, NetworkControllerProtocol {
             } catch {
                 NSLog("Error decoding vehicle: \(error)")
                 completion([], error)
-            }
-        }.resume()
-    }
-    
-    // Gets an array of avoidance coordinates from DS backend.
-    func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
-        var request = URLRequest(url: avoidURL)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        do {
-            let jsonEncoder = JSONEncoder()
-            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-            request.httpBody = try jsonEncoder.encode(routeInfo)
-        } catch {
-            NSLog("error encoding\(error)")
-            completion(nil, error)
-            return
-        }
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                completion(nil, NSError())
-                return
-            }
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            guard let data = data else {
-                completion(nil, NSError())
-                return
-            }
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            do {
-                let avoidArray: [Avoid] = try jsonDecoder.decode([Avoid].self, from: data)
-                completion(avoidArray, nil)
-                
-            } catch {
-                completion(nil, error)
-                return
             }
         }.resume()
     }
