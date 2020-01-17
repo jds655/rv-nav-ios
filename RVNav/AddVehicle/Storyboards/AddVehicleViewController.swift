@@ -46,18 +46,18 @@ class AddVehicleViewController: ShiftableViewController {
         }
         buttonUISetup()
         dismissTapGestureRecogniser()
-        addEditVehicleLabelHandler()
+        updateViews()
     }
     
     // MARK: - Private Methods
     
-    private func addEditVehicleLabelHandler() {
+    private func updateViews() {
         if let vehicle = vehicle,
             let vehicleName = vehicle.name,
             let vehicleWeight = vehicle.weight,
             let axelCount = vehicle.axelCount,
             let duelTire = vehicle.dualTires,
-            let vehicletype = vehicle.vehicleClass,
+            let vehicleTypeFromDB = vehicle.vehicleClass,
             let height = vehicle.height,
             let width = vehicle.width,
             let length = vehicle.length {
@@ -80,8 +80,24 @@ class AddVehicleViewController: ShiftableViewController {
             lengthInchesTextField.text = String(lengthInches)
             weightTextField.text = String(vehicleWeight)
             axelCountTextField.text = String(axelCount)
-            rvTypeTextField.text = String(vehicletype)
             duelWheelSwitch.isOn = duelTire
+            
+            let vehicleType: String
+            switch vehicleTypeFromDB {
+            case VehicleClassDataBaseRepresentation.classA.rawValue:
+                vehicleType = VehicleClassDisplayString.classA.rawValue
+            case VehicleClassDataBaseRepresentation.classB.rawValue:
+                vehicleType = VehicleClassDisplayString.classB.rawValue
+            case VehicleClassDataBaseRepresentation.classC.rawValue:
+                vehicleType = VehicleClassDisplayString.classC.rawValue
+            case VehicleClassDataBaseRepresentation.fifthWheel.rawValue:
+                vehicleType = VehicleClassDisplayString.fifthWheel.rawValue
+            case VehicleClassDataBaseRepresentation.tagalong.rawValue:
+                vehicleType = VehicleClassDisplayString.tagalong.rawValue
+            default:
+                return
+            }
+            rvTypeTextField.text = vehicleType
             
             addEditVehicleBarLabel.text = "Edit Vehicle"
             addEditVehicleLabel.text = "Edit \(vehicleName)"
