@@ -65,7 +65,7 @@ class Onboarding2ViewController: ShiftableViewController {
                         !password.isEmpty else { return }
                     
                     let signInInfo = SignInInfo(email: email, password: password)
-                    self.userController.signIn(with: signInInfo) { (error) in
+                    self.userController.signIn(with: signInInfo, group: nil) { (error) in
                         if let error = error {
                             NSLog("Error signing in: \(error)")
                         } else {

@@ -177,7 +177,7 @@ class OnboardingViewController: ShiftableViewController {
                 Analytics.logEvent("register", parameters: nil)
                 DispatchQueue.main.async {
                     let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
-                    self.userController.signIn(with: facebookSignInInfo) { (error) in
+                    self.userController.signIn(with: facebookSignInInfo, group: nil) { (error) in
                         if let error = error {
                             NSLog("Error when signing in with google after registration:\(error)")
                         }
@@ -359,7 +359,7 @@ extension OnboardingViewController: GIDSignInDelegate {
             Analytics.logEvent("register", parameters: nil)
             DispatchQueue.main.async {
                 let googleSignInInfo = SignInInfo(email: googleEmail, password: googlePassword)
-                self.userController.signIn(with: googleSignInInfo) { (error) in
+                self.userController.signIn(with: googleSignInInfo, group: nil) { (error) in
                     if let error = error {
                         NSLog("Error when signing in with google after registration:\(error)")
                     }

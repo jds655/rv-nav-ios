@@ -216,6 +216,7 @@
 				D1BCDD82230E0F6900986A18 /* ModelControllers */,
 				D1BCDD81230E0F5D00986A18 /* Models */,
 				FB67984523D123A4009E0D87 /* NetworkingControllers */,
+				FB67984A23D21921009E0D87 /* Protocols */,
 				D1BCDD84230E0F9500986A18 /* Resources */,
 				FBAA2B7423A8372300D6E4B7 /* Signup+SignIn */,
 				D1BCDD83230E0F8400986A18 /* Storyboards */,
@@ -248,13 +249,10 @@
 			isa = PBXGroup;
 			children = (
 				FB67984623D12E52009E0D87 /* AvoidanceController.swift */,
-				FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */,
 				D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */,
 				FB67984323D121E1009E0D87 /* ModelController.swift */,
 				FB67983923D1055B009E0D87 /* UserController.swift */,
-				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
 				FB67983623CFD5CA009E0D87 /* VehicleModelController.swift */,
-				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -311,10 +309,20 @@
 			isa = PBXGroup;
 			children = (
 				3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */,
-				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
 				D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */,
 			);
 			path = NetworkingControllers;
+			sourceTree = "<group>";
+		};
+		FB67984A23D21921009E0D87 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */,
+				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
+				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
+				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		FBAA2B7323A8370100D6E4B7 /* AddVehicle */ = {

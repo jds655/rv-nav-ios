@@ -26,7 +26,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
     private var modelController: ModelController = ModelController(userController: UserController(), vehicleController: VehicleModelController())
-    private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
+    //private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
     private let directionsController = MapBoxDirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
@@ -116,7 +116,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        directionsController.avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
@@ -195,7 +195,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        directionsController.avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }

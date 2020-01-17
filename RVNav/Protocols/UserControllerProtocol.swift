@@ -12,6 +12,6 @@ protocol UserControllerProtocol {
     var result: Result? {get set}
     
     func register(with user: User, completion: @escaping (Error?) -> Void)
-    func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void)
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup?, completion: @escaping (Error?) -> Void)
     func logout(completion: @escaping () -> Void)
 }

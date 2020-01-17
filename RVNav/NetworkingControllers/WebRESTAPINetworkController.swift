@@ -56,10 +56,11 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Log In
-    func signIn(with signInInfo: SignInInfo, completion: @escaping (Error?) -> Void) {
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("login")
         var request = URLRequest(url: url)
-        
+        group?.enter()
+        print ("Entering Group 2 within WebAPI: \(#line)")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         do {
@@ -67,21 +68,28 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
             request.httpBody = try jsonEncoder.encode(signInInfo)
         } catch {
             completion(error)
+            group?.leave()
+            print ("Left Group 2 within WebAPI: \(#line)")
             return
         }
-        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                group?.leave()
+                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             if let error = error {
                 completion(error)
+                group?.leave()
+                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             guard let data = data else {
                 completion(NSError())
+                group?.leave()
+                print ("Left Group 2 within WebAPI): \(#line)")
                 return
             }
             do {
@@ -95,14 +103,21 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                     print("The access token save result: \(saveAccessToken)")
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
+                        group?.leave()
+                        print ("Left Group 2 within WebAPI: \(#line)")
                         return
                     }
                 }
             } catch {
                 completion(error)
+                group?.leave()
+                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
+            
+            group?.leave()
             completion(nil)
+            print ("Left Group 2 within WebAPI): \(#line)")
         }.resume()
     }
     
