@@ -100,9 +100,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="DE2-OF-mFx" id="fmC-5D-zZP"/>
-                        <segue destination="gOW-EN-StE" kind="presentation" identifier="SignInSegue" id="GTj-hk-div"/>
-                        <segue destination="pUD-L9-YyN" kind="presentation" identifier="LandingPageSegue" id="BFe-TL-gXq"/>
-                        <segue destination="zNk-Go-Fmb" kind="presentation" identifier="SignUpSegue" id="eWj-G9-dRW"/>
+                        <segue destination="gOW-EN-StE" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="GTj-hk-div"/>
+                        <segue destination="pUD-L9-YyN" kind="presentation" identifier="LandingPageSegue" modalPresentationStyle="fullScreen" id="BFe-TL-gXq"/>
+                        <segue destination="zNk-Go-Fmb" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="eWj-G9-dRW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ji4-UG-pdq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
