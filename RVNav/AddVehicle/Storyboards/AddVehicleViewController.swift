@@ -31,14 +31,10 @@ class AddVehicleViewController: ShiftableViewController {
     @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
-    
-    var vehicle: Vehicle? 
-    var vehicles: [Vehicle]?
-    var avoidance: [Avoid] = []
+    var vehicle: Vehicle?
     var modelController = ModelController()
     
     // MARK: - View LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {

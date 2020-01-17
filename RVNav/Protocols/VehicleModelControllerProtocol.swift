@@ -9,6 +9,8 @@
 import Foundation
 
 protocol VehicleModelControlorProtocol {
+    var vehicles: [Vehicle] {get set}
+    
     func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void)
     
     func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void)
