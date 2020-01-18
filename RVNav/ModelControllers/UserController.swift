@@ -9,33 +9,35 @@
 import Foundation
 
 class UserController: UserControllerProtocol {
+    static let shared = UserController()
     let networkController: NetworkControllerProtocol
     var result: Result?
+    let userDefaults = UserDefaults.standard
+    var userID: Int?
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
+        userID = userDefaults.integer(forKey: "userID")
     }
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
         networkController.register(with: user, completion: completion)
     }
     
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) {
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) -> Int? {
         let mygroup = DispatchGroup()
     
         group?.enter()
-        print ("Entering Group 1 within UserController: \(#line)")
-        networkController.signIn(with: signInInfo, group: mygroup, completion: completion)
-        print ("Awaiting Group 2 within UserController: \(#line)")
+        self.userID = networkController.signIn(with: signInInfo, group: mygroup, completion: completion)
         mygroup.wait()
-        print ("Done Awaiting Group 2 within UserController: \(#line)")
-        guard let result = networkController.result else { return }
+        guard let result = networkController.result else { return nil}
         self.result = result
         group?.leave()
-        print ("Left Group 1 within UserController: \(#line)")
+        return userID
     }
     
     func logout(completion: @escaping () -> Void = { }) {
         networkController.logout(completion: completion)
+        userDefaults.removeObject(forKey: "userID")
     }
 }

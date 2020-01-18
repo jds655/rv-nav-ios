@@ -13,7 +13,7 @@ class ModelController {
     let vehicleController: VehicleModelControlorProtocol
 
 
-    init (userController: UserControllerProtocol = UserController(), vehicleController: VehicleModelControlorProtocol = VehicleModelController(networkController: FirebaseNetworkController())) {
+    init (userController: UserControllerProtocol = UserController(), vehicleController: VehicleModelControlorProtocol = VehicleModelController(userID: UserController.shared.userID!, networkController: FirebaseNetworkController())) {
         self.userController = userController
         self.vehicleController = vehicleController
     }

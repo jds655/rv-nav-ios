@@ -105,7 +105,7 @@ class SignInViewController: ShiftableViewController {
                 let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                 self.emailTextField.text = emailFromFacebook
                 self.passwordTextField.text = idFromFacebook
-                self.userController?.signIn(with: facebookSignInInfo, group: nil) { (error) in
+                self.userController?.userID = self.userController?.signIn(with: facebookSignInInfo, group: nil) { (error) in
                     if let error = error {
                         NSLog("Error signing up: \(error)")
                         DispatchQueue.main.async {
@@ -138,7 +138,7 @@ class SignInViewController: ShiftableViewController {
             !password.isEmpty else { return }
         
         let signInInfo = SignInInfo(email: email, password: password)
-        userController?.signIn(with: signInInfo, group: nil) { (error) in
+        self.userController?.userID = userController?.signIn(with: signInInfo, group: nil) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -227,7 +227,7 @@ extension SignInViewController: GIDSignInDelegate {
         
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
         
-        userController?.signIn(with: signInInfo, group: group) { (error) in
+        self.userController?.userID = userController?.signIn(with: signInInfo, group: group) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -238,9 +238,7 @@ extension SignInViewController: GIDSignInDelegate {
                     self.present(alert, animated: true)
                 }
             }
-            print ("Awaiting Group 1 within SigninController: \(#line)")
             group.wait()
-            print ("Done Awaiting Group 1 within SigninController: \(#line)")
             guard let message = self.userController?.result?.message else { return }
             print(message)
             if self.userController?.result?.token != nil {

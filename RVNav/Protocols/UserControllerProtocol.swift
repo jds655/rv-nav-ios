@@ -10,8 +10,9 @@ import Foundation
 
 protocol UserControllerProtocol {
     var result: Result? {get set}
+    var userID: Int? {get set}
     
     func register(with user: User, completion: @escaping (Error?) -> Void)
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup?, completion: @escaping (Error?) -> Void)
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup?, completion: @escaping (Error?) -> Void)  -> Int?
     func logout(completion: @escaping () -> Void)
 }

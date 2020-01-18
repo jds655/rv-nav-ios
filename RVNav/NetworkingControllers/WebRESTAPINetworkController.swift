@@ -56,11 +56,11 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Log In
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) {
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void)  -> Int? {
+        var userID: Int?
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("login")
         var request = URLRequest(url: url)
         group?.enter()
-        print ("Entering Group 2 within WebAPI: \(#line)")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         do {
@@ -69,27 +69,23 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
         } catch {
             completion(error)
             group?.leave()
-            print ("Left Group 2 within WebAPI: \(#line)")
-            return
+            return nil
         }
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 group?.leave()
-                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             if let error = error {
                 completion(error)
                 group?.leave()
-                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             guard let data = data else {
                 completion(NSError())
                 group?.leave()
-                print ("Left Group 2 within WebAPI): \(#line)")
                 return
             }
             do {
@@ -104,21 +100,20 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
                         group?.leave()
-                        print ("Left Group 2 within WebAPI: \(#line)")
                         return
                     }
+                    //let self.userID = parseJSON
                 }
             } catch {
                 completion(error)
                 group?.leave()
-                print ("Left Group 2 within WebAPI: \(#line)")
                 return
             }
             
             group?.leave()
             completion(nil)
-            print ("Left Group 2 within WebAPI): \(#line)")
         }.resume()
+        return userID
     }
     
     //Logout all sessions and remove autologin from Userdefaults
@@ -133,7 +128,7 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // Creates vehicle in api for the current user.
     
-    func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
+    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -163,8 +158,8 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Edit a stored vehicle with a vehivle id.
-    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(vehicleID)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
@@ -192,8 +187,8 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Delete a stored vehicle with vehivle id.
-    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(id)")
+    func deleteVehicle(vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+        let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(vehicleID)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
@@ -209,7 +204,7 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Gets all currently stored vehicles for a user
-    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
+    func getVehicles(for userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

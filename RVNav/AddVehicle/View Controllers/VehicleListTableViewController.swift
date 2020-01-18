@@ -10,10 +10,6 @@ import UIKit
 
 class VehicleListTableViewController: UIViewController {
     
-    // MARK: - IBOutlets
-    
-    @IBOutlet weak var tableView: UITableView!
-    
     // MARK: - Properties
     
     var mockVehicles: [Vehicle] = [] {
@@ -23,13 +19,22 @@ class VehicleListTableViewController: UIViewController {
     }
     var modelController: ModelController?
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: - View LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createMockVehicles()
+        //createMockVehicles()
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     // MARK: - Private Methods
@@ -73,7 +78,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return modelController?.vehicleController.vehicles.count
+            return modelController?.vehicleController.vehicles.count ?? 0
         } else {
             return 1
         }

@@ -9,13 +9,15 @@
 import Foundation
 
 protocol VehicleModelControlorProtocol {
+    var networkController: NetworkControllerProtocol {get set}
     var vehicles: [Vehicle] {get set}
+    var userID: Int {get set}
     
-    func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void)
+    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Error?) -> Void)
     
-    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void)
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void)
     
-    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void)
+    func deleteVehicle(vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void)
     
-    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void)
+    func getVehicles(userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void)
 }

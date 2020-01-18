@@ -10,11 +10,13 @@ import Foundation
 
 class VehicleModelController: VehicleModelControlorProtocol {
     var networkController: NetworkControllerProtocol
+    var userID: Int
     var vehicles: [Vehicle] = []
     
-    init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
+    init (userID: Int, networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
-        networkController.getVehicles { (vehicles, error) in
+        self.userID = userID
+        networkController.getVehicles(for: userID) { (vehicles, error) in
             if let error = error {
                 print ("VehicleModelController: Failed to fetch vehicles: \(error)")
             }
@@ -24,20 +26,20 @@ class VehicleModelController: VehicleModelControlorProtocol {
         }
     }
     
-    func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
-        networkController.createVehicle(with: vehicle, completion: completion)
+    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Error?) -> Void) {
+        networkController.createVehicle(with: vehicle, userID: userID, completion: completion)
     }
     
-    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void) {
-        networkController.editVehicle(with: vehicle, id: id, completion: completion)
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+        networkController.editVehicle(with: vehicle, vehicleID: vehicleID, userID: userID, completion: completion)
         
     }
     
-    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void) {
-        networkController.deleteVehicle(id: id, completion: completion)
+    func deleteVehicle(vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+        networkController.deleteVehicle(vehicleID: vehicleID, userID: userID, completion: completion)
     }
     
-    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
-        networkController.getVehicles(completion: completion)
+    func getVehicles(userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void) {
+        networkController.getVehicles(for: userID, completion: completion)
     }
 }

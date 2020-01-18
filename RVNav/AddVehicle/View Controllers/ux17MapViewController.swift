@@ -25,7 +25,7 @@ import ArcGIS
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var modelController: ModelController = ModelController(userController: UserController(), vehicleController: VehicleModelController())
+    private var modelController: ModelController = ModelController(userController: UserController(), vehicleController: VehicleModelController(userID: UserController.shared.userID!))
     //private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
     private let directionsController = MapBoxDirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
@@ -73,8 +73,8 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             destinationVC.userController = modelController.userController
         }
         if segue.identifier == "ShowAddressSearch" {
-            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-            destinationVC.directionsController = directionsController
+//            let destinationVC = segue.destination as! DirectionsSearchTableViewController
+//            destinationVC.directionsController = directionsController
         }
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
