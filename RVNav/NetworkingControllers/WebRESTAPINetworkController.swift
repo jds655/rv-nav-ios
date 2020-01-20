@@ -13,6 +13,10 @@ import GoogleSignIn
 import FacebookCore
 import FacebookLogin
 
+enum WebAPIError: String, Error {
+    case encodingError = "Error encoding JSON from object"
+}
+
 @objc
 class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
@@ -56,7 +60,7 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Log In
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void)  -> Int? {
+    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Int?, Error?) -> Void) {
         var userID: Int?
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("login")
         var request = URLRequest(url: url)
@@ -67,24 +71,24 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
             let jsonEncoder = JSONEncoder()
             request.httpBody = try jsonEncoder.encode(signInInfo)
         } catch {
-            completion(error)
+            completion(nil,WebAPIError.encodingError)
             group?.leave()
-            return nil
+            return
         }
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(nil, NSError(domain: "", code: response.statusCode, userInfo: nil))
                 group?.leave()
                 return
             }
             if let error = error {
-                completion(error)
+                completion(nil,error)
                 group?.leave()
                 return
             }
             guard let data = data else {
-                completion(NSError())
+                completion(nil,NSError())
                 group?.leave()
                 return
             }
@@ -94,22 +98,24 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                 self.result = try jsonDecoder.decode(Result.self, from: data)
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = json {
+                    print("WebAPI JSON response: \(parseJSON)")
                     let accessToken = parseJSON["token"] as? String
+                    //Store the AuthToken in the keychain
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
                     print("The access token save result: \(saveAccessToken)")
+                    userID = parseJSON["id"] as? Int
                     if (accessToken?.isEmpty)! {
                         NSLog("Access Token is Empty")
+                        completion(userID,)
                         group?.leave()
                         return
                     }
-                    //let self.userID = parseJSON
                 }
             } catch {
                 completion(error)
                 group?.leave()
                 return
             }
-            
             group?.leave()
             completion(nil)
         }.resume()

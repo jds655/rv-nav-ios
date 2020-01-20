@@ -239,9 +239,8 @@ extension SignInViewController: GIDSignInDelegate {
                 }
             }
             group.wait()
-            guard let message = self.userController?.result?.message else { return }
-            print(message)
-            if self.userController?.result?.token != nil {
+            if let message = self.userController?.result?.message  { print(message) }
+            if self.userController?.result?.token != nil { //login successful
                 Analytics.logEvent("login", parameters: nil)
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)

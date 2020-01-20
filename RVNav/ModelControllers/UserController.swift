@@ -11,24 +11,26 @@ import Foundation
 class UserController: UserControllerProtocol {
     static let shared = UserController()
     let networkController: NetworkControllerProtocol
-    var result: Result?
     let userDefaults = UserDefaults.standard
-    var userID: Int?
+    var currentUserID: Int?
+    var hasToken: Bool = false
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
-        userID = userDefaults.integer(forKey: "userID")
+        currentUserID = userDefaults.integer(forKey: "currentUserID")
     }
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
         networkController.register(with: user, completion: completion)
     }
     
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) -> Int? {
+    @discardableResult func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) -> Int? {
         let mygroup = DispatchGroup()
     
         group?.enter()
-        self.userID = networkController.signIn(with: signInInfo, group: mygroup, completion: completion)
+        if let self.currentUserID = networkController.signIn(with: signInInfo, group: mygroup, completion: completion) {
+            
+        }
         mygroup.wait()
         guard let result = networkController.result else { return nil}
         self.result = result
