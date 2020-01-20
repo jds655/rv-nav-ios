@@ -50,6 +50,9 @@ class VehicleListTableViewController: UIViewController {
     
     @IBAction func unwindToVehicleList(segue:UIStoryboardSegue) { }
     
+    @IBAction func closeTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
