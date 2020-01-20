@@ -8,8 +8,13 @@
 
 import Foundation
 
+protocol UserControllerDelegateProtocol {
+    func didLogout()
+}
+
 protocol UserControllerProtocol {
     var currentUserID: Int? {get set}
+    var delegate: UserControllerDelegateProtocol? {get set}
     
     func register(with user: User, completion: @escaping (Error?) -> Void)
     func signIn(with signInInfo: SignInInfo, completion: @escaping (Int?, Error?) -> Void)

@@ -15,6 +15,7 @@ enum UserControllerError: Error {
 
 class UserController: UserControllerProtocol {
     static let shared = UserController()
+    var delegate: UserControllerDelegateProtocol?
     let networkController: NetworkControllerProtocol
     let userDefaults = UserDefaults.standard
     var currentUserID: Int? {
@@ -65,6 +66,7 @@ class UserController: UserControllerProtocol {
         networkController.logout() {
             self.userDefaults.removeObject(forKey: self.useridKey)
             completion()
+            self.delegate?.didLogout()
         }
     }
 }

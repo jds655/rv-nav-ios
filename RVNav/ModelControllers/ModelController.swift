@@ -9,22 +9,21 @@
 import Foundation
 
 class ModelController {
-    let userController: UserControllerProtocol
-    lazy var vehicleController: VehicleModelControllerProtocol? = {
+    var userController: UserControllerProtocol
+    var vehicleController: VehicleModelControllerProtocol? {
         guard let userID = userController.currentUserID else {
             return nil
         }
         return VehicleModelController(userID: userID, networkController: FirebaseNetworkController())
-        }() as VehicleModelControllerProtocol?
+    }
 
     init (userController: UserControllerProtocol = UserController()) {
         self.userController = userController
+        self.userController.delegate = self
     }
-    
-//    func vehicleController()-> VehicleModelControllerProtocol? {
-//        guard let userID = userController.currentUserID else {
-//            return nil
-//        }
-//        return VehicleModelController(userID: userID, networkController: FirebaseNetworkController())
-//    }
+}
+extension ModelController: UserControllerDelegateProtocol {
+    func didLogout() {
+        //self.vehicleController = nil
+    }
 }
