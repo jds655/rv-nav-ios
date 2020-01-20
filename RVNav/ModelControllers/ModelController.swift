@@ -12,8 +12,8 @@ class ModelController {
     let userController: UserControllerProtocol
     let vehicleController: VehicleModelControlorProtocol
 
-
-    init (userController: UserControllerProtocol = UserController(), vehicleController: VehicleModelControlorProtocol = VehicleModelController(userID: UserController.shared.userID!, networkController: FirebaseNetworkController())) {
+    #warning("Handle this better than force unwrapping")
+    init (userController: UserControllerProtocol = UserController(), vehicleController: VehicleModelControlorProtocol = VehicleModelController(userID: UserController.shared.currentUserID!, networkController: FirebaseNetworkController())) {
         self.userController = userController
         self.vehicleController = vehicleController
     }

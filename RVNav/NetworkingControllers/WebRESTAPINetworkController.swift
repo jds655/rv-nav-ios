@@ -13,19 +13,22 @@ import GoogleSignIn
 import FacebookCore
 import FacebookLogin
 
-enum WebAPIError: String, Error {
-    case encodingError = "Error encoding JSON from object"
+enum WebAPIError: Error {
+    case encodingError(Any)
+    case decodingError(Any)
+    case dataTaskResponse(Any)
+    case dataTaskError(Error)
+    case dataTaskData(Any)
+    case responseNoToken(Any)
+    case responseNoUserID(Any)
 }
 
 @objc
 class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // MARK: - Properties
-    static var shared = WebRESTAPINetworkController()
-    var vehicle: Vehicle?
     let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
-    var result: Result?
     
     // MARK: - Public Methods
     // Register
@@ -60,42 +63,38 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     }
     
     // Log In
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Int?, Error?) -> Void) {
+    func signIn(with signInInfo: SignInInfo, completion: @escaping (Int?, Error?) -> Void) {
+        var result: Result?
         var userID: Int?
         let url = baseURL.appendingPathComponent("users").appendingPathComponent("login")
         var request = URLRequest(url: url)
-        group?.enter()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         do {
             let jsonEncoder = JSONEncoder()
             request.httpBody = try jsonEncoder.encode(signInInfo)
         } catch {
-            completion(nil,WebAPIError.encodingError)
-            group?.leave()
+            completion(nil,WebAPIError.encodingError("Error encoding JSON from object: \(error)"))
             return
         }
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(nil, NSError(domain: "", code: response.statusCode, userInfo: nil))
-                group?.leave()
+                completion(nil, WebAPIError.dataTaskResponse("Resonse: \(response.statusCode)"))
                 return
             }
             if let error = error {
-                completion(nil,error)
-                group?.leave()
+                completion(nil,WebAPIError.dataTaskError(error))
                 return
             }
             guard let data = data else {
-                completion(nil,NSError())
-                group?.leave()
+                completion(nil,WebAPIError.dataTaskData("No data in DataTask response"))
                 return
             }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                self.result = try jsonDecoder.decode(Result.self, from: data)
+                result = try jsonDecoder.decode(Result.self, from: data)
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = json {
                     print("WebAPI JSON response: \(parseJSON)")
@@ -105,21 +104,21 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                     print("The access token save result: \(saveAccessToken)")
                     userID = parseJSON["id"] as? Int
                     if (accessToken?.isEmpty)! {
-                        NSLog("Access Token is Empty")
-                        completion(userID,)
-                        group?.leave()
+                        completion(userID,WebAPIError.responseNoToken("Access Taken is Empty"))
                         return
                     }
                 }
             } catch {
-                completion(error)
-                group?.leave()
+                completion(nil,WebAPIError.decodingError("WebAPI - Error decoding JSON response to signin: \(error)"))
                 return
             }
-            group?.leave()
-            completion(nil)
+            if let userID = userID {
+                completion(userID,nil)
+            } else {
+                completion(nil,WebAPIError.responseNoUserID("WebAPI - No userID returned."))
+            }
         }.resume()
-        return userID
+        return
     }
     
     //Logout all sessions and remove autologin from Userdefaults

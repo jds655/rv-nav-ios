@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import FirebaseAnalytics
+
+enum UserControllerError: Error {
+    case noUserID(Any)
+}
 
 class UserController: UserControllerProtocol {
     static let shared = UserController()
@@ -14,32 +19,43 @@ class UserController: UserControllerProtocol {
     let userDefaults = UserDefaults.standard
     var currentUserID: Int?
     var hasToken: Bool = false
+    let useridKey: String = "currentUserID"
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
-        currentUserID = userDefaults.integer(forKey: "currentUserID")
+        currentUserID = userDefaults.integer(forKey: useridKey)
     }
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
-        networkController.register(with: user, completion: completion)
+        networkController.register(with: user) {error in
+            if let error = error  {
+                completion(error)
+                return
+            }
+            Analytics.logEvent("register", parameters: nil)
+            completion(nil)
+        }
     }
     
-    @discardableResult func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) -> Int? {
-        let mygroup = DispatchGroup()
-    
-        group?.enter()
-        if let self.currentUserID = networkController.signIn(with: signInInfo, group: mygroup, completion: completion) {
-            
+    func signIn(with signInInfo: SignInInfo, completion: @escaping (Int?, Error?) -> Void) {
+        networkController.signIn(with: signInInfo) { (userID, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let userID = userID  else {
+                completion(nil, UserControllerError.noUserID("No User ID Retrieved from Signin."))
+                return
+            }
+            self.currentUserID = userID
+            Analytics.logEvent("login", parameters: nil)
+            completion(self.currentUserID, nil)
         }
-        mygroup.wait()
-        guard let result = networkController.result else { return nil}
-        self.result = result
-        group?.leave()
-        return userID
+        return
     }
     
     func logout(completion: @escaping () -> Void = { }) {
         networkController.logout(completion: completion)
-        userDefaults.removeObject(forKey: "userID")
+        userDefaults.removeObject(forKey: useridKey)
     }
 }

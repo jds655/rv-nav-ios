@@ -31,8 +31,8 @@ class FirebaseNetworkController: NetworkControllerProtocol {
     }
     
     // Log In
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void)  -> Int? {
-        return webAPIController.signIn(with: signInInfo, group: group, completion: completion)
+    func signIn(with signInInfo: SignInInfo, completion: @escaping (Int?, Error?) -> Void) {
+        webAPIController.signIn(with: signInInfo, completion: completion)
     }
     
     func logout(completion: @escaping () -> Void) {

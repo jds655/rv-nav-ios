@@ -62,7 +62,7 @@ class ux17SideMenuTableViewController: UITableViewController {
     }
 
     @objc func logout() {
-        WebRESTAPINetworkController.shared.logout(completion: {
+        UserController.shared.logout(completion: {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
                 self.menuDelegate?.performSegue(segueIdentifier: "SignInSegue")

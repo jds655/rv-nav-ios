@@ -25,7 +25,7 @@ import ArcGIS
 class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var modelController: ModelController = ModelController(userController: UserController(), vehicleController: VehicleModelController(userID: UserController.shared.userID!))
+    private var modelController: ModelController = ModelController(userController: UserController(), vehicleController: VehicleModelController(userID: UserController.shared.currentUserID!))
     //private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
     private let directionsController = MapBoxDirectionsController()
     private let graphicsOverlay = AGSGraphicsOverlay()
