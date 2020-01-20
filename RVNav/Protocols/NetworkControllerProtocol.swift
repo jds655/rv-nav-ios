@@ -16,11 +16,11 @@ protocol NetworkControllerProtocol {
     
     func logout(completion: @escaping () -> Void)
     
-    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Error?) -> Void)
+    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
-    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void)
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
-    func deleteVehicle(vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void)
+    func deleteVehicle(vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
     func getVehicles(for userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void)
 }

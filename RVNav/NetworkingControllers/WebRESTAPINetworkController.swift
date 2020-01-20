@@ -140,7 +140,7 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // Creates vehicle in api for the current user.
     
-    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Error?) -> Void) {
+    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -152,25 +152,26 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
             jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
             request.httpBody = try jsonEncoder.encode(vehicle)
         } catch {
-            completion(error)
+            completion(nil,error)
             return
         }
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(nil,NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }
             if let error = error {
-                completion(error)
+                completion(nil,error)
                 return
             }
-            completion(nil)
+            #warning("Get vehicleID from response and save it")
+            completion(vehicle,nil)
         }.resume()
     }
     
     // Edit a stored vehicle with a vehivle id.
-    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void) {
         let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(vehicleID)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -181,25 +182,26 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
             jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
             request.httpBody = try jsonEncoder.encode(vehicle)
         } catch {
-            completion(error)
+            completion(nil,error)
             return
         }
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(nil,NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }
             if let error = error {
-                completion(error)
+                completion(nil,error)
                 return
             }
-            completion(nil)
+            completion(vehicle,nil)
         }.resume()
     }
     
     // Delete a stored vehicle with vehivle id.
-    func deleteVehicle(vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+    func deleteVehicle(vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void) {
+        guard let vehicleID = vehicle.id else { return }
         let url = baseURL.appendingPathComponent("vehicle").appendingPathComponent("\(vehicleID)")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -208,10 +210,10 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
         URLSession.shared.dataTask(with: request) { (_, _, error) in
             if let error = error {
                 NSLog("Error Deleting entry to server: \(error)")
-                completion(error)
+                completion(nil,error)
                 return
             }
-            completion(nil)
+            completion(vehicle,nil)
         }.resume()
     }
     

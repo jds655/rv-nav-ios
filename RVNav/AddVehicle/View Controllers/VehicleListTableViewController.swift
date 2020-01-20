@@ -17,7 +17,7 @@ class VehicleListTableViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    var modelController: ModelController?
+    var vehicleController: VehicleModelControllerProtocol?
     
     // MARK: - IBOutlets
     
@@ -30,6 +30,7 @@ class VehicleListTableViewController: UIViewController {
         //createMockVehicles()
         tableView.delegate = self
         tableView.dataSource = self
+        vehicleController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,18 +53,18 @@ class VehicleListTableViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let modelController = modelController else { return }
+        guard let vehicleController = vehicleController else { return }
         if segue.identifier == "EditVehicleSegue" {
             guard let indexPath = tableView.indexPathForSelectedRow,
                 let editVehicleVC = segue.destination as? AddVehicleViewController else {
                     print("error getting segue destination")
                     return }
-            let vehicle = modelController.vehicleController?.vehicles[indexPath.row]
-            editVehicleVC.vehicleController = modelController.vehicleController
+            let vehicle = vehicleController.vehicles[indexPath.row]
+            editVehicleVC.vehicleController = vehicleController
             editVehicleVC.vehicle = vehicle
         } else {
             guard let editVehicleVC = segue.destination as? AddVehicleViewController else { return }
-            editVehicleVC.vehicleController = modelController.vehicleController
+            editVehicleVC.vehicleController = vehicleController
         }
     }
 }
@@ -78,7 +79,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return modelController?.vehicleController?.vehicles.count ?? 0
+            return vehicleController?.vehicles.count ?? 0
         } else {
             return 1
         }
@@ -88,7 +89,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
         if indexPath.section == 0 {
             let vehicleCell = tableView.dequeueReusableCell(withIdentifier: "VehicleCell", for: indexPath)
             
-            let vehicle = modelController?.vehicleController?.vehicles[indexPath.row]
+            let vehicle = vehicleController?.vehicles[indexPath.row]
             vehicleCell.textLabel?.text = vehicle?.name
             vehicleCell.textLabel?.textColor = .white
             
@@ -97,6 +98,29 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
             guard let addVehicleCell = tableView.dequeueReusableCell(withIdentifier: "AddVehicleCell") else { return UITableViewCell() }
             addVehicleCell.textLabel?.text = "+ Add New Vehicle"
             return addVehicleCell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let vehicle = vehicleController?.vehicles[indexPath.row] else { return }
+            vehicleController?.deleteVehicle(vehicle: vehicle, completion: { (vehicle, error) in
+                if let error = error {
+                    print ("Error Deleting Vehicle: \(error)")
+                } else {
+                    //Update?
+                }
+            })
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+}
+
+extension VehicleListTableViewController: VehicleModelDataDelegate {
+    func dataDidChange() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }

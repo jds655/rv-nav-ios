@@ -28,6 +28,17 @@ class ux17SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowVehichleInfo":
+            if let vc = segue.destination as? VehicleListTableViewController {
+                vc.vehicleController = modelController?.vehicleController
+            }
+        default:
+            break
+        }
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {

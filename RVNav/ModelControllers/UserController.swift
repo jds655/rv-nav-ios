@@ -17,13 +17,20 @@ class UserController: UserControllerProtocol {
     static let shared = UserController()
     let networkController: NetworkControllerProtocol
     let userDefaults = UserDefaults.standard
-    var currentUserID: Int?
+    var currentUserID: Int? {
+        didSet{
+            userDefaults.set(currentUserID, forKey: useridKey)
+        }
+    }
     var hasToken: Bool = false
     let useridKey: String = "currentUserID"
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
-        currentUserID = userDefaults.integer(forKey: useridKey)
+        let savedID = userDefaults.integer(forKey: useridKey)
+        if savedID != 0 {
+            currentUserID = savedID
+        }
     }
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
@@ -55,7 +62,9 @@ class UserController: UserControllerProtocol {
     }
     
     func logout(completion: @escaping () -> Void = { }) {
-        networkController.logout(completion: completion)
-        userDefaults.removeObject(forKey: useridKey)
+        networkController.logout() {
+            self.userDefaults.removeObject(forKey: self.useridKey)
+            completion()
+        }
     }
 }
