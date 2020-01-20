@@ -10,11 +10,21 @@ import Foundation
 
 class ModelController {
     let userController: UserControllerProtocol
-    let vehicleController: VehicleModelControlorProtocol
+    lazy var vehicleController: VehicleModelControllerProtocol? = {
+        guard let userID = userController.currentUserID else {
+            return nil
+        }
+        return VehicleModelController(userID: userID, networkController: FirebaseNetworkController())
+        }() as VehicleModelControllerProtocol?
 
-    #warning("Handle this better than force unwrapping")
-    init (userController: UserControllerProtocol = UserController(), vehicleController: VehicleModelControlorProtocol = VehicleModelController(userID: UserController.shared.currentUserID!, networkController: FirebaseNetworkController())) {
+    init (userController: UserControllerProtocol = UserController()) {
         self.userController = userController
-        self.vehicleController = vehicleController
     }
+    
+//    func vehicleController()-> VehicleModelControllerProtocol? {
+//        guard let userID = userController.currentUserID else {
+//            return nil
+//        }
+//        return VehicleModelController(userID: userID, networkController: FirebaseNetworkController())
+//    }
 }

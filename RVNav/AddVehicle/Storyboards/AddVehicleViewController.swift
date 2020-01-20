@@ -32,7 +32,7 @@ class AddVehicleViewController: ShiftableViewController {
     
     // MARK: - Properties
     var vehicle: Vehicle?
-    var modelController = ModelController()
+    var vehicleController: VehicleModelControllerProtocol?
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
@@ -194,8 +194,7 @@ class AddVehicleViewController: ShiftableViewController {
         
         let newVehicle = Vehicle(id: nil, name: vehicleName, height: vehicleHeight, weight: vehicleWeight, width: vehicleWidth, length: vehicleLength, axelCount: vehicleAxelCount, vehicleClass: vehicleType, dualTires: duelWheelSwitch.isOn, trailer: nil)
         
-        #warning("handle this better than a forced unwrap")
-        modelController.vehicleController.createVehicle(with: newVehicle, userID: modelController.userController.currentUserID!) { error in
+        vehicleController?.createVehicle(with: newVehicle) { error in
                             if let error = error {
                 NSLog("Error Creating Vehicle \(error)")
             }

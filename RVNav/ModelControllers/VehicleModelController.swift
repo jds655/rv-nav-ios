@@ -8,12 +8,12 @@
 
 import Foundation
 
-class VehicleModelController: VehicleModelControlorProtocol {
+class VehicleModelController: VehicleModelControllerProtocol {
     var networkController: NetworkControllerProtocol
     var userID: Int
     var vehicles: [Vehicle] = []
     
-    init (userID: Int, networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
+    required init (userID: Int, networkController: NetworkControllerProtocol) {
         self.networkController = networkController
         self.userID = userID
         networkController.getVehicles(for: userID) { (vehicles, error) in
@@ -26,20 +26,20 @@ class VehicleModelController: VehicleModelControlorProtocol {
         }
     }
     
-    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Error?) -> Void) {
+    func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void) {
         networkController.createVehicle(with: vehicle, userID: userID, completion: completion)
     }
     
-    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, completion: @escaping (Error?) -> Void) {
         networkController.editVehicle(with: vehicle, vehicleID: vehicleID, userID: userID, completion: completion)
         
     }
     
-    func deleteVehicle(vehicleID: Int, userID: Int, completion: @escaping (Error?) -> Void) {
+    func deleteVehicle(vehicleID: Int, completion: @escaping (Error?) -> Void) {
         networkController.deleteVehicle(vehicleID: vehicleID, userID: userID, completion: completion)
     }
     
-    func getVehicles(userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void) {
+    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
         networkController.getVehicles(for: userID, completion: completion)
     }
 }

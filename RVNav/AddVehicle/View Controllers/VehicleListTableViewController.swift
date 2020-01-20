@@ -58,12 +58,12 @@ class VehicleListTableViewController: UIViewController {
                 let editVehicleVC = segue.destination as? AddVehicleViewController else {
                     print("error getting segue destination")
                     return }
-            let vehicle = modelController.vehicleController.vehicles[indexPath.row]
-            editVehicleVC.modelController = modelController
+            let vehicle = modelController.vehicleController?.vehicles[indexPath.row]
+            editVehicleVC.vehicleController = modelController.vehicleController
             editVehicleVC.vehicle = vehicle
         } else {
             guard let editVehicleVC = segue.destination as? AddVehicleViewController else { return }
-            editVehicleVC.modelController = modelController
+            editVehicleVC.vehicleController = modelController.vehicleController
         }
     }
 }
@@ -78,7 +78,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return modelController?.vehicleController.vehicles.count ?? 0
+            return modelController?.vehicleController?.vehicles.count ?? 0
         } else {
             return 1
         }
@@ -88,7 +88,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
         if indexPath.section == 0 {
             let vehicleCell = tableView.dequeueReusableCell(withIdentifier: "VehicleCell", for: indexPath)
             
-            let vehicle = modelController?.vehicleController.vehicles[indexPath.row]
+            let vehicle = modelController?.vehicleController?.vehicles[indexPath.row]
             vehicleCell.textLabel?.text = vehicle?.name
             vehicleCell.textLabel?.textColor = .white
             
