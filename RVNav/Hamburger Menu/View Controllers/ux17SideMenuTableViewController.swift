@@ -69,6 +69,9 @@ class ux17SideMenuTableViewController: UITableViewController {
 
         let menuItem = menuItemController.sections[indexPath.section].menuItems[indexPath.row]
         cell.menuItem = menuItem
+        let view = UIView()
+        view.backgroundColor = .darkBlue
+        cell.selectedBackgroundView = view
         return cell
     }
 

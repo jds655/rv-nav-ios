@@ -25,6 +25,7 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     var userController: UserControllerProtocol?
+    var progress = ARSLineProgress()
     
     // MARK: - View LifeCycle
     
@@ -104,10 +105,12 @@ class SignInViewController: ShiftableViewController {
                 let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                 self.emailTextField.text = emailFromFacebook
                 self.passwordTextField.text = idFromFacebook
+                ARSLineProgress.show()
                 self.userController?.signIn(with: facebookSignInInfo) { (_, error) in
                     if let error = error {
                         NSLog("Error signing up: \(error)")
                         DispatchQueue.main.async {
+                            ARSLineProgress.showFail()
                             let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
                             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alert.addAction(alertAction)
@@ -115,7 +118,9 @@ class SignInViewController: ShiftableViewController {
                         }
                     }
                     DispatchQueue.main.async {
+                        ARSLineProgress.showSuccess()
                         self.dismiss(animated: true, completion: nil)
+                        ARSLineProgress.hide()
                     }
                 }
             }

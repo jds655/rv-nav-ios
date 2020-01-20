@@ -97,7 +97,6 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                 result = try jsonDecoder.decode(Result.self, from: data)
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = json {
-                    print("WebAPI JSON response: \(parseJSON)")
                     let accessToken = parseJSON["token"] as? String
                     //Store the AuthToken in the keychain
                     let saveAccessToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
@@ -111,7 +110,7 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                         userID = nil
                     }
                     if (accessToken?.isEmpty)! {
-                        completion(userID,WebAPIError.responseNoToken("Access Taken is Empty"))
+                        completion(userID,WebAPIError.responseNoToken("Access Token is Empty"))
                         return
                     }
                 }

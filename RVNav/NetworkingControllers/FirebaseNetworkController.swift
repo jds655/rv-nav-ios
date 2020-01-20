@@ -141,7 +141,6 @@ class FirebaseNetworkController: NetworkControllerProtocol {
                 completion([], error)
                 return
             }
-            print("GetVehicles Data: \(String(describing: String(data: data, encoding: .utf8)))")
             if data.count != 0 {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
