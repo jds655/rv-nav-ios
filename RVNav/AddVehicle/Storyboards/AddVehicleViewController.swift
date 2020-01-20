@@ -162,6 +162,9 @@ class AddVehicleViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
+    @IBAction func cancelTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func addVehicleTapped(_ sender: UIButton) {
         guard let vehicleName = vehicleNameTextField.text,

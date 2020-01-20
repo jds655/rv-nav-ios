@@ -83,7 +83,7 @@
                                                     <color key="titleColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="CMH-Df-ckF" kind="unwind" unwindAction="unwindToMapViewWithSegue:" id="Qdc-hQ-cTD"/>
+                                                    <action selector="cancelTapped:" destination="cqA-23-rmb" eventType="touchUpInside" id="FaH-AL-1qr"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUA-uI-iXF">
