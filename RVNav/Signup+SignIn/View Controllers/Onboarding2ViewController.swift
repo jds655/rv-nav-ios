@@ -50,10 +50,12 @@ class Onboarding2ViewController: ShiftableViewController {
                         password: formData.password,
                         email: formData.email,
                         username: formData.username)
+        ARSLineProgress.show()
         userController?.register(with: user) { (error) in
             DispatchQueue.main.async {
                 if let error = error {
                     NSLog("\(error)")
+                    ARSLineProgress.showFail()
                     let alert = UIAlertController(title: "Error", message: "Registration Failed:  \(error)", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -65,11 +67,12 @@ class Onboarding2ViewController: ShiftableViewController {
                         !password.isEmpty else { return }
                     
                     let signInInfo = SignInInfo(email: email, password: password)
-                    self.userController.signIn(with: signInInfo, group: nil) { (error) in
+                    self.userController.signIn(with: signInInfo) { (_, error) in
                         if let error = error {
                             NSLog("Error signing in: \(error)")
                         } else {
                             DispatchQueue.main.async {
+                                ARSLineProgress.showSuccess()
                                 self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                             }
                         }

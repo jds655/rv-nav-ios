@@ -7,35 +7,66 @@
 //
 
 import Foundation
+import FirebaseAnalytics
+
+enum UserControllerError: Error {
+    case noUserID(Any)
+}
 
 class UserController: UserControllerProtocol {
+    static let shared = UserController()
+    var delegate: UserControllerDelegateProtocol?
     let networkController: NetworkControllerProtocol
-    var result: Result?
+    let userDefaults = UserDefaults.standard
+    var currentUserID: Int? {
+        didSet{
+            userDefaults.set(currentUserID, forKey: useridKey)
+        }
+    }
+    var hasToken: Bool = false
+    let useridKey: String = "currentUserID"
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController
+        let savedID = userDefaults.integer(forKey: useridKey)
+        if savedID != 0 {
+            currentUserID = savedID
+        }
     }
     
     func register(with user: User, completion: @escaping (Error?) -> Void) {
-        networkController.register(with: user, completion: completion)
+        networkController.register(with: user) {error in
+            if let error = error  {
+                completion(error)
+                return
+            }
+            Analytics.logEvent("register", parameters: nil)
+            completion(nil)
+        }
     }
     
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup? = nil, completion: @escaping (Error?) -> Void) {
-        let mygroup = DispatchGroup()
-    
-        group?.enter()
-        print ("Entering Group 1 within UserController: \(#line)")
-        networkController.signIn(with: signInInfo, group: mygroup, completion: completion)
-        print ("Awaiting Group 2 within UserController: \(#line)")
-        mygroup.wait()
-        print ("Done Awaiting Group 2 within UserController: \(#line)")
-        guard let result = networkController.result else { return }
-        self.result = result
-        group?.leave()
-        print ("Left Group 1 within UserController: \(#line)")
+    func signIn(with signInInfo: SignInInfo, completion: @escaping (Int?, Error?) -> Void) {
+        networkController.signIn(with: signInInfo) { (userID, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let userID = userID  else {
+                completion(nil, UserControllerError.noUserID("No User ID Retrieved from Signin."))
+                return
+            }
+            self.currentUserID = userID
+            Analytics.logEvent("login", parameters: nil)
+            completion(self.currentUserID, nil)
+        }
+        return
     }
     
     func logout(completion: @escaping () -> Void = { }) {
-        networkController.logout(completion: completion)
+        networkController.logout() {
+            self.userDefaults.removeObject(forKey: self.useridKey)
+            completion()
+            self.delegate?.didLogout()
+        }
     }
 }

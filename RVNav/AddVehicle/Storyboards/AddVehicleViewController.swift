@@ -32,7 +32,7 @@ class AddVehicleViewController: ShiftableViewController {
     
     // MARK: - Properties
     var vehicle: Vehicle?
-    var modelController = ModelController()
+    var vehicleController: VehicleModelControllerProtocol?
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
@@ -119,6 +119,11 @@ class AddVehicleViewController: ShiftableViewController {
         cancelButton.layer.cornerRadius = 4
         //add button
         addButton.layer.cornerRadius = 4
+        if let _ = vehicle {
+            addButton.setTitle("Save", for: .normal)
+        } else {
+            addButton.setTitle("Add", for: .normal)
+        }
     }
     
    override func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -157,6 +162,9 @@ class AddVehicleViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
+    @IBAction func cancelTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func addVehicleTapped(_ sender: UIButton) {
         guard let vehicleName = vehicleNameTextField.text,
@@ -170,7 +178,10 @@ class AddVehicleViewController: ShiftableViewController {
             let vehicleWeight = Float(weightString),
             let axelCountString = axelCountTextField.text,
             let vehicleAxelCount = Int(axelCountString),
-            let vehicleTypeString = rvTypeTextField.text else { return }
+            let vehicleTypeString = rvTypeTextField.text else {
+                #warning("Add better error handling here")
+                return
+            }
         
         let vehicleType: String
         switch vehicleTypeString {
@@ -194,11 +205,31 @@ class AddVehicleViewController: ShiftableViewController {
         
         let newVehicle = Vehicle(id: nil, name: vehicleName, height: vehicleHeight, weight: vehicleWeight, width: vehicleWidth, length: vehicleLength, axelCount: vehicleAxelCount, vehicleClass: vehicleType, dualTires: duelWheelSwitch.isOn, trailer: nil)
         
-        modelController.vehicleController.createVehicle(with: newVehicle) { error in
-                            if let error = error {
-                NSLog("Error Creating Vehicle \(error)")
+        if let vehicle = vehicle,
+            let id = vehicle.id {
+            newVehicle.id = id
+            vehicleController?.editVehicle(with: newVehicle, vehicleID: id, completion: { (error) in
+                if let error = error {
+                    print("Error Editing vehicle: \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            })
+        } else {
+            vehicleController?.createVehicle(with: newVehicle) { error in
+                if let error = error {
+                    NSLog("Error Creating Vehicle \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
         }
+        
+        
     }
 }
 

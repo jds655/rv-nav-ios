@@ -10,21 +10,17 @@ import Foundation
 
 protocol NetworkControllerProtocol {
     
-    var result: Result? {get set}
-    var vehicle: Vehicle? {get set}
-    
-    
     func register(with user: User, completion: @escaping (Error?) -> Void)
     
-    func signIn(with signInInfo: SignInInfo, group: DispatchGroup?, completion: @escaping (Error?) -> Void)
+    func signIn(with signInInfo: SignInInfo, completion: @escaping (Int?, Error?) -> Void)
     
     func logout(completion: @escaping () -> Void)
     
-    func createVehicle(with vehicle: Vehicle, completion: @escaping (Error?) -> Void)
+    func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
-    func editVehicle(with vehicle: Vehicle, id: Int, completion: @escaping (Error?) -> Void)
+    func editVehicle(with vehicle: Vehicle, vehicleID: Int, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
-    func deleteVehicle(id: Int, completion: @escaping (Error?) -> Void)
+    func deleteVehicle(vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
-    func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void)
+    func getVehicles(for userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void)
 }

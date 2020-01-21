@@ -52,3 +52,11 @@ class Vehicle: Codable {
     
     }
 }
+
+extension Vehicle: Equatable {
+    static func == (lhs: Vehicle, rhs: Vehicle) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    
+}

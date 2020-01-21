@@ -28,6 +28,17 @@ class ux17SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowVehichleInfo":
+            if let vc = segue.destination as? VehicleListTableViewController {
+                vc.vehicleController = modelController?.vehicleController
+            }
+        default:
+            break
+        }
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,11 +69,14 @@ class ux17SideMenuTableViewController: UITableViewController {
 
         let menuItem = menuItemController.sections[indexPath.section].menuItems[indexPath.row]
         cell.menuItem = menuItem
+        let view = UIView()
+        view.backgroundColor = .darkBlue
+        cell.selectedBackgroundView = view
         return cell
     }
 
     @objc func logout() {
-        WebRESTAPINetworkController.shared.logout(completion: {
+        UserController.shared.logout(completion: {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
                 self.menuDelegate?.performSegue(segueIdentifier: "SignInSegue")

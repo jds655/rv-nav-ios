@@ -29,14 +29,12 @@
 		44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* RVSettings.swift */; };
 		8BBC317DD08B231FEC646732 /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11321C96E6A7079557B2F0C7 /* Pods_RVNav.framework */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
-		D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */; };
 		D11ABC302318EA240046F7D3 /* MapBoxDirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */; };
 		D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */; };
 		D185F9562322FABE00E4C64A /* Avoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D185F9552322FABE00E4C64A /* Avoid.swift */; };
 		D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */; };
 		D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE73230B3C3D00D7C151 /* Main.storyboard */; };
 		D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */; };
-		D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */; };
 		D1BCDD7F230DB69B00986A18 /* WebRESTAPINetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
@@ -55,6 +53,16 @@
 		FB67984423D121E1009E0D87 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984323D121E1009E0D87 /* ModelController.swift */; };
 		FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984623D12E52009E0D87 /* AvoidanceController.swift */; };
 		FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */; };
+		FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5223D60CA500E638BE /* ARSLineProgressCustomization.swift */; };
+		FB954F5D23D60CA900E638BE /* ARSLineProgressTypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5323D60CA600E638BE /* ARSLineProgressTypeAliases.swift */; };
+		FB954F5E23D60CA900E638BE /* ARSProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5423D60CA600E638BE /* ARSProgressLoader.swift */; };
+		FB954F5F23D60CA900E638BE /* ARSLineProgressHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5523D60CA600E638BE /* ARSLineProgressHelpers.swift */; };
+		FB954F6023D60CA900E638BE /* ARSLineProgressExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5623D60CA700E638BE /* ARSLineProgressExtensions.swift */; };
+		FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5723D60CA700E638BE /* ARSInfiniteLoader.swift */; };
+		FB954F6223D60CA900E638BE /* ARSLineProgressProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5823D60CA700E638BE /* ARSLineProgressProtocols.swift */; };
+		FB954F6323D60CA900E638BE /* ARSStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5923D60CA800E638BE /* ARSStatus.swift */; };
+		FB954F6423D60CA900E638BE /* ARSLineProgressConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5A23D60CA800E638BE /* ARSLineProgressConstants.swift */; };
+		FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5B23D60CA900E638BE /* ARSLineProgress.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -96,7 +104,6 @@
 		44EAD663231EF5FC00094531 /* RVSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVSettings.swift; sourceTree = "<group>"; };
 		80D357CCD59793445EA2F617 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsSearchTableViewController.swift; sourceTree = "<group>"; };
 		D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxDirectionsController.swift; sourceTree = "<group>"; };
 		D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D185F9552322FABE00E4C64A /* Avoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avoid.swift; sourceTree = "<group>"; };
@@ -104,7 +111,6 @@
 		D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D18DAE74230B3C3D00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D18DAE79230B3C3F00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTableViewController.swift; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRESTAPINetworkController.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
@@ -123,6 +129,16 @@
 		FB67984323D121E1009E0D87 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		FB67984623D12E52009E0D87 /* AvoidanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceController.swift; sourceTree = "<group>"; };
 		FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceControllerProtocol.swift; sourceTree = "<group>"; };
+		FB954F5223D60CA500E638BE /* ARSLineProgressCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressCustomization.swift; sourceTree = "<group>"; };
+		FB954F5323D60CA600E638BE /* ARSLineProgressTypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressTypeAliases.swift; sourceTree = "<group>"; };
+		FB954F5423D60CA600E638BE /* ARSProgressLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSProgressLoader.swift; sourceTree = "<group>"; };
+		FB954F5523D60CA600E638BE /* ARSLineProgressHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressHelpers.swift; sourceTree = "<group>"; };
+		FB954F5623D60CA700E638BE /* ARSLineProgressExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressExtensions.swift; sourceTree = "<group>"; };
+		FB954F5723D60CA700E638BE /* ARSInfiniteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSInfiniteLoader.swift; sourceTree = "<group>"; };
+		FB954F5823D60CA700E638BE /* ARSLineProgressProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressProtocols.swift; sourceTree = "<group>"; };
+		FB954F5923D60CA800E638BE /* ARSStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSStatus.swift; sourceTree = "<group>"; };
+		FB954F5A23D60CA800E638BE /* ARSLineProgressConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressConstants.swift; sourceTree = "<group>"; };
+		FB954F5B23D60CA900E638BE /* ARSLineProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgress.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -169,7 +185,6 @@
 				321DE99723A84AD800521AAB /* UIColor+Extension.swift */,
 				32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */,
 				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
-				3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAA2B7323A8370100D6E4B7 /* AddVehicle */,
+				FB954F5123D60C8100E638BE /* ARSLineProgress */,
 				321DE99923A84AE000521AAB /* Extensions */,
 				FBE19F9623CD6F200046837C /* Hamburger Menu */,
 				FBE19F9323CD43100046837C /* MapView */,
@@ -231,8 +247,6 @@
 		D1BCDD80230E0F4C00986A18 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D11ABC2D2318E3140046F7D3 /* DirectionsSearchTableViewController.swift */,
-				D197845E2319BE4F00C56884 /* VehiclesTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -328,9 +342,35 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		FB954F5023D60C4400E638BE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FB954F5123D60C8100E638BE /* ARSLineProgress */ = {
+			isa = PBXGroup;
+			children = (
+				FB954F5723D60CA700E638BE /* ARSInfiniteLoader.swift */,
+				FB954F5B23D60CA900E638BE /* ARSLineProgress.swift */,
+				FB954F5A23D60CA800E638BE /* ARSLineProgressConstants.swift */,
+				FB954F5223D60CA500E638BE /* ARSLineProgressCustomization.swift */,
+				FB954F5623D60CA700E638BE /* ARSLineProgressExtensions.swift */,
+				FB954F5523D60CA600E638BE /* ARSLineProgressHelpers.swift */,
+				FB954F5823D60CA700E638BE /* ARSLineProgressProtocols.swift */,
+				FB954F5323D60CA600E638BE /* ARSLineProgressTypeAliases.swift */,
+				FB954F5423D60CA600E638BE /* ARSProgressLoader.swift */,
+				FB954F5923D60CA800E638BE /* ARSStatus.swift */,
+			);
+			path = ARSLineProgress;
+			sourceTree = "<group>";
+		};
 		FBAA2B7323A8370100D6E4B7 /* AddVehicle */ = {
 			isa = PBXGroup;
 			children = (
+				FB954F5023D60C4400E638BE /* Extensions */,
 				FB27EFF923CD13C700C7EA9A /* View Controllers */,
 				FB27EFF823CD13AB00C7EA9A /* Custom Controls */,
 				FB27EFF723CD139400C7EA9A /* Storyboards */,
@@ -617,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB954F6423D60CA900E638BE /* ARSLineProgressConstants.swift in Sources */,
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
 				FB67983723CFD5CA009E0D87 /* VehicleModelController.swift in Sources */,
 				3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */,
@@ -626,12 +667,16 @@
 				FBE19F9F23CD78140046837C /* MenuItemTableViewCell.swift in Sources */,
 				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,
 				FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */,
+				FB954F6023D60CA900E638BE /* ARSLineProgressExtensions.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
+				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
 				FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */,
+				FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
 				FB67983523CFD32F009E0D87 /* VehicleListTableViewController.swift in Sources */,
 				3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */,
+				FB954F5D23D60CA900E638BE /* ARSLineProgressTypeAliases.swift in Sources */,
 				FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */,
 				D11ABC302318EA240046F7D3 /* MapBoxDirectionsController.swift in Sources */,
 				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
@@ -640,15 +685,18 @@
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				FB67983A23D1055B009E0D87 /* UserController.swift in Sources */,
+				FB954F5F23D60CA900E638BE /* ARSLineProgressHelpers.swift in Sources */,
+				FB954F6223D60CA900E638BE /* ARSLineProgressProtocols.swift in Sources */,
 				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,
-				D197845F2319BE4F00C56884 /* VehiclesTableViewController.swift in Sources */,
 				FBE19FA423CD7B1E0046837C /* MenuItemController.swift in Sources */,
 				FBD1AFE723C3E2F900377F7C /* PasswordTextField.swift in Sources */,
 				3231CA4523CD5B1F008CDBA5 /* RVTypePickerViewController.swift in Sources */,
 				3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
 				FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */,
+				FB954F6323D60CA900E638BE /* ARSStatus.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
+				FB954F5E23D60CA900E638BE /* ARSProgressLoader.swift in Sources */,
 				FBE19F9223CD41E40046837C /* ux17MapViewController.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* WebRESTAPINetworkController.swift in Sources */,
 				FB67983123CFC35F009E0D87 /* CustomSideMenuNavigationController.swift in Sources */,
@@ -656,7 +704,7 @@
 				321DE9C123A9927400521AAB /* LandingPageViewController.swift in Sources */,
 				321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */,
 				FB67983C23D10F38009E0D87 /* UserControllerProtocol.swift in Sources */,
-				D11ABC2E2318E3140046F7D3 /* DirectionsSearchTableViewController.swift in Sources */,
+				FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				FBE19F9C23CD72200046837C /* ux17SideMenuTableViewController.swift in Sources */,
 			);

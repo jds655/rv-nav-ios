@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAnalytics
 import GoogleSignIn
 import FacebookCore
 import FacebookLogin
@@ -174,12 +173,13 @@ class OnboardingViewController: ShiftableViewController {
                     }
                 }
                 
-                Analytics.logEvent("register", parameters: nil)
+                
                 DispatchQueue.main.async {
                     let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
-                    self.userController.signIn(with: facebookSignInInfo, group: nil) { (error) in
+                    self.userController.signIn(with: facebookSignInInfo) { (_, error) in
                         if let error = error {
                             NSLog("Error when signing in with google after registration:\(error)")
+                            return
                         }
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "unwindToMapView", sender: self)
@@ -355,13 +355,12 @@ extension OnboardingViewController: GIDSignInDelegate {
                     self.present(alert, animated: true)
                 }
             }
-            
-            Analytics.logEvent("register", parameters: nil)
             DispatchQueue.main.async {
                 let googleSignInInfo = SignInInfo(email: googleEmail, password: googlePassword)
-                self.userController.signIn(with: googleSignInInfo, group: nil) { (error) in
+                self.userController.signIn(with: googleSignInInfo) { (_, error) in
                     if let error = error {
                         NSLog("Error when signing in with google after registration:\(error)")
+                        return
                     }
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "unwindToMapView", sender: self)
