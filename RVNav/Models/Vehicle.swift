@@ -8,9 +8,25 @@
 
 import Foundation
 
+enum VehicleClassDataBaseRepresentation: String, Codable {
+    case classA = "ClassA"
+    case classB = "ClassB"
+    case classC = "ClassC"
+    case fifthWheel = "5thWheel"
+    case tagalong = "tagalong"
+}
+
+enum VehicleClassDisplayString: String, CaseIterable {
+    case classA = "Class A"
+    case classB = "Class B"
+    case classC = "Class C"
+    case fifthWheel = "5th Wheel"
+    case tagalong = "Bumper Pull"
+}
+
 class Vehicle: Codable {
-  
-    let id: Int?
+    
+    var id: Int?
     let name: String?
     let height: Float?
     let weight: Float?
@@ -35,4 +51,12 @@ class Vehicle: Codable {
         self.trailer = trailer
     
     }
+}
+
+extension Vehicle: Equatable {
+    static func == (lhs: Vehicle, rhs: Vehicle) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    
 }

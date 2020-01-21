@@ -25,6 +25,7 @@ struct User: Codable, Equatable {
     var lastName: String?
     var password: String?
     var email: String?
+    var id: Int?
     var username: String?
     
     init( firstName: String?, lastName: String?, password: String?, email: String?, username: String?) {

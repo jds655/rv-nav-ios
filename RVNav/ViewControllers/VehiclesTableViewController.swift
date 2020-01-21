@@ -11,8 +11,10 @@ import UIKit
 
 class VehiclesTableViewController: UITableViewController {
 
-    var networkController = NetworkController()
+    var networkController = WebRESTAPINetworkController()
     var vehicles: [Vehicle] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +33,12 @@ class VehiclesTableViewController: UITableViewController {
             if let error = error {
                 NSLog("Error fetching Vehicles: \(error)")
                 return
-        }
-            self.vehicles = vehicles
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            }
+            if let vehicles = vehicles {
+                self.vehicles = vehicles
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -84,13 +88,13 @@ class VehiclesTableViewController: UITableViewController {
             
         }
         
-        if segue.identifier == "EditVehicleSegue" {
-            guard let destinationVC = segue.destination as? VehicleFormViewController,
-            let index = tableView.indexPathForSelectedRow else { return }
-            let vehicle = vehicles[index.row]
-            destinationVC.vehicle = vehicle
-            
-        }
+//        if segue.identifier == "EditVehicleSegue" {
+//            guard let destinationVC = segue.destination as? VehicleFormViewController,
+//            let index = tableView.indexPathForSelectedRow else { return }
+//            let vehicle = vehicles[index.row]
+//            destinationVC.vehicle = vehicle
+//            
+//        }
         
     }
     

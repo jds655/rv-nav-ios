@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAnalytics
 import GoogleSignIn
 import FacebookCore
 import FacebookLogin
@@ -50,7 +49,7 @@ class OnboardingViewController: ShiftableViewController {
     
     // MARK: - Properties
     private var formData = FormData()
-    var networkController: NetworkController!
+    var userController: UserControllerProtocol!
     
     // MARK: - IBOutlets
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -78,7 +77,7 @@ class OnboardingViewController: ShiftableViewController {
         case "Onboarding2":
             guard let vc = segue.destination as? Onboarding2ViewController else { return }
             vc.formData = self.formData
-            vc.networkController = networkController
+            vc.userController = userController
         default:
             break
         }
@@ -162,7 +161,7 @@ class OnboardingViewController: ShiftableViewController {
             }
             
             let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, username: fullNameFromFacebook)
-            self.networkController.register(with: facebookUser) { (error) in
+            self.userController.register(with: facebookUser) { (error) in
                 if let error = error {
                     NSLog("Error signing up with Facebook: \(error)")
                     DispatchQueue.main.async {
@@ -174,12 +173,13 @@ class OnboardingViewController: ShiftableViewController {
                     }
                 }
                 
-                Analytics.logEvent("register", parameters: nil)
+                
                 DispatchQueue.main.async {
                     let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
-                    self.networkController.signIn(with: facebookSignInInfo) { (error) in
+                    self.userController.signIn(with: facebookSignInInfo) { (_, error) in
                         if let error = error {
                             NSLog("Error when signing in with google after registration:\(error)")
+                            return
                         }
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "unwindToMapView", sender: self)
@@ -344,7 +344,7 @@ extension OnboardingViewController: GIDSignInDelegate {
         
         let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, username: googleEmail)
         
-        networkController.register(with: userToRegister) { (error) in
+        userController.register(with: userToRegister) { (error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -355,13 +355,12 @@ extension OnboardingViewController: GIDSignInDelegate {
                     self.present(alert, animated: true)
                 }
             }
-            
-            Analytics.logEvent("register", parameters: nil)
             DispatchQueue.main.async {
                 let googleSignInInfo = SignInInfo(email: googleEmail, password: googlePassword)
-                self.networkController.signIn(with: googleSignInInfo) { (error) in
+                self.userController.signIn(with: googleSignInInfo) { (_, error) in
                     if let error = error {
                         NSLog("Error when signing in with google after registration:\(error)")
+                        return
                     }
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "unwindToMapView", sender: self)

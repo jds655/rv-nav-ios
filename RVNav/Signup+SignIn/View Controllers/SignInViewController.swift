@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAnalytics
 import GoogleSignIn
 import FacebookCore
 import FacebookLogin
@@ -25,7 +24,8 @@ class SignInViewController: ShiftableViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
-    var networkController: NetworkController?
+    var userController: UserControllerProtocol?
+    var progress = ARSLineProgress()
     
     // MARK: - View LifeCycle
     
@@ -41,7 +41,7 @@ class SignInViewController: ShiftableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignUpSegue" {
             if let destinationVC = segue.destination as? OnboardingViewController {
-                destinationVC.networkController = networkController
+                destinationVC.userController = userController
             }
         }
     }
@@ -105,24 +105,22 @@ class SignInViewController: ShiftableViewController {
                 let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                 self.emailTextField.text = emailFromFacebook
                 self.passwordTextField.text = idFromFacebook
-                self.networkController?.signIn(with: facebookSignInInfo) { (error) in
+                ARSLineProgress.show()
+                self.userController?.signIn(with: facebookSignInInfo) { (_, error) in
                     if let error = error {
                         NSLog("Error signing up: \(error)")
                         DispatchQueue.main.async {
+                            ARSLineProgress.showFail()
                             let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
                             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alert.addAction(alertAction)
-                            
                             self.present(alert, animated: true)
                         }
                     }
-                    guard let message = self.networkController?.result?.message else { return }
-                    print(message)
-                    if self.networkController?.result?.token != nil {
-                        Analytics.logEvent("login", parameters: nil)
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        ARSLineProgress.showSuccess()
+                        self.dismiss(animated: true, completion: nil)
+                        ARSLineProgress.hide()
                     }
                 }
             }
@@ -138,7 +136,7 @@ class SignInViewController: ShiftableViewController {
             !password.isEmpty else { return }
         
         let signInInfo = SignInInfo(email: email, password: password)
-        networkController?.signIn(with: signInInfo) { (error) in
+        userController?.signIn(with: signInInfo) { (_, error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -149,13 +147,8 @@ class SignInViewController: ShiftableViewController {
                     self.present(alert, animated: true)
                 }
             }
-            guard let message = self.networkController?.result?.message else { return }
-            print(message)
-            if self.networkController?.result?.token != nil {
-                Analytics.logEvent("login", parameters: nil)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -211,6 +204,7 @@ extension SignInViewController {
 
 extension SignInViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
         if let error = error {
             NSLog("Error logging in user with google :\(error)")
             return
@@ -222,11 +216,10 @@ extension SignInViewController: GIDSignInDelegate {
         
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
-        print ("GoogleID: \(googlePassword)")
         
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
         
-        networkController?.signIn(with: signInInfo) { (error) in
+        userController?.signIn(with: signInInfo) { (_, error) in
             if let error = error {
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
@@ -236,14 +229,10 @@ extension SignInViewController: GIDSignInDelegate {
                     
                     self.present(alert, animated: true)
                 }
+                return
             }
-            guard let message = self.networkController?.result?.message else { return }
-            print(message)
-            if self.networkController?.result?.token != nil {
-                Analytics.logEvent("login", parameters: nil)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
