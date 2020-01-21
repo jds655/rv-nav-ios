@@ -15,6 +15,7 @@ class AvoidanceController: AvoidanceControllerProtocol {
         
         let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
         var request = URLRequest(url: avoidURL)
+        
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         do {

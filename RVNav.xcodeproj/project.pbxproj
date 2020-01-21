@@ -29,7 +29,7 @@
 		44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* RVSettings.swift */; };
 		8BBC317DD08B231FEC646732 /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11321C96E6A7079557B2F0C7 /* Pods_RVNav.framework */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
-		D11ABC302318EA240046F7D3 /* MapBoxDirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */; };
+		D11ABC302318EA240046F7D3 /* MapBoxAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ABC2F2318EA240046F7D3 /* MapBoxAPIController.swift */; };
 		D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */; };
 		D185F9562322FABE00E4C64A /* Avoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D185F9552322FABE00E4C64A /* Avoid.swift */; };
 		D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */; };
@@ -63,6 +63,12 @@
 		FB954F6323D60CA900E638BE /* ARSStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5923D60CA800E638BE /* ARSStatus.swift */; };
 		FB954F6423D60CA900E638BE /* ARSLineProgressConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5A23D60CA800E638BE /* ARSLineProgressConstants.swift */; };
 		FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5B23D60CA900E638BE /* ARSLineProgress.swift */; };
+		FB954F6723D762B900E638BE /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6623D762B900E638BE /* DirectionsController.swift */; };
+		FB954F6923D762E100E638BE /* DirectionsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */; };
+		FB954F6B23D76F3D00E638BE /* AddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6A23D76F3D00E638BE /* AddressProtocol.swift */; };
+		FB954F6D23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */; };
+		FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */; };
+		FB954F7123D79B5B00E638BE /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -104,7 +110,7 @@
 		44EAD663231EF5FC00094531 /* RVSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVSettings.swift; sourceTree = "<group>"; };
 		80D357CCD59793445EA2F617 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxDirectionsController.swift; sourceTree = "<group>"; };
+		D11ABC2F2318EA240046F7D3 /* MapBoxAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxAPIController.swift; sourceTree = "<group>"; };
 		D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D185F9552322FABE00E4C64A /* Avoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avoid.swift; sourceTree = "<group>"; };
 		D18DAE6C230B3C3C00D7C151 /* RVNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RVNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +145,12 @@
 		FB954F5923D60CA800E638BE /* ARSStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSStatus.swift; sourceTree = "<group>"; };
 		FB954F5A23D60CA800E638BE /* ARSLineProgressConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressConstants.swift; sourceTree = "<group>"; };
 		FB954F5B23D60CA900E638BE /* ARSLineProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgress.swift; sourceTree = "<group>"; };
+		FB954F6623D762B900E638BE /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
+		FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsControllerProtocol.swift; sourceTree = "<group>"; };
+		FB954F6A23D76F3D00E638BE /* AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressProtocol.swift; sourceTree = "<group>"; };
+		FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapBoxPlacemark+AddressProtocol.swift"; sourceTree = "<group>"; };
+		FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIProtocol.swift; sourceTree = "<group>"; };
+		FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGSMapAPIController.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +197,7 @@
 				321DE99723A84AD800521AAB /* UIColor+Extension.swift */,
 				32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */,
 				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
+				FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -265,8 +278,10 @@
 		D1BCDD82230E0F6900986A18 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */,
 				FB67984623D12E52009E0D87 /* AvoidanceController.swift */,
-				D11ABC2F2318EA240046F7D3 /* MapBoxDirectionsController.swift */,
+				FB954F6623D762B900E638BE /* DirectionsController.swift */,
+				D11ABC2F2318EA240046F7D3 /* MapBoxAPIController.swift */,
 				FB67984323D121E1009E0D87 /* ModelController.swift */,
 				FB67983923D1055B009E0D87 /* UserController.swift */,
 				FB67983623CFD5CA009E0D87 /* VehicleModelController.swift */,
@@ -334,10 +349,13 @@
 		FB67984A23D21921009E0D87 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				FB954F6A23D76F3D00E638BE /* AddressProtocol.swift */,
 				FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */,
+				FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */,
+				FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */,
+				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
 				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
 				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
-				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -660,17 +678,22 @@
 				FB954F6423D60CA900E638BE /* ARSLineProgressConstants.swift in Sources */,
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
 				FB67983723CFD5CA009E0D87 /* VehicleModelController.swift in Sources */,
+				FB954F7123D79B5B00E638BE /* AGSMapAPIController.swift in Sources */,
 				3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */,
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */,
+				FB954F6D23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift in Sources */,
 				FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */,
 				FBE19F9F23CD78140046837C /* MenuItemTableViewCell.swift in Sources */,
 				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,
 				FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */,
 				FB954F6023D60CA900E638BE /* ARSLineProgressExtensions.swift in Sources */,
+				FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
+				FB954F6723D762B900E638BE /* DirectionsController.swift in Sources */,
 				FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */,
+				FB954F6B23D76F3D00E638BE /* AddressProtocol.swift in Sources */,
 				FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
@@ -678,7 +701,7 @@
 				3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */,
 				FB954F5D23D60CA900E638BE /* ARSLineProgressTypeAliases.swift in Sources */,
 				FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */,
-				D11ABC302318EA240046F7D3 /* MapBoxDirectionsController.swift in Sources */,
+				D11ABC302318EA240046F7D3 /* MapBoxAPIController.swift in Sources */,
 				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
@@ -707,6 +730,7 @@
 				FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				FBE19F9C23CD72200046837C /* ux17SideMenuTableViewController.swift in Sources */,
+				FB954F6923D762E100E638BE /* DirectionsControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

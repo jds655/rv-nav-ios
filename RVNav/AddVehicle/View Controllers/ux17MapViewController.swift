@@ -10,10 +10,10 @@
 //
 
 import UIKit
-import Mapbox
-import MapboxNavigation
-import MapboxCoreNavigation
-import MapboxDirections
+//import Mapbox
+//import MapboxNavigation
+//import MapboxCoreNavigation
+//import MapboxDirections
 import SwiftKeychainWrapper
 import FirebaseAnalytics
 import MapboxGeocoder
@@ -26,14 +26,13 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
     private var modelController: ModelController = ModelController(userController: UserController())
-    //private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
-    private let directionsController = MapBoxDirectionsController()
+    private let directionsController: DirectionsControllerProtocol = DirectionsController(mapAPIController: AGSMapAPIController())
     private let graphicsOverlay = AGSGraphicsOverlay()
-    private var start: AGSPoint?
-    private var end: AGSPoint?
+    //private var start: AGSPoint?
+    //private var end: AGSPoint?
     private let geocoder = Geocoder.shared
-    private var avoidances: [Avoid] = []
-    private var coordinates: [CLLocationCoordinate2D] = []
+    //private var avoidances: [Avoid] = []
+    //private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     
     // MARK: - IBOutlets
@@ -44,7 +43,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
-        setupFloaty()
+        //setupFloaty()
         setupLocationDisplay()
     }
     
@@ -60,9 +59,9 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if UserDefaults.isFirstLaunch() {
+        if UserDefaults.isFirstLaunch() { //Show Landing Page on first launch
             performSegue(withIdentifier: "LandingPageSegue", sender: self)
-        } else if KeychainWrapper.standard.string(forKey: "accessToken") == nil && !UserDefaults.isFirstLaunch() {
+        } else if KeychainWrapper.standard.string(forKey: "accessToken") == nil && !UserDefaults.isFirstLaunch() { //Go to Signin
             performSegue(withIdentifier: "SignInSegue", sender: self)
         }
     }
@@ -73,8 +72,6 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             destinationVC.userController = modelController.userController
         }
         if segue.identifier == "ShowAddressSearch" {
-//            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-//            destinationVC.directionsController = directionsController
         }
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
@@ -96,6 +93,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
     
+    //Unwind segue to unwind back to here
     @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
     
     // MARK: - Private Methods
@@ -156,7 +154,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
     
     // Creates a new instance of AGSMap and sets it to the mapView.
-    
+    // MARK: - Setup Map
     private func setupMap() {
         mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
         mapView.touchDelegate = self
@@ -219,7 +217,7 @@ class ux17MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     //                    self.graphicsOverlay.graphics.add(routeGraphic)
                 }
                 barriers = tempBarriers
-                print(tempBarriers.count)
+                print("Barriers count: \(tempBarriers.count)")
             }
         }
         return barriers
