@@ -22,6 +22,8 @@
 		3231CA4523CD5B1F008CDBA5 /* RVTypePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */; };
 		3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */; };
 		3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */; };
+		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
+		324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
@@ -95,6 +97,8 @@
 		3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RVTypePickerViewController.swift; path = RVNav/AddVehicle/Storyboards/RVTypePickerViewController.swift; sourceTree = SOURCE_ROOT; };
 		3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetworkController.swift; sourceTree = "<group>"; };
 		3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddVehicleViewController+TextFieldFlow.swift"; sourceTree = "<group>"; };
+		324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlanARoute.storyboard; sourceTree = "<group>"; };
+		324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownTextField.swift; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3633CBCE01B89D25C153A07B /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -189,6 +193,39 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		324603A723D7B0AB00A32E48 /* PlanningARoute */ = {
+			isa = PBXGroup;
+			children = (
+				324603A923D7B0D000A32E48 /* Storyboards */,
+				324603A823D7B0C100A32E48 /* ViewControllers */,
+				324603AE23D7B7B800A32E48 /* CustomControls */,
+			);
+			path = PlanningARoute;
+			sourceTree = "<group>";
+		};
+		324603A823D7B0C100A32E48 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		324603A923D7B0D000A32E48 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		324603AE23D7B7B800A32E48 /* CustomControls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomControls;
+			sourceTree = "<group>";
+		};
 		8B9BC457793135384B2C9052 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +264,7 @@
 		D18DAE6E230B3C3D00D7C151 /* RVNav */ = {
 			isa = PBXGroup;
 			children = (
+				324603A723D7B0AB00A32E48 /* PlanningARoute */,
 				FBAA2B7323A8370100D6E4B7 /* AddVehicle */,
 				FB954F5123D60C8100E638BE /* ARSLineProgress */,
 				321DE99923A84AE000521AAB /* Extensions */,
@@ -239,16 +277,8 @@
 				D1BCDD84230E0F9500986A18 /* Resources */,
 				FBAA2B7423A8372300D6E4B7 /* Signup+SignIn */,
 				D1BCDD83230E0F8400986A18 /* Storyboards */,
-				D1BCDD80230E0F4C00986A18 /* ViewControllers */,
 			);
 			path = RVNav;
-			sourceTree = "<group>";
-		};
-		D1BCDD80230E0F4C00986A18 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D1BCDD81230E0F5D00986A18 /* Models */ = {
@@ -579,6 +609,7 @@
 				FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
+				324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
 				321DE98B23A83D6600521AAB /* Heebo-Medium.ttf in Resources */,
 				3231CA3F23CD28EC008CDBA5 /* AddVehicle.storyboard in Resources */,
@@ -687,6 +718,7 @@
 				FB67983A23D1055B009E0D87 /* UserController.swift in Sources */,
 				FB954F5F23D60CA900E638BE /* ARSLineProgressHelpers.swift in Sources */,
 				FB954F6223D60CA900E638BE /* ARSLineProgressProtocols.swift in Sources */,
+				324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */,
 				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,
 				FBE19FA423CD7B1E0046837C /* MenuItemController.swift in Sources */,
 				FBD1AFE723C3E2F900377F7C /* PasswordTextField.swift in Sources */,

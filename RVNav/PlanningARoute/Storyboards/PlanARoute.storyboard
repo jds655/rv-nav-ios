@@ -56,47 +56,16 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What vehicle are you routing with?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kh-nS-hK3">
-                                <rect key="frame" x="20" y="120" width="243" height="24"/>
+                                <rect key="frame" x="20" y="120" width="246" height="19"/>
                                 <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                 <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L32-t5-k5A" customClass="CustomDropDownTextField" customModule="RVNav" customModuleProvider="target">
-                                <rect key="frame" x="20" y="164" width="374" height="45"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNX-Yh-lfe">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayCar1x" translatesAutoresizingMaskIntoConstraints="NO" id="nnA-8O-6Wp">
-                                        <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="XAt-cK-7yJ"/>
-                                            <constraint firstAttribute="width" constant="25" id="qfz-Gc-gOj"/>
-                                        </constraints>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyC-Jn-J0k">
-                                        <rect key="frame" x="322" y="0.0" width="52" height="45"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="52" id="OrK-Bn-blr"/>
-                                            <constraint firstAttribute="height" constant="45" id="c65-ta-NfU"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L32-t5-k5A" userLabel="Custom Text Field" customClass="CustomDropDownTextField" customModule="RVNav" customModuleProvider="target">
+                                <rect key="frame" x="20" y="159" width="374" height="45"/>
+                                <color key="backgroundColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="xyC-Jn-J0k" secondAttribute="trailing" id="65H-KL-gFL"/>
-                                    <constraint firstItem="xyC-Jn-J0k" firstAttribute="top" secondItem="L32-t5-k5A" secondAttribute="top" id="6uk-9a-ZJl"/>
                                     <constraint firstAttribute="height" constant="45" id="A79-x2-fVJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="iNX-Yh-lfe" secondAttribute="trailing" id="Enh-tx-K1u"/>
-                                    <constraint firstAttribute="bottom" secondItem="xyC-Jn-J0k" secondAttribute="bottom" id="HwI-Zm-A4J"/>
-                                    <constraint firstItem="iNX-Yh-lfe" firstAttribute="top" secondItem="L32-t5-k5A" secondAttribute="top" id="hpu-as-oQg"/>
-                                    <constraint firstAttribute="bottom" secondItem="iNX-Yh-lfe" secondAttribute="bottom" id="jsZ-Hv-bqh"/>
-                                    <constraint firstItem="nnA-8O-6Wp" firstAttribute="leading" secondItem="L32-t5-k5A" secondAttribute="leading" constant="8" id="l8I-Fz-Zjl"/>
-                                    <constraint firstItem="iNX-Yh-lfe" firstAttribute="leading" secondItem="L32-t5-k5A" secondAttribute="leading" id="nTB-A0-vin"/>
-                                    <constraint firstItem="nnA-8O-6Wp" firstAttribute="top" secondItem="L32-t5-k5A" secondAttribute="top" constant="8" id="uAd-kw-roC"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -120,7 +89,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="grayCar1x" width="24" height="24"/>
         <image name="hamburger" width="39" height="39"/>
     </resources>
 </document>
