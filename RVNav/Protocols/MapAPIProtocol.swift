@@ -6,11 +6,12 @@
 //  Copyright © 2020 RVNav. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import ArcGIS
 
 protocol MapAPIControllerProtocol {
     var delegate: ViewDelegateProtocol? {get set}
+    var mapView: AGSMapView {get set}
     var avoidanceController : AvoidanceControllerProtocol {get set}
     
     init (avoidanceController: AvoidanceControllerProtocol)
@@ -18,6 +19,4 @@ protocol MapAPIControllerProtocol {
     func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void)
     
     func findRoute(with barriers: [AGSPolygonBarrier])
-    
-    func setupMap(target: UIViewController?) -> AGSMapView
 }

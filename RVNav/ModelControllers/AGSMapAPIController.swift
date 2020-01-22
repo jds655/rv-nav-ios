@@ -11,14 +11,28 @@ import CoreLocation
 import ArcGIS
 
 class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDelegate {
+
     // MARK: - Properties
     var delegate: ViewDelegateProtocol?
-    private var destinationAddress: AddressProtocol?
+    private var destinationAddress: AddressProtocol? {
+        didSet{
+            let destination = destinationAddress!.location!.coordinate
+            end = AGSPoint(clLocationCoordinate2D: destination)
+            //let _ = createBarriers()
+        }
+    }
     internal var avoidanceController: AvoidanceControllerProtocol
-    internal var mapView = AGSMapView()
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
+    lazy var mapView: AGSMapView = {
+        var newMapView = AGSMapView()
+        newMapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        newMapView.touchDelegate = self
+        newMapView.graphicsOverlays.add(graphicsOverlay)
+        return newMapView
+    }()
+    
     
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     
@@ -26,26 +40,14 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     required init(avoidanceController: AvoidanceControllerProtocol) {
         self.avoidanceController = avoidanceController
         super.init()
-        setupLocationDisplay()
+        DispatchQueue.main.async {
+            self.setupLocationDisplay()
+        }
     }
     
     // MARK: - Public Methods
     func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void) {
         
-    }
-    
-    // Creates a new instance of AGSMap and sets it to the mapView.
-    // MARK: - Setup Map
-    func setupMap(target: UIViewController?) -> AGSMapView {
-        self.mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-        self.mapView.touchDelegate = self
-        self.mapView.graphicsOverlays.add(graphicsOverlay)
-        if destinationAddress != nil {
-            let destination = destinationAddress!.location!.coordinate
-            end = AGSPoint(clLocationCoordinate2D: destination)
-            let _ = createBarriers()
-        }
-        return mapView
     }
     
     private func convert(toLongAndLat xPoint: Double, andYPoint yPoint: Double) ->
@@ -191,12 +193,10 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     // Allows users location to be used and displayed on the main mapView.
     private func setupLocationDisplay() {
         mapView.locationDisplay.autoPanMode = .compassNavigation
-        mapView.locationDisplay.start { [weak self] (error:Error?) -> Void in
+        mapView.locationDisplay.start { [unowned self] (error:Error?) -> Void in
             if let error = error {
-                self?.showAlert(withStatus: error.localizedDescription)
+                self.showAlert(withStatus: error.localizedDescription)
             }
         }
     }
-    
-    
 }

@@ -3,7 +3,10 @@
 //  RVNav
 //
 //  Created by Jonathan Ferrer on 8/19/19.
-//  Copyright © 2019 RVNav. All rights reserved.
+//  Copied bu Joshua Sharp on 01/13/2020
+//  Notes: Migrated UI over to new ux17 Design
+
+//  Copyright © 2020 RVNav. All rights reserved.
 //
 
 import UIKit
@@ -17,16 +20,14 @@ import MapboxGeocoder
 import Contacts
 import Floaty
 import ArcGIS
-import GoogleSignIn
-import FacebookCore
-import FacebookLogin
 
 
-class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
+class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var networkController = NetworkController()
-    private let directionsController = DirectionsController()
+    private var modelController: ModelController = ModelController(userController: UserController())
+    //private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
+    private let directionsController = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController()))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
@@ -69,26 +70,30 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignInSegue" {
             let destinationVC = segue.destination as! SignInViewController
-            destinationVC.networkController = networkController
+            destinationVC.userController = modelController.userController
         }
         if segue.identifier == "ShowAddressSearch" {
-            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-            destinationVC.directionsController = directionsController
+//            let destinationVC = segue.destination as! DirectionsSearchTableViewController
+//            destinationVC.directionsController = directionsController
         }
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
-            destinationVC.networkController = networkController
+            destinationVC.userController = modelController.userController
+        }
+        if segue.identifier == "HamburgerMenu" {
+            let destinationVC = segue.destination as! CustomSideMenuNavigationController
+            destinationVC.modelController = modelController
+            destinationVC.menuDelegate = self
         }
     }
     
     // MARK: - IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        GIDSignIn.sharedInstance().signOut()
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
-        performSegue(withIdentifier: "SignInSegue", sender: self)
-        print("Remove successful: \(removeSuccessful)")
+        modelController.userController.logout {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+            }
+        }
     }
     
     @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
@@ -111,7 +116,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        directionsController.mapAPIController.avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
@@ -190,7 +195,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        directionsController.mapAPIController.avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
@@ -271,5 +276,11 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
+    }
+}
+
+extension ux17OldMapViewController: MenuDelegateProtocol {
+    func performSegue(segueIdentifier: String) {
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
 }

@@ -10,15 +10,9 @@
 //
 
 import UIKit
-//import Mapbox
-//import MapboxNavigation
-//import MapboxCoreNavigation
-//import MapboxDirections
 import SwiftKeychainWrapper
 import FirebaseAnalytics
-import MapboxGeocoder
 import Contacts
-import Floaty
 import ArcGIS
 
 
@@ -30,14 +24,25 @@ class ux17MapViewController: UIViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet private weak var mapView: AGSMapView!
+    @IBOutlet private lazy var mapView: AGSMapView! = {
+        var newMapView = AGSMapView()
+        let graphicsOverlay = AGSGraphicsOverlay()
+        newMapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        //newMapView.touchDelegate = self
+        newMapView.graphicsOverlays.add(graphicsOverlay)
+        return newMapView
+    }()
+    
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
         self.directionsController.delegate = self
-        self.mapView = directionsController.mapAPIController.setupMap(target: self)
+        mapView.locationDisplay.autoPanMode = .compassNavigation
+        mapView.locationDisplay.start(completion: nil)
+        //self.mapView = directionsController.mapAPIController.mapView
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,26 +89,6 @@ class ux17MapViewController: UIViewController {
     @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
     
     // MARK: - Private Methods
-    
-    // This is for the Plus button floating on the map
-//    private func setupFloaty() {
-//        let carIcon = UIImage(named: "car")
-//        let floaty = Floaty()
-//        floaty.addItem("Directions", icon: carIcon) { (item) in
-//            DispatchQueue.main.async {
-//                self.performSegue(withIdentifier: "ShowAddressSearch", sender: self)
-//            }
-//        }
-//        floaty.addItem("Avoid", icon: carIcon) { (item) in
-//            DispatchQueue.main.async {
-//                self.plotAvoidance()
-//            }
-//        }
-//        floaty.paddingY = 42
-//        floaty.buttonColor = .black
-//        floaty.plusColor = .green
-//        self.view.addSubview(floaty)
-//    }
 }
 
 extension ux17MapViewController: MenuDelegateProtocol {
