@@ -89,10 +89,18 @@ class ux17SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuItem = menuItemController.sections[indexPath.section].menuItems[indexPath.row]
         if !menuItem.segueID.isEmpty {
-            performSegue(withIdentifier: menuItem.segueID, sender: self)
+            if menuItem.inMenu {
+                performSegue(withIdentifier: menuItem.segueID, sender: self)
+            } else {
+                menuDelegate?.performSegue(segueIdentifier: menuItem.segueID)
+            }
         } else if !menuItem.selector.isEmpty {
             let selector = NSSelectorFromString(menuItem.selector)
-            performSelector(onMainThread: selector, with: nil, waitUntilDone: false)
+            if menuItem.inMenu {
+                performSelector(onMainThread: selector, with: nil, waitUntilDone: false)
+            } else {
+                menuDelegate?.performSelector(selector: selector, with: nil, waitUntilDone: false)
+            }
         }
     }
     

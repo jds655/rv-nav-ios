@@ -92,6 +92,10 @@ class ux17MapViewController: UIViewController {
 }
 
 extension ux17MapViewController: MenuDelegateProtocol {
+    func performSelector(selector: Selector, with arg: Any?, waitUntilDone wait: Bool) {
+        performSelector(onMainThread: selector, with: arg, waitUntilDone: wait)
+    }
+    
     func performSegue(segueIdentifier: String) {
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }

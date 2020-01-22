@@ -35,6 +35,12 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     private var avoidances: [Avoid] = []
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
+    #warning("Save and restore from userdefauls")
+    private var mapType: AGSBasemapType = .navigationVector {
+        didSet{
+            mapView.map = AGSMap(basemapType: mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        }
+    }
     
     // MARK: - IBOutlets
     @IBOutlet private weak var mapView: AGSMapView!
@@ -46,6 +52,16 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         setupMap()
         setupFloaty()
         setupLocationDisplay()
+    }
+    
+    // Creates a new instance of AGSMap and sets it to the mapView.
+    
+    private func setupMap() {
+        //mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        //mapView.map = AGSMap(basemapType: .imageryWithLabelsVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        mapView.touchDelegate = self
+        mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,8 +89,8 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
             destinationVC.userController = modelController.userController
         }
         if segue.identifier == "ShowAddressSearch" {
-//            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-//            destinationVC.directionsController = directionsController
+            //            let destinationVC = segue.destination as! DirectionsSearchTableViewController
+            //            destinationVC.directionsController = directionsController
         }
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
@@ -85,6 +101,10 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
             destinationVC.modelController = modelController
             destinationVC.menuDelegate = self
         }
+    }
+    
+    @objc private func logout() {
+        logOutButtonTapped(self)
     }
     
     // MARK: - IBActions
@@ -153,14 +173,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         floaty.buttonColor = .black
         floaty.plusColor = .green
         self.view.addSubview(floaty)
-    }
-    
-    // Creates a new instance of AGSMap and sets it to the mapView.
-    
-    private func setupMap() {
-        mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-        mapView.touchDelegate = self
-        mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
     // Allows users location to be used and displayed on the main mapView.
@@ -277,9 +289,25 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
     }
+    
+    // MARK: - SELECTORS
+    @objc func map_sat () {
+        print("map_sat selector")
+        self.mapType = .imageryWithLabelsVector
+    }
+    
+    @objc func map_ter () {
+        print("map_ter selector")
+        self.mapType = .terrainWithLabelsVector
+    }
+    
 }
 
 extension ux17OldMapViewController: MenuDelegateProtocol {
+    func performSelector(selector: Selector, with arg: Any?, waitUntilDone wait: Bool) {
+        performSelector(onMainThread: selector, with: arg, waitUntilDone: wait)
+    }
+    
     func performSegue(segueIdentifier: String) {
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }

@@ -38,10 +38,10 @@ class CustomDropDownTextField: UIControl {
         
         // TextField Constraints
         let textFieldLeadingAnchor  = textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: standardMargin)
-        let textFieldTopAnchor      = textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: standardMargin)
+        //let textFieldTopAnchor      = textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: standardMargin)
         let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
         
-        NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor])
+        //NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor])
     }
 }
 
