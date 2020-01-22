@@ -69,6 +69,7 @@
 		FB954F6D23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */; };
 		FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */; };
 		FB954F7123D79B5B00E638BE /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
+		FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
@@ -151,6 +152,7 @@
 		FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapBoxPlacemark+AddressProtocol.swift"; sourceTree = "<group>"; };
 		FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIProtocol.swift; sourceTree = "<group>"; };
 		FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGSMapAPIController.swift; sourceTree = "<group>"; };
+		FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegateProtocol.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
 				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
 				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
+				FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
 				FB954F6723D762B900E638BE /* DirectionsController.swift in Sources */,
+				FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */,
 				FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */,
 				FB954F6B23D76F3D00E638BE /* AddressProtocol.swift in Sources */,
 				FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */,

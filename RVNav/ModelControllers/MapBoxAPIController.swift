@@ -10,7 +10,7 @@ import Foundation
 import MapboxGeocoder
 
 
-class MapBoxAPIController: MapAPIControllerProtocol {
+class MapBoxAPIController  {
     var avoidanceController: AvoidanceControllerProtocol
     var mapAPIController: MapAPIControllerProtocol
     

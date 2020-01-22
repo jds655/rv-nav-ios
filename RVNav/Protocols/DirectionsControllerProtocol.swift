@@ -6,13 +6,14 @@
 //  Copyright © 2020 RVNav. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol DirectionsControllerProtocol {
+    var delegate: ViewDelegateProtocol? {get set}
     var destinationAddress: AddressProtocol? {get set}
     var mapAPIController: MapAPIControllerProtocol {get set}
     
-    init(mapAPIController: MapAPIControllerProtocol, avoidanceController: AvoidanceControllerProtocol)
+    init(mapAPIController: MapAPIControllerProtocol)
     
     func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void)
 }

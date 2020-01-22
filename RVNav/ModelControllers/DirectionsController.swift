@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class DirectionsController: DirectionsControllerProtocol {
-    var destinationAddress: AddressProtocol?
-    internal var mapAPIController: MapAPIControllerProtocol
     
-    required init(mapAPIController: MapAPIControllerProtocol, avoidanceController: AvoidanceControllerProtocol = AvoidanceController()) {
-        self.mapAPIController = mapAPIController(mapAPIController: mapAPIController, avoidanceController: avoidanceController)
+    var delegate: ViewDelegateProtocol?
+    var destinationAddress: AddressProtocol?
+    var mapAPIController: MapAPIControllerProtocol
+    
+    required init(mapAPIController: MapAPIControllerProtocol) {
+        self.mapAPIController = mapAPIController
+        self.mapAPIController.delegate = self
     }
     
     func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void) {
@@ -22,4 +26,12 @@ class DirectionsController: DirectionsControllerProtocol {
         }
         
     }
+}
+
+extension DirectionsController: ViewDelegateProtocol {
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        self.delegate?.present(viewControllerToPresent, animated: flag, completion: completion)
+    }
+    
+    
 }
