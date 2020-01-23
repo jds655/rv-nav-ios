@@ -10,4 +10,5 @@ import Foundation
 
 protocol MenuDelegateProtocol {
     func performSegue(segueIdentifier: String)
+    func performSelector(selector: Selector, with arg: Any?, waitUntilDone wait: Bool)
 }

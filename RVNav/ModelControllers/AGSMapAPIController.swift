@@ -1,99 +1,55 @@
 //
-//  MapViewController.swift
+//  AGSMapAPIController.swift
 //  RVNav
 //
-//  Created by Jonathan Ferrer on 8/19/19.
-//  Copyright © 2019 RVNav. All rights reserved.
+//  Created by Lambda_School_Loaner_214 on 1/21/20.
+//  Copyright © 2020 RVNav. All rights reserved.
 //
 
 import UIKit
-import Mapbox
-import MapboxNavigation
-import MapboxCoreNavigation
-import MapboxDirections
-import SwiftKeychainWrapper
-import FirebaseAnalytics
-import MapboxGeocoder
-import Contacts
-import Floaty
+import CoreLocation
 import ArcGIS
-import GoogleSignIn
-import FacebookCore
-import FacebookLogin
 
+class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDelegate {
 
-class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
-    
     // MARK: - Properties
-    private var networkController = NetworkController()
-    private let directionsController = DirectionsController()
+    var delegate: ViewDelegateProtocol?
+    private var destinationAddress: AddressProtocol? {
+        didSet{
+            let destination = destinationAddress!.location!.coordinate
+            end = AGSPoint(clLocationCoordinate2D: destination)
+            //let _ = createBarriers()
+        }
+    }
+    internal var avoidanceController: AvoidanceControllerProtocol
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
-    private let geocoder = Geocoder.shared
-    private var avoidances: [Avoid] = []
-    private var coordinates: [CLLocationCoordinate2D] = []
+    lazy var mapView: AGSMapView = {
+        var newMapView = AGSMapView()
+        newMapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        newMapView.touchDelegate = self
+        newMapView.graphicsOverlays.add(graphicsOverlay)
+        return newMapView
+    }()
+    
+    
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     
-    // MARK: - IBOutlets
-    @IBOutlet private weak var mapView: AGSMapView!
-    
-    // MARK: - View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        Analytics.logEvent("app_opened", parameters: nil)
-        setupMap()
-        setupFloaty()
-        setupLocationDisplay()
+    // MARK: -  Lifecycle
+    required init(avoidanceController: AvoidanceControllerProtocol) {
+        self.avoidanceController = avoidanceController
+        super.init()
+        DispatchQueue.main.async {
+            self.setupLocationDisplay()
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: - Public Methods
+    func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void) {
         
-        if directionsController.destinationAddress != nil {
-            let destination = directionsController.destinationAddress!.location!.coordinate
-            end = AGSPoint(clLocationCoordinate2D: destination)
-            let _ = createBarriers()
-        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if UserDefaults.isFirstLaunch() {
-            performSegue(withIdentifier: "LandingPageSegue", sender: self)
-        } else if KeychainWrapper.standard.string(forKey: "accessToken") == nil && !UserDefaults.isFirstLaunch() {
-            performSegue(withIdentifier: "SignInSegue", sender: self)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SignInSegue" {
-            let destinationVC = segue.destination as! SignInViewController
-            destinationVC.networkController = networkController
-        }
-        if segue.identifier == "ShowAddressSearch" {
-            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-            destinationVC.directionsController = directionsController
-        }
-        if segue.identifier == "LandingPageSegue" {
-            let destinationVC = segue.destination as! LandingPageViewController
-            destinationVC.networkController = networkController
-        }
-    }
-    
-    // MARK: - IBActions
-    @IBAction func logOutButtonTapped(_ sender: Any) {
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        GIDSignIn.sharedInstance().signOut()
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
-        performSegue(withIdentifier: "SignInSegue", sender: self)
-        print("Remove successful: \(removeSuccessful)")
-    }
-    
-    @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
-    
-    // MARK: - Private Methods
     private func convert(toLongAndLat xPoint: Double, andYPoint yPoint: Double) ->
         CLLocation {
             let originShift: Double = 2 * .pi * 6378137 / 2.0
@@ -103,20 +59,28 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             return CLLocation(latitude: lat, longitude: lon)
     }
     
+    // Shows alert if there was an error displaying location.
+    private func showAlert(withStatus: String) {
+        let alertController = UIAlertController(title: "Alert", message:
+            withStatus, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        delegate?.present(alertController, animated: true, completion: nil)
+        
+    }
+    
     // Used to display barrier points retrieved from the DS backend.
     private func plotAvoidance() {
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
         
-        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
+        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = destinationAddress?.location?.coordinate.longitude, let endLat = destinationAddress?.location?.coordinate.latitude  else { return }
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
             if let avoidances = avoidances {
-                self.avoidances = avoidances
                 print(avoidances.count)
                 
                 DispatchQueue.main.async {
@@ -130,52 +94,6 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
     
-    // This is for the Plus button floating on the map
-    private func setupFloaty() {
-        let carIcon = UIImage(named: "car")
-        let floaty = Floaty()
-        floaty.addItem("Directions", icon: carIcon) { (item) in
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "ShowAddressSearch", sender: self)
-            }
-        }
-        floaty.addItem("Avoid", icon: carIcon) { (item) in
-            DispatchQueue.main.async {
-                self.plotAvoidance()
-            }
-        }
-        floaty.paddingY = 42
-        floaty.buttonColor = .black
-        floaty.plusColor = .green
-        self.view.addSubview(floaty)
-    }
-    
-    // Creates a new instance of AGSMap and sets it to the mapView.
-    
-    private func setupMap() {
-        mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-        mapView.touchDelegate = self
-        mapView.graphicsOverlays.add(graphicsOverlay)
-    }
-    
-    // Allows users location to be used and displayed on the main mapView.
-    private func setupLocationDisplay() {
-        mapView.locationDisplay.autoPanMode = .compassNavigation
-        mapView.locationDisplay.start { [weak self] (error:Error?) -> Void in
-            if let error = error {
-                self?.showAlert(withStatus: error.localizedDescription)
-            }
-        }
-    }
-    
-    // Shows alert if there was an error displaying location.
-    private func showAlert(withStatus: String) {
-        let alertController = UIAlertController(title: "Alert", message:
-            withStatus, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
-    
     // Used to call DS backend for getting barriers coordinates.  Each coordinate is turned into a AGSPolygonBarrier and appended to an array.  The array is then returned.
     func createBarriers() -> [AGSPolygonBarrier]{
         let const = 0.0001
@@ -186,11 +104,11 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
         
-        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return []}
+        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = destinationAddress?.location?.coordinate.longitude, let endLat = destinationAddress?.location?.coordinate.latitude  else { return []}
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
-        networkController.getAvoidances(with: routeInfo) { (avoidances, error) in
+        avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
                 NSLog("error fetching avoidances \(error)")
             }
@@ -214,15 +132,14 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     //                    self.graphicsOverlay.graphics.add(routeGraphic)
                 }
                 barriers = tempBarriers
-                print(tempBarriers.count)
+                print("Barriers count: \(tempBarriers.count)")
             }
         }
         return barriers
     }
     
     // This function sets the default paramaters for finding a route between 2 locations.  Barrier points are used as a parameter.  The route is drawn to the screen.
-    
-    private func findRoute(with barriers: [AGSPolygonBarrier]) {
+    func findRoute(with barriers: [AGSPolygonBarrier]) {
         
         routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
             guard error == nil else {
@@ -240,7 +157,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     print("Error solving route: \(error!.localizedDescription)")
                     return
                 }
-                
+                #warning("Grok the routes returned")
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
@@ -258,7 +175,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                             Travel time: \(formatter.string(from: totalDuration))
                             """, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        self.delegate?.present(alert, animated: true, completion: nil)
                     }
                 }
             })
@@ -271,5 +188,15 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
+    }
+    
+    // Allows users location to be used and displayed on the main mapView.
+    private func setupLocationDisplay() {
+        mapView.locationDisplay.autoPanMode = .compassNavigation
+        mapView.locationDisplay.start { [unowned self] (error:Error?) -> Void in
+            if let error = error {
+                self.showAlert(withStatus: error.localizedDescription)
+            }
+        }
     }
 }
