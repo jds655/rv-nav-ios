@@ -70,12 +70,14 @@ class CustomDropDownTextField: UIControl {
         
         //Divider Line
         dividerLine.backgroundColor = .gray
+        dividerLine.layer.cornerRadius = 4
         dividerLine.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(dividerLine)
         
-        let dividerLineHeightAnchor = dividerLine.heightAnchor.constraint(equalToConstant: 45)
-        let dividerLineWidthAnchor = dividerLine.widthAnchor.constraint(equalToConstant: 4)
-        let dividerLineTopAnchor = dividerLine.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 4)
-        let dividerLineTrailingAnchor = dividerLine.trailingAnchor.constraint(equalTo: dropDownArrowContainerView.leadingAnchor, constant: 0)
+        let dividerLineHeightAnchor = dividerLine.heightAnchor.constraint(equalToConstant: 30)
+        let dividerLineWidthAnchor = dividerLine.widthAnchor.constraint(equalToConstant: 1.5)
+        let dividerLineTopAnchor = dividerLine.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8)
+        let dividerLineTrailingAnchor = dividerLine.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -45)
         NSLayoutConstraint.activate([dividerLineHeightAnchor, dividerLineWidthAnchor, dividerLineTopAnchor, dividerLineTrailingAnchor])
     }
     
@@ -84,7 +86,7 @@ class CustomDropDownTextField: UIControl {
         //ContainerView
         dropDownArrowContainerView.layer.cornerRadius = 4
         dropDownArrowContainerView.translatesAutoresizingMaskIntoConstraints = false
-        dropDownArrowContainerView.backgroundColor = .green
+        dropDownArrowContainerView.backgroundColor = .clear
         addSubview(dropDownArrowContainerView)
         //ContainerView Constraints
         let dropdownContainerTopAnchor = dropDownArrowContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
@@ -104,10 +106,6 @@ class CustomDropDownTextField: UIControl {
         let arrowTopAnchor = dropDownArrow.topAnchor.constraint(equalTo: dropDownArrowContainerView.topAnchor, constant: 6)
         let arrowTrailingAnchor = dropDownArrow.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
         NSLayoutConstraint.activate([arrowHeightAnchor, arrowWidthAnchor, arrowTopAnchor, arrowTrailingAnchor])
-    }
-    
-    class DropDownArrow: UIControl {
-        
     }
 }
 

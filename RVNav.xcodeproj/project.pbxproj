@@ -24,6 +24,7 @@
 		3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */; };
 		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
 		324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
+		3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
@@ -38,7 +39,6 @@
 		D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE73230B3C3D00D7C151 /* Main.storyboard */; };
 		D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */; };
 		D1BCDD7F230DB69B00986A18 /* WebRESTAPINetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */; };
-		FB0C631523D8C2CE00E99557 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C631423D8C2CE00E99557 /* ux17OldMapViewController.swift */; };
 		FB0C631723D8CC9700E99557 /* CustomSelectLocationControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
@@ -109,6 +109,7 @@
 		3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddVehicleViewController+TextFieldFlow.swift"; sourceTree = "<group>"; };
 		324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlanARoute.storyboard; sourceTree = "<group>"; };
 		324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownTextField.swift; sourceTree = "<group>"; };
+		3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ux17OldMapViewController.swift; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3633CBCE01B89D25C153A07B /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		D18DAE74230B3C3D00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D18DAE79230B3C3F00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRESTAPINetworkController.swift; sourceTree = "<group>"; };
-		FB0C631423D8C2CE00E99557 /* ux17OldMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ux17OldMapViewController.swift; path = "/Volumes/DropBox/Dropbox/Lambda/Labs19/rv-nav-ios/RVNav/MapView/View Controllers/ux17OldMapViewController.swift"; sourceTree = "<absolute>"; };
 		FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSelectLocationControl.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 		FBE19F9423CD43240046837C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FB0C631423D8C2CE00E99557 /* ux17OldMapViewController.swift */,
+				3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */,
 				FBE19F9123CD41E40046837C /* ux17MapViewController.swift */,
 			);
 			path = "View Controllers";
@@ -740,6 +740,7 @@
 				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,
 				FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */,
 				FB954F6023D60CA900E638BE /* ARSLineProgressExtensions.swift in Sources */,
+				3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */,
 				FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
@@ -785,7 +786,6 @@
 				FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				FBE19F9C23CD72200046837C /* ux17SideMenuTableViewController.swift in Sources */,
-				FB0C631523D8C2CE00E99557 /* ux17OldMapViewController.swift in Sources */,
 				FB954F6923D762E100E638BE /* DirectionsControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
