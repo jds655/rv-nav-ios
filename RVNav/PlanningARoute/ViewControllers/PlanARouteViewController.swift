@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol ViewEndedEditDelegate {
-    func ViewEndedEdit(didEndEdit: Bool)
-}
-
-
 class PlanARouteViewController: UIViewController {
     
     // MARK: - Properties
@@ -21,8 +16,6 @@ class PlanARouteViewController: UIViewController {
             setVehicleDataSource()
         }
     }
-    
-    var delegate: ViewEndedEditDelegate?
     
     // MARK: - IBOutlets
     

@@ -32,7 +32,8 @@ class CustomDropDownTextField: UIControl {
         setupTextField()
         setAssessoryImageView()
         setDropDownArrow()
-        setupVehicleDropDown()
+        setupVehicleDropDownUI()
+        setupVehicleDropDownCellConfiguration()
         NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
     }
     
@@ -50,23 +51,18 @@ class CustomDropDownTextField: UIControl {
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
-        
         // TextField Constraints
         let textFieldLeadingAnchor  = textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
         let textFieldTopAnchor      = textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
         let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
         let textFieldBottomAnchor = textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        
         NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor, textFieldBottomAnchor])
-        
-        
     }
     
     private func setAssessoryImageView() {
         accessoryImageView.image = UIImage(named: "grayCar1x")
         accessoryImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(accessoryImageView)
-        
         // Accessory Image Constraints
         let imageTopAnchor = accessoryImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8)
         let imageLeadingAnchor = accessoryImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8)
@@ -79,7 +75,7 @@ class CustomDropDownTextField: UIControl {
         dividerLine.layer.cornerRadius = 4
         dividerLine.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dividerLine)
-        
+        // Divider Line Contraints
         let dividerLineHeightAnchor = dividerLine.heightAnchor.constraint(equalToConstant: 30)
         let dividerLineWidthAnchor = dividerLine.widthAnchor.constraint(equalToConstant: 1.5)
         let dividerLineTopAnchor = dividerLine.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8)
@@ -88,7 +84,6 @@ class CustomDropDownTextField: UIControl {
     }
     
     private func setDropDownArrow() {
-        
         //ContainerView
         dropDownArrowContainerView.layer.cornerRadius = 4
         dropDownArrowContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,14 +109,17 @@ class CustomDropDownTextField: UIControl {
         NSLayoutConstraint.activate([arrowHeightAnchor, arrowWidthAnchor, arrowTopAnchor, arrowTrailingAnchor])
     }
     
-    private func setupVehicleDropDown() {
+    private func setupVehicleDropDownUI() {
         dropDownVehicles.anchorView = self
         dropDownVehicles.dismissMode = .automatic
-        dropDownVehicles.dataSource = ["", "Testing", "one", "two", "Three"]
         DropDown.appearance().setupCornerRadius(4)
         DropDown.appearance().textFont = heeboRegularFont ?? UIFont.systemFont(ofSize: 16)
         dropDownVehicles.direction = .bottom
         dropDownVehicles.bottomOffset = CGPoint(x: 0, y: textFieldHeight)
+    }
+    
+    private func setupVehicleDropDownCellConfiguration() {
+        dropDownVehicles.dataSource = ["", "Testing", "one", "two", "Three"]
         dropDownVehicles.cellNib = UINib(nibName: "CustomDropDownCell", bundle: nil)
         dropDownVehicles.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? CustomDropDownCell else { return }
@@ -137,7 +135,6 @@ class CustomDropDownTextField: UIControl {
 extension UIView {
     func rotateUp() {
         func rotateUpward() { transform = CGAffineTransform(rotationAngle: CGFloat.pi) }
-        
         UIView.animate(withDuration: 0.3, animations: rotateUpward)
     }
     
@@ -146,6 +143,7 @@ extension UIView {
         UIView.animate(withDuration: 0.3, animations: rotateBackToOriginalPosition)
     }
 }
+
 extension CustomDropDownTextField: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         dropDownArrow.rotateUp()
@@ -156,7 +154,6 @@ extension CustomDropDownTextField: UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-
         dropDownArrow.rotateBack()
     }
 }
