@@ -92,14 +92,19 @@ class ux17SideMenuTableViewController: UITableViewController {
             if menuItem.inMenu {
                 performSegue(withIdentifier: menuItem.segueID, sender: self)
             } else {
-                menuDelegate?.performSegue(segueIdentifier: menuItem.segueID)
+                dismiss(animated: true) {
+                    self.menuDelegate?.performSegue(segueIdentifier: menuItem.segueID)
+                }
             }
         } else if !menuItem.selector.isEmpty {
             let selector = NSSelectorFromString(menuItem.selector)
             if menuItem.inMenu {
                 performSelector(onMainThread: selector, with: nil, waitUntilDone: false)
             } else {
-                menuDelegate?.performSelector(selector: selector, with: nil, waitUntilDone: false)
+                dismiss(animated: true) {
+                    self.menuDelegate?.performSelector(selector: selector, with: nil, waitUntilDone: false)
+                }
+                
             }
         }
     }
