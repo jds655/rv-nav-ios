@@ -170,12 +170,23 @@
                     <connections>
                         <outlet property="topView" destination="jPx-cG-Q3B" id="5kR-Ru-JnZ"/>
                         <segue destination="sLc-e9-n7M" kind="show" identifier="ShowVehichleInfo" id="7zl-Qw-iTH"/>
+                        <segue destination="Qua-Dl-oxc" kind="show" identifier="PlanARoute" id="rdM-57-Pqh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeN-SY-QRa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="C1s-fc-09S" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3515.9420289855075" y="641.51785714285711"/>
+        </scene>
+        <!--PlanARoute-->
+        <scene sceneID="1jZ-On-XUc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PlanARoute" id="Qua-Dl-oxc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="rSl-g2-SSx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5A-JZ-jQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4093" y="577"/>
         </scene>
         <!--VehicleList-->
         <scene sceneID="5wf-b5-Bk2">

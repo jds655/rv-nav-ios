@@ -103,10 +103,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
     
-    @objc private func logout() {
-        logOutButtonTapped(self)
-    }
-    
     // MARK: - IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
         modelController.userController.logout {
@@ -291,14 +287,20 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
     
     // MARK: - SELECTORS
+    @objc func map_street () {
+        self.mapType = .navigationVector
+    }
+    
     @objc func map_sat () {
-        print("map_sat selector")
         self.mapType = .imageryWithLabelsVector
     }
     
     @objc func map_ter () {
-        print("map_ter selector")
         self.mapType = .terrainWithLabelsVector
+    }
+    
+    @objc private func logout() {
+        logOutButtonTapped(self)
     }
     
 }
