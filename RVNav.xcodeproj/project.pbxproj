@@ -44,6 +44,7 @@
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
 		FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */; };
 		FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */; };
+		FB54B05523D915D3008821EC /* CustomSelectLocationTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */; };
 		FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */; };
 		FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */; };
 		FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */; };
@@ -131,6 +132,7 @@
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
 		FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingBackground.swift; sourceTree = "<group>"; };
 		FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ux17MapView.storyboard; sourceTree = "<group>"; };
+		FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomSelectLocationTest.storyboard; sourceTree = "<group>"; };
 		FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionTableViewCell.swift; sourceTree = "<group>"; };
 		FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDelegateProtocol.swift; sourceTree = "<group>"; };
 		FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkControllerProtocol.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */,
+				FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */,
 				321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */,
 				321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */,
+				FB54B05523D915D3008821EC /* CustomSelectLocationTest.storyboard in Resources */,
 				FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
