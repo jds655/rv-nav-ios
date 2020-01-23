@@ -45,6 +45,7 @@
 		FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */; };
 		FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */; };
 		FB54B05523D915D3008821EC /* CustomSelectLocationTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */; };
+		FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */; };
 		FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */; };
 		FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */; };
 		FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */; };
@@ -133,6 +134,7 @@
 		FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingBackground.swift; sourceTree = "<group>"; };
 		FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ux17MapView.storyboard; sourceTree = "<group>"; };
 		FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomSelectLocationTest.storyboard; sourceTree = "<group>"; };
+		FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanARouteViewController.swift; sourceTree = "<group>"; };
 		FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionTableViewCell.swift; sourceTree = "<group>"; };
 		FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDelegateProtocol.swift; sourceTree = "<group>"; };
 		FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkControllerProtocol.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			children = (
 				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
 				FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */,
+				FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				D11ABC302318EA240046F7D3 /* MapBoxAPIController.swift in Sources */,
 				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
+				FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
