@@ -71,14 +71,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="top" secondItem="mxx-3q-ZlZ" secondAttribute="top" id="CFh-ky-ZkS"/>
-                            <constraint firstItem="5Kh-nS-hK3" firstAttribute="top" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="20" id="Q1W-Jd-SYf"/>
-                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" id="SCf-jg-TaA"/>
-                            <constraint firstItem="L32-t5-k5A" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="Ucv-vQ-f8r"/>
-                            <constraint firstItem="5Kh-nS-hK3" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="doD-Ca-vpH"/>
-                            <constraint firstItem="L32-t5-k5A" firstAttribute="top" secondItem="5Kh-nS-hK3" secondAttribute="bottom" constant="20" id="eT3-NI-12e"/>
-                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="trailing" secondItem="Ua1-0m-Q33" secondAttribute="trailing" id="i2t-ck-eM8"/>
-                            <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" constant="20" id="nJn-mx-q6V"/>
+                            <constraint firstItem="L32-t5-k5A" firstAttribute="top" secondItem="5Kh-nS-hK3" secondAttribute="bottom" constant="20" id="BhO-gD-usz"/>
+                            <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" constant="20" id="FH0-c1-VGV"/>
+                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="trailing" secondItem="Ua1-0m-Q33" secondAttribute="trailing" id="QEo-36-quO"/>
+                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="top" secondItem="mxx-3q-ZlZ" secondAttribute="top" id="cog-v8-OmM"/>
+                            <constraint firstItem="5Kh-nS-hK3" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="dTy-mR-a8I"/>
+                            <constraint firstItem="5Kh-nS-hK3" firstAttribute="top" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="20" id="dle-Z1-WdR"/>
+                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" id="e7S-hY-1QB"/>
+                            <constraint firstItem="L32-t5-k5A" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="foE-Fe-UHZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ua1-0m-Q33"/>
                     </view>
