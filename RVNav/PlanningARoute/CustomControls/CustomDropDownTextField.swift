@@ -13,7 +13,7 @@ class CustomDropDownTextField: UIControl {
     
     private let standardMargin: CGFloat = 8.0
     private let textFieldContainerHeight: CGFloat = 50.0
-    private let textFieldMargin: CGFloat = 6.0
+    private let textFieldHeight: CGFloat = 45.0
     
     private let heeboRegularFont = UIFont(name: "Heebo-Regular", size: 16)
     
@@ -26,7 +26,6 @@ class CustomDropDownTextField: UIControl {
     private var dropDownArrow: UIImageView = UIImageView()
     private var dropDownVehicles: DropDown = DropDown()
    
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
@@ -116,13 +115,22 @@ class CustomDropDownTextField: UIControl {
     }
     
     private func setupVehicleDropDown() {
+        dropDownVehicles.anchorView = self
+        dropDownVehicles.dismissMode = .automatic
+        dropDownVehicles.dataSource = ["", "Testing", "one", "two", "Three"]
         DropDown.appearance().setupCornerRadius(4)
         DropDown.appearance().textFont = heeboRegularFont ?? UIFont.systemFont(ofSize: 16)
         dropDownVehicles.direction = .bottom
-        //dropDownVehicles.bottomOffset = CGPoint(x: 0, y: textFieldContainerHeight)
-        dropDownVehicles.anchorView = textField
-        dropDownVehicles.dismissMode = .automatic
-        dropDownVehicles.dataSource = ["Testing", "one", "two", "Three"]
+        dropDownVehicles.bottomOffset = CGPoint(x: 0, y: textFieldHeight)
+        dropDownVehicles.cellNib = UINib(nibName: "CustomDropDownCell", bundle: nil)
+        dropDownVehicles.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            guard let cell = cell as? CustomDropDownCell else { return }
+            if index == 0 {
+                cell.optionLabel.isHidden = true
+            } else {
+                cell.addVehicleButton.isHidden = true
+            }
+        }
     }
 }
 

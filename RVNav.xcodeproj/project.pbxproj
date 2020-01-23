@@ -24,6 +24,8 @@
 		3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */; };
 		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
 		324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
+		32798A6E23DA55B9002D1AA5 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */; };
+		32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */; };
 		3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
@@ -110,6 +112,8 @@
 		3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddVehicleViewController+TextFieldFlow.swift"; sourceTree = "<group>"; };
 		324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlanARoute.storyboard; sourceTree = "<group>"; };
 		324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownTextField.swift; sourceTree = "<group>"; };
+		32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCell.xib; sourceTree = "<group>"; };
+		32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCell.swift; sourceTree = "<group>"; };
 		3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ux17OldMapViewController.swift; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3633CBCE01B89D25C153A07B /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
+				32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */,
+				32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */,
 			);
 			path = CustomControls;
 			sourceTree = "<group>";
@@ -659,6 +665,7 @@
 				D18DAE75230B3C3D00D7C151 /* Main.storyboard in Resources */,
 				321DE98923A83D5D00521AAB /* Heebo-Regular.ttf in Resources */,
 				FBE19FA823CD831F0046837C /* Menu.xcassets in Resources */,
+				32798A6E23DA55B9002D1AA5 /* CustomDropDownCell.xib in Resources */,
 				FBE19F9A23CD6FB10046837C /* HamburgerMenu.storyboard in Resources */,
 				FB67983323CFD215009E0D87 /* VehicleList.storyboard in Resources */,
 			);
@@ -744,6 +751,7 @@
 				FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */,
 				FB954F6023D60CA900E638BE /* ARSLineProgressExtensions.swift in Sources */,
 				3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */,
+				32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */,
 				FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
