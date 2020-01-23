@@ -8,14 +8,21 @@
 
 import UIKit
 
-class PlanARouteViewController: UIViewController {
+protocol ViewEndedEditDelegate {
+    func ViewEndedEdit(didEndEdit: Bool)
+}
 
+
+class PlanARouteViewController: UIViewController {
+    
     // MARK: - Properties
     var vehicleController: VehicleModelControllerProtocol? {
         didSet {
             setVehicleDataSource()
         }
     }
+    
+    var delegate: ViewEndedEditDelegate?
     
     // MARK: - IBOutlets
     
@@ -39,6 +46,13 @@ class PlanARouteViewController: UIViewController {
     private func updateViews () {
         
     }
+    @IBAction func viewWasTapped(_ sender: UITapGestureRecognizer) {
+        NotificationCenter.default.post(name: .outsideViewTapped, object: nil)
+    }
     
-// MARK: - Extensions
 }
+// MARK: - Extensions
+extension Notification.Name {
+    static var outsideViewTapped = Notification.Name("OutsideViewTapped")
+}
+

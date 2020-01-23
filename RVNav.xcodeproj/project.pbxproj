@@ -229,7 +229,6 @@
 		324603A823D7B0C100A32E48 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
 				FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */,
 				FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */,
 			);
@@ -248,6 +247,7 @@
 		324603AE23D7B7B800A32E48 /* CustomControls */ = {
 			isa = PBXGroup;
 			children = (
+				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
 			);
 			path = CustomControls;
 			sourceTree = "<group>";

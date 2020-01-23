@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 class CustomDropDownTextField: UIControl {
     
@@ -18,11 +19,12 @@ class CustomDropDownTextField: UIControl {
     
     private var textFieldWasTapped: Bool = false
     
-    var textField: UITextField = UITextField()
+    private var textField: UITextField = UITextField()
     private var accessoryImageView: UIImageView = UIImageView()
     private var dividerLine: UIView = UIView()
     private var dropDownArrowContainerView: UIView = UIView()
     private var dropDownArrow: UIImageView = UIImageView()
+    private var dropDownVehicles: DropDown = DropDown()
    
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,6 +33,12 @@ class CustomDropDownTextField: UIControl {
         setupTextField()
         setAssessoryImageView()
         setDropDownArrow()
+        setupVehicleDropDown()
+        NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
+    }
+    
+    @objc func editingEnded() {
+        textField.endEditing(true)
     }
     
     private func setupUI() {
@@ -40,15 +48,14 @@ class CustomDropDownTextField: UIControl {
     private func setupTextField() {
         textField.font = heeboRegularFont
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        //textField.isUserInteractionEnabled = false
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
         
         // TextField Constraints
-        let textFieldLeadingAnchor  = textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
+        let textFieldLeadingAnchor  = textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
         let textFieldTopAnchor      = textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
-        let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
+        let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
         let textFieldBottomAnchor = textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
         
         NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor, textFieldBottomAnchor])
@@ -107,6 +114,16 @@ class CustomDropDownTextField: UIControl {
         let arrowTrailingAnchor = dropDownArrow.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
         NSLayoutConstraint.activate([arrowHeightAnchor, arrowWidthAnchor, arrowTopAnchor, arrowTrailingAnchor])
     }
+    
+    private func setupVehicleDropDown() {
+        DropDown.appearance().setupCornerRadius(4)
+        DropDown.appearance().textFont = heeboRegularFont ?? UIFont.systemFont(ofSize: 16)
+        dropDownVehicles.direction = .bottom
+        //dropDownVehicles.bottomOffset = CGPoint(x: 0, y: textFieldContainerHeight)
+        dropDownVehicles.anchorView = textField
+        dropDownVehicles.dismissMode = .automatic
+        dropDownVehicles.dataSource = ["Testing", "one", "two", "Three"]
+    }
 }
 
 extension UIView {
@@ -122,12 +139,16 @@ extension UIView {
     }
 }
 extension CustomDropDownTextField: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         dropDownArrow.rotateUp()
-        return true
+        dropDownVehicles.show()
+        dropDownVehicles.selectionAction = { (index: Int, item: String) in
+            self.textField.text = item
+            textField.endEditing(true)
+        }
     }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+
         dropDownArrow.rotateBack()
-        return true
     }
 }

@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--PlanA Route View Controller-->
         <scene sceneID="2aA-mN-28y">
             <objects>
-                <viewController id="dBe-uT-XvF" sceneMemberID="viewController">
+                <viewController id="dBe-uT-XvF" customClass="PlanARouteViewController" customModule="RVNav" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mxx-3q-ZlZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,13 +56,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What vehicle are you routing with?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kh-nS-hK3">
-                                <rect key="frame" x="20" y="120" width="246" height="19"/>
+                                <rect key="frame" x="20" y="120" width="242.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
                                 <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L32-t5-k5A" userLabel="Custom Text Field" customClass="CustomDropDownTextField" customModule="RVNav" customModuleProvider="target">
-                                <rect key="frame" x="20" y="159" width="374" height="45"/>
+                                <rect key="frame" x="20" y="163.5" width="374" height="45"/>
                                 <color key="backgroundColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="A79-x2-fVJ"/>
@@ -70,6 +70,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="L32-t5-k5A" firstAttribute="top" secondItem="5Kh-nS-hK3" secondAttribute="bottom" constant="20" id="BhO-gD-usz"/>
                             <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" constant="20" id="FH0-c1-VGV"/>
@@ -81,9 +82,17 @@
                             <constraint firstItem="L32-t5-k5A" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="foE-Fe-UHZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ua1-0m-Q33"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="8Av-Zh-yf0" appends="YES" id="fZa-s4-yBT"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8Av-Zh-yf0">
+                    <connections>
+                        <action selector="viewWasTapped:" destination="dBe-uT-XvF" id="hTR-H5-qeg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-257.97101449275362" y="227.67857142857142"/>
         </scene>
