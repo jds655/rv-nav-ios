@@ -18,7 +18,7 @@ class CustomDropDownTextField: UIControl {
     
     private var textFieldWasTapped: Bool = false
     
-    private var textField: UITextField = UITextField()
+    var textField: UITextField = UITextField()
     private var accessoryImageView: UIImageView = UIImageView()
     private var dividerLine: UIView = UIView()
     private var dropDownArrowContainerView: UIView = UIView()
@@ -40,7 +40,7 @@ class CustomDropDownTextField: UIControl {
     private func setupTextField() {
         textField.font = heeboRegularFont
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        textField.isUserInteractionEnabled = false
+        //textField.isUserInteractionEnabled = false
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
@@ -109,17 +109,25 @@ class CustomDropDownTextField: UIControl {
     }
 }
 
-
 extension UIView {
-    func rotate() {
-        func rotateUp() { transform = CGAffineTransform(rotationAngle: CGFloat.pi) }
-        func rotateBack() { transform = .identity }
+    func rotateUp() {
+        func rotateUpward() { transform = CGAffineTransform(rotationAngle: CGFloat.pi) }
         
-        UIView.animate(withDuration: 0.3,
-                       animations: { rotateUp() },
-                       completion: { _ in UIView.animate(withDuration: 0.3) { rotateBack() }})
+        UIView.animate(withDuration: 0.3, animations: rotateUpward)
+    }
+    
+    func rotateBack() {
+        func rotateBackToOriginalPosition() { transform = .identity }
+        UIView.animate(withDuration: 0.3, animations: rotateBackToOriginalPosition)
     }
 }
 extension CustomDropDownTextField: UITextFieldDelegate {
-    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        dropDownArrow.rotateUp()
+        return true
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        dropDownArrow.rotateBack()
+        return true
+    }
 }
