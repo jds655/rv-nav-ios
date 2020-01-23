@@ -18,7 +18,7 @@ class CustomDropDownTextField: UIControl {
     
     private var textFieldWasTapped: Bool = false
     
-    private var textField: UITextField = UITextField()
+    var textField: UITextField = UITextField()
     private var accessoryImageView: UIImageView = UIImageView()
     private var dividerLine: UIView = UIView()
     private var dropDownArrowContainerView: UIView = UIView()
@@ -40,7 +40,7 @@ class CustomDropDownTextField: UIControl {
     private func setupTextField() {
         textField.font = heeboRegularFont
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        textField.isUserInteractionEnabled = false
+        //textField.isUserInteractionEnabled = false
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
@@ -70,12 +70,14 @@ class CustomDropDownTextField: UIControl {
         
         //Divider Line
         dividerLine.backgroundColor = .gray
+        dividerLine.layer.cornerRadius = 4
         dividerLine.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(dividerLine)
         
-        let dividerLineHeightAnchor = dividerLine.heightAnchor.constraint(equalToConstant: 45)
-        let dividerLineWidthAnchor = dividerLine.widthAnchor.constraint(equalToConstant: 4)
-        let dividerLineTopAnchor = dividerLine.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 4)
-        let dividerLineTrailingAnchor = dividerLine.trailingAnchor.constraint(equalTo: dropDownArrowContainerView.leadingAnchor, constant: 0)
+        let dividerLineHeightAnchor = dividerLine.heightAnchor.constraint(equalToConstant: 30)
+        let dividerLineWidthAnchor = dividerLine.widthAnchor.constraint(equalToConstant: 1.5)
+        let dividerLineTopAnchor = dividerLine.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8)
+        let dividerLineTrailingAnchor = dividerLine.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -45)
         NSLayoutConstraint.activate([dividerLineHeightAnchor, dividerLineWidthAnchor, dividerLineTopAnchor, dividerLineTrailingAnchor])
     }
     
@@ -84,7 +86,7 @@ class CustomDropDownTextField: UIControl {
         //ContainerView
         dropDownArrowContainerView.layer.cornerRadius = 4
         dropDownArrowContainerView.translatesAutoresizingMaskIntoConstraints = false
-        dropDownArrowContainerView.backgroundColor = .green
+        dropDownArrowContainerView.backgroundColor = .clear
         addSubview(dropDownArrowContainerView)
         //ContainerView Constraints
         let dropdownContainerTopAnchor = dropDownArrowContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
@@ -105,23 +107,27 @@ class CustomDropDownTextField: UIControl {
         let arrowTrailingAnchor = dropDownArrow.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
         NSLayoutConstraint.activate([arrowHeightAnchor, arrowWidthAnchor, arrowTopAnchor, arrowTrailingAnchor])
     }
-    
-    class DropDownArrow: UIControl {
-        
-    }
 }
 
-
 extension UIView {
-    func rotate() {
-        func rotateUp() { transform = CGAffineTransform(rotationAngle: CGFloat.pi) }
-        func rotateBack() { transform = .identity }
+    func rotateUp() {
+        func rotateUpward() { transform = CGAffineTransform(rotationAngle: CGFloat.pi) }
         
-        UIView.animate(withDuration: 0.3,
-                       animations: { rotateUp() },
-                       completion: { _ in UIView.animate(withDuration: 0.3) { rotateBack() }})
+        UIView.animate(withDuration: 0.3, animations: rotateUpward)
+    }
+    
+    func rotateBack() {
+        func rotateBackToOriginalPosition() { transform = .identity }
+        UIView.animate(withDuration: 0.3, animations: rotateBackToOriginalPosition)
     }
 }
 extension CustomDropDownTextField: UITextFieldDelegate {
-    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        dropDownArrow.rotateUp()
+        return true
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        dropDownArrow.rotateBack()
+        return true
+    }
 }
