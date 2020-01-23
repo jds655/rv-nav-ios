@@ -17,6 +17,7 @@ import UIKit
 class CustomSelectLocationControl: UIControl {
     private let pointImage = UIImage(named: "greyLocation")
     private let searchImage = UIImage(named: "graySearch")
+    private let controlMinHeight: CGFloat = 40
     
     private let topView = UIView()
     private let bottomView = UIView()
@@ -46,6 +47,7 @@ class CustomSelectLocationControl: UIControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         tableView.delegate = self
+        tableView.dataSource = self
         setupSubViews()
     }
     
@@ -90,6 +92,7 @@ class CustomSelectLocationControl: UIControl {
         self.stackView.addSubview(topView)
         //topView constraints
         topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.heightAnchor.constraint(equalToConstant: controlMinHeight).isActive = true
         topView.leadingAnchor.constraint(equalTo: topView.superview!.leadingAnchor).isActive = true
         topView.topAnchor.constraint(equalTo: topView.superview!.topAnchor).isActive = true
         topView.trailingAnchor.constraint(equalTo: topView.superview!.trailingAnchor).isActive = true
@@ -123,6 +126,4 @@ extension CustomSelectLocationControl: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
-    
-    
 }

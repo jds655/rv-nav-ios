@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Heebo-Regular.ttf">
+            <string>Heebo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Custom Select Location Test-->
         <scene sceneID="j9P-M6-59R">
@@ -16,13 +21,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="td6-l6-uNo" customClass="CustomSelectLocationControl" customModule="RVNav" customModuleProvider="target">
-                                <rect key="frame" x="87" y="159" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="td6-l6-uNo" customClass="CustomSelectLocationControl" customModule="RVNav" customModuleProvider="target">
+                                <rect key="frame" x="128.5" y="159" width="157.5" height="42"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy2-yl-FAW">
+                                <rect key="frame" x="87" y="436" width="240" height="24"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gfD-Rj-Na3">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="24"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyLocation" translatesAutoresizingMaskIntoConstraints="NO" id="goC-8n-FFg">
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="goC-8n-FFg" secondAttribute="height" multiplier="1:1" id="D6P-Dh-kPk"/>
+                                                    <constraint firstAttribute="width" constant="24" id="fxO-jX-1Qr"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jFU-Lj-dP5">
+                                                <rect key="frame" x="24" y="0.0" width="216" height="24"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Location" textAlignment="natural" minimumFontSize="16" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="I3n-1c-pVh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="216" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="location"/>
+                                                    </textField>
+                                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fuu-dG-vTX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="216" height="0.0"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <prototypes>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationSearchCell" textLabel="bTX-K8-wbE" style="IBUITableViewCellStyleDefault" id="YXI-iV-uf5">
+                                                                <rect key="frame" x="0.0" y="28" width="216" height="43.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YXI-iV-uf5" id="fwc-ze-n8O">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="216" height="43.5"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bTX-K8-wbE">
+                                                                            <rect key="frame" x="16" y="0.0" width="184" height="43.5"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </tableViewCellContentView>
+                                                            </tableViewCell>
+                                                        </prototypes>
+                                                    </tableView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0" green="0.69803921570000005" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gfD-Rj-Na3" secondAttribute="trailing" id="K6c-mW-HHW"/>
+                                    <constraint firstItem="gfD-Rj-Na3" firstAttribute="top" secondItem="Cy2-yl-FAW" secondAttribute="top" id="g95-au-lud"/>
+                                    <constraint firstItem="gfD-Rj-Na3" firstAttribute="leading" secondItem="Cy2-yl-FAW" secondAttribute="leading" id="oJH-JZ-n6X"/>
+                                    <constraint firstAttribute="bottom" secondItem="gfD-Rj-Na3" secondAttribute="bottom" id="pPw-CK-Ebf"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="td6-l6-uNo" secondAttribute="bottom" constant="695" id="ENj-WX-kNv"/>
+                            <constraint firstItem="td6-l6-uNo" firstAttribute="centerX" secondItem="2Pa-25-B7s" secondAttribute="centerX" id="TvB-vD-z1z"/>
+                            <constraint firstItem="Cy2-yl-FAW" firstAttribute="centerX" secondItem="2Pa-25-B7s" secondAttribute="centerX" id="WHW-mm-rkP"/>
+                            <constraint firstItem="Cy2-yl-FAW" firstAttribute="centerX" secondItem="2Pa-25-B7s" secondAttribute="centerX" id="Yzk-I4-9cg"/>
+                            <constraint firstItem="td6-l6-uNo" firstAttribute="top" secondItem="oSV-de-gge" secondAttribute="top" constant="115" id="lHw-Bu-Xpk"/>
+                            <constraint firstItem="Cy2-yl-FAW" firstAttribute="centerY" secondItem="2Pa-25-B7s" secondAttribute="centerY" id="zep-9h-by7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oSV-de-gge"/>
                     </view>
                 </viewController>
@@ -31,4 +102,7 @@
             <point key="canvasLocation" x="111.59420289855073" y="83.705357142857139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="greyLocation" width="24" height="24"/>
+    </resources>
 </document>

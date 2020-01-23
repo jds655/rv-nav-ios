@@ -19,5 +19,6 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKCoreKit'
 pod 'FacebookCore'
 pod 'FacebookLogin'
+pod 'DropDown'
 
 end
