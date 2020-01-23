@@ -60,7 +60,7 @@ class FirebaseNetworkController: NetworkControllerProtocol {
             completion(nil,error)
             return
         }
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(nil,NSError(domain: "", code: response.statusCode, userInfo: nil))
@@ -69,6 +69,10 @@ class FirebaseNetworkController: NetworkControllerProtocol {
             if let error = error {
                 completion(nil,error)
                 return
+            }
+            if let data = data {
+                print("Create Vehicle: \(String(data: data, encoding: .utf8)!)")
+                
             }
             completion(vehicle,nil)
         }.resume()

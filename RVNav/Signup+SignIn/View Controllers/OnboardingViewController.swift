@@ -160,7 +160,7 @@ class OnboardingViewController: ShiftableViewController {
                 lastName = names.joined(separator: " ")
             }
             
-            let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, username: fullNameFromFacebook)
+            let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, id: nil, username: fullNameFromFacebook)
             self.userController.register(with: facebookUser) { (error) in
                 if let error = error {
                     NSLog("Error signing up with Facebook: \(error)")
@@ -342,7 +342,7 @@ extension OnboardingViewController: GIDSignInDelegate {
             let googleEmail = googleUser.profile.email,
             let googlePassword = googleUser.userID else { return }
         
-        let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, username: googleEmail)
+        let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, id: nil, username: googleEmail)
         
         userController.register(with: userToRegister) { (error) in
             if let error = error {

@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import ArcGIS
 
 class AvoidanceController: AvoidanceControllerProtocol {
-    
+    var avoidences: [Avoid]?
     // Gets an array of avoidance coordinates from DS backend.
     func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void) {
         
         let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
         var request = URLRequest(url: avoidURL)
+        
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
@@ -44,6 +46,7 @@ class AvoidanceController: AvoidanceControllerProtocol {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let avoidArray: [Avoid] = try jsonDecoder.decode([Avoid].self, from: data)
+                self.avoidences = avoidArray
                 completion(avoidArray, nil)
                 
             } catch {
@@ -52,4 +55,5 @@ class AvoidanceController: AvoidanceControllerProtocol {
             }
         }.resume()
     }
+    
 }

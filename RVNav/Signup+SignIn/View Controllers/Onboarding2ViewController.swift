@@ -49,6 +49,7 @@ class Onboarding2ViewController: ShiftableViewController {
                         lastName: formData.lastname,
                         password: formData.password,
                         email: formData.email,
+                        id: nil,
                         username: formData.username)
         ARSLineProgress.show()
         userController?.register(with: user) { (error) in
