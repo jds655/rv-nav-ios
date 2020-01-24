@@ -20,8 +20,9 @@ class MenuItemController {
             MenuItem(label: "Terrain", imageName: "terrain", order: 2, segueID: "", selector: "map_ter")]))
         self.sections.append(MenuItemSection(name: MenuItemController.sectionNames[1], order: 1, menuItems: [
             MenuItem(label: "My Vehicles", imageName: "car", order: 0, segueID: "ShowVehichleInfo", inMenu: true),
-            MenuItem(label: "Saved Routes", imageName: "savedroute", order: 1, segueID: "PlanARoute", inMenu: true),
-            MenuItem(label: "Routing options", imageName: "settings", order: 2, segueID: "", inMenu: true)]))
+            MenuItem(label: "Plan A Route", imageName: "navigation-diagonal", order: 1, segueID: "PlanARoute", inMenu: true),
+            MenuItem(label: "Saved Routes", imageName: "savedroute", order: 2, segueID: "", inMenu: true),
+            MenuItem(label: "Routing options", imageName: "settings", order: 3, segueID: "", inMenu: true)]))
         self.sections.append(MenuItemSection(name: MenuItemController.sectionNames[2], order: 2, menuItems: [
             MenuItem(label: "Logout", imageName: "log-out", order: 0, segueID: "", selector: "logout")]))
     }

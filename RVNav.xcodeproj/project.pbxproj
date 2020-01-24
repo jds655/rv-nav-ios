@@ -20,10 +20,10 @@
 		3231CA3F23CD28EC008CDBA5 /* AddVehicle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3231CA3E23CD28EC008CDBA5 /* AddVehicle.storyboard */; };
 		3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231CA4023CD2BAD008CDBA5 /* AddVehicleViewController.swift */; };
 		3231CA4523CD5B1F008CDBA5 /* RVTypePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */; };
+		323955E123DB5781007D217C /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */; };
 		3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */; };
 		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
-		324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		32798A6E23DA55B9002D1AA5 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */; };
 		32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */; };
 		3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */; };
@@ -32,7 +32,7 @@
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
 		447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447831EA23146D65007D50E7 /* GoogleService-Info.plist */; };
 		44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAD663231EF5FC00094531 /* RVSettings.swift */; };
-		9F71C90C588B4BEF5DB2D898 /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8A6A49072DB3A0B296FA21 /* Pods_RVNav.framework */; };
+		B7BE9E9D7CB72CA85AC8E087 /* Pods_RVNav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1B08448EB207B4A926E3B9 /* Pods_RVNav.framework */; };
 		D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */; };
 		D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */; };
 		D185F9562322FABE00E4C64A /* Avoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D185F9552322FABE00E4C64A /* Avoid.swift */; };
@@ -119,8 +119,9 @@
 		447831E923146D65007D50E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447831EA23146D65007D50E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		44EAD663231EF5FC00094531 /* RVSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVSettings.swift; sourceTree = "<group>"; };
-		80D105A8094C994A77C272BA /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
-		8A23D589A5760592B0B662AB /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
+		9148ABE2644645D31A197500 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
+		B5F313F511943CF84D7AFBE6 /* Pods-RVNav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.release.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.release.xcconfig"; sourceTree = "<group>"; };
+		CB1B08448EB207B4A926E3B9 /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D11ABC2F2318EA240046F7D3 /* MapBoxAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxAPIController.swift; sourceTree = "<group>"; };
 		D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		D18DAE74230B3C3D00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D18DAE79230B3C3F00D7C151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRESTAPINetworkController.swift; sourceTree = "<group>"; };
-		EF8A6A49072DB3A0B296FA21 /* Pods_RVNav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RVNav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSelectLocationControl.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F71C90C588B4BEF5DB2D898 /* Pods_RVNav.framework in Frameworks */,
+				B7BE9E9D7CB72CA85AC8E087 /* Pods_RVNav.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,10 +259,10 @@
 			path = CustomControls;
 			sourceTree = "<group>";
 		};
-		59B927A1D277B8782E819296 /* Frameworks */ = {
+		37D11CEBB3A689CDC84F8D5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF8A6A49072DB3A0B296FA21 /* Pods_RVNav.framework */,
+				CB1B08448EB207B4A926E3B9 /* Pods_RVNav.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -270,8 +270,8 @@
 		9326FAB956C45CAD0A34795B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8A23D589A5760592B0B662AB /* Pods-RVNav.debug.xcconfig */,
-				80D105A8094C994A77C272BA /* Pods-RVNav.release.xcconfig */,
+				9148ABE2644645D31A197500 /* Pods-RVNav.debug.xcconfig */,
+				B5F313F511943CF84D7AFBE6 /* Pods-RVNav.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 				D18DAE6E230B3C3D00D7C151 /* RVNav */,
 				D18DAE6D230B3C3C00D7C151 /* Products */,
 				9326FAB956C45CAD0A34795B /* Pods */,
-				59B927A1D277B8782E819296 /* Frameworks */,
+				37D11CEBB3A689CDC84F8D5D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -596,12 +596,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D18DAE7E230B3C3F00D7C151 /* Build configuration list for PBXNativeTarget "RVNav" */;
 			buildPhases = (
-				D583495E1326188934742D5E /* [CP] Check Pods Manifest.lock */,
+				DB55046D3EE409BC521AEDDD /* [CP] Check Pods Manifest.lock */,
 				D18DAE68230B3C3C00D7C151 /* Sources */,
 				D18DAE69230B3C3C00D7C151 /* Frameworks */,
 				D18DAE6A230B3C3C00D7C151 /* Resources */,
-				8F83E828A833B3B0BB3FFCFD /* [CP] Embed Pods Frameworks */,
-				BF85A85992845C189E8AC69F /* [CP] Copy Pods Resources */,
+				FD79A8707CF1335EEAD7AEA1 /* [CP] Embed Pods Frameworks */,
+				2F4BCB5372C44D707DB76818 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -677,24 +677,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8F83E828A833B3B0BB3FFCFD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF85A85992845C189E8AC69F /* [CP] Copy Pods Resources */ = {
+		2F4BCB5372C44D707DB76818 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -711,7 +694,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D583495E1326188934742D5E /* [CP] Check Pods Manifest.lock */ = {
+		DB55046D3EE409BC521AEDDD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -731,6 +714,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD79A8707CF1335EEAD7AEA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RVNav/Pods-RVNav-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -773,6 +773,7 @@
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */,
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
+				323955E123DB5781007D217C /* CustomDropDownTextField.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				FB67983A23D1055B009E0D87 /* UserController.swift in Sources */,
 				FB954F5F23D60CA900E638BE /* ARSLineProgressHelpers.swift in Sources */,
@@ -947,7 +948,7 @@
 		};
 		D18DAE7F230B3C3F00D7C151 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A23D589A5760592B0B662AB /* Pods-RVNav.debug.xcconfig */;
+			baseConfigurationReference = 9148ABE2644645D31A197500 /* Pods-RVNav.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -971,7 +972,7 @@
 		};
 		D18DAE80230B3C3F00D7C151 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80D105A8094C994A77C272BA /* Pods-RVNav.release.xcconfig */;
+			baseConfigurationReference = B5F313F511943CF84D7AFBE6 /* Pods-RVNav.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
