@@ -23,7 +23,6 @@
 		3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */; };
 		3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */; };
 		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
-		324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
@@ -46,6 +45,8 @@
 		FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */; };
 		FB54B05523D915D3008821EC /* CustomSelectLocationTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */; };
 		FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */; };
+		FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65890023DA3AF100DBF1D3 /* Route.swift */; };
+		FB65890323DA55D600DBF1D3 /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
 		FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */; };
 		FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */; };
 		FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */; };
@@ -74,7 +75,6 @@
 		FB954F6B23D76F3D00E638BE /* AddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6A23D76F3D00E638BE /* AddressProtocol.swift */; };
 		FB954F6D23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */; };
 		FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */; };
-		FB954F7123D79B5B00E638BE /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
 		FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
@@ -109,7 +109,6 @@
 		3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetworkController.swift; sourceTree = "<group>"; };
 		3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddVehicleViewController+TextFieldFlow.swift"; sourceTree = "<group>"; };
 		324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlanARoute.storyboard; sourceTree = "<group>"; };
-		324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownTextField.swift; sourceTree = "<group>"; };
 		3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ux17OldMapViewController.swift; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3633CBCE01B89D25C153A07B /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ux17MapView.storyboard; sourceTree = "<group>"; };
 		FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomSelectLocationTest.storyboard; sourceTree = "<group>"; };
 		FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanARouteViewController.swift; sourceTree = "<group>"; };
+		FB65890023DA3AF100DBF1D3 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		FB67982A23CEEE41009E0D87 /* MenuSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionTableViewCell.swift; sourceTree = "<group>"; };
 		FB67982C23CF7F34009E0D87 /* MenuDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDelegateProtocol.swift; sourceTree = "<group>"; };
 		FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkControllerProtocol.swift; sourceTree = "<group>"; };
@@ -229,7 +229,6 @@
 		324603A823D7B0C100A32E48 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
 				FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */,
 				FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */,
 			);
@@ -314,6 +313,7 @@
 				D185F9552322FABE00E4C64A /* Avoid.swift */,
 				447831E523146AC5007D50E7 /* Vehicle.swift */,
 				44EAD663231EF5FC00094531 /* RVSettings.swift */,
+				FB65890023DA3AF100DBF1D3 /* Route.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -733,7 +733,6 @@
 				FB954F6423D60CA900E638BE /* ARSLineProgressConstants.swift in Sources */,
 				446F3903230DA7FC00D57DE3 /* User.swift in Sources */,
 				FB67983723CFD5CA009E0D87 /* VehicleModelController.swift in Sources */,
-				FB954F7123D79B5B00E638BE /* AGSMapAPIController.swift in Sources */,
 				3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */,
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */,
@@ -763,12 +762,12 @@
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
+				FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */,
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				FB67983A23D1055B009E0D87 /* UserController.swift in Sources */,
 				FB954F5F23D60CA900E638BE /* ARSLineProgressHelpers.swift in Sources */,
 				FB954F6223D60CA900E638BE /* ARSLineProgressProtocols.swift in Sources */,
-				324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */,
 				44EAD664231EF5FC00094531 /* RVSettings.swift in Sources */,
 				FBE19FA423CD7B1E0046837C /* MenuItemController.swift in Sources */,
 				FBD1AFE723C3E2F900377F7C /* PasswordTextField.swift in Sources */,
@@ -786,6 +785,7 @@
 				FBE19FA123CD78550046837C /* MenuItem.swift in Sources */,
 				321DE9C123A9927400521AAB /* LandingPageViewController.swift in Sources */,
 				321DE99523A8464E00521AAB /* SignInViewController.swift in Sources */,
+				FB65890323DA55D600DBF1D3 /* AGSMapAPIController.swift in Sources */,
 				FB67983C23D10F38009E0D87 /* UserControllerProtocol.swift in Sources */,
 				FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,

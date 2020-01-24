@@ -8,12 +8,18 @@
 
 import UIKit
 
+
 class PlanARouteViewController: UIViewController {
 
     // MARK: - Properties
     var vehicleController: VehicleModelControllerProtocol? {
         didSet {
             setVehicleDataSource()
+        }
+    }
+    private var route: Route? {
+        didSet{
+            #warning("kick off call to get route and refresh UI")
         }
     }
     

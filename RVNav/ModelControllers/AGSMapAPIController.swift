@@ -71,7 +71,7 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     // Used to display barrier points retrieved from the DS backend.
     private func plotAvoidance() {
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
-        
+        #warning("change this from singlton to controller")
         guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = destinationAddress?.location?.coordinate.longitude, let endLat = destinationAddress?.location?.coordinate.latitude  else { return }
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
@@ -104,6 +104,8 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
         }
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
         
+        
+        #warning("change this from singlton to controller")
         guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = destinationAddress?.location?.coordinate.longitude, let endLat = destinationAddress?.location?.coordinate.latitude  else { return []}
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)

@@ -10,15 +10,11 @@
 //
 
 import UIKit
-import Mapbox
-import MapboxNavigation
-import MapboxCoreNavigation
-import MapboxDirections
 import SwiftKeychainWrapper
 import FirebaseAnalytics
-import MapboxGeocoder
 import Contacts
 import Floaty
+import CoreLocation
 import ArcGIS
 
 
@@ -26,19 +22,21 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
     private var modelController: ModelController = ModelController(userController: UserController())
-    //private let avoidanceController: AvoidanceControllerProtocol = AvoidanceController()
     private let directionsController = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController()))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
-    private let geocoder = Geocoder.shared
+    private let geocoder = CLGeocoder()
     private var avoidances: [Avoid] = []
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     #warning("Save and restore from userdefauls")
     private var mapType: AGSBasemapType = .navigationVector {
         didSet{
-            mapView.map = AGSMap(basemapType: mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+            guard let location = mapView.locationDisplay.location,
+                let lat = location.position?.y,
+                let lon = location.position?.x else { return }
+            mapView.map = AGSMap(basemapType: mapType, latitude: lat, longitude: lon, levelOfDetail: 18)
         }
     }
     
@@ -50,16 +48,34 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
-        setupFloaty()
-        setupLocationDisplay()
+        //setupFloaty()
+        //setupLocationDisplay()
+    }
+    
+    deinit {
+        mapView.locationDisplay.stop()
+        mapView = nil
     }
     
     // Creates a new instance of AGSMap and sets it to the mapView.
-    
     private func setupMap() {
-        //mapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-        //mapView.map = AGSMap(basemapType: .imageryWithLabelsVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-        mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+        mapView.locationDisplay.autoPanMode = .recenter
+        mapView.locationDisplay.start {error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    NSLog("ERROR: Error starting AGSLocationDisplay: \(error)")
+                    self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+                } else {
+                    if let location = self.mapView.locationDisplay.location,
+                        let lat = location.position?.y ,
+                        let lon = location.position?.x {
+                        self.mapView.map = AGSMap(basemapType: self.mapType, latitude: lat, longitude: lon, levelOfDetail: 18)
+                    } else {
+                        self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
+                    }
+                }
+            }
+        }
         mapView.touchDelegate = self
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
@@ -128,7 +144,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     private func plotAvoidance() {
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
         
-        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
+        guard let vehicleInfo = modelController.vehicleController?.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return }
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
@@ -199,7 +215,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         }
         let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
         
-        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return []}
+        guard let vehicleInfo = modelController.vehicleController?.selectedVehicle, let height = vehicleInfo.height, let endLon = directionsController.destinationAddress?.location?.coordinate.longitude, let endLat = directionsController.destinationAddress?.location?.coordinate.latitude  else { return []}
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         
@@ -313,4 +329,8 @@ extension ux17OldMapViewController: MenuDelegateProtocol {
     func performSegue(segueIdentifier: String) {
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }
+}
+
+extension ux17OldMapViewController: AGSLocationChangeHandlerDelegate {
+    
 }

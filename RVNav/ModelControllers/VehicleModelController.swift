@@ -22,6 +22,7 @@ class VehicleModelController: VehicleModelControllerProtocol {
             delegate?.dataDidChange()
         }
     }
+    var selectedVehicle: Vehicle?
     
     // MARK: - Public Methods
     required init (userID: Int, networkController: NetworkControllerProtocol, delegate: VehicleModelDataDelegate? = nil) {
