@@ -15,6 +15,7 @@ class PlanARouteViewController: UIViewController {
     var vehicleController: VehicleModelControllerProtocol?
     
     // MARK: - IBOutlets
+    @IBOutlet weak var selectedVehicle: CustomDropDownTextField!
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class PlanARouteViewController: UIViewController {
     // MARK: - Private Methods
     
     private func updateViews () {
+        
     }
     
     @IBAction func viewWasTapped(_ sender: UITapGestureRecognizer) {
