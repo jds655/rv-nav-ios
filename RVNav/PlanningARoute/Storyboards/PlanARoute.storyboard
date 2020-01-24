@@ -99,6 +99,9 @@
                             <outletCollection property="gestureRecognizers" destination="8Av-Zh-yf0" appends="YES" id="fZa-s4-yBT"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="selectedVehicle" destination="L32-t5-k5A" id="tE4-hN-F9v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="4lp-7Q-JQt" userLabel="Exit" sceneMemberID="exit"/>
