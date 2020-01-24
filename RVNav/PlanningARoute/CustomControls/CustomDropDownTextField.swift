@@ -42,6 +42,7 @@ class CustomDropDownTextField: UIControl {
     
     @objc func editingEnded() {
         textField.endEditing(true)
+        dropDownArrow.rotateBack()
     }
     
     private func setupUI() {
@@ -134,6 +135,7 @@ class CustomDropDownTextField: UIControl {
         let coverButtonTrailingAnchor = coverButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
         let coverButtonBottomAnchor   = coverButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
         NSLayoutConstraint.activate([coverButtonLeadingAnchor, coverButtonTopAnchor, coverButtonTrailingAnchor, coverButtonBottomAnchor])
+        //Cover Button target
         coverButton.addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
     }
     
