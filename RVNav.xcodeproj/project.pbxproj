@@ -79,7 +79,6 @@
 		FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
-		FBAC9BCC23DB5DF70023BC3B /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
 		FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */; };
 		FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */; };
@@ -298,7 +297,6 @@
 		D18DAE6E230B3C3D00D7C151 /* RVNav */ = {
 			isa = PBXGroup;
 			children = (
-				324603A723D7B0AB00A32E48 /* PlanningARoute */,
 				FBAA2B7323A8370100D6E4B7 /* AddVehicle */,
 				FB954F5123D60C8100E638BE /* ARSLineProgress */,
 				321DE99923A84AE000521AAB /* Extensions */,
@@ -307,6 +305,7 @@
 				D1BCDD82230E0F6900986A18 /* ModelControllers */,
 				D1BCDD81230E0F5D00986A18 /* Models */,
 				FB67984523D123A4009E0D87 /* NetworkingControllers */,
+				324603A723D7B0AB00A32E48 /* PlanningARoute */,
 				FB67984A23D21921009E0D87 /* Protocols */,
 				D1BCDD84230E0F9500986A18 /* Resources */,
 				FBAA2B7423A8372300D6E4B7 /* Signup+SignIn */,

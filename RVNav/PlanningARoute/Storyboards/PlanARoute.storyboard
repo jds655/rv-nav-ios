@@ -27,7 +27,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fe5-Tz-daM" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MS7-mz-0he">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MS7-mz-0he">
                                         <rect key="frame" x="20" y="40" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="5oq-Ua-de4"/>
@@ -99,6 +99,9 @@
                             <outletCollection property="gestureRecognizers" destination="8Av-Zh-yf0" appends="YES" id="fZa-s4-yBT"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="selectedVehicle" destination="L32-t5-k5A" id="tE4-hN-F9v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="4lp-7Q-JQt" userLabel="Exit" sceneMemberID="exit"/>
