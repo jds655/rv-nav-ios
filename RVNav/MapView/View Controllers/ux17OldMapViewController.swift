@@ -13,7 +13,6 @@ import UIKit
 import SwiftKeychainWrapper
 import FirebaseAnalytics
 import Contacts
-import Floaty
 import CoreLocation
 import ArcGIS
 
@@ -48,8 +47,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
-        //setupFloaty()
-        //setupLocationDisplay()
     }
     
     deinit {
@@ -163,36 +160,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
                         self.addMapMarker(location: point, style: .X, fillColor: .red, outlineColor: .red)
                     }
                 }
-            }
-        }
-    }
-    
-    // This is for the Plus button floating on the map
-    private func setupFloaty() {
-        let carIcon = UIImage(named: "car")
-        let floaty = Floaty()
-        floaty.addItem("Directions", icon: carIcon) { (item) in
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "ShowAddressSearch", sender: self)
-            }
-        }
-        floaty.addItem("Avoid", icon: carIcon) { (item) in
-            DispatchQueue.main.async {
-                self.plotAvoidance()
-            }
-        }
-        floaty.paddingY = 42
-        floaty.buttonColor = .black
-        floaty.plusColor = .green
-        self.view.addSubview(floaty)
-    }
-    
-    // Allows users location to be used and displayed on the main mapView.
-    private func setupLocationDisplay() {
-        mapView.locationDisplay.autoPanMode = .compassNavigation
-        mapView.locationDisplay.start { [weak self] (error:Error?) -> Void in
-            if let error = error {
-                self?.showAlert(withStatus: error.localizedDescription)
             }
         }
     }

@@ -7,12 +7,12 @@ target 'RVNav' do
 
   # Pods for RVNav
 
-pod ‘MapboxNavigation’
+#pod ‘MapboxNavigation’
 pod ‘FirebaseAnalytics’
 pod ‘SwiftKeychainWrapper’, ‘~> 3.0’
 pod ‘SideMenu’
-pod ‘MapboxGeocoder.swift’, ‘~> 0.11’
-pod ‘Floaty’
+#pod ‘MapboxGeocoder.swift’, ‘~> 0.11’
+#pod ‘Floaty’
 pod ‘ArcGIS-Runtime-SDK-iOS’, ‘100.6’
 pod 'GoogleSignIn'
 pod 'FBSDKLoginKit'
