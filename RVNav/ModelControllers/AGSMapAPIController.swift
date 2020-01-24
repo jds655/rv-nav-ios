@@ -159,7 +159,7 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
                     print("Error solving route: \(error!.localizedDescription)")
                     return
                 }
-                #warning("Grok the routes returned")
+                #warning("Grok the routes returned, why not offer more to the user to choose from")
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 8)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
