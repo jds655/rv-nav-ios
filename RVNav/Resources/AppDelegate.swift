@@ -12,6 +12,7 @@ import ArcGIS
 import GoogleSignIn
 import FacebookCore
 import FBSDKCoreKit
+import DropDown
 
 
 
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        DropDown.startListeningToKeyboard()
         globalConfiguration.timeoutInterval = 300.0
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = "199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4.apps.googleusercontent.com"
