@@ -23,7 +23,6 @@
 		3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */; };
 		3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */; };
 		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
-		324603B023D7BFEE00A32E48 /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		32798A6E23DA55B9002D1AA5 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */; };
 		32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */; };
 		3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */; };
@@ -79,6 +78,7 @@
 		FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
+		FBAC9BCC23DB5DF70023BC3B /* CustomDropDownTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
 		FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */; };
 		FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */; };
@@ -773,6 +773,7 @@
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */,
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
+				FBAC9BCC23DB5DF70023BC3B /* CustomDropDownTextField.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
 				FB67983A23D1055B009E0D87 /* UserController.swift in Sources */,
 				FB954F5F23D60CA900E638BE /* ARSLineProgressHelpers.swift in Sources */,
