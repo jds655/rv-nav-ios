@@ -12,7 +12,8 @@
 import UIKit
 import SwiftKeychainWrapper
 import FirebaseAnalytics
-import Contacts
+//import Contacts
+import CoreLocation
 import ArcGIS
 
 
@@ -24,14 +25,7 @@ class ux17MapViewController: UIViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet private lazy var mapView: AGSMapView! = {
-        var newMapView = AGSMapView()
-        let graphicsOverlay = AGSGraphicsOverlay()
-        newMapView.map = AGSMap(basemapType: .navigationVector, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 18)
-        //newMapView.touchDelegate = self
-        newMapView.graphicsOverlays.add(graphicsOverlay)
-        return newMapView
-    }()
+    @IBOutlet private var mapView: AGSMapView!
     
     
     // MARK: - View Lifecycle
@@ -42,7 +36,6 @@ class ux17MapViewController: UIViewController {
         mapView.locationDisplay.autoPanMode = .compassNavigation
         mapView.locationDisplay.start(completion: nil)
         //self.mapView = directionsController.mapAPIController.mapView
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

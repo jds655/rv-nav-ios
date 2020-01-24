@@ -12,6 +12,7 @@ protocol VehicleModelControllerProtocol {
     var networkController: NetworkControllerProtocol {get set}
     var vehicles: [Vehicle] {get set}
     var delegate: VehicleModelDataDelegate? {get set}
+    var selectedVehicle: Vehicle? {get set}
     
     init(userID: Int, networkController: NetworkControllerProtocol, delegate: VehicleModelDataDelegate?)
     
