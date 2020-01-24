@@ -25,7 +25,7 @@ class CustomDropDownTextField: UIControl {
     private var dropDownArrowContainerView: UIView = UIView()
     private var dropDownArrow: UIImageView = UIImageView()
     private var dropDownVehicles: DropDown = DropDown()
-   
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
@@ -35,6 +35,7 @@ class CustomDropDownTextField: UIControl {
         setupVehicleDropDownUI()
         setupVehicleDropDownCellConfiguration()
         NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadVehiclesDropDown(from:)), name: .vehiclesAdded, object: nil)
     }
     
     @objc func editingEnded() {
@@ -55,7 +56,7 @@ class CustomDropDownTextField: UIControl {
         let textFieldLeadingAnchor  = textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
         let textFieldTopAnchor      = textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
         let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
-        let textFieldBottomAnchor = textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        let textFieldBottomAnchor   = textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
         NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor, textFieldBottomAnchor])
     }
     
@@ -119,7 +120,7 @@ class CustomDropDownTextField: UIControl {
     }
     
     private func setupVehicleDropDownCellConfiguration() {
-        dropDownVehicles.dataSource = ["", "Testing", "one", "two", "Three"]
+        dropDownVehicles.dataSource = [""]
         dropDownVehicles.cellNib = UINib(nibName: "CustomDropDownCell", bundle: nil)
         dropDownVehicles.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? CustomDropDownCell else { return }
@@ -129,6 +130,16 @@ class CustomDropDownTextField: UIControl {
                 cell.addVehicleButton.isHidden = true
             }
         }
+    }
+    
+    @objc private func reloadVehiclesDropDown(from notification: NSNotification) {
+        guard let vehicles = notification.userInfo?["vehicles"] as? [Vehicle] else { return }
+        for vehicle in vehicles {
+            if let vehicleName = vehicle.name {
+                dropDownVehicles.dataSource.append(vehicleName)
+            }
+        }
+        dropDownVehicles.reloadAllComponents()
     }
 }
 

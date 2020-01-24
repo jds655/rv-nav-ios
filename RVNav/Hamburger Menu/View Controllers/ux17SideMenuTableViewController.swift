@@ -35,6 +35,10 @@ class ux17SideMenuTableViewController: UITableViewController {
             if let vc = segue.destination as? VehicleListTableViewController {
                 vc.vehicleController = modelController?.vehicleController
             }
+        case "PlanARoute":
+            if let vc = segue.destination as? PlanARouteViewController {
+                vc.vehicleController = modelController?.vehicleController
+            }
         default:
             break
         }

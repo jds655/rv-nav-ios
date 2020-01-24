@@ -11,19 +11,15 @@ import UIKit
 class PlanARouteViewController: UIViewController {
     
     // MARK: - Properties
-    var vehicleController: VehicleModelControllerProtocol? {
-        didSet {
-            setVehicleDataSource()
-        }
-    }
+    var vehicleController: VehicleModelControllerProtocol?
     
     // MARK: - IBOutlets
-    
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        vehicleController?.delegate = self
     }
 
     // MARK: - Navigation
@@ -32,13 +28,9 @@ class PlanARouteViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    private func setVehicleDataSource() {
-        #warning("Flesh this out...")
+    private func updateViews () {
     }
     
-    private func updateViews () {
-        
-    }
     @IBAction func viewWasTapped(_ sender: UITapGestureRecognizer) {
         NotificationCenter.default.post(name: .outsideViewTapped, object: nil)
     }
@@ -47,5 +39,14 @@ class PlanARouteViewController: UIViewController {
 // MARK: - Extensions
 extension Notification.Name {
     static var outsideViewTapped = Notification.Name("OutsideViewTapped")
+    static var vehiclesAdded = Notification.Name("VehiclesAdded")
+}
+
+extension PlanARouteViewController: VehicleModelDataDelegate {
+    func dataDidChange() {
+        guard let vehicleController = vehicleController else { return }
+        let vehicles = vehicleController.vehicles
+        NotificationCenter.default.post(name: .vehiclesAdded, object: self, userInfo: ["vehicles": vehicles])
+    }
 }
 
