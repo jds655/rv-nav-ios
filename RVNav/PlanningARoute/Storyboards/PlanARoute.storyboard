@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dBe-uT-XvF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dBe-uT-XvF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,14 +45,27 @@
                                         <color key="textColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWl-MN-UlT">
+                                        <rect key="frame" x="370" y="53" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="ae5-vu-Znd"/>
+                                            <constraint firstAttribute="width" constant="24" id="cbC-M5-dFX"/>
+                                        </constraints>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <segue destination="4lp-7Q-JQt" kind="unwind" unwindAction="unwindToMapViewWithSegue:" id="B4n-Tp-Wnu"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="AfH-yZ-ZX3"/>
                                     <constraint firstAttribute="bottom" secondItem="FWb-XT-TG9" secondAttribute="bottom" constant="23" id="CJP-k3-88g"/>
+                                    <constraint firstItem="IWl-MN-UlT" firstAttribute="bottom" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="-23" id="Mgd-4N-uK6"/>
                                     <constraint firstItem="FWb-XT-TG9" firstAttribute="leading" secondItem="MS7-mz-0he" secondAttribute="trailing" constant="83" id="O6q-9x-Wb9"/>
                                     <constraint firstItem="MS7-mz-0he" firstAttribute="leading" secondItem="Fe5-Tz-daM" secondAttribute="leading" constant="20" id="Ohm-MG-Rot"/>
                                     <constraint firstAttribute="bottom" secondItem="MS7-mz-0he" secondAttribute="bottom" constant="20" id="UFc-tC-vIc"/>
+                                    <constraint firstAttribute="trailing" secondItem="IWl-MN-UlT" secondAttribute="trailing" constant="20" id="xkG-cf-eii"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What vehicle are you routing with?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kh-nS-hK3">
@@ -88,6 +101,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4lp-7Q-JQt" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="8Av-Zh-yf0">
                     <connections>
                         <action selector="viewWasTapped:" destination="dBe-uT-XvF" id="hTR-H5-qeg"/>
@@ -98,6 +112,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="24" height="24"/>
         <image name="hamburger" width="39" height="39"/>
     </resources>
 </document>
