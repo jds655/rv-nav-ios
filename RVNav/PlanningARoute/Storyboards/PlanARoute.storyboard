@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dBe-uT-XvF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dBe-uT-XvF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="Heebo-Bold.ttf">
             <string>Heebo-Bold</string>
+        </array>
+        <array key="Heebo-Medium.ttf">
+            <string>Heebo-Medium</string>
         </array>
         <array key="Heebo-Regular.ttf">
             <string>Heebo-Regular</string>
@@ -68,31 +71,112 @@
                                     <constraint firstAttribute="trailing" secondItem="IWl-MN-UlT" secondAttribute="trailing" constant="20" id="xkG-cf-eii"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What vehicle are you routing with?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kh-nS-hK3">
-                                <rect key="frame" x="20" y="120" width="242.5" height="23.5"/>
-                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
-                                <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L32-t5-k5A" userLabel="Custom Text Field" customClass="CustomDropDownTextField" customModule="RVNav" customModuleProvider="target">
-                                <rect key="frame" x="20" y="163.5" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hfo-9s-Imv">
+                                <rect key="frame" x="20" y="120" width="374" height="322.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-j5-7vf">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="72.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What vehicle are you routing with?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kh-nS-hK3">
+                                                <rect key="frame" x="0.0" y="0.0" width="242.5" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L32-t5-k5A" userLabel="Custom Text Field" customClass="CustomDropDownTextField" customModule="RVNav" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="27.5" width="374" height="45"/>
+                                                <color key="backgroundColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="dJM-BB-sLT"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="L32-t5-k5A" firstAttribute="leading" secondItem="Zo1-j5-7vf" secondAttribute="leading" id="6OU-FX-hT7"/>
+                                            <constraint firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" id="HOw-DD-fbO"/>
+                                            <constraint firstItem="L32-t5-k5A" firstAttribute="top" secondItem="5Kh-nS-hK3" secondAttribute="bottom" constant="4" id="axy-oj-sF3"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="LZQ-q7-NcO">
+                                        <rect key="frame" x="0.0" y="92.5" width="374" height="72.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose starting point" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpN-0N-Vnv">
+                                                <rect key="frame" x="0.0" y="0.0" width="153.5" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDq-NQ-A2g" userLabel="Custom Text Field">
+                                                <rect key="frame" x="0.0" y="27.5" width="374" height="45"/>
+                                                <color key="backgroundColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="wt9-l6-HDZ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="HDq-NQ-A2g" secondAttribute="trailing" id="5vT-n2-NLg"/>
+                                            <constraint firstItem="HDq-NQ-A2g" firstAttribute="leading" secondItem="LZQ-q7-NcO" secondAttribute="leading" id="TTO-ju-LPy"/>
+                                            <constraint firstItem="HDq-NQ-A2g" firstAttribute="top" secondItem="RpN-0N-Vnv" secondAttribute="bottom" constant="4" id="z1p-TH-97L"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IGV-8H-D72">
+                                        <rect key="frame" x="0.0" y="185" width="374" height="72.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you going?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEa-wm-RnY">
+                                                <rect key="frame" x="0.0" y="0.0" width="153" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                                <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZs-4W-MAm" userLabel="Custom Text Field">
+                                                <rect key="frame" x="0.0" y="27.5" width="374" height="45"/>
+                                                <color key="backgroundColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="1Vn-SH-W1J"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AZs-4W-MAm" firstAttribute="top" secondItem="uEa-wm-RnY" secondAttribute="bottom" constant="4" id="2Zh-Hp-8Wb"/>
+                                            <constraint firstItem="AZs-4W-MAm" firstAttribute="leading" secondItem="IGV-8H-D72" secondAttribute="leading" id="DF5-SY-xOY"/>
+                                            <constraint firstAttribute="trailing" secondItem="AZs-4W-MAm" secondAttribute="trailing" id="mHr-i6-8CK"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-fT-UVB">
+                                        <rect key="frame" x="0.0" y="277.5" width="374" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="aUy-Rf-8gT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Heebo-Medium" family="Heebo" pointSize="18"/>
+                                        <state key="normal" title="Get Directions"/>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="A79-x2-fVJ"/>
+                                    <constraint firstItem="IGV-8H-D72" firstAttribute="leading" secondItem="hfo-9s-Imv" secondAttribute="leading" id="5F3-3k-Psx"/>
+                                    <constraint firstItem="Zo1-j5-7vf" firstAttribute="leading" secondItem="hfo-9s-Imv" secondAttribute="leading" id="7wp-1U-DIn"/>
+                                    <constraint firstItem="LZQ-q7-NcO" firstAttribute="leading" secondItem="hfo-9s-Imv" secondAttribute="leading" id="9l4-eG-o5k"/>
+                                    <constraint firstItem="f2f-fT-UVB" firstAttribute="leading" secondItem="hfo-9s-Imv" secondAttribute="leading" id="A9p-Zm-VOg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zo1-j5-7vf" secondAttribute="trailing" id="AsV-Od-dG3"/>
+                                    <constraint firstItem="f2f-fT-UVB" firstAttribute="top" secondItem="IGV-8H-D72" secondAttribute="bottom" constant="20" id="NTw-ju-8wS"/>
+                                    <constraint firstItem="IGV-8H-D72" firstAttribute="top" secondItem="LZQ-q7-NcO" secondAttribute="bottom" constant="20" id="f6m-Fy-lTp"/>
+                                    <constraint firstItem="Zo1-j5-7vf" firstAttribute="top" secondItem="hfo-9s-Imv" secondAttribute="top" id="fJx-3J-wMu"/>
+                                    <constraint firstAttribute="trailing" secondItem="f2f-fT-UVB" secondAttribute="trailing" id="gch-dk-r0n"/>
+                                    <constraint firstAttribute="trailing" secondItem="IGV-8H-D72" secondAttribute="trailing" id="hKn-pF-3IW"/>
+                                    <constraint firstItem="LZQ-q7-NcO" firstAttribute="top" secondItem="Zo1-j5-7vf" secondAttribute="bottom" constant="20" id="r4U-JL-ND4"/>
+                                    <constraint firstAttribute="trailing" secondItem="LZQ-q7-NcO" secondAttribute="trailing" id="sSn-nw-3Ti"/>
                                 </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="L32-t5-k5A" firstAttribute="top" secondItem="5Kh-nS-hK3" secondAttribute="bottom" constant="20" id="BhO-gD-usz"/>
-                            <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" constant="20" id="FH0-c1-VGV"/>
+                            <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="hfo-9s-Imv" secondAttribute="trailing" constant="20" id="6Uk-cv-2SR"/>
                             <constraint firstItem="Fe5-Tz-daM" firstAttribute="trailing" secondItem="Ua1-0m-Q33" secondAttribute="trailing" id="QEo-36-quO"/>
+                            <constraint firstItem="hfo-9s-Imv" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="RnX-ZM-FLp"/>
                             <constraint firstItem="Fe5-Tz-daM" firstAttribute="top" secondItem="mxx-3q-ZlZ" secondAttribute="top" id="cog-v8-OmM"/>
-                            <constraint firstItem="5Kh-nS-hK3" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="dTy-mR-a8I"/>
-                            <constraint firstItem="5Kh-nS-hK3" firstAttribute="top" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="20" id="dle-Z1-WdR"/>
                             <constraint firstItem="Fe5-Tz-daM" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" id="e7S-hY-1QB"/>
-                            <constraint firstItem="L32-t5-k5A" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="foE-Fe-UHZ"/>
+                            <constraint firstItem="hfo-9s-Imv" firstAttribute="top" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="20" id="imy-jv-Jls"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ua1-0m-Q33"/>
                         <connections>

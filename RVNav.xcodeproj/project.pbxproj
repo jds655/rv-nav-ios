@@ -106,6 +106,7 @@
 		3231CA3E23CD28EC008CDBA5 /* AddVehicle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddVehicle.storyboard; sourceTree = "<group>"; };
 		3231CA4023CD2BAD008CDBA5 /* AddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddVehicleViewController.swift; path = RVNav/AddVehicle/Storyboards/AddVehicleViewController.swift; sourceTree = SOURCE_ROOT; };
 		3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RVTypePickerViewController.swift; path = RVNav/AddVehicle/Storyboards/RVTypePickerViewController.swift; sourceTree = SOURCE_ROOT; };
+		323F3F6623DB9EAC009F9A9B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetworkController.swift; sourceTree = "<group>"; };
 		3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddVehicleViewController+TextFieldFlow.swift"; sourceTree = "<group>"; };
 		324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlanARoute.storyboard; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
-		447831E923146D65007D50E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447831EA23146D65007D50E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		44EAD663231EF5FC00094531 /* RVSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVSettings.swift; sourceTree = "<group>"; };
 		9148ABE2644645D31A197500 /* Pods-RVNav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RVNav.debug.xcconfig"; path = "Target Support Files/Pods-RVNav/Pods-RVNav.debug.xcconfig"; sourceTree = "<group>"; };
@@ -358,7 +358,7 @@
 				D18DAE6F230B3C3D00D7C151 /* AppDelegate.swift */,
 				D122B33F2326EF6F00A4C3DE /* AppConfiguration.swift */,
 				447831EA23146D65007D50E7 /* GoogleService-Info.plist */,
-				447831E923146D65007D50E7 /* Info.plist */,
+				323F3F6623DB9EAC009F9A9B /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
