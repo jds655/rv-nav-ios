@@ -11,6 +11,7 @@ import DropDown
 
 class CustomDropDownTextField: UIControl {
     
+    public  var delegate: CustomDropDownTextFieldDelegate?
     private let standardMargin: CGFloat = 8.0
     private let textFieldContainerHeight: CGFloat = 50.0
     private let textFieldHeight: CGFloat = 45.0
@@ -153,6 +154,7 @@ class CustomDropDownTextField: UIControl {
         dropDownVehicles.cellNib = UINib(nibName: "CustomDropDownCell", bundle: nil)
         dropDownVehicles.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? CustomDropDownCell else { return }
+            cell.delegate = self
             if index == 0 {
                 cell.optionLabel.isHidden = true
             } else {
@@ -169,6 +171,13 @@ class CustomDropDownTextField: UIControl {
             }
         }
         dropDownVehicles.reloadAllComponents()
+    }
+}
+
+extension CustomDropDownTextField: CustomDropDownCellDelegate {
+    func performSegue(segueIdentifier: String) {
+        dropDownVehicles.hide()
+        delegate?.performSegue(segueID: segueIdentifier)
     }
 }
 

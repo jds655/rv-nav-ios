@@ -162,6 +162,14 @@ class AddVehicleViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
+    @IBAction func closeTapped(_ sender: Any) {
+      self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func backTapped(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func cancelTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -213,7 +221,8 @@ class AddVehicleViewController: ShiftableViewController {
                     print("Error Editing vehicle: \(error)")
                 } else {
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                            //self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             })
@@ -223,7 +232,8 @@ class AddVehicleViewController: ShiftableViewController {
                     NSLog("Error Creating Vehicle \(error)")
                 } else {
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                        //self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }

@@ -14,6 +14,7 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
 
     // MARK: - Properties
     var delegate: ViewDelegateProtocol?
+    var geoCoder = CLGeocoder()
     private var destinationAddress: AddressProtocol? {
         didSet{
             let destination = destinationAddress!.location!.coordinate
@@ -47,9 +48,20 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     
     // MARK: - Public Methods
     func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void) {
-        
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            if let error = error {
+                NSLog("Error geocoding address to placemarks: \(error)")
+                completion(nil)
+                return
+            }
+            if let placemarks = placemarks {
+                completion(placemarks as? [AddressProtocol])
+                return
+            }
+        }
     }
     
+    // MARK: - Private Methods
     private func convert(toLongAndLat xPoint: Double, andYPoint yPoint: Double) ->
         CLLocation {
             let originShift: Double = 2 * .pi * 6378137 / 2.0
@@ -95,7 +107,7 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     }
     
     // Used to call DS backend for getting barriers coordinates.  Each coordinate is turned into a AGSPolygonBarrier and appended to an array.  The array is then returned.
-    func createBarriers() -> [AGSPolygonBarrier]{
+    private func createBarriers() -> [AGSPolygonBarrier]{
         let const = 0.0001
         var barriers: [AGSPolygonBarrier] = [] {
             didSet {

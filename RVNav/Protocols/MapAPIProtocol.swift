@@ -8,9 +8,11 @@
 
 import Foundation
 import ArcGIS
+import CoreLocation
 
 protocol MapAPIControllerProtocol {
     var delegate: ViewDelegateProtocol? {get set}
+    var geoCoder: CLGeocoder {get set}
     var mapView: AGSMapView {get set}
     var avoidanceController : AvoidanceControllerProtocol {get set}
     

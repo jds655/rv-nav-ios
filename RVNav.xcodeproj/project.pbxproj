@@ -79,6 +79,15 @@
 		FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
 		FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */; };
+		FBAC9BCF23DB73310023BC3B /* CustomDropDownCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BCE23DB73310023BC3B /* CustomDropDownCellDelegate.swift */; };
+		FBAC9BD123DB75500023BC3B /* CustomDropDownTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BD023DB754F0023BC3B /* CustomDropDownTextFieldDelegate.swift */; };
+		FBAC9BD323DB99600023BC3B /* SelectALocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAC9BD223DB99600023BC3B /* SelectALocation.storyboard */; };
+		FBAC9BD523DBA1460023BC3B /* SelectALocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BD423DBA1460023BC3B /* SelectALocationViewController.swift */; };
+		FBAC9BD723DBCCB20023BC3B /* SelectALocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BD623DBCCB20023BC3B /* SelectALocationDelegate.swift */; };
+		FBAC9BD923DBD5C00023BC3B /* LocationPointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BD823DBD5C00023BC3B /* LocationPointProtocol.swift */; };
+		FBAC9BDB23DC0F8E0023BC3B /* SelectLocationTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBAC9BDA23DC0F8E0023BC3B /* SelectLocationTextField.xib */; };
+		FBAC9BDD23DC122C0023BC3B /* SelectLocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BDC23DC122C0023BC3B /* SelectLocationTextField.swift */; };
+		FBAC9BDF23DC24AB0023BC3B /* UIViewLoadingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BDE23DC24AB0023BC3B /* UIViewLoadingProtocol.swift */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
 		FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */; };
 		FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */; };
@@ -166,12 +175,21 @@
 		FB954F6623D762B900E638BE /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
 		FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsControllerProtocol.swift; sourceTree = "<group>"; };
 		FB954F6A23D76F3D00E638BE /* AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressProtocol.swift; sourceTree = "<group>"; };
-		FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapBoxPlacemark+AddressProtocol.swift"; sourceTree = "<group>"; };
+		FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+AddressProtocol.swift"; sourceTree = "<group>"; };
 		FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIProtocol.swift; sourceTree = "<group>"; };
 		FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGSMapAPIController.swift; sourceTree = "<group>"; };
 		FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegateProtocol.swift; sourceTree = "<group>"; };
 		FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingLogin.storyboard; sourceTree = "<group>"; };
 		FBAA2B7C23A839D100D6E4B7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		FBAC9BCE23DB73310023BC3B /* CustomDropDownCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCellDelegate.swift; sourceTree = "<group>"; };
+		FBAC9BD023DB754F0023BC3B /* CustomDropDownTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownTextFieldDelegate.swift; sourceTree = "<group>"; };
+		FBAC9BD223DB99600023BC3B /* SelectALocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectALocation.storyboard; sourceTree = "<group>"; };
+		FBAC9BD423DBA1460023BC3B /* SelectALocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectALocationViewController.swift; sourceTree = "<group>"; };
+		FBAC9BD623DBCCB20023BC3B /* SelectALocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectALocationDelegate.swift; sourceTree = "<group>"; };
+		FBAC9BD823DBD5C00023BC3B /* LocationPointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPointProtocol.swift; sourceTree = "<group>"; };
+		FBAC9BDA23DC0F8E0023BC3B /* SelectLocationTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLocationTextField.xib; sourceTree = "<group>"; };
+		FBAC9BDC23DC122C0023BC3B /* SelectLocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTextField.swift; sourceTree = "<group>"; };
+		FBAC9BDE23DC24AB0023BC3B /* UIViewLoadingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewLoadingProtocol.swift; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSignupBackground.swift; sourceTree = "<group>"; };
@@ -216,7 +234,7 @@
 				321DE99723A84AD800521AAB /* UIColor+Extension.swift */,
 				32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */,
 				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
-				FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */,
+				FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,9 +242,10 @@
 		324603A723D7B0AB00A32E48 /* PlanningARoute */ = {
 			isa = PBXGroup;
 			children = (
+				324603AE23D7B7B800A32E48 /* CustomControls */,
+				FBAC9BCD23DB73100023BC3B /* Protocols */,
 				324603A923D7B0D000A32E48 /* Storyboards */,
 				324603A823D7B0C100A32E48 /* ViewControllers */,
-				324603AE23D7B7B800A32E48 /* CustomControls */,
 			);
 			path = PlanningARoute;
 			sourceTree = "<group>";
@@ -236,6 +255,7 @@
 			children = (
 				FB0C631623D8CC9700E99557 /* CustomSelectLocationControl.swift */,
 				FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */,
+				FBAC9BD423DBA1460023BC3B /* SelectALocationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -245,6 +265,7 @@
 			children = (
 				324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */,
 				FB54B05423D915D3008821EC /* CustomSelectLocationTest.storyboard */,
+				FBAC9BD223DB99600023BC3B /* SelectALocation.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -255,6 +276,8 @@
 				324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */,
 				32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */,
 				32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */,
+				FBAC9BDA23DC0F8E0023BC3B /* SelectLocationTextField.xib */,
+				FBAC9BDC23DC122C0023BC3B /* SelectLocationTextField.swift */,
 			);
 			path = CustomControls;
 			sourceTree = "<group>";
@@ -417,6 +440,7 @@
 				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
 				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
 				FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */,
+				FBAC9BDE23DC24AB0023BC3B /* UIViewLoadingProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -497,6 +521,17 @@
 				FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		FBAC9BCD23DB73100023BC3B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FBAC9BCE23DB73310023BC3B /* CustomDropDownCellDelegate.swift */,
+				FBAC9BD023DB754F0023BC3B /* CustomDropDownTextFieldDelegate.swift */,
+				FBAC9BD623DBCCB20023BC3B /* SelectALocationDelegate.swift */,
+				FBAC9BD823DBD5C00023BC3B /* LocationPointProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		FBE19F9323CD43100046837C /* MapView */ = {
@@ -653,11 +688,13 @@
 				321DE99123A83D8100521AAB /* Heebo-Black.ttf in Resources */,
 				D18DAE7A230B3C3F00D7C151 /* LaunchScreen.storyboard in Resources */,
 				447831EC23146D65007D50E7 /* GoogleService-Info.plist in Resources */,
+				FBAC9BD323DB99600023BC3B /* SelectALocation.storyboard in Resources */,
 				FBAA2B7D23A839D100D6E4B7 /* SignIn.storyboard in Resources */,
 				321DE98F23A83D7800521AAB /* Heebo-ExtraBold.ttf in Resources */,
 				321DE9BF23A97BD700521AAB /* LandingPage.storyboard in Resources */,
 				FB54B05523D915D3008821EC /* CustomSelectLocationTest.storyboard in Resources */,
 				FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */,
+				FBAC9BDB23DC0F8E0023BC3B /* SelectLocationTextField.xib in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
 				324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */,
@@ -755,6 +792,7 @@
 				32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */,
 				FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
+				FBAC9BD523DBA1460023BC3B /* SelectALocationViewController.swift in Sources */,
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
 				FB954F6723D762B900E638BE /* DirectionsController.swift in Sources */,
 				FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */,
@@ -762,16 +800,19 @@
 				FB954F6B23D76F3D00E638BE /* AddressProtocol.swift in Sources */,
 				FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
+				FBAC9BDD23DC122C0023BC3B /* SelectLocationTextField.swift in Sources */,
 				D18DAE70230B3C3D00D7C151 /* AppDelegate.swift in Sources */,
 				FB67983523CFD32F009E0D87 /* VehicleListTableViewController.swift in Sources */,
 				3243787023CF84AC00539257 /* FirebaseNetworkController.swift in Sources */,
 				FB954F5D23D60CA900E638BE /* ARSLineProgressTypeAliases.swift in Sources */,
 				FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */,
+				FBAC9BD723DBCCB20023BC3B /* SelectALocationDelegate.swift in Sources */,
 				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */,
+				FBAC9BDF23DC24AB0023BC3B /* UIViewLoadingProtocol.swift in Sources */,
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
 				323955E123DB5781007D217C /* CustomDropDownTextField.swift in Sources */,
 				FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */,
@@ -788,8 +829,10 @@
 				FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */,
 				FB954F6323D60CA900E638BE /* ARSStatus.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
+				FBAC9BD123DB75500023BC3B /* CustomDropDownTextFieldDelegate.swift in Sources */,
 				FB954F5E23D60CA900E638BE /* ARSProgressLoader.swift in Sources */,
 				FBE19F9223CD41E40046837C /* ux17MapViewController.swift in Sources */,
+				FBAC9BD923DBD5C00023BC3B /* LocationPointProtocol.swift in Sources */,
 				D1BCDD7F230DB69B00986A18 /* WebRESTAPINetworkController.swift in Sources */,
 				FB67983123CFC35F009E0D87 /* CustomSideMenuNavigationController.swift in Sources */,
 				FBE19FA123CD78550046837C /* MenuItem.swift in Sources */,
@@ -800,6 +843,7 @@
 				FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */,
 				D122B3402326EF6F00A4C3DE /* AppConfiguration.swift in Sources */,
 				FBE19F9C23CD72200046837C /* ux17SideMenuTableViewController.swift in Sources */,
+				FBAC9BCF23DB73310023BC3B /* CustomDropDownCellDelegate.swift in Sources */,
 				FB954F6923D762E100E638BE /* DirectionsControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
