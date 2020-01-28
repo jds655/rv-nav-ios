@@ -40,10 +40,6 @@ class PlanARouteViewController: UIViewController {
     
 }
 // MARK: - Extensions
-extension Notification.Name {
-    static var outsideViewTapped = Notification.Name("OutsideViewTapped")
-    static var vehiclesAdded = Notification.Name("VehiclesAdded")
-}
 
 extension PlanARouteViewController: VehicleModelDataDelegate {
     func dataDidChange() {
