@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lc2-sV-rzp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lc2-sV-rzp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,7 +71,23 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DE2-OF-mFx" userLabel="Map View" customClass="AGSMapView">
                                         <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDo-RS-AFC">
+                                                <rect key="frame" x="8" y="8" width="102" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Get Route Test">
+                                                    <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="getRouteTestButtonTapped:" destination="Jtv-q6-DiK" eventType="touchUpInside" id="7Eu-DM-6mU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="fDo-RS-AFC" firstAttribute="leading" secondItem="DE2-OF-mFx" secondAttribute="leading" constant="8" id="5fX-CP-eWR"/>
+                                            <constraint firstItem="fDo-RS-AFC" firstAttribute="top" secondItem="DE2-OF-mFx" secondAttribute="top" constant="8" id="IbG-0C-c5j"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,6 +115,7 @@
                         <barButtonItem key="leftBarButtonItem" title="hamburger" image="hamburger" style="plain" id="HLU-nB-Xqe"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="getRouteTestButton" destination="fDo-RS-AFC" id="qTu-xZ-1DS"/>
                         <outlet property="mapView" destination="DE2-OF-mFx" id="fmC-5D-zZP"/>
                         <segue destination="gOW-EN-StE" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="GTj-hk-div"/>
                         <segue destination="pUD-L9-YyN" kind="presentation" identifier="LandingPageSegue" modalPresentationStyle="fullScreen" id="BFe-TL-gXq"/>

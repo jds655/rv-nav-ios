@@ -22,47 +22,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupOAuthManager()
         DropDown.startListeningToKeyboard()
         globalConfiguration.timeoutInterval = 300.0
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = "199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4.apps.googleusercontent.com"
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        setupOAuthManager()
 
         return true
     }
     
-    @available(iOS 9.0, *)
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        
-        let appID = Settings.appID
-        if url == URL(string: "com.googleusercontent.apps.199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4") {
-            return GIDSignIn.sharedInstance().handle(url)
-        } else if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") {
-            return ApplicationDelegate.shared.application(app, open: url, options: options)
-        }
-        return false
-    }
+//    @available(iOS 9.0, *)
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+//
+//        let appID = Settings.appID
+//        if url == URL(string: "com.googleusercontent.apps.199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4") {
+//            return GIDSignIn.sharedInstance().handle(url)
+//        } else if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") {
+//            return ApplicationDelegate.shared.application(app, open: url, options: options)
+//        }
+//        return false
+//    }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let appID = Settings.appID
         if url == URL(string: "com.googleusercontent.apps.199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4") {
             return GIDSignIn.sharedInstance().handle(url)
         } else if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") {
             return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: nil)
-        }
+        } 
         return false
     }
 
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-//        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-//            AppConfiguration.urlScheme == urlComponents.scheme,
-//            AppConfiguration.urlAuthPath == urlComponents.host {setupOAuthManager()
-//            AGSApplicationDelegate.shared().application(app, open: url, options: options)
-//        }
-//        return true
-//    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            AppConfiguration.urlScheme == urlComponents.scheme,
+            AppConfiguration.urlAuthPath == urlComponents.host {
+            AGSApplicationDelegate.shared().application(app, open: url, options: options)
+        }
+        return true
+    }
 
     private func setupOAuthManager() {
         let config = AGSOAuthConfiguration(portalURL: nil, clientID: AppConfiguration.clientID, redirectURL: "\(AppConfiguration.urlScheme)://\(AppConfiguration.urlAuthPath)")
