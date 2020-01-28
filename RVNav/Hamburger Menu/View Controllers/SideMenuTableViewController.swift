@@ -1,5 +1,5 @@
 //
-//  ux17SideMenuTableViewController.swift
+//  SideMenuTableViewController.swift
 //  RVNav
 //
 //  Created by Lambda_School_Loaner_214 on 1/13/20.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ux17SideMenuTableViewController: UITableViewController {
+class SideMenuTableViewController: UITableViewController {
 
   
     // MARK: - Properties
     var modelController: ModelController?
+    var mapAPIController: MapAPIControllerProtocol?
     // This is the array that the tableview data source uses for menu options.
     var menuItemController = MenuItemController()
     var menuDelegate: MenuDelegateProtocol?
@@ -38,6 +39,7 @@ class ux17SideMenuTableViewController: UITableViewController {
         case "PlanARoute":
             if let vc = segue.destination as? PlanARouteViewController {
                 vc.vehicleController = modelController?.vehicleController
+                vc.mapAPIController = mapAPIController
             }
         default:
             break

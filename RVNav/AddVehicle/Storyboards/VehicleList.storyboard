@@ -14,9 +14,6 @@
         <array key="Heebo-Medium.ttf">
             <string>Heebo-Medium</string>
         </array>
-        <array key="Heebo-Regular.ttf">
-            <string>Heebo-Regular</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Vehicle List Table View Controller-->
@@ -31,20 +28,24 @@
                                 <rect key="frame" x="0.0" y="120" width="414" height="776"/>
                                 <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VehicleCell" textLabel="gsh-Gx-gpX" style="IBUITableViewCellStyleDefault" id="Sww-vO-BX6">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="49.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VehicleCell" textLabel="a32-9H-Z28" imageView="U9Y-Z3-9yo" style="IBUITableViewCellStyleDefault" id="Sww-vO-BX6">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sww-vO-BX6" id="f5J-bO-nVT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Vehicle Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gsh-Gx-gpX">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="49.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a32-9H-Z28">
+                                                    <rect key="frame" x="59" y="0.0" width="335" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="car" id="U9Y-Z3-9yo">
+                                                    <rect key="frame" x="20" y="9.5" width="24" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
@@ -53,14 +54,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddVehicleCell" textLabel="CYp-mO-gck" style="IBUITableViewCellStyleDefault" id="sy5-j0-S8f">
-                                        <rect key="frame" x="0.0" y="77.5" width="414" height="49.5"/>
+                                        <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sy5-j0-S8f" id="L5h-h9-z21">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="+ Add New Vehicle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CYp-mO-gck">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="49.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Heebo-Medium" family="Heebo" pointSize="17"/>
                                                     <color key="textColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
@@ -83,7 +84,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RV WAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-tl-LDj">
-                                        <rect key="frame" x="20" y="52" width="128.5" height="53"/>
+                                        <rect key="frame" x="20" y="52" width="132.5" height="53"/>
                                         <fontDescription key="fontDescription" name="Heebo-Bold" family="Heebo" pointSize="36"/>
                                         <color key="textColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -152,9 +153,10 @@
     </scenes>
     <resources>
         <image name="Menu Line" width="375" height="1"/>
+        <image name="car" width="24" height="24"/>
         <image name="close" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iQa-yw-SQy"/>
+        <segue reference="87k-Gf-ACV"/>
     </inferredMetricsTieBreakers>
 </document>

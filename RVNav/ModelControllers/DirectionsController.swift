@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import ArcGIS
 
 class DirectionsController: DirectionsControllerProtocol {
     
     var delegate: ViewDelegateProtocol?
-    var destinationAddress: AddressProtocol?
+    var destinationAddress: AGSPoint?
     var mapAPIController: MapAPIControllerProtocol
     
     required init(mapAPIController: MapAPIControllerProtocol) {
@@ -20,7 +21,7 @@ class DirectionsController: DirectionsControllerProtocol {
         self.mapAPIController.delegate = self
     }
     
-    func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void) {
+    func search(with address: String, completion: @escaping ([AGSGeocodeResult]?) -> Void) {
         mapAPIController.search(with: address) { (addresses) in
             completion(addresses)
         }

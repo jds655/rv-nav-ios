@@ -11,6 +11,7 @@ import SideMenu
 
 class CustomSideMenuNavigationController: SideMenuNavigationController {
     var modelController: ModelController?
+    var mapAPIController: MapAPIControllerProtocol?
     var menuDelegate: MenuDelegateProtocol?
     
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ class CustomSideMenuNavigationController: SideMenuNavigationController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ux17SideMenuTableViewController
+        let destinationVC = segue.destination as! SideMenuTableViewController
         destinationVC.modelController = self.modelController
         destinationVC.menuDelegate = self.menuDelegate
     }
@@ -28,10 +29,11 @@ class CustomSideMenuNavigationController: SideMenuNavigationController {
 //UINavigationControllerDelegate
 extension CustomSideMenuNavigationController: UINavigationControllerDelegate {
     internal func navigationController(_: UINavigationController, willShow: UIViewController, animated: Bool) {
-        if willShow is ux17SideMenuTableViewController {
-            let destinationVC = willShow as! ux17SideMenuTableViewController
+        if willShow is SideMenuTableViewController {
+            let destinationVC = willShow as! SideMenuTableViewController
             destinationVC.modelController = self.modelController
             destinationVC.menuDelegate = self.menuDelegate
+            destinationVC.mapAPIController = self.mapAPIController
         }
     }
 }
