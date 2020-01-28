@@ -106,6 +106,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "HamburgerMenu" {
             let destinationVC = segue.destination as! CustomSideMenuNavigationController
             destinationVC.modelController = modelController
+            destinationVC.mapAPIController = directionsController.mapAPIController
             destinationVC.menuDelegate = self
         }
     }

@@ -58,7 +58,7 @@
                                                             <color key="titleColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="CMH-Df-ckF" kind="unwind" unwindAction="unwindToMapViewWithSegue:" id="X8L-WV-OhD"/>
+                                                            <action selector="closeTapped:" destination="cqA-23-rmb" eventType="touchUpInside" id="48U-CD-y20"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -116,7 +116,7 @@
                                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <segue destination="CMH-Df-ckF" kind="unwind" unwindAction="unwindToVehicleListWithSegue:" id="Ezj-i3-TsI"/>
+                                                                    <action selector="backTapped:" destination="cqA-23-rmb" eventType="touchUpInside" id="E4S-Ae-QqW"/>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMy-Z7-NqU">
@@ -586,7 +586,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBh-Aa-lff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="CMH-Df-ckF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2140.5797101449275" y="149.33035714285714"/>
         </scene>

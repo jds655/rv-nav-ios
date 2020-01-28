@@ -10,12 +10,12 @@ import Foundation
 import CoreLocation
 
 protocol AddressProtocol {
-//    var identifier:String {get set}
-//    var name:String {get set}
-//    var address:String {get set}
-//    var qualifiedName:String {get set}
-//    var superiorPlacemarks:String {get set}
-//    var centerCoordinate: String {get set}
-//    var code: String {get set}
+    var identifier:String {get set}
+    var name:String {get set}
+    var address:String {get set}
+    var qualifiedName:String {get set}
+    var superiorPlacemarks:String {get set}
+    var centerCoordinate: String {get set}
+    var code: String {get set}
     var location: CLLocation? {get set}
 }

@@ -10,5 +10,16 @@ import UIKit
 import DropDown
 
 class CustomDropDownCell: DropDownCell {
+    
+    var delegate: CustomDropDownCellDelegate?
+    
     @IBOutlet weak var addVehicleButton: UIButton!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+    }
+    @IBAction func addVehicleTapped(_ sender: UIButton) {
+        delegate?.performSegue(segueIdentifier: "AddVehicleSegue")
+    }
 }
