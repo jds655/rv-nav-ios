@@ -37,7 +37,7 @@ class CustomDropDownTextField: UIControl {
         //setupCoverButtonUI()
 //        NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadVehiclesDropDown(from:)), name: .vehiclesAdded, object: nil)
-        addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
+        //addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
     }
     
     @objc func editingEnded() {
@@ -53,6 +53,11 @@ class CustomDropDownTextField: UIControl {
         setDropDownArrow()
         setupVehicleDropDownUI()
         setupVehicleDropDownCellConfiguration()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dropDown(sender:)))
+        isUserInteractionEnabled = true
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        addGestureRecognizer(tap)
     }
     
     private func setupLabel() {

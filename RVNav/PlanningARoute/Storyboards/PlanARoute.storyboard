@@ -103,14 +103,6 @@
                                     <action selector="openSelectLocation:" destination="dBe-uT-XvF" eventType="touchUpInside" id="5iO-n8-aDK"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ub-5k-YuN">
-                                <rect key="frame" x="245" y="412" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="UER-Rk-XC9" kind="presentation" identifier="SelectALocation" id="r6Q-xt-xrv"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -136,6 +128,7 @@
                         <outlet property="selectedVehicle" destination="L32-t5-k5A" id="tE4-hN-F9v"/>
                         <outlet property="startLocation" destination="0Ix-JC-Wcr" id="Z16-DI-hNm"/>
                         <segue destination="XwP-qY-5Ir" kind="show" identifier="AddVehicleSegue" id="rnt-W9-qKw"/>
+                        <segue destination="UER-Rk-XC9" kind="presentation" identifier="SelectALocation" id="bfw-5X-O31"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

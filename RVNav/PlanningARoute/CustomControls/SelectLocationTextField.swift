@@ -73,6 +73,11 @@ class SelectLocationTextField: NibDesignableControl {
     
     private func commonSetup () {
         addTarget(self, action: #selector(openSelect), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openSelect))
+        isUserInteractionEnabled = true
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        containerView.addGestureRecognizer(tap)
     }
 }
 

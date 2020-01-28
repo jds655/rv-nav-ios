@@ -29,6 +29,7 @@ class PlanARouteViewController: UIViewController {
         updateViews()
         vehicleController?.delegate = self
         selectedVehicle.delegate = self
+        startLocation.delegate = self
     }
 
     // MARK: - Navigation
@@ -89,10 +90,11 @@ extension PlanARouteViewController: SelectALocationDelegate {
     }
     
     func openSelectALocation(target: SelectALocationDelegate) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectALocationViewController") as? SelectALocationViewController else { return }
-        viewController.delegate = target
-        viewController.mapAPIController = self.mapAPIController
-        navigationController?.pushViewController(viewController, animated: true)
+//        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectALocationViewController") as? SelectALocationViewController else { return }
+//        viewController.delegate = target
+//        viewController.mapAPIController = self.mapAPIController
+//        navigationController?.pushViewController(viewController, animated: true)
+        performSegue(segueID: "SelectALocation")
     }
     
     
