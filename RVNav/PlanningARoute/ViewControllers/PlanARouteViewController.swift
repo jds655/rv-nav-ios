@@ -16,11 +16,12 @@ class PlanARouteViewController: UIViewController {
     var route: Route?
     var vehicleController: VehicleModelControllerProtocol?
     var mapAPIController: MapAPIControllerProtocol?
+    var sender: SelectALocationDelegate?
     
     // MARK: - IBOutlets
     @IBOutlet weak var selectedVehicle: CustomDropDownTextField!
     @IBOutlet weak var startLocation: SelectLocationTextField!
-    
+    @IBOutlet weak var endLocation: SelectLocationTextField!
     
     
     // MARK: - View Lifecycle
@@ -30,6 +31,7 @@ class PlanARouteViewController: UIViewController {
         vehicleController?.delegate = self
         selectedVehicle.delegate = self
         startLocation.delegate = self
+        endLocation.delegate = self
     }
 
     // MARK: - Navigation
@@ -41,7 +43,7 @@ class PlanARouteViewController: UIViewController {
         case "SelectALocation":
             let vc = segue.destination as? SelectALocationViewController
             vc?.mapAPIController = self.mapAPIController
-            vc?.delegate = startLocation
+            vc?.delegate = self.sender
         default:
             break
         }
@@ -90,10 +92,7 @@ extension PlanARouteViewController: SelectALocationDelegate {
     }
     
     func openSelectALocation(target: SelectALocationDelegate) {
-//        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectALocationViewController") as? SelectALocationViewController else { return }
-//        viewController.delegate = target
-//        viewController.mapAPIController = self.mapAPIController
-//        navigationController?.pushViewController(viewController, animated: true)
+        self.sender = target
         performSegue(segueID: "SelectALocation")
     }
     

@@ -103,15 +103,50 @@
                                     <action selector="openSelectLocation:" destination="dBe-uT-XvF" eventType="touchUpInside" id="5iO-n8-aDK"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you going?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rd2-uK-5Be">
+                                <rect key="frame" x="20" y="337" width="374" height="24"/>
+                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxt-vT-xwn" userLabel="SelectStartLocationView" customClass="SelectLocationTextField" customModule="RVNav" customModuleProvider="target">
+                                <rect key="frame" x="20" y="381" width="374" height="45"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="bnZ-P9-76t"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="graySearch"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="openSelectLocation:" destination="dBe-uT-XvF" eventType="touchUpInside" id="I19-PF-nRe"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Flc-Px-yHb">
+                                <rect key="frame" x="20" y="446" width="374" height="36"/>
+                                <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                <state key="normal" title="Get Direction">
+                                    <color key="titleColor" red="0.0" green="0.69803921570000005" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Xru-Jr-9Us" firstAttribute="leading" secondItem="L32-t5-k5A" secondAttribute="leading" id="1iB-pJ-TJp"/>
+                            <constraint firstItem="rd2-uK-5Be" firstAttribute="top" secondItem="0Ix-JC-Wcr" secondAttribute="bottom" constant="20" id="1l1-G4-rWZ"/>
+                            <constraint firstItem="Flc-Px-yHb" firstAttribute="top" secondItem="sxt-vT-xwn" secondAttribute="bottom" constant="20" id="2xo-cn-nGb"/>
+                            <constraint firstItem="sxt-vT-xwn" firstAttribute="trailing" secondItem="rd2-uK-5Be" secondAttribute="trailing" id="9Ny-9u-NiO"/>
+                            <constraint firstItem="sxt-vT-xwn" firstAttribute="leading" secondItem="rd2-uK-5Be" secondAttribute="leading" id="9gh-f5-ZjW"/>
                             <constraint firstItem="L32-t5-k5A" firstAttribute="top" secondItem="5Kh-nS-hK3" secondAttribute="bottom" constant="20" id="BhO-gD-usz"/>
                             <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" constant="20" id="FH0-c1-VGV"/>
                             <constraint firstItem="0Ix-JC-Wcr" firstAttribute="top" secondItem="Xru-Jr-9Us" secondAttribute="bottom" constant="20" id="Q4d-rK-m2i"/>
                             <constraint firstItem="Fe5-Tz-daM" firstAttribute="trailing" secondItem="Ua1-0m-Q33" secondAttribute="trailing" id="QEo-36-quO"/>
+                            <constraint firstItem="rd2-uK-5Be" firstAttribute="leading" secondItem="0Ix-JC-Wcr" secondAttribute="leading" id="R9i-Y9-aPK"/>
+                            <constraint firstItem="rd2-uK-5Be" firstAttribute="trailing" secondItem="0Ix-JC-Wcr" secondAttribute="trailing" id="ZLm-mp-P3n"/>
                             <constraint firstItem="0Ix-JC-Wcr" firstAttribute="leading" secondItem="Xru-Jr-9Us" secondAttribute="leading" id="anS-i5-wjd"/>
                             <constraint firstItem="0Ix-JC-Wcr" firstAttribute="trailing" secondItem="Xru-Jr-9Us" secondAttribute="trailing" id="bnk-uu-bvm"/>
                             <constraint firstItem="Fe5-Tz-daM" firstAttribute="top" secondItem="mxx-3q-ZlZ" secondAttribute="top" id="cog-v8-OmM"/>
@@ -119,12 +154,16 @@
                             <constraint firstItem="5Kh-nS-hK3" firstAttribute="top" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="20" id="dle-Z1-WdR"/>
                             <constraint firstItem="Fe5-Tz-daM" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" id="e7S-hY-1QB"/>
                             <constraint firstItem="L32-t5-k5A" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="foE-Fe-UHZ"/>
+                            <constraint firstItem="sxt-vT-xwn" firstAttribute="top" secondItem="rd2-uK-5Be" secondAttribute="bottom" constant="20" id="jki-vK-PXN"/>
+                            <constraint firstItem="Flc-Px-yHb" firstAttribute="leading" secondItem="sxt-vT-xwn" secondAttribute="leading" id="jvc-YF-6Fn"/>
+                            <constraint firstItem="Flc-Px-yHb" firstAttribute="trailing" secondItem="sxt-vT-xwn" secondAttribute="trailing" id="mQw-Jo-tFq"/>
                             <constraint firstItem="Xru-Jr-9Us" firstAttribute="trailing" secondItem="L32-t5-k5A" secondAttribute="trailing" id="rVr-C3-PN1"/>
                             <constraint firstItem="Xru-Jr-9Us" firstAttribute="top" secondItem="L32-t5-k5A" secondAttribute="bottom" constant="20" id="wKh-ex-25h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ua1-0m-Q33"/>
                     </view>
                     <connections>
+                        <outlet property="endLocation" destination="sxt-vT-xwn" id="O0r-OD-DYW"/>
                         <outlet property="selectedVehicle" destination="L32-t5-k5A" id="tE4-hN-F9v"/>
                         <outlet property="startLocation" destination="0Ix-JC-Wcr" id="Z16-DI-hNm"/>
                         <segue destination="XwP-qY-5Ir" kind="show" identifier="AddVehicleSegue" id="rnt-W9-qKw"/>
@@ -160,6 +199,7 @@
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
+        <image name="graySearch" width="20" height="20"/>
         <image name="greyLocation" width="24" height="24"/>
         <image name="hamburger" width="39" height="39"/>
     </resources>

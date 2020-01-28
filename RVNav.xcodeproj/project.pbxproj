@@ -44,6 +44,8 @@
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
 		FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */; };
 		FB27EFFC23CD148600C7EA9A /* ux17MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */; };
+		FB58EF1423E08E6000A1AA8B /* RouteResults.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB58EF1323E08E6000A1AA8B /* RouteResults.storyboard */; };
+		FB58EF1623E0D70A00A1AA8B /* RouteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB58EF1523E0D70A00A1AA8B /* RouteResultsViewController.swift */; };
 		FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */; };
 		FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65890023DA3AF100DBF1D3 /* Route.swift */; };
 		FB65890323DA55D600DBF1D3 /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
@@ -142,6 +144,8 @@
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
 		FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingBackground.swift; sourceTree = "<group>"; };
 		FB27EFFB23CD148600C7EA9A /* ux17MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ux17MapView.storyboard; sourceTree = "<group>"; };
+		FB58EF1323E08E6000A1AA8B /* RouteResults.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteResults.storyboard; sourceTree = "<group>"; };
+		FB58EF1523E0D70A00A1AA8B /* RouteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteResultsViewController.swift; sourceTree = "<group>"; };
 		FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanARouteViewController.swift; sourceTree = "<group>"; };
 		FB65890023DA3AF100DBF1D3 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		FB65890423DAAAD700DBF1D3 /* MapAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIController.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 			children = (
 				FB6588FE23DA321100DBF1D3 /* PlanARouteViewController.swift */,
 				FBAC9BD423DBA1460023BC3B /* SelectALocationViewController.swift */,
+				FB58EF1523E0D70A00A1AA8B /* RouteResultsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 			children = (
 				324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */,
 				FBAC9BD223DB99600023BC3B /* SelectALocation.storyboard */,
+				FB58EF1323E08E6000A1AA8B /* RouteResults.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -700,6 +706,7 @@
 				FBE19FA823CD831F0046837C /* Menu.xcassets in Resources */,
 				32798A6E23DA55B9002D1AA5 /* CustomDropDownCell.xib in Resources */,
 				FBE19F9A23CD6FB10046837C /* HamburgerMenu.storyboard in Resources */,
+				FB58EF1423E08E6000A1AA8B /* RouteResults.storyboard in Resources */,
 				FB67983323CFD215009E0D87 /* VehicleList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -776,6 +783,7 @@
 				3231CA4123CD2BAD008CDBA5 /* AddVehicleViewController.swift in Sources */,
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */,
+				FB58EF1623E0D70A00A1AA8B /* RouteResultsViewController.swift in Sources */,
 				FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */,
 				FBE19F9F23CD78140046837C /* MenuItemTableViewCell.swift in Sources */,
 				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,

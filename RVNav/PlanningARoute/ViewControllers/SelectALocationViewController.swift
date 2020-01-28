@@ -14,6 +14,7 @@ class SelectALocationViewController: UIViewController {
     
     // MARK: - Properties
     var delegate: SelectALocationDelegate?
+    var target: SelectLocationTextField?
     var mapAPIController: MapAPIControllerProtocol?
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var searchResults: [AGSGeocodeResult]? {
