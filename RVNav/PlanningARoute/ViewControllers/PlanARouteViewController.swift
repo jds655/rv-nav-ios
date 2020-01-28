@@ -72,11 +72,7 @@ extension PlanARouteViewController: CustomDropDownTextFieldDelegate {
         self.performSegue(withIdentifier: segueID, sender: self)
     }
 }
-
-extension Notification.Name {
-    static var outsideViewTapped = Notification.Name("OutsideViewTapped")
-    static var vehiclesAdded = Notification.Name("VehiclesAdded")
-}
+// MARK: - Extensions
 
 extension PlanARouteViewController: VehicleModelDataDelegate {
     func dataDidChange() {
