@@ -221,8 +221,8 @@ class AddVehicleViewController: ShiftableViewController {
                     print("Error Editing vehicle: \(error)")
                 } else {
                     DispatchQueue.main.async {
-                            //self.navigationController?.popViewController(animated: true)
-                        self.dismiss(animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: true)
+                        //self.dismiss(animated: true, completion: nil)
                     }
                 }
             })
@@ -232,8 +232,8 @@ class AddVehicleViewController: ShiftableViewController {
                     NSLog("Error Creating Vehicle \(error)")
                 } else {
                     DispatchQueue.main.async {
-                        //self.navigationController?.popViewController(animated: true)
-                        self.dismiss(animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: true)
+                        //self.dismiss(animated: true, completion: nil)
                     }
                 }
             }

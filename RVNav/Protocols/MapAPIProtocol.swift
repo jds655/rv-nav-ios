@@ -12,13 +12,13 @@ import CoreLocation
 
 protocol MapAPIControllerProtocol {
     var delegate: ViewDelegateProtocol? {get set}
-    var geoCoder: CLGeocoder {get set}
+    var geoCoder: AGSLocatorTask {get set}
     var mapView: AGSMapView {get set}
     var avoidanceController : AvoidanceControllerProtocol {get set}
     
     init (avoidanceController: AvoidanceControllerProtocol)
     
-    func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void)
+    func search(with address: String, completion: @escaping ([AGSGeocodeResult]?) -> Void)
     
     func findRoute(with barriers: [AGSPolygonBarrier])
 }

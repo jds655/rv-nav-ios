@@ -48,6 +48,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
         //let _ = createBarriers()
+        //geocode()  //For testing
     }
     
     deinit {
@@ -80,11 +81,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if directionsController.destinationAddress != nil {
-            let destination = directionsController.destinationAddress!.location!.coordinate
-            end = AGSPoint(clLocationCoordinate2D: destination)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +108,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "HamburgerMenu" {
             let destinationVC = segue.destination as! CustomSideMenuNavigationController
             destinationVC.modelController = modelController
+            destinationVC.mapAPIController = directionsController.mapAPIController
             destinationVC.menuDelegate = self
         }
     }

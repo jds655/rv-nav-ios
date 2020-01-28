@@ -14,5 +14,4 @@ extension CLPlacemark: AddressProtocol {
 }
 
 extension AGSPoint: AddressProtocol {
-    
 }

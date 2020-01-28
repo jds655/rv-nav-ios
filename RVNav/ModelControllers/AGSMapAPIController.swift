@@ -7,21 +7,19 @@
 //
 
 import UIKit
-import CoreLocation
 import ArcGIS
 
 class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDelegate {
 
     // MARK: - Properties
     var delegate: ViewDelegateProtocol?
-    var geoCoder = CLGeocoder()
-    private var destinationAddress: AddressProtocol? {
-        didSet{
-            let destination = destinationAddress!.location!.coordinate
-            end = AGSPoint(clLocationCoordinate2D: destination)
-            //let _ = createBarriers()
-        }
-    }
+//    private var destinationAddress: AGSGeocodeResult? {
+//        didSet{
+//            let destination = destinationAddress!.routeLocation!.coordinate
+//            end = AGSPoint(clLocationCoordinate2D: destination)
+//            //let _ = createBarriers()
+//        }
+//    }
     internal var avoidanceController: AvoidanceControllerProtocol
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
@@ -34,8 +32,8 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
         return newMapView
     }()
     
-    
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
+    var geoCoder = AGSLocatorTask(url:URL(string: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer")!)
     
     // MARK: -  Lifecycle
     required init(avoidanceController: AvoidanceControllerProtocol) {
@@ -47,15 +45,15 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     }
     
     // MARK: - Public Methods
-    func search(with address: String, completion: @escaping ([AddressProtocol]?) -> Void) {
-        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+    func search(with address: String, completion: @escaping ([AGSGeocodeResult]?) -> Void) {
+        geoCoder.geocode(withSearchText: address) { (results, error) in
             if let error = error {
                 NSLog("Error geocoding address to placemarks: \(error)")
                 completion(nil)
                 return
             }
-            if let placemarks = placemarks {
-                completion(placemarks as? [AddressProtocol])
+            if let results  = results {
+                completion(results)
                 return
             }
         }
@@ -82,11 +80,15 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     
     // Used to display barrier points retrieved from the DS backend.
     private func plotAvoidance() {
-        let startCoor = convert(toLongAndLat: mapView.locationDisplay.mapLocation!.x, andYPoint: mapView.locationDisplay.mapLocation!.y)
         #warning("change this from singlton to controller")
-        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = destinationAddress?.location?.coordinate.longitude, let endLat = destinationAddress?.location?.coordinate.latitude  else { return }
+        guard let vehicleInfo = RVSettings.shared.selectedVehicle,
+            let height = vehicleInfo.height,
+            let startLon = start?.longitude,
+            let startLat = start?.latitude,
+            let endLon = end?.longitude,
+            let endLat = end?.latitude  else { return }
         
-        let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
+        let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
         
         avoidanceController.getAvoidances(with: routeInfo) { (avoidances, error) in
             if let error = error {
@@ -118,7 +120,7 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
         
         
         #warning("change this from singlton to controller")
-        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = destinationAddress?.location?.coordinate.longitude, let endLat = destinationAddress?.location?.coordinate.latitude  else { return []}
+        guard let vehicleInfo = RVSettings.shared.selectedVehicle, let height = vehicleInfo.height, let endLon = end?.longitude, let endLat = end?.latitude  else { return []}
         
         let routeInfo = RouteInfo(height: height, startLon: startCoor.coordinate.longitude, startLat: startCoor.coordinate.latitude, endLon: endLon, endLat: endLat)
         

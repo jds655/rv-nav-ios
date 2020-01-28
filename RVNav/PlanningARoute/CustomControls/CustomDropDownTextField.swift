@@ -1,5 +1,5 @@
 //
-//  CustomMenuArrow.swift
+//  CustomDropDownTextField.swift
 //  RVNav
 //
 //  Created by Jake Connerly on 1/21/20.
@@ -9,18 +9,20 @@
 import UIKit
 import DropDown
 
+//@IBDesignable
 class CustomDropDownTextField: UIControl {
     
+    private var _cornerRadius: CGFloat = 4
     public  var delegate: CustomDropDownTextFieldDelegate?
-    private let standardMargin: CGFloat = 8.0
-    private let textFieldContainerHeight: CGFloat = 50.0
-    private let textFieldHeight: CGFloat = 45.0
+    private var _standardMargin: CGFloat = 8.0
+    private var _textFieldHeight: CGFloat = 45.0
+    private var _font: UIFont //= heeboRegularFont
+    private var _textColor: UIColor = .black
+    private var _isRotated = false
+    
     
     private let heeboRegularFont = UIFont(name: "Heebo-Regular", size: 16)
-    
-    private var textFieldWasTapped: Bool = false
-    
-    private var textField: UITextField = UITextField()
+    private var label: UILabel = UILabel()
     private var accessoryImageView: UIImageView = UIImageView()
     private var dividerLine: UIView = UIView()
     private var dropDownArrowContainerView: UIView = UIView()
@@ -29,40 +31,43 @@ class CustomDropDownTextField: UIControl {
     private let coverButton: UIButton = UIButton()
     
     required init?(coder aDecoder: NSCoder) {
+        _font = heeboRegularFont!
         super.init(coder: aDecoder)
         setupUI()
-        setupTextField()
+        //setupCoverButtonUI()
+//        NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadVehiclesDropDown(from:)), name: .vehiclesAdded, object: nil)
+        addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func editingEnded() {
+        label.endEditing(true)
+        dropDownArrow.rotateBack()
+        self._isRotated = false
+    }
+    
+    private func setupUI() {
+        layer.cornerRadius = _cornerRadius
+        setupLabel()
         setAssessoryImageView()
         setDropDownArrow()
         setupVehicleDropDownUI()
         setupVehicleDropDownCellConfiguration()
-        setupCoverButtonUI()
-        NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadVehiclesDropDown(from:)), name: .vehiclesAdded, object: nil)
     }
     
-    @objc func editingEnded() {
-        textField.endEditing(true)
-        dropDownArrow.rotateBack()
-    }
-    
-    private func setupUI() {
-        layer.cornerRadius = 4
-    }
-    
-    private func setupTextField() {
-        textField.font = heeboRegularFont
-        textField.textColor = .black
-        textField.isUserInteractionEnabled = false
-        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        textField.delegate = self
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(textField)
+    private func setupLabel() {
+        label.font = _font
+        label.textColor = .black
+        label.isUserInteractionEnabled = false
+        //label.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        //label.delegate = self
+        label.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(label)
         // TextField Constraints
-        let textFieldLeadingAnchor  = textField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
-        let textFieldTopAnchor      = textField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
-        let textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
-        let textFieldBottomAnchor   = textField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        let textFieldLeadingAnchor  = label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
+        let textFieldTopAnchor      = label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
+        let textFieldTrailingAnchor = label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
+        let textFieldBottomAnchor   = label.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
         NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor, textFieldBottomAnchor])
     }
     
@@ -79,7 +84,7 @@ class CustomDropDownTextField: UIControl {
         
         //Divider Line
         dividerLine.backgroundColor = .gray
-        dividerLine.layer.cornerRadius = 4
+        dividerLine.layer.cornerRadius = _cornerRadius
         dividerLine.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dividerLine)
         // Divider Line Contraints
@@ -92,7 +97,7 @@ class CustomDropDownTextField: UIControl {
     
     private func setDropDownArrow() {
         //ContainerView
-        dropDownArrowContainerView.layer.cornerRadius = 4
+        dropDownArrowContainerView.layer.cornerRadius = _cornerRadius
         dropDownArrowContainerView.translatesAutoresizingMaskIntoConstraints = false
         dropDownArrowContainerView.backgroundColor = .clear
         addSubview(dropDownArrowContainerView)
@@ -119,33 +124,41 @@ class CustomDropDownTextField: UIControl {
     private func setupVehicleDropDownUI() {
         dropDownVehicles.anchorView = self
         dropDownVehicles.dismissMode = .automatic
-        DropDown.appearance().setupCornerRadius(4)
+        DropDown.appearance().setupCornerRadius(_cornerRadius)
         DropDown.appearance().textFont = heeboRegularFont ?? UIFont.systemFont(ofSize: 16)
         dropDownVehicles.direction = .bottom
-        dropDownVehicles.bottomOffset = CGPoint(x: 0, y: textFieldHeight)
+        dropDownVehicles.bottomOffset = CGPoint(x: 0, y: _textFieldHeight)
+        dropDownVehicles.cancelAction = {
+            self.dropDownArrow.rotateBack()
+            self._isRotated = false
+        }
     }
     
-    private func setupCoverButtonUI() {
-        coverButton.backgroundColor = .clear
-        coverButton.translatesAutoresizingMaskIntoConstraints = false
-        coverButton.layer.cornerRadius = 4
-        addSubview(coverButton)
-        // Cover Button Contraints
-        let coverButtonLeadingAnchor  = coverButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
-        let coverButtonTopAnchor      = coverButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
-        let coverButtonTrailingAnchor = coverButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
-        let coverButtonBottomAnchor   = coverButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        NSLayoutConstraint.activate([coverButtonLeadingAnchor, coverButtonTopAnchor, coverButtonTrailingAnchor, coverButtonBottomAnchor])
-        //Cover Button target
-        coverButton.addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
-    }
+//    private func setupCoverButtonUI() {
+//        coverButton.backgroundColor = .clear
+//        coverButton.translatesAutoresizingMaskIntoConstraints = false
+//        coverButton.layer.cornerRadius = 4
+//        addSubview(coverButton)
+//        // Cover Button Contraints
+//        let coverButtonLeadingAnchor  = coverButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
+//        let coverButtonTopAnchor      = coverButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
+//        let coverButtonTrailingAnchor = coverButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
+//        let coverButtonBottomAnchor   = coverButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+//        NSLayoutConstraint.activate([coverButtonLeadingAnchor, coverButtonTopAnchor, coverButtonTrailingAnchor, coverButtonBottomAnchor])
+//        //Cover Button target
+//        coverButton.addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
+//    }
     
     @objc private func dropDown(sender: UIButton) {
         dropDownVehicles.show()
-        dropDownArrow.rotateUp()
+        if !_isRotated {
+            dropDownArrow.rotateUp()
+            self._isRotated = true
+        }
         dropDownVehicles.selectionAction = { (index: Int, item: String) in
-            self.textField.text = item
+            self.label.text = item
             self.dropDownArrow.rotateBack()
+            self._isRotated = false
         }
     }
     
@@ -174,6 +187,7 @@ class CustomDropDownTextField: UIControl {
     }
 }
 
+// MARK: - Extensions
 extension CustomDropDownTextField: CustomDropDownCellDelegate {
     func performSegue(segueIdentifier: String) {
         dropDownVehicles.hide()
@@ -193,16 +207,65 @@ extension UIView {
     }
 }
 
-extension CustomDropDownTextField: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        dropDownArrow.rotateUp()
-        dropDownVehicles.show()
-        dropDownVehicles.selectionAction = { (index: Int, item: String) in
-            self.textField.text = item
-            textField.endEditing(true)
+//extension CustomDropDownTextField: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        dropDownArrow.rotateUp()
+//        dropDownVehicles.show()
+//        dropDownVehicles.selectionAction = { (index: Int, item: String) in
+//            self.label.text = item
+//            textField.endEditing(true)
+//        }
+//    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        dropDownArrow.rotateBack()
+//    }
+//}
+
+//Expose properties to IB
+extension CustomDropDownTextField {
+    @IBInspectable public var cornerRadius: CGFloat  {
+        get {
+            return _cornerRadius
+        }
+        set (newValue) {
+            _cornerRadius = newValue
+            setupUI()
         }
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        dropDownArrow.rotateBack()
+    
+    @IBInspectable public var height: CGFloat {
+        get {
+            return _textFieldHeight
+        }
+        set {
+            _textFieldHeight = newValue
+        }
+    }
+    
+    @IBInspectable public var font: UIFont {
+        get {
+            return _font
+        }
+        set {
+            _font = newValue
+        }
+    }
+    
+    @IBInspectable public var standardMargin: CGFloat {
+        get {
+            return _standardMargin
+        }
+        set {
+            _standardMargin = newValue
+        }
+    }
+    
+    @IBInspectable public var textColor: UIColor {
+        get {
+            return _textColor
+        }
+        set {
+            _textColor = newValue
+        }
     }
 }

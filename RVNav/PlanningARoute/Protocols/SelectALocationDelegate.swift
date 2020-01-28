@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ArcGIS
 
 protocol SelectALocationDelegate {
-    func locationSelected(location: AddressProtocol)
+    func locationSelected(location: AGSGeocodeResult)
     func openSelectALocation(target: SelectALocationDelegate)
 }

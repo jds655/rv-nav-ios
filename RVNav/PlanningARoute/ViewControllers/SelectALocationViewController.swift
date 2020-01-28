@@ -16,18 +16,21 @@ class SelectALocationViewController: UIViewController {
     var delegate: SelectALocationDelegate?
     var mapAPIController: MapAPIControllerProtocol?
     private let graphicsOverlay = AGSGraphicsOverlay()
-    private var searchResults: [AddressProtocol]? {
+    private var searchResults: [AGSGeocodeResult]? {
         didSet{
             tableView.reloadData()
         }
     }
-    private var selectedLocation: AddressProtocol?{
+    private var selectedLocation: AGSGeocodeResult?{
         didSet{
-            centerMapOnLocation(selectedLocation!)
+            if selectedLocation != nil {
+                centerMapOnLocation(selectedLocation!)
+            }
         }
     }
     
     // MARK: - IBOutlets
+    @IBOutlet weak var locationPickerContainerView: UIView!
     @IBOutlet weak private var searchView: UISearchBar!
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var mapView: AGSMapView!
@@ -41,9 +44,13 @@ class SelectALocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if mapAPIController == nil {
+            fatalError("No mapPAIController in SelectALocationController")
+        }
         tableView.dataSource = self
         tableView.delegate = self
         searchView.delegate = self
+        setupUI()
         setupMap()
     }
     
@@ -55,17 +62,28 @@ class SelectALocationViewController: UIViewController {
     // MARK: - IBActions
     @IBAction private func closeTapped(_ sender: Any) {
         self.selectedLocation = nil
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func selectTapped(_ sender: UIButton) {
         guard let selectedLocation = self.selectedLocation else { return }
         delegate?.locationSelected(location: selectedLocation)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Public Methods
     
     // MARK: - Private Methods
+    
+    private func setupUI() {
+        locationPickerContainerView.layer.cornerRadius = 30
+        locationPickerContainerView.layer.shadowRadius = 15
+        locationPickerContainerView.layer.shadowOffset = .zero
+        locationPickerContainerView.layer.shadowOpacity = 0.2
+        
+        selectButton.layer.cornerRadius = 4
+    }
     
     private func setupMap() {
         mapView.touchDelegate = self
@@ -92,14 +110,13 @@ class SelectALocationViewController: UIViewController {
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
-    private func centerMapOnLocation(_ location: AddressProtocol) {
-        guard let coordinate = location.location?.coordinate else { return }
-        let point = coordinate as LocationPointProtocol
-        mapView.setViewpointCenter(point as! AGSPoint) { (finished) in
+    private func centerMapOnLocation(_ location: AGSGeocodeResult) {
+        guard let coordinate = location.displayLocation else { return }
+        mapView.setViewpointCenter(coordinate) { (finished) in
             self.graphicsOverlay.graphics.removeAllObjects()
             if finished {
                 self.graphicsOverlay.graphics.removeAllObjects()
-                self.addMapMarker(location: location as! AGSPoint, style: .diamond, fillColor: .babyBlue, outlineColor: .black)
+                self.addMapMarker(location: coordinate, style: .diamond, fillColor: .babyBlue, outlineColor: .black)
             }
         }
     }
@@ -118,8 +135,9 @@ class SelectALocationViewController: UIViewController {
 
 extension SelectALocationViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchString = searchView.text else { return }
+        searchView.resignFirstResponder()
         mapAPIController?.search(with: searchString, completion: { (addresses) in
             self.searchResults = addresses
         })
@@ -135,7 +153,7 @@ extension SelectALocationViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationResultCell", for: indexPath)
-        cell.textLabel?.text = searchResults?[indexPath.row].identifier
+        cell.textLabel?.text = searchResults?[indexPath.row].label
         return cell
     }
     
@@ -148,14 +166,13 @@ extension SelectALocationViewController: UITableViewDataSource, UITableViewDeleg
 // MARK: - MapTouchDelegate Extension
 extension SelectALocationViewController: AGSGeoViewTouchDelegate {
     func geoView(_ geoView: AGSGeoView, didEndLongPressAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-        let locationPoint = mapPoint
-        mapAPIController?.geoCoder.reverseGeocodeLocation(CLLocation(latitude: locationPoint.y, longitude: locationPoint.x), completionHandler: { (placemarks, error) in
+        mapAPIController!.geoCoder.reverseGeocode(withLocation: mapPoint) { (results, error) in
             if let error = error {
                 NSLog("SelectALocationViewController - Error reverse geocoding touched point. Error: \(error)")
                 return
             }
-            guard let placemark = placemarks?.first as? AddressProtocol else { return }
-            self.selectedLocation =  placemark
-        })
+            guard let result = results?.first else { return }
+            self.selectedLocation =  result
+        }
     }
 }

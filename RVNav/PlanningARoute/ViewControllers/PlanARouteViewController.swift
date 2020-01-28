@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ArcGIS
 
 
 class PlanARouteViewController: UIViewController {
@@ -18,7 +19,9 @@ class PlanARouteViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var selectedVehicle: CustomDropDownTextField!
-    @IBOutlet weak var startLocationLabel: UILabel!
+    @IBOutlet weak var startLocation: SelectLocationTextField!
+    
+    
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -37,10 +40,15 @@ class PlanARouteViewController: UIViewController {
         case "SelectALocation":
             let vc = segue.destination as? SelectALocationViewController
             vc?.mapAPIController = self.mapAPIController
-            vc?.delegate = self
+            vc?.delegate = startLocation
         default:
             break
         }
+    }
+    
+    // MARK: - IBActions
+    @IBAction func openSelectLocation(_ sender: SelectLocationTextField) {
+        openSelectALocation(target: sender)
     }
     
     // MARK: - Private Methods
@@ -52,12 +60,8 @@ class PlanARouteViewController: UIViewController {
             
         }
     }
-    
-    @IBAction func viewWasTapped(_ sender: UITapGestureRecognizer) {
-        NotificationCenter.default.post(name: .outsideViewTapped, object: nil)
-    }
-    
 }
+
 // MARK: - Extensions
 
 extension PlanARouteViewController: CustomDropDownTextFieldDelegate {
@@ -80,7 +84,7 @@ extension PlanARouteViewController: VehicleModelDataDelegate {
 }
 
 extension PlanARouteViewController: SelectALocationDelegate {
-    func locationSelected(location: AddressProtocol) {
+    func locationSelected(location: AGSGeocodeResult) {
         //should not be needed here
     }
     

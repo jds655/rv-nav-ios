@@ -7,24 +7,25 @@
 //
 
 import UIKit
+import ArcGIS
 
-@IBDesignable
-class SelectLocationTextField: UIView {
+class SelectLocationTextField: NibDesignableControl {
 
     // MARK: - Properties
-    var delegate: SelectALocationDelegate?
-    @IBInspectable var label: String? {
+    private let nibName = "SelectLocationTextField"
+    public var delegate: SelectALocationDelegate?
+    @IBInspectable public var label: String? {
         didSet {
             labelView.text = self.label
+            setNeedsDisplay()
         }
     }
-    var location: AddressProtocol?{
+    private var location: AGSGeocodeResult?{
         didSet{
-            self.label = location?.address
+            self.label = location?.label
         }
     }
-    
-    @IBInspectable var leftImage: UIImage? {
+    @IBInspectable public var leftImage: UIImage? {
         get{
             return leftImageView.image
         }
@@ -42,45 +43,43 @@ class SelectLocationTextField: UIView {
     
     // MARK: - View Lifecycle
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
-        initNib()
+        commonSetup()
     }
-
-    required init?(coder aDecoder: NSCoder) {
+    
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initNib()
+        commonSetup()
     }
-
-    func initNib() {
-        let bundle = Bundle(for: SelectLocationTextField.self)
-        bundle.loadNibNamed("SelectLocationTextField", owner: self, options: nil)
-        addSubview(containerView)
-        containerView.frame = bounds
-        containerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
+    
     
     override class func awakeFromNib() {
         super.awakeFromNib()
         //Configure anything that may need outlets here
     }
     
-    @IBAction private func tapped(_ sender: Any) {
-        print("SelectLocationControl:  internal button tapped-up now.")
+    @objc func openSelect() {
         delegate?.openSelectALocation(target: self)
     }
     
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-        //let view = UIView.loadFromNib(named:"SelectLocationTextField")
-        //addSubview(view)
-        //view.translatesAutoresizingMaskIntoConstraints = false
-        
+    // MARK: Interface Builder
+    override public func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+    }
+    
+    // MARK: - IBActions
+    // MARK: - Private Methods
+    
+    private func commonSetup () {
+        addTarget(self, action: #selector(openSelect), for: .touchUpInside)
     }
 }
 
+// MARK: - Extensions
+
 extension SelectLocationTextField: SelectALocationDelegate {
-    func locationSelected(location: AddressProtocol) {
+    func locationSelected(location: AGSGeocodeResult) {
         self.location = location
     }
     
