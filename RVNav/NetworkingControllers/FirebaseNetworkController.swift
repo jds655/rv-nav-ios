@@ -39,7 +39,7 @@ class FirebaseNetworkController: NetworkControllerProtocol {
         webAPIController.logout(completion: completion)
     }
 
-    
+    // MARK - Vehicles
     // Create Vehicle
     func createVehicle(with vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void) {
         //creating cutom ID for Firebase
@@ -192,6 +192,23 @@ class FirebaseNetworkController: NetworkControllerProtocol {
         }
         group.wait()
         return nextID
+    }
+    
+    // MARK: - Routes
+    func addRoute(_ route: Route) {
+        
+    }
+    
+    func deleteRoute(_ route: Route) {
+        
+    }
+    
+    func updateRoute(_ route: Route, _ newRoute: Route) {
+        
+    }
+    
+    func getRoutes() -> [Route] {
+        return []
     }
 }
 

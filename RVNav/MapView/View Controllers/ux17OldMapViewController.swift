@@ -12,17 +12,16 @@
 import UIKit
 import SwiftKeychainWrapper
 import FirebaseAnalytics
-import CoreLocation
 import ArcGIS
 
 class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var modelController: ModelController = ModelController(userController: UserController())
+    private var modelController = ModelController(userController: UserController())
+    private var directionsController: DirectionsControllerProtocol = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController()))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
-    private let geocoder = CLGeocoder()
     private var avoidances: [Avoid] = []
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
@@ -57,6 +56,58 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.locationDisplay.stop()
         mapView = nil
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserDefaults.isFirstLaunch() {
+            performSegue(withIdentifier: "LandingPageSegue", sender: self)
+        } else if KeychainWrapper.standard.string(forKey: "accessToken") == nil && !UserDefaults.isFirstLaunch() {
+            performSegue(withIdentifier: "SignInSegue", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SignInSegue" {
+            let destinationVC = segue.destination as! SignInViewController
+            destinationVC.userController = modelController.userController
+        }
+        if segue.identifier == "LandingPageSegue" {
+            let destinationVC = segue.destination as! LandingPageViewController
+            destinationVC.userController = modelController.userController
+        }
+        if segue.identifier == "HamburgerMenu" {
+            let destinationVC = segue.destination as! CustomSideMenuNavigationController
+            destinationVC.modelController = modelController
+            //destinationVC.mapAPIController = directionsController.mapAPIController
+            destinationVC.menuDelegate = self
+        }
+    }
+    
+    // MARK: - IBActions
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+        modelController.userController.logout {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+            }
+        }
+    }
+    
+    @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
+    
+    @IBAction func getRouteTestButtonTapped(_ sender: UIButton) {
+        #warning("Remove test button and its data")
+        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
+        start = AGSPoint(clLocationCoordinate2D: startCoord)
+        end = AGSPoint(clLocationCoordinate2D: endCoord)
+        
+        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
+        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
+        
+        fetchBarriers(from: routeInfo)
+    }
+    
+    // MARK: - Private Methods
     
     // Creates a new instance of AGSMap and sets it to the mapView.
     private func setupMap() {
@@ -80,63 +131,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.touchDelegate = self
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if UserDefaults.isFirstLaunch() {
-            performSegue(withIdentifier: "LandingPageSegue", sender: self)
-        } else if KeychainWrapper.standard.string(forKey: "accessToken") == nil && !UserDefaults.isFirstLaunch() {
-            performSegue(withIdentifier: "SignInSegue", sender: self)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SignInSegue" {
-            let destinationVC = segue.destination as! SignInViewController
-            destinationVC.userController = modelController.userController
-        }
-        if segue.identifier == "ShowAddressSearch" {
-            //            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-            //            destinationVC.directionsController = directionsController
-        }
-        if segue.identifier == "LandingPageSegue" {
-            let destinationVC = segue.destination as! LandingPageViewController
-            destinationVC.userController = modelController.userController
-        }
-        if segue.identifier == "HamburgerMenu" {
-            let destinationVC = segue.destination as! CustomSideMenuNavigationController
-            destinationVC.modelController = modelController
-            destinationVC.mapAPIController = directionsController.mapAPIController
-            destinationVC.menuDelegate = self
-        }
-    }
-    
-    // MARK: - IBActions
-    @IBAction func logOutButtonTapped(_ sender: Any) {
-        modelController.userController.logout {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "SignInSegue", sender: self)
-            }
-        }
-    }
-    
-    @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
-    
-    @IBAction func getRouteTestButtonTapped(_ sender: UIButton) {
-        #warning("Remove test button and its data")
-        let startCoord = CLLocationCoordinate2D(latitude: 32.7574, longitude: -97.8145)
-        let endCoord = CLLocationCoordinate2D(latitude: 32.7589, longitude: -96.5692)
-        start = AGSPoint(clLocationCoordinate2D: startCoord)
-        end = AGSPoint(clLocationCoordinate2D: endCoord)
-        
-        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
-        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
-        
-        fetchBarriers(from: routeInfo)
-    }
-    
-    
-    // MARK: - Private Methods
     
     private func fetchBarriers(from route: RouteInfo) {
         avoidanceController.getAvoidances(with: route) { (avoidances, error) in
@@ -169,8 +163,8 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     @objc private func getRouteWithBarriers(from notification: NSNotification) {
         #warning("Remove test data")
-        let startCoord = CLLocationCoordinate2D(latitude: 32.7574, longitude: -97.8145)
-        let endCoord = CLLocationCoordinate2D(latitude: 32.7589, longitude: -96.5692)
+        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
         start = AGSPoint(clLocationCoordinate2D: startCoord)
         end = AGSPoint(clLocationCoordinate2D: endCoord)
         
@@ -201,19 +195,19 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     print("Error solving route: \(error!.localizedDescription)")
                     return
                 }
-
+                
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
                     self.graphicsOverlay.graphics.add(routeGraphic)
                 }
+                guard let start = self.start, let end = self.end  else { return }
                 
                 DispatchQueue.main.async {
-                    let poly = AGSPolygon(points: [start, end])
-                    let polyBuilder = poly.toBuilder()
-                    let geo = polyBuilder.toGeometry()
-                    
-                    self.mapView.setViewpointGeometry(geo, padding: 50) { (_) in
+                    guard let firstRoute = result?.routes.first else { return }
+                    self.addMapMarker(location: startPoint, style: .diamond, fillColor: .green, outlineColor: .black)
+                    self.addMapMarker(location: endPoint, style: .X, fillColor: .red, outlineColor: .red)
+                    self.mapView.setViewpointGeometry(firstRoute.routeGeometry!, padding: 100) { (_) in
                     }
                 }
             })
@@ -222,7 +216,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // adds a mapmarker at a given location.
     private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
-        let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 8)
+        let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 12)
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)

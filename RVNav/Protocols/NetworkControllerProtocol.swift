@@ -23,4 +23,12 @@ protocol NetworkControllerProtocol {
     func deleteVehicle(vehicle: Vehicle, userID: Int, completion: @escaping (Vehicle?, Error?) -> Void)
     
     func getVehicles(for userID: Int, completion: @escaping ([Vehicle]?, Error?) -> Void)
+    
+    func addRoute(_ route: Route)
+    
+    func deleteRoute(_ route: Route)
+    
+    func updateRoute(_ route: Route, _ newRoute: Route)
+    
+    func getRoutes() -> [Route]
 }
