@@ -9,11 +9,14 @@
 import UIKit
 import ArcGIS
 
-
 class PlanARouteViewController: UIViewController {
     
     // MARK: - Properties
-    var route: Route?
+    var route: Route?{
+        didSet{
+            
+        }
+    }
     var vehicleController: VehicleModelControllerProtocol?
     var mapAPIController: MapAPIControllerProtocol?
     var sender: SelectALocationDelegate?
@@ -55,25 +58,18 @@ class PlanARouteViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    
     private func updateViews () {
-        if let route = route {
-            
-        } else {
-            
-        }
     }
 }
 
 // MARK: - Extensions
-
 extension PlanARouteViewController: CustomDropDownTextFieldDelegate {
     func performSegue(segueID: String) {
         self.performSegue(withIdentifier: segueID, sender: self)
     }
 }
-// MARK: - Extensions
 
+// MARK: - Extensions
 extension PlanARouteViewController: VehicleModelDataDelegate {
     func dataDidChange() {
         guard let vehicleController = vehicleController else { return }
@@ -91,6 +87,4 @@ extension PlanARouteViewController: SelectALocationDelegate {
         self.sender = target
         performSegue(segueID: "SelectALocation")
     }
-    
-    
 }

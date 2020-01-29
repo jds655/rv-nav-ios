@@ -13,7 +13,7 @@ protocol UserControllerDelegateProtocol {
 }
 
 protocol UserControllerProtocol {
-    var currentUserID: Int? {get set}
+    var currentUserID: Int? {get}
     var delegate: UserControllerDelegateProtocol? {get set}
     
     func register(with user: User, completion: @escaping (Error?) -> Void)
