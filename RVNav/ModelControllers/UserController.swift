@@ -18,13 +18,13 @@ class UserController: UserControllerProtocol {
     var delegate: UserControllerDelegateProtocol?
     let networkController: NetworkControllerProtocol
     let userDefaults = UserDefaults.standard
-    var currentUserID: Int? {
+    private(set) var currentUserID: Int? {
         didSet{
             userDefaults.set(currentUserID, forKey: useridKey)
         }
     }
-    var hasToken: Bool = false
-    let useridKey: String = "currentUserID"
+    private(set) var hasToken: Bool = false
+    private let useridKey: String = "currentUserID"
     
     init (networkController: NetworkControllerProtocol = WebRESTAPINetworkController()) {
         self.networkController = networkController

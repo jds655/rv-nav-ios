@@ -62,6 +62,8 @@
 		FB67984423D121E1009E0D87 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984323D121E1009E0D87 /* ModelController.swift */; };
 		FB67984723D12E52009E0D87 /* AvoidanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984623D12E52009E0D87 /* AvoidanceController.swift */; };
 		FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */; };
+		FB8D3D2B23E1113100EC23FC /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D3D2A23E1113100EC23FC /* RouteController.swift */; };
+		FB8D3D2C23E14E0600EC23FC /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
 		FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5223D60CA500E638BE /* ARSLineProgressCustomization.swift */; };
 		FB954F5D23D60CA900E638BE /* ARSLineProgressTypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5323D60CA600E638BE /* ARSLineProgressTypeAliases.swift */; };
 		FB954F5E23D60CA900E638BE /* ARSProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5423D60CA600E638BE /* ARSProgressLoader.swift */; };
@@ -74,7 +76,7 @@
 		FB954F6523D60CA900E638BE /* ARSLineProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F5B23D60CA900E638BE /* ARSLineProgress.swift */; };
 		FB954F6723D762B900E638BE /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6623D762B900E638BE /* DirectionsController.swift */; };
 		FB954F6923D762E100E638BE /* DirectionsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */; };
-		FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */; };
+		FB954F6F23D77F2700E638BE /* MapAPIControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F6E23D77F2700E638BE /* MapAPIControllerProtocol.swift */; };
 		FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */; };
 		FBA96C8423DCE0970056AE55 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA96C8323DCE0970056AE55 /* NibDesignable.swift */; };
 		FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAA2B7823A8383F00D6E4B7 /* OnboardingLogin.storyboard */; };
@@ -163,6 +165,7 @@
 		FB67984323D121E1009E0D87 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		FB67984623D12E52009E0D87 /* AvoidanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceController.swift; sourceTree = "<group>"; };
 		FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceControllerProtocol.swift; sourceTree = "<group>"; };
+		FB8D3D2A23E1113100EC23FC /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		FB954F5223D60CA500E638BE /* ARSLineProgressCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressCustomization.swift; sourceTree = "<group>"; };
 		FB954F5323D60CA600E638BE /* ARSLineProgressTypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressTypeAliases.swift; sourceTree = "<group>"; };
 		FB954F5423D60CA600E638BE /* ARSProgressLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSProgressLoader.swift; sourceTree = "<group>"; };
@@ -176,7 +179,7 @@
 		FB954F6623D762B900E638BE /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
 		FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsControllerProtocol.swift; sourceTree = "<group>"; };
 		FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+AddressProtocol.swift"; sourceTree = "<group>"; };
-		FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIProtocol.swift; sourceTree = "<group>"; };
+		FB954F6E23D77F2700E638BE /* MapAPIControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIControllerProtocol.swift; sourceTree = "<group>"; };
 		FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGSMapAPIController.swift; sourceTree = "<group>"; };
 		FB954F7623D7E45C00E638BE /* ViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegateProtocol.swift; sourceTree = "<group>"; };
 		FBA96C8323DCE0970056AE55 /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
@@ -236,7 +239,7 @@
 				321DE99723A84AD800521AAB /* UIColor+Extension.swift */,
 				32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */,
 				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
-				FB954F6C23D77C9A00E638BE /* MapBoxPlacemark+AddressProtocol.swift */,
+				FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */,
 				323F3FE023E06394009F9A9B /* NotificationNames+Extension.swift */,
 			);
 			path = Extensions;
@@ -363,6 +366,7 @@
 				FB67983923D1055B009E0D87 /* UserController.swift */,
 				FB67983623CFD5CA009E0D87 /* VehicleModelController.swift */,
 				FB65890423DAAAD700DBF1D3 /* MapAPIController.swift */,
+				FB8D3D2A23E1113100EC23FC /* RouteController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -437,7 +441,7 @@
 			children = (
 				FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */,
 				FB954F6823D762E100E638BE /* DirectionsControllerProtocol.swift */,
-				FB954F6E23D77F2700E638BE /* MapAPIProtocol.swift */,
+				FB954F6E23D77F2700E638BE /* MapAPIControllerProtocol.swift */,
 				FB67982E23CF93A9009E0D87 /* NetworkControllerProtocol.swift */,
 				FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */,
 				FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */,
@@ -786,6 +790,7 @@
 				FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */,
 				FB67982D23CF7F34009E0D87 /* MenuDelegateProtocol.swift in Sources */,
 				FB58EF1623E0D70A00A1AA8B /* RouteResultsViewController.swift in Sources */,
+				FB8D3D2B23E1113100EC23FC /* RouteController.swift in Sources */,
 				FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */,
 				FBE19F9F23CD78140046837C /* MenuItemTableViewCell.swift in Sources */,
 				FB67982B23CEEE42009E0D87 /* MenuSectionTableViewCell.swift in Sources */,
@@ -793,7 +798,7 @@
 				FB954F6023D60CA900E638BE /* ARSLineProgressExtensions.swift in Sources */,
 				3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */,
 				32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */,
-				FB954F6F23D77F2700E638BE /* MapAPIProtocol.swift in Sources */,
+				FB954F6F23D77F2700E638BE /* MapAPIControllerProtocol.swift in Sources */,
 				FB67982F23CF93AA009E0D87 /* NetworkControllerProtocol.swift in Sources */,
 				FBAC9BD523DBA1460023BC3B /* SelectALocationViewController.swift in Sources */,
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
@@ -831,6 +836,7 @@
 				FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */,
 				FB954F6323D60CA900E638BE /* ARSStatus.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
+				FB8D3D2C23E14E0600EC23FC /* AGSMapAPIController.swift in Sources */,
 				FBAC9BD123DB75500023BC3B /* CustomDropDownTextFieldDelegate.swift in Sources */,
 				FB954F5E23D60CA900E638BE /* ARSProgressLoader.swift in Sources */,
 				FBE19F9223CD41E40046837C /* ux17MapViewController.swift in Sources */,

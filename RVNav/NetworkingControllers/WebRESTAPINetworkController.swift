@@ -251,4 +251,20 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
             }
         }.resume()
     }
+    
+    func addRoute(_ route: Route) {
+        
+    }
+    
+    func deleteRoute(_ route: Route) {
+        
+    }
+    
+    func updateRoute(_ route: Route, _ newRoute: Route) {
+        
+    }
+    
+    func getRoutes() -> [Route] {
+        return []
+    }
 }

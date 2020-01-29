@@ -12,17 +12,16 @@
 import UIKit
 import SwiftKeychainWrapper
 import FirebaseAnalytics
-import CoreLocation
 import ArcGIS
 
 class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
-    private var modelController: ModelController = ModelController(userController: UserController())
+    private var modelController = ModelController(userController: UserController())
+    private var directionsController: DirectionsControllerProtocol = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController()))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
-    private let geocoder = CLGeocoder()
     private var avoidances: [Avoid] = []
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
@@ -57,29 +56,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.locationDisplay.stop()
         mapView = nil
     }
-    
-    // Creates a new instance of AGSMap and sets it to the mapView.
-    private func setupMap() {
-        mapView.locationDisplay.autoPanMode = .recenter
-        mapView.locationDisplay.start {error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    NSLog("ERROR: Error starting AGSLocationDisplay: \(error)")
-                    self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 0)
-                } else {
-                    if let location = self.mapView.locationDisplay.location,
-                        let lat = location.position?.y ,
-                        let lon = location.position?.x {
-                        self.mapView.map = AGSMap(basemapType: self.mapType, latitude: lat, longitude: lon, levelOfDetail: 0)
-                    } else {
-                        self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 0)
-                    }
-                }
-            }
-        }
-        mapView.touchDelegate = self
-        mapView.graphicsOverlays.add(graphicsOverlay)
-    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -94,10 +70,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "SignInSegue" {
             let destinationVC = segue.destination as! SignInViewController
             destinationVC.userController = modelController.userController
-        }
-        if segue.identifier == "ShowAddressSearch" {
-            //            let destinationVC = segue.destination as! DirectionsSearchTableViewController
-            //            destinationVC.directionsController = directionsController
         }
         if segue.identifier == "LandingPageSegue" {
             let destinationVC = segue.destination as! LandingPageViewController
@@ -135,8 +107,30 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         fetchBarriers(from: routeInfo)
     }
     
-    
     // MARK: - Private Methods
+    
+    // Creates a new instance of AGSMap and sets it to the mapView.
+    private func setupMap() {
+        mapView.locationDisplay.autoPanMode = .recenter
+        mapView.locationDisplay.start {error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    NSLog("ERROR: Error starting AGSLocationDisplay: \(error)")
+                    self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 0)
+                } else {
+                    if let location = self.mapView.locationDisplay.location,
+                        let lat = location.position?.y ,
+                        let lon = location.position?.x {
+                        self.mapView.map = AGSMap(basemapType: self.mapType, latitude: lat, longitude: lon, levelOfDetail: 0)
+                    } else {
+                        self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 0)
+                    }
+                }
+            }
+        }
+        mapView.touchDelegate = self
+        mapView.graphicsOverlays.add(graphicsOverlay)
+    }
     
     private func fetchBarriers(from route: RouteInfo) {
         avoidanceController.getAvoidances(with: route) { (avoidances, error) in
@@ -207,6 +201,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
                     self.graphicsOverlay.graphics.add(routeGraphic)
                 }
+                guard let start = self.start, let end = self.end  else { return }
                 
                 DispatchQueue.main.async {
                     guard let firstRoute = result?.routes.first else { return }

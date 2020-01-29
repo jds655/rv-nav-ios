@@ -7,14 +7,11 @@
 //
 
 import Foundation
-import CoreLocation
+import ArcGIS
 
 struct Route {
-    #warning("Do we want to capture this?")
-    //var title: String
-    var start: CLLocation
-    var end: CLLocation
+    var title: String
+    var start: AGSPoint; #warning("How will we store this, what type?")
+    var end: AGSPoint
     var vehicle: Vehicle
 }
-
-#warning("Create ModelController with FB/WebAPI NetworkControllers and/or local persistance")
