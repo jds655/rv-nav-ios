@@ -106,7 +106,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "HamburgerMenu" {
             let destinationVC = segue.destination as! CustomSideMenuNavigationController
             destinationVC.modelController = modelController
-            destinationVC.mapAPIController = directionsController.mapAPIController
+            //destinationVC.mapAPIController = directionsController.mapAPIController
             destinationVC.menuDelegate = self
         }
     }
@@ -124,8 +124,8 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     @IBAction func getRouteTestButtonTapped(_ sender: UIButton) {
         #warning("Remove test button and its data")
-        let startCoord = CLLocationCoordinate2D(latitude: 32.7574, longitude: -97.8145)
-        let endCoord = CLLocationCoordinate2D(latitude: 32.7589, longitude: -96.5692)
+        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
         start = AGSPoint(clLocationCoordinate2D: startCoord)
         end = AGSPoint(clLocationCoordinate2D: endCoord)
         
@@ -169,8 +169,8 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     @objc private func getRouteWithBarriers(from notification: NSNotification) {
         #warning("Remove test data")
-        let startCoord = CLLocationCoordinate2D(latitude: 32.7574, longitude: -97.8145)
-        let endCoord = CLLocationCoordinate2D(latitude: 32.7589, longitude: -96.5692)
+        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
         start = AGSPoint(clLocationCoordinate2D: startCoord)
         end = AGSPoint(clLocationCoordinate2D: endCoord)
         
@@ -201,7 +201,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     print("Error solving route: \(error!.localizedDescription)")
                     return
                 }
-
+                
                 if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
@@ -209,11 +209,10 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 }
                 
                 DispatchQueue.main.async {
-                    let poly = AGSPolygon(points: [start, end])
-                    let polyBuilder = poly.toBuilder()
-                    let geo = polyBuilder.toGeometry()
-                    
-                    self.mapView.setViewpointGeometry(geo, padding: 50) { (_) in
+                    guard let firstRoute = result?.routes.first else { return }
+                    self.addMapMarker(location: startPoint, style: .diamond, fillColor: .green, outlineColor: .black)
+                    self.addMapMarker(location: endPoint, style: .X, fillColor: .red, outlineColor: .red)
+                    self.mapView.setViewpointGeometry(firstRoute.routeGeometry!, padding: 100) { (_) in
                     }
                 }
             })
@@ -222,7 +221,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // adds a mapmarker at a given location.
     private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
-        let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 8)
+        let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 12)
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
