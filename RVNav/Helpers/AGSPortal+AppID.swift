@@ -5,10 +5,6 @@
 //  Created by Jake Connerly on 1/30/20.
 //  Copyright © 2020 RVNav. All rights reserved.
 //
-
-import Foundation
-import ArcGIS
-
 import Foundation
 import ArcGIS
 
