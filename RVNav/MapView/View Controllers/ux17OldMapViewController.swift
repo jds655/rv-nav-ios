@@ -25,6 +25,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     private var avoidances: [Avoid] = []
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
+
     private let dispatchGroup: DispatchGroup = DispatchGroup()
     private var barriers: [AGSPolygonBarrier] = []
     
@@ -50,6 +51,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(getRouteWithBarriers(from:)), name: .barriersAdded, object: nil)
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
+        setupArcGISCredential()
     }
     
     deinit {
@@ -108,6 +110,20 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     }
     
     // MARK: - Private Methods
+    
+    private func setupArcGISCredential() {
+        var portal:AGSPortal = AGSPortal.arcGISOnline(withLoginRequired: false)
+        let clientId = "taIMz5a6FZ8j6ZCs"
+        let clientSecret = "42694cda208b4c95b7c07673ca877f92"
+        portal.getAppIDToken(clientId: clientId, clientSecret: clientSecret) { (credential, error) in
+            guard error == nil else {
+                print("Could not get credential! \(error!.localizedDescription)")
+                return
+            }
+
+            print("Got a credential: \(credential!)")
+        }
+    }
     
     // Creates a new instance of AGSMap and sets it to the mapView.
     private func setupMap() {

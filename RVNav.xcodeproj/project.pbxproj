@@ -27,6 +27,7 @@
 		324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324603AA23D7B12F00A32E48 /* PlanARoute.storyboard */; };
 		32798A6E23DA55B9002D1AA5 /* CustomDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */; };
 		32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */; };
+		3291787923E353600043FCF3 /* AGSPortal+AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291787823E3535F0043FCF3 /* AGSPortal+AppID.swift */; };
 		3299CBD423DA075F0033EBA9 /* ux17OldMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
@@ -125,6 +126,7 @@
 		324603AF23D7BFEE00A32E48 /* CustomDropDownTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownTextField.swift; sourceTree = "<group>"; };
 		32798A6D23DA55B9002D1AA5 /* CustomDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropDownCell.xib; sourceTree = "<group>"; };
 		32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCell.swift; sourceTree = "<group>"; };
+		3291787823E3535F0043FCF3 /* AGSPortal+AppID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGSPortal+AppID.swift"; sourceTree = "<group>"; };
 		3299CBD323DA075F0033EBA9 /* ux17OldMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ux17OldMapViewController.swift; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
 				FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */,
 				323F3FE023E06394009F9A9B /* NotificationNames+Extension.swift */,
+				3291787823E3535F0043FCF3 /* AGSPortal+AppID.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				3231CA4523CD5B1F008CDBA5 /* RVTypePickerViewController.swift in Sources */,
 				3243787823D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift in Sources */,
 				447831E623146AC5007D50E7 /* Vehicle.swift in Sources */,
+				3291787923E353600043FCF3 /* AGSPortal+AppID.swift in Sources */,
 				FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */,
 				FB954F6323D60CA900E638BE /* ARSStatus.swift in Sources */,
 				32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */,
