@@ -13,7 +13,11 @@ class RouteResultsViewController: UIViewController {
     // MARK: - Properties
     #warning("Either add AGSRoute to this Struct or pass AGS one")
     var routeController: RouteController?
-    var route: Route?
+    var route: Route?{
+        didSet{
+            
+        }
+    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var totalTimeLabel: UILabel!

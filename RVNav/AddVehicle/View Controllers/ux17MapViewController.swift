@@ -21,7 +21,7 @@ class ux17MapViewController: UIViewController {
     
     // MARK: - Properties
     private var modelController: ModelController = ModelController(userController: UserController())
-    private var directionsController: DirectionsControllerProtocol = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController()))
+    private var directionsController: DirectionsControllerProtocol = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController(avoidanceProvider: LambdaDSAvoidanceProvider())))
     
     
     // MARK: - IBOutlets
