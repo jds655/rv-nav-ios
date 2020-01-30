@@ -15,3 +15,11 @@ struct Route {
     var end: AGSPoint
     var vehicle: Vehicle
 }
+
+struct RouteInfo: Codable {
+    let height: Float
+    let startLon: Double
+    let startLat: Double
+    let endLon: Double
+    let endLat: Double
+}

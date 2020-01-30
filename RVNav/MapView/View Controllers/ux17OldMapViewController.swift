@@ -80,7 +80,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "HamburgerMenu" {
             let destinationVC = segue.destination as! CustomSideMenuNavigationController
             destinationVC.modelController = modelController
-            //destinationVC.mapAPIController = directionsController.mapAPIController
+            destinationVC.mapAPIController = directionsController.mapAPIController
             destinationVC.menuDelegate = self
         }
     }
@@ -205,6 +205,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
 
             params.setStops([AGSStop(point: startPoint), AGSStop(point: endPoint)])
             params.setPolygonBarriers(self.barriers)
+            params.returnDirections = true
 
             self.routeTask.solveRoute(with: params, completion: { (result, error) in
                 guard error == nil else {
