@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import ArcGIS
 
 //This and vehicles needs to be persisted localy at some point
 class RouteController {
     
     private(set) var routes: [Route] = []
     private var networkController: NetworkControllerProtocol
+    var selectedRoute: AGSRoute? {
+        didSet{
+            
+        }
+    }
     
     init(networkController: NetworkControllerProtocol) {
         self.networkController = networkController

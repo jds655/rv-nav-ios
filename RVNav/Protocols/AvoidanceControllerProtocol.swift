@@ -11,5 +11,8 @@ import Foundation
 
 protocol AvoidanceControllerProtocol {
     var avoidences: [Avoid]? {get set}
+    
+    init(avoidanceProvider: AvoidanceProviderProtocol)
+    
     func getAvoidances(with routeInfo: RouteInfo, completion: @escaping ([Avoid]?,Error?) -> Void)
 }

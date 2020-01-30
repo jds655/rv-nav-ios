@@ -12,12 +12,13 @@ import ArcGIS
 protocol MapAPIControllerProtocol {
     var delegate: ViewDelegateProtocol? {get set}
     var geoCoder: AGSLocatorTask {get set}
-    var mapView: AGSMapView {get set}
     var avoidanceController : AvoidanceControllerProtocol {get set}
     
     init (avoidanceController: AvoidanceControllerProtocol)
     
+    func setupArcGISCredential()
+    
     func search(with address: String, completion: @escaping ([AGSGeocodeResult]?) -> Void)
     
-    func findRoute(with barriers: [AGSPolygonBarrier])
+    func fetchRoute(from route: RouteInfo, completion: @escaping (AGSRoute?, Error?) -> Void)
 }
