@@ -8,7 +8,6 @@
 
 import Foundation
 import ArcGIS
-import CoreLocation
 
 protocol MapAPIControllerProtocol {
     var delegate: ViewDelegateProtocol? {get set}

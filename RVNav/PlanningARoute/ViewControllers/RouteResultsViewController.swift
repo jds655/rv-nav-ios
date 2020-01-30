@@ -16,6 +16,9 @@ class RouteResultsViewController: UIViewController {
     var route: Route?
     
     // MARK: - IBOutlets
+    @IBOutlet weak var totalTimeLabel: UILabel!
+    @IBOutlet weak var startingLocationLabel: UILabel!
+    @IBOutlet weak var endingLocationLabel: UILabel!
     
     
     // MARK: - View Lifecycle
@@ -30,8 +33,14 @@ class RouteResultsViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func saveTapped(_ sender: Any) {
-        
+        guard let route = route else { return }
+        routeController?.add(route: route)
     }
+    
+    @IBAction func backtapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,3 +58,19 @@ class RouteResultsViewController: UIViewController {
 
 // MARK: - Extensions
 
+extension RouteResultsViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+//        let view = UIView()
+//        view.backgroundColor = .darkBlue
+//        cell.selectedBackgroundView = view
+//        return cell
+    }
+    
+    
+}

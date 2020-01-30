@@ -161,8 +161,10 @@ class OnboardingViewController: ShiftableViewController {
             }
             
             let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, id: nil, username: fullNameFromFacebook)
+            ARSLineProgress.show()
             self.userController.register(with: facebookUser) { (error) in
                 if let error = error {
+                    ARSLineProgress.showFail()
                     NSLog("Error signing up with Facebook: \(error)")
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
@@ -181,6 +183,7 @@ class OnboardingViewController: ShiftableViewController {
                             NSLog("Error when signing in with google after registration:\(error)")
                             return
                         }
+                        ARSLineProgress.showSuccess()
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                         }
@@ -343,9 +346,10 @@ extension OnboardingViewController: GIDSignInDelegate {
             let googlePassword = googleUser.userID else { return }
         
         let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, id: nil, username: googleEmail)
-        
+        ARSLineProgress.show()
         userController.register(with: userToRegister) { (error) in
             if let error = error {
+                ARSLineProgress.showFail()
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
@@ -357,11 +361,14 @@ extension OnboardingViewController: GIDSignInDelegate {
             }
             DispatchQueue.main.async {
                 let googleSignInInfo = SignInInfo(email: googleEmail, password: googlePassword)
+                ARSLineProgress.show()
                 self.userController.signIn(with: googleSignInInfo) { (_, error) in
                     if let error = error {
+                        ARSLineProgress.showFail()
                         NSLog("Error when signing in with google after registration:\(error)")
                         return
                     }
+                    ARSLineProgress.showSuccess()
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                     }

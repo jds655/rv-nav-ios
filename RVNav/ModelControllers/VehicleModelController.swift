@@ -7,9 +7,16 @@
 //
 
 import Foundation
+
 // MARK: - Protocols
 protocol VehicleModelDataDelegate {
     func dataDidChange()
+    func didStartFetchingData()
+    func didEndFetchingData(error: VehicleModelControllerError?)
+}
+
+enum VehicleModelControllerError: Error {
+    case failed(String)
 }
 
 class VehicleModelController: VehicleModelControllerProtocol {
@@ -91,11 +98,14 @@ class VehicleModelController: VehicleModelControllerProtocol {
     }
     
     func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void) {
+        delegate?.didStartFetchingData()
         networkController.getVehicles(for: userID) { (vehicles, error) in
             if let error = error {
+                self.delegate?.didEndFetchingData(error: .failed("VehicleModelController: Failed to fetch vehicles: \(error)"))
                 completion(nil,error)
             } else {
                 if let vehicles = vehicles {
+                    self.delegate?.didEndFetchingData(error: nil)
                     self.vehicles = vehicles
                     completion(vehicles,nil)
                 }
