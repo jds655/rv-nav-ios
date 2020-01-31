@@ -18,15 +18,17 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     // MARK: - Properties
     private var modelController = ModelController(userController: UserController())
-    private var directionsController: DirectionsControllerProtocol = DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController: AvoidanceController()))
+    private var directionsController: DirectionsControllerProtocol =
+        DirectionsController(mapAPIController: AGSMapAPIController(avoidanceController:
+            AvoidanceController(avoidanceProvider:
+                LambdaDSAvoidanceProvider())))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private var start: AGSPoint?
     private var end: AGSPoint?
     private var avoidances: [Avoid] = []
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
-
-    private let dispatchGroup: DispatchGroup = DispatchGroup()
+    
     private var barriers: [AGSPolygonBarrier] = []
     
     
@@ -39,7 +41,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
             mapView.map = AGSMap(basemapType: mapType, latitude: lat, longitude: lon, levelOfDetail: 0)
         }
     }
-    private let avoidanceController = AvoidanceController()
     
     // MARK: - IBOutlets
     @IBOutlet private weak var mapView: AGSMapView!
@@ -48,17 +49,16 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(getRouteWithBarriers(from:)), name: .barriersAdded, object: nil)
         Analytics.logEvent("app_opened", parameters: nil)
         setupMap()
-        setupArcGISCredential()
+        directionsController.mapAPIController.setupArcGISCredential()  //move to init of mapAPI?
     }
     
     deinit {
         mapView.locationDisplay.stop()
         mapView = nil
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if UserDefaults.isFirstLaunch() {
@@ -80,7 +80,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         if segue.identifier == "HamburgerMenu" {
             let destinationVC = segue.destination as! CustomSideMenuNavigationController
             destinationVC.modelController = modelController
-            //destinationVC.mapAPIController = directionsController.mapAPIController
+            destinationVC.mapAPIController = directionsController.mapAPIController
             destinationVC.menuDelegate = self
         }
     }
@@ -106,24 +106,32 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
         let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
         
-        fetchBarriers(from: routeInfo)
+        directionsController.mapAPIController.fetchRoute(from: routeInfo) { (route, error) in
+            if let error = error {
+                NSLog("MapViewController: Error fetching route: \(error)")
+                return
+            }
+            guard let route = route else {
+                NSLog("MapViewController: No route returned.")
+                return
+            }
+            guard let start = self.start, let end = self.end  else { return }
+            DispatchQueue.main.async {
+                if let routePolyline = route.routeGeometry {
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
+                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                    self.graphicsOverlay.graphics.add(routeGraphic)
+                }
+                #warning("Do we want to offer a list of routes to choose from?")
+                self.addMapMarker(location: start, style: .diamond, fillColor: .green, outlineColor: .black)
+                self.addMapMarker(location: end, style: .X, fillColor: .red, outlineColor: .red)
+                self.mapView.setViewpointGeometry(route.routeGeometry!, padding: 100) { (_) in
+                }
+            }
+        }
     }
     
     // MARK: - Private Methods
-    
-    private func setupArcGISCredential() {
-        var portal:AGSPortal = AGSPortal.arcGISOnline(withLoginRequired: false)
-        let clientId = "taIMz5a6FZ8j6ZCs"
-        let clientSecret = "42694cda208b4c95b7c07673ca877f92"
-        portal.getAppIDToken(clientId: clientId, clientSecret: clientSecret) { (credential, error) in
-            guard error == nil else {
-                print("Could not get credential! \(error!.localizedDescription)")
-                return
-            }
-
-            print("Got a credential: \(credential!)")
-        }
-    }
     
     // Creates a new instance of AGSMap and sets it to the mapView.
     private func setupMap() {
@@ -148,87 +156,17 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
-    private func fetchBarriers(from route: RouteInfo) {
-        avoidanceController.getAvoidances(with: route) { (avoidances, error) in
-            let const = 0.0001
-            
-            if let error = error {
-                NSLog("Error fetching avoidances:\(error)")
-            }
-            
-            guard let avoidances = avoidances else { return }
-            
-            for avoid in avoidances {
-                let point = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude + const)))
-                let point1 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude + const), longitude: (avoid.longitude - const)))
-                let point2 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude - const)))
-                let point3 = AGSPoint(clLocationCoordinate2D: CLLocationCoordinate2D(latitude: (avoid.latitude - const), longitude: (avoid.longitude + const)))
-                let gon = AGSPolygon(points: [point, point1, point2, point3])
-                let barrier = AGSPolygonBarrier(polygon: gon)
-                
-                self.barriers.append(barrier)
-                
-                // Used to print out the barriers for testing purposes.
-                let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .red, width: 8)
-                let routeGraphic = AGSGraphic(geometry: gon, symbol: routeSymbol, attributes: nil)
-                self.graphicsOverlay.graphics.add(routeGraphic)
-            }
-            NotificationCenter.default.post(name: .barriersAdded, object: nil)
-        }
-    }
+//    @objc private func getRouteWithBarriers(from notification: NSNotification) {
+//        #warning("Remove test data")
+//        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+//        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
+//        start = AGSPoint(clLocationCoordinate2D: startCoord)
+//        end = AGSPoint(clLocationCoordinate2D: endCoord)
+//
+//        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
+//        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
+//    }
     
-    @objc private func getRouteWithBarriers(from notification: NSNotification) {
-        #warning("Remove test data")
-        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
-        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
-        start = AGSPoint(clLocationCoordinate2D: startCoord)
-        end = AGSPoint(clLocationCoordinate2D: endCoord)
-        
-        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
-        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
-        
-        fetchRoute(from: routeInfo, with: barriers)
-    }
-    
-    private func fetchRoute(from route: RouteInfo, with barriers: [AGSPolygonBarrier]) {
-        routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
-            guard error == nil else {
-                print("Error getting default parameters: \(error!.localizedDescription)")
-                return
-            }
-            let startCLCoordinate = CLLocationCoordinate2D(latitude: route.startLat, longitude: route.startLon)
-            let endCLCoordinate = CLLocationCoordinate2D(latitude: route.endLat, longitude: route.endLon)
-            let startPoint = AGSPoint(clLocationCoordinate2D: startCLCoordinate)
-            let endPoint = AGSPoint(clLocationCoordinate2D: endCLCoordinate)
-
-            guard let params = defaultParameters, let self = self else { return }
-
-            params.setStops([AGSStop(point: startPoint), AGSStop(point: endPoint)])
-            params.setPolygonBarriers(self.barriers)
-
-            self.routeTask.solveRoute(with: params, completion: { (result, error) in
-                guard error == nil else {
-                    print("Error solving route: \(error!.localizedDescription)")
-                    return
-                }
-                
-                if let firstRoute = result?.routes.first, let routePolyline = firstRoute.routeGeometry {
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
-                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
-                    self.graphicsOverlay.graphics.add(routeGraphic)
-                }
-                guard let start = self.start, let end = self.end  else { return }
-                
-                DispatchQueue.main.async {
-                    guard let firstRoute = result?.routes.first else { return }
-                    self.addMapMarker(location: startPoint, style: .diamond, fillColor: .green, outlineColor: .black)
-                    self.addMapMarker(location: endPoint, style: .X, fillColor: .red, outlineColor: .red)
-                    self.mapView.setViewpointGeometry(firstRoute.routeGeometry!, padding: 100) { (_) in
-                    }
-                }
-            })
-        }
-    }
     
     // adds a mapmarker at a given location.
     private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
@@ -255,6 +193,7 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         logOutButtonTapped(self)
     }
 }
+
 
 // MARK: - Extensions
 extension ux17OldMapViewController: MenuDelegateProtocol {

@@ -11,12 +11,6 @@ import UIKit
 class VehicleListTableViewController: UIViewController {
     
     // MARK: - Properties
-    
-    var mockVehicles: [Vehicle] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     var vehicleController: VehicleModelControllerProtocol?
     
     // MARK: - IBOutlets
@@ -27,7 +21,6 @@ class VehicleListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //createMockVehicles()
         tableView.delegate = self
         tableView.dataSource = self
         vehicleController?.delegate = self
@@ -39,12 +32,6 @@ class VehicleListTableViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    
-    private func createMockVehicles() {
-        mockVehicles.append(Vehicle(id: 0, name: "Billy Bad Ass", height: 44.33333, weight: 5000, width: 10.08333, length: 53, axelCount: 3, vehicleClass: "ClassA", dualTires: true, trailer: nil))
-        mockVehicles.append(Vehicle(id: 1, name: "Little Timmy", height: 4.2, weight: 1000, width: 10.16667, length: 3, axelCount: 3, vehicleClass: "tagalong", dualTires: true, trailer: nil))
-        mockVehicles.append(Vehicle(id: 2, name: "Joe Rocket", height: 44.0, weight: 5000, width: 10.33333, length: 53, axelCount: 3, vehicleClass: "ClassA", dualTires: true, trailer: nil))
-    }
     
     // MARK: - IBActions
     
@@ -76,7 +63,6 @@ class VehicleListTableViewController: UIViewController {
 
 extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
@@ -121,6 +107,18 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
 }
 
 extension VehicleListTableViewController: VehicleModelDataDelegate {
+    func didStartFetchingData() {
+        ARSLineProgress.show()
+    }
+    
+    func didEndFetchingData(error: VehicleModelControllerError?) {
+        if let error = error {
+            ARSLineProgress.showFail()
+        } else {
+            ARSLineProgress.hide()
+        }
+    }
+    
     func dataDidChange() {
         DispatchQueue.main.async {
             self.tableView.reloadData()

@@ -14,4 +14,13 @@ struct Route {
     var start: AGSPoint; #warning("How will we store this, what type?")
     var end: AGSPoint
     var vehicle: Vehicle
+    var agsRoute: AGSRoute
+}
+
+struct RouteInfo: Codable {
+    let height: Float
+    let startLon: Double
+    let startLat: Double
+    let endLon: Double
+    let endLat: Double
 }

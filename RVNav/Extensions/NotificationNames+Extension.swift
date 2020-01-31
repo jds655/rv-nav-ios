@@ -10,5 +10,5 @@ import Foundation
 extension Notification.Name {
     static let outsideViewTapped = Notification.Name("OutsideViewTapped")
     static let vehiclesAdded = Notification.Name("VehiclesAdded")
-    static let barriersAdded = Notification.Name("BarriersAdded")
+    //static let barriersAdded = Notification.Name("BarriersAdded")
 }

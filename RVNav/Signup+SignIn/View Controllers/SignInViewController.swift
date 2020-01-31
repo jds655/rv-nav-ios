@@ -88,7 +88,7 @@ class SignInViewController: ShiftableViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -136,17 +136,19 @@ class SignInViewController: ShiftableViewController {
             !password.isEmpty else { return }
         
         let signInInfo = SignInInfo(email: email, password: password)
+        ARSLineProgress.show()
         userController?.signIn(with: signInInfo) { (_, error) in
             if let error = error {
+                ARSLineProgress.showFail()
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(alertAction)
-                    
                     self.present(alert, animated: true)
                 }
             }
+            ARSLineProgress.showSuccess()
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -216,11 +218,11 @@ extension SignInViewController: GIDSignInDelegate {
         
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
-        
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
-        
+        ARSLineProgress.show()
         userController?.signIn(with: signInInfo) { (_, error) in
             if let error = error {
+                ARSLineProgress.showFail()
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
@@ -231,6 +233,7 @@ extension SignInViewController: GIDSignInDelegate {
                 }
                 return
             }
+            ARSLineProgress.showSuccess()
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }

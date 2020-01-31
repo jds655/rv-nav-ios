@@ -15,11 +15,3 @@ struct Avoid: Codable {
     let longitude: Double
     let name: String?
 }
-
-struct RouteInfo: Codable {
-    let height: Float
-    let startLon: Double
-    let startLat: Double
-    let endLon: Double
-    let endLat: Double
-}
