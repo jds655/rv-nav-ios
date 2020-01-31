@@ -29,7 +29,6 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
     private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     
-    private let dispatchGroup: DispatchGroup = DispatchGroup()
     private var barriers: [AGSPolygonBarrier] = []
     
     
@@ -118,6 +117,11 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
             guard let start = self.start, let end = self.end  else { return }
             DispatchQueue.main.async {
+                if let routePolyline = route.routeGeometry {
+                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
+                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                    self.graphicsOverlay.graphics.add(routeGraphic)
+                }
                 #warning("Do we want to offer a list of routes to choose from?")
                 self.addMapMarker(location: start, style: .diamond, fillColor: .green, outlineColor: .black)
                 self.addMapMarker(location: end, style: .X, fillColor: .red, outlineColor: .red)
@@ -152,16 +156,16 @@ class ux17OldMapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
-    @objc private func getRouteWithBarriers(from notification: NSNotification) {
-        #warning("Remove test data")
-        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
-        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
-        start = AGSPoint(clLocationCoordinate2D: startCoord)
-        end = AGSPoint(clLocationCoordinate2D: endCoord)
-        
-        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
-        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
-    }
+//    @objc private func getRouteWithBarriers(from notification: NSNotification) {
+//        #warning("Remove test data")
+//        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+//        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
+//        start = AGSPoint(clLocationCoordinate2D: startCoord)
+//        end = AGSPoint(clLocationCoordinate2D: endCoord)
+//
+//        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
+//        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
+//    }
     
     
     // adds a mapmarker at a given location.
