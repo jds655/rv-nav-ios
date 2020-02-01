@@ -145,6 +145,10 @@
                                         <state key="normal" title="Get Direction">
                                             <color key="titleColor" red="0.0" green="0.69803921570000005" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="getDirectionsTapped:" destination="dBe-uT-XvF" eventType="touchUpInside" id="jJt-XG-ipT"/>
+                                            <segue destination="asC-bF-2Yi" kind="show" identifier="RouteResults" id="p69-ve-Y7L"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -194,6 +198,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1b-KF-UFO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="362" y="228"/>
+        </scene>
+        <!--RouteResults-->
+        <scene sceneID="eyU-oi-MM8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RouteResults" id="asC-bF-2Yi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lde-18-NHq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTC-Tu-Ooe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="295"/>
         </scene>
     </scenes>
     <resources>

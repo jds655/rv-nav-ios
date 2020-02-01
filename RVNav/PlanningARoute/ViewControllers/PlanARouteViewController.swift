@@ -47,6 +47,10 @@ class PlanARouteViewController: UIViewController {
             let vc = segue.destination as? SelectALocationViewController
             vc?.mapAPIController = self.mapAPIController
             vc?.delegate = self.sender
+        case "RouteResults":
+            let vc = segue.destination as? RouteResultsViewController
+            //let routeInfo = RouteInfo(height: <#T##Float#>, startLon: <#T##Double#>, startLat: <#T##Double#>, endLon: <#T##Double#>, endLat: <#T##Double#>)
+            vc?.mapAPIController = self.mapAPIController
         default:
             break
         }
@@ -55,6 +59,10 @@ class PlanARouteViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func openSelectLocation(_ sender: SelectLocationTextField) {
         openSelectALocation(target: sender)
+    }
+    
+    @IBAction func getDirectionsTapped(_ sender: Any) {
+        
     }
     
     // MARK: - Private Methods

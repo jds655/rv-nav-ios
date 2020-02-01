@@ -29,6 +29,11 @@ class CustomDropDownTextField: UIControl {
     private var dropDownArrow: UIImageView = UIImageView()
     private var dropDownVehicles: DropDown = DropDown()
     private let coverButton: UIButton = UIButton()
+    public var text: String? {
+        get {
+            return label.text
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         _font = heeboRegularFont!
