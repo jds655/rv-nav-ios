@@ -60,6 +60,7 @@ class CustomDropDownTextField: UIControl {
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
         addGestureRecognizer(tap)
+        setNeedsDisplay()
     }
     
     private func setupLabel() {
@@ -198,20 +199,6 @@ extension UIView {
         UIView.animate(withDuration: 0.3, animations: rotateBackToOriginalPosition)
     }
 }
-
-//extension CustomDropDownTextField: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        dropDownArrow.rotateUp()
-//        dropDownVehicles.show()
-//        dropDownVehicles.selectionAction = { (index: Int, item: String) in
-//            self.label.text = item
-//            textField.endEditing(true)
-//        }
-//    }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        dropDownArrow.rotateBack()
-//    }
-//}
 
 //Expose properties to IB
 extension CustomDropDownTextField {

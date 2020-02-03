@@ -112,7 +112,7 @@
                         <viewLayoutGuide key="safeArea" id="mOI-kW-oen"/>
                     </view>
                     <navigationItem key="navigationItem" title="RV WAY" leftItemsSupplementBackButton="YES" id="vJC-wf-tQK">
-                        <barButtonItem key="leftBarButtonItem" title="hamburger" image="hamburger" style="plain" id="HLU-nB-Xqe"/>
+                        <barButtonItem key="leftBarButtonItem" title="hamburger" image="hamburger" style="done" id="HLU-nB-Xqe"/>
                     </navigationItem>
                     <connections>
                         <outlet property="getRouteTestButton" destination="fDo-RS-AFC" id="qTu-xZ-1DS"/>

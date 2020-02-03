@@ -89,9 +89,13 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
                 
                 guard let params = defaultParameters, let self = self else { return }
                 
+                params.clearStops()
                 params.setStops([AGSStop(point: startPoint), AGSStop(point: endPoint)])
+                params.clearPolygonBarriers()
                 params.setPolygonBarriers(barriers)
                 params.returnDirections = true
+                params.returnStops = true
+                params.directionsDistanceUnits = AGSUnitSystem(rawValue: 0)!
                 
                 self.routeTask.solveRoute(with: params){ (result, error) in
                     guard error == nil else {

@@ -61,7 +61,9 @@ class RouteResultsViewController: UIViewController {
     @IBAction func saveTapped(_ sender: Any) {
         guard let route = route else { return }
         mapAPIController?.selectedRoute = route
-        navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindToMapViewWithSegue", sender: self)
     }
     
     @IBAction func backtapped(_ sender: Any) {
