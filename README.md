@@ -5,9 +5,16 @@
 
 |                                       [Ryan Murphy](https://tryanmurphy.com/)                                        |                                       [Jonathan Ferrer](https://www.jonathanferrer.dev)                                        |                                                                      
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
-|                      [<img src="https://media.licdn.com/dms/image/C4D03AQGlHnkj67kkIQ/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=l06yZViaeRx_F7TedurhJxqEBIz1bnmnd07t32JQbdw" width = "200" />](https://github.com/)                       |                      [<img src="https://media.licdn.com/dms/image/C5603AQFasjNpUIVxQA/profile-displayphoto-shrink_200_200/0?e=1572480000&v=beta&t=CWkr7Rz-506_6zvpcYV7_ciavR2nDw8Njf2kjnCwuNA" width = "200" />](https://github.com/)                       |                         |
+|                      [<img src="DevImages/RyanMurphy.png" width = "200" />](https://github.com/)                       |                      [<img src="DevImages/JonathanFerrer.png" width = "200" />](https://github.com/)                       |                         |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MurphDirt879)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JayFenam)             |                 |       |                |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/thomasryanmurphy/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ferrer-jonathan/) |
+
+
+|                                       [Joshua Sharp](https://emptybliss.info)                                        |                                       [Jacob Connerly](https://github.com/jlconnerly/Jake-Connerly-Portfolio)                                        |                                                                      
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
+|                      [<img src="DevImages/JoshuaSharp.jpg" width = "200" />](https://github.com/)                       |                      [<img src="DevImages/JakeConnerly.jpg" width = "200" />](https://github.com/)                       |                         |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jds655)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jlconnerly)             |                 |       |                |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/emptybliss/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jacob-connerly/) |
 
 
 
