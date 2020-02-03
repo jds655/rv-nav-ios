@@ -53,6 +53,7 @@ class SelectALocationViewController: UIViewController {
         searchView.delegate = self
         setupUI()
         setupMap()
+        searchView.becomeFirstResponder()
     }
     
     // MARK: - Navigation
