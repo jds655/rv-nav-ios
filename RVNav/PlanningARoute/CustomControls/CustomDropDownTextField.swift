@@ -39,10 +39,7 @@ class CustomDropDownTextField: UIControl {
         _font = heeboRegularFont!
         super.init(coder: aDecoder)
         setupUI()
-        //setupCoverButtonUI()
-//        NotificationCenter.default.addObserver(self, selector: #selector(editingEnded), name: .outsideViewTapped, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadVehiclesDropDown(from:)), name: .vehiclesAdded, object: nil)
-        //addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
     }
     
     @objc func editingEnded() {
@@ -143,22 +140,7 @@ class CustomDropDownTextField: UIControl {
             self._isRotated = false
         }
     }
-    
-//    private func setupCoverButtonUI() {
-//        coverButton.backgroundColor = .clear
-//        coverButton.translatesAutoresizingMaskIntoConstraints = false
-//        coverButton.layer.cornerRadius = 4
-//        addSubview(coverButton)
-//        // Cover Button Contraints
-//        let coverButtonLeadingAnchor  = coverButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
-//        let coverButtonTopAnchor      = coverButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
-//        let coverButtonTrailingAnchor = coverButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
-//        let coverButtonBottomAnchor   = coverButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
-//        NSLayoutConstraint.activate([coverButtonLeadingAnchor, coverButtonTopAnchor, coverButtonTrailingAnchor, coverButtonBottomAnchor])
-//        //Cover Button target
-//        coverButton.addTarget(self, action: #selector(dropDown(sender:)), for: .touchUpInside)
-//    }
-    
+        
     @objc private func dropDown(sender: UIButton) {
         dropDownVehicles.show()
         if !_isRotated {

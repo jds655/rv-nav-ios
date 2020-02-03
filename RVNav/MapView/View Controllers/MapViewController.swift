@@ -2,10 +2,6 @@
 //  MapViewController.swift
 //  RVNav
 //
-//  Created by Jonathan Ferrer on 8/19/19.
-//  Copied bu Joshua Sharp on 01/13/2020
-//  Notes: Migrated UI over to new ux17 Design
-
 //  Copyright © 2020 RVNav. All rights reserved.
 //
 
@@ -23,21 +19,17 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             AvoidanceController(avoidanceProvider:
                 LambdaDSAvoidanceProvider())))
     private let graphicsOverlay = AGSGraphicsOverlay()
-    private var start: AGSPoint?
-    private var end: AGSPoint?
-    private var avoidances: [Avoid] = []
-    private var coordinates: [CLLocationCoordinate2D] = []
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
-    
-    private var barriers: [AGSPolygonBarrier] = []
-    
-    
     #warning("Save and restore from userdefauls")
     private var mapType: AGSBasemapType = .navigationVector {
         didSet{
             guard let location = mapView.locationDisplay.location,
                 let lat = location.position?.y,
                 let lon = location.position?.x else { return }
+            if let route = directionsController.mapAPIController.selectedRoute,
+                let routeGeometry = route.routeGeometry {
+                self.mapView.setViewpointGeometry(routeGeometry, padding: 100, completion: nil)
+            }
             mapView.map = AGSMap(basemapType: mapType, latitude: lat, longitude: lon, levelOfDetail: 0)
         }
     }
@@ -50,8 +42,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         Analytics.logEvent("app_opened", parameters: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mapRoute(notification:)), name: .routeNeedsMapped, object: nil)
         setupMap()
-        directionsController.mapAPIController.setupArcGISCredential()  //move to init of mapAPI?
     }
     
     deinit {
@@ -98,6 +90,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     @IBAction func getRouteTestButtonTapped(_ sender: UIButton) {
         #warning("Remove test button and its data")
+        var start: AGSPoint?
+        var end: AGSPoint?
         let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
         let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
         start = AGSPoint(clLocationCoordinate2D: startCoord)
@@ -117,20 +111,37 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
             //line below is for testing
             //self.printRoute(with: route)
-            guard let start = self.start, let end = self.end  else { return }
+            guard let start = start, let end = end  else { return }
             DispatchQueue.main.async {
                 if let routePolyline = route.routeGeometry {
                     let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
                     let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
                     self.graphicsOverlay.graphics.add(routeGraphic)
                 }
-                #warning("Do we want to offer a list of routes to choose from?")
                 self.addMapMarker(location: start, style: .diamond, fillColor: .green, outlineColor: .black)
                 self.addMapMarker(location: end, style: .X, fillColor: .red, outlineColor: .red)
-                self.mapView.setViewpointGeometry(route.routeGeometry!, padding: 100) { (_) in
+                if let routeGeometry = route.routeGeometry {
+                    self.mapView.setViewpointGeometry(routeGeometry, padding: 100, completion: nil)
                 }
             }
         }
+    }
+    
+    @objc public func mapRoute(notification: NSNotification) {
+        guard let route = directionsController.mapAPIController.selectedRoute else { return }
+        DispatchQueue.main.async {
+            if let routePolyline = route.routeGeometry {
+                let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
+                let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                self.graphicsOverlay.graphics.add(routeGraphic)
+            }
+            guard let start = route.stops.first?.geometry,
+                let end = route.stops.last?.geometry else { return }
+            self.addMapMarker(location: start, style: .diamond, fillColor: .green, outlineColor: .black)
+            self.addMapMarker(location: end, style: .X, fillColor: .red, outlineColor: .red)
+            self.mapView.setViewpointGeometry(route.routeGeometry!, padding: 100, completion: nil)
+        }
+        ARSLineProgress.hide()
     }
     
     // MARK: - Private Methods
@@ -157,7 +168,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         mapView.touchDelegate = self
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
-
+    
     // adds a mapmarker at a given location.
     private func addMapMarker(location: AGSPoint, style: AGSSimpleMarkerSymbolStyle, fillColor: UIColor, outlineColor: UIColor) {
         let pointSymbol = AGSSimpleMarkerSymbol(style: style, color: fillColor, size: 12)

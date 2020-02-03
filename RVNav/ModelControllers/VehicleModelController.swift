@@ -112,4 +112,8 @@ class VehicleModelController: VehicleModelControllerProtocol {
             }
         }
     }
+    
+    func getVehicleHeight (with name: String) -> Float? {
+        return vehicles.filter ( {$0.name == name} ).first.map( {$0.height} ) ?? nil
+    }
 }

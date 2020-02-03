@@ -30,11 +30,15 @@ class PlanARouteViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         updateViews()
         vehicleController?.delegate = self
         selectedVehicle.delegate = self
         startLocation.delegate = self
         endLocation.delegate = self
+        selectedVehicle.becomeFirstResponder()
     }
 
     // MARK: - Navigation
@@ -48,9 +52,17 @@ class PlanARouteViewController: UIViewController {
             vc?.mapAPIController = self.mapAPIController
             vc?.delegate = self.sender
         case "RouteResults":
-            let vc = segue.destination as? RouteResultsViewController
-            //let routeInfo = RouteInfo(height: <#T##Float#>, startLon: <#T##Double#>, startLat: <#T##Double#>, endLon: <#T##Double#>, endLat: <#T##Double#>)
-            vc?.mapAPIController = self.mapAPIController
+            guard let vc = segue.destination as? RouteResultsViewController,
+                let mapAPIController = mapAPIController,
+                let name = selectedVehicle.text,
+                let height = vehicleController?.getVehicleHeight(with: name),
+                let startLon = startLocation.location?.displayLocation?.x,
+                let startLat = startLocation.location?.displayLocation?.y,
+                let endLon = endLocation.location?.displayLocation?.x,
+                let endLat = endLocation.location?.displayLocation?.y else { return }
+            let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
+            vc.mapAPIController = mapAPIController
+            vc.routeInfo = routeInfo
         default:
             break
         }

@@ -12,11 +12,11 @@ import ArcGIS
 class RouteResultsViewController: UIViewController {
 
     // MARK: - Properties
-    #warning("Either add AGSRoute to this Struct or pass AGS one")
     var routeController: RouteController?
     var mapAPIController: MapAPIControllerProtocol?
     var routeInfo: RouteInfo? {
         didSet{
+            ARSLineProgress.show()
             guard let routeInfo = routeInfo else { return }
             mapAPIController?.fetchRoute(from: routeInfo) { (route, error) in
                 if let error = error {
@@ -26,6 +26,7 @@ class RouteResultsViewController: UIViewController {
                 if let route = route {
                     self.route = route
                 }
+                ARSLineProgress.hide()
             }
         }
     }
@@ -50,12 +51,17 @@ class RouteResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = .darkBlue
+        view.backgroundColor = .darkBlue
     }
     
     // MARK: - IBActions
     @IBAction func saveTapped(_ sender: Any) {
         guard let route = route else { return }
-        //routeController?.add(route: route)
+        mapAPIController?.selectedRoute = route
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func backtapped(_ sender: Any) {
@@ -72,10 +78,13 @@ class RouteResultsViewController: UIViewController {
     // MARK: - Private Methods
     private func updateViews() {
         guard let route = route else { return }
-        let totalTimeString = String(route.totalTime)
-        //let startLocation = route
-        totalTimeLabel.text = totalTimeString
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            let totalTimeString = String(route.totalTime)
+            #warning("Flesh this out")
+            //let startLocation = route
+            self.totalTimeLabel.text = totalTimeString
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -89,7 +98,7 @@ extension RouteResultsViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath) as? RouteResultTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RouteResultTableViewCell", for: indexPath) as? RouteResultTableViewCell else { return UITableViewCell() }
         if let route = route {
             let maneuver = route.directionManeuvers[indexPath.row]
             cell.leftImageView.image = maneuver.maneuverType.image()
@@ -98,6 +107,7 @@ extension RouteResultsViewController: UITableViewDataSource, UITableViewDelegate
         let view = UIView()
         view.backgroundColor = .darkBlue
         cell.selectedBackgroundView = view
+        cell.backgroundColor = .darkBlue
         return cell
     }
 }

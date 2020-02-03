@@ -20,7 +20,7 @@ class SelectLocationTextField: NibDesignableControl {
             setNeedsDisplay()
         }
     }
-    private(set) var location: AGSGeocodeResult?{
+    public var location: AGSGeocodeResult?{
         didSet{
             self.label = location?.label
         }
