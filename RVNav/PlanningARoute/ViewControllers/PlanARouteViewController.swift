@@ -30,11 +30,15 @@ class PlanARouteViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         updateViews()
         vehicleController?.delegate = self
         selectedVehicle.delegate = self
         startLocation.delegate = self
         endLocation.delegate = self
+        selectedVehicle.becomeFirstResponder()
     }
 
     // MARK: - Navigation
@@ -47,6 +51,18 @@ class PlanARouteViewController: UIViewController {
             let vc = segue.destination as? SelectALocationViewController
             vc?.mapAPIController = self.mapAPIController
             vc?.delegate = self.sender
+        case "RouteResults":
+            guard let vc = segue.destination as? RouteResultsViewController,
+                let mapAPIController = mapAPIController,
+                let name = selectedVehicle.text,
+                let height = vehicleController?.getVehicleHeight(with: name),
+                let startLon = startLocation.location?.displayLocation?.x,
+                let startLat = startLocation.location?.displayLocation?.y,
+                let endLon = endLocation.location?.displayLocation?.x,
+                let endLat = endLocation.location?.displayLocation?.y else { return }
+            let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
+            vc.mapAPIController = mapAPIController
+            vc.routeInfo = routeInfo
         default:
             break
         }
@@ -55,6 +71,10 @@ class PlanARouteViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func openSelectLocation(_ sender: SelectLocationTextField) {
         openSelectALocation(target: sender)
+    }
+    
+    @IBAction func getDirectionsTapped(_ sender: Any) {
+        
     }
     
     // MARK: - Private Methods

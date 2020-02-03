@@ -13,6 +13,7 @@ protocol MapAPIControllerProtocol {
     var delegate: ViewDelegateProtocol? {get set}
     var geoCoder: AGSLocatorTask {get set}
     var avoidanceController : AvoidanceControllerProtocol {get set}
+    var selectedRoute: AGSRoute? {get set}
     
     init (avoidanceController: AvoidanceControllerProtocol)
     

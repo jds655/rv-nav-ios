@@ -23,4 +23,6 @@ protocol VehicleModelControllerProtocol {
     func deleteVehicle(vehicle: Vehicle, completion: @escaping (Vehicle?,Error?) -> Void)
     
     func getVehicles(completion: @escaping ([Vehicle]?, Error?) -> Void)
+    
+    func getVehicleHeight (with name: String) -> Float?
 }
