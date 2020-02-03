@@ -143,7 +143,8 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        guard let token = KeychainWrapper.standard.string(forKey: "accessToken") else { return }
+        request.setValue(token, forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
         
         do {

@@ -14,7 +14,7 @@ class ModelController {
         guard let userID = userController.currentUserID else {
             return nil
         }
-        return VehicleModelController(userID: userID, networkController: FirebaseNetworkController())
+        return VehicleModelController(userID: userID, networkController: WebRESTAPINetworkController())
     }
 
     init (userController: UserControllerProtocol = UserController()) {
