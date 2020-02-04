@@ -20,7 +20,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 LambdaDSAvoidanceProvider())))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
-    #warning("Save and restore from userdefauls")
+    #warning("Save and restore from userdefauls?")
     private var mapType: AGSBasemapType = .navigationVector {
         didSet{
             guard let location = mapView.locationDisplay.location,
@@ -88,43 +88,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     @IBAction func unwindToMapView(segue:UIStoryboardSegue) { }
     
-    @IBAction func getRouteTestButtonTapped(_ sender: UIButton) {
-        #warning("Remove test button and its data")
-        var start: AGSPoint?
-        var end: AGSPoint?
-        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
-        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
-        start = AGSPoint(clLocationCoordinate2D: startCoord)
-        end = AGSPoint(clLocationCoordinate2D: endCoord)
-        
-        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
-        let routeInfo = RouteInfo(height: vehicle.height!, startLon: startCoord.longitude, startLat: startCoord.latitude, endLon: endCoord.longitude, endLat: endCoord.latitude)
-        
-        directionsController.mapAPIController.fetchRoute(from: routeInfo) { (route, error) in
-            if let error = error {
-                NSLog("MapViewController: Error fetching route: \(error)")
-                return
-            }
-            guard let route = route else {
-                NSLog("MapViewController: No route returned.")
-                return
-            }
-            //line below is for testing
-            //self.printRoute(with: route)
-            guard let start = start, let end = end  else { return }
-            DispatchQueue.main.async {
-                if let routePolyline = route.routeGeometry {
-                    let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
-                    let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
-                    self.graphicsOverlay.graphics.add(routeGraphic)
-                }
-                self.addMapMarker(location: start, style: .diamond, fillColor: .green, outlineColor: .black)
-                self.addMapMarker(location: end, style: .X, fillColor: .red, outlineColor: .red)
-                if let routeGeometry = route.routeGeometry {
-                    self.mapView.setViewpointGeometry(routeGeometry, padding: 100, completion: nil)
-                }
-            }
-        }
+    @IBAction private func getRouteTestButtonTapped(_ sender: UIButton) {
+        directionsController.mapAPIController.testRoute()
     }
     
     @objc public func mapRoute(notification: NSNotification) {
@@ -175,29 +140,6 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: outlineColor, width: 2)
         let markerGraphic = AGSGraphic(geometry: location, symbol: pointSymbol, attributes: nil)
         graphicsOverlay.graphics.add(markerGraphic)
-    }
-    
-    func printRoute(with route: AGSRoute) {
-        print ("Total Time: \(String(route.totalTime))")
-        print ("Total Length: \(String(route.totalLength))")
-        print ("***Stops***")
-        for stop in route.stops.sorted(by: { (lhs, rhs) -> Bool in
-            return lhs.sequence < rhs.sequence
-        }) {
-            print("Stop \(stop.sequence): name: \(stop.name) for route \(stop.routeName)  ")
-        }
-        print ("  ***Maneuvers***")
-        for maneuver in route.directionManeuvers {
-            print ("    Maneuver text: \(maneuver.directionText)")
-            print ("    Maneuver lenght: \(maneuver.length)")
-            print ("    Maneuver text: \(maneuver.directionText)")
-            print ("      Messages:")
-            for message in maneuver.maneuverMessages {
-                print ("           message: \(message.text)  type: \(String(describing: message.type))")
-            }
-            print ("    Maneuver type: \(String(describing: maneuver.maneuverType))")
-        }
-        
     }
     
     // MARK: - Selectors

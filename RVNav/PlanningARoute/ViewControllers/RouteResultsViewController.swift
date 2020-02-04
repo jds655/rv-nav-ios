@@ -62,8 +62,6 @@ class RouteResultsViewController: UIViewController {
     @IBAction func saveTapped(_ sender: Any) {
         guard let route = route else { return }
         mapAPIController?.selectedRoute = route
-        //dismiss(animated: true, completion: nil)
-        //navigationController?.popViewController(animated: true)
         performSegue(withIdentifier: "unwindToMapViewWithSegue", sender: self)
     }
     
@@ -81,10 +79,12 @@ class RouteResultsViewController: UIViewController {
     // MARK: - Private Methods
     private func updateViews() {
         guard let route = route else { return }
+        let totalSeconds = route.totalTime * 60
+        let totalTimeString = totalSeconds.asString(style: .abbreviated) + " (" + route.totalLength.fromMetersToImperialString() + ")"
+        
         DispatchQueue.main.async {
-            let totalTimeString = String(route.totalTime)
-            #warning("Flesh this out")
-            //let startLocation = route
+            self.startingLocationLabel.text = route.stops.first?.name
+            self.endingLocationLabel.text = route.stops.last?.name
             self.totalTimeLabel.text = totalTimeString
             self.tableView.reloadData()
         }
@@ -105,7 +105,8 @@ extension RouteResultsViewController: UITableViewDataSource, UITableViewDelegate
         if let route = route {
             let maneuver = route.directionManeuvers[indexPath.row]
             cell.leftImageView.image = maneuver.maneuverType.image()
-            cell.labelView.text = maneuver.directionText
+            let distance: String = maneuver.length != 0 ? " for  \(maneuver.length.fromMetersToImperialString())" : ""
+            cell.labelView.text = maneuver.directionText + distance
         }
         let view = UIView()
         view.backgroundColor = .darkBlue

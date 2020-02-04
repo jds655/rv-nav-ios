@@ -12,6 +12,9 @@ import ArcGIS
 enum MapAPIControllerError: Error {
     case errorGettingAvoidances(String)
     case noAvoidancesReturned
+    case noRouteParameters
+    case noBarriersReturned
+    case errorFetchingRoute
 }
 
 class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDelegate {
@@ -63,39 +66,47 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
         }
     }
     
-    func fetchRoute(from route: RouteInfo, completion: @escaping (AGSRoute?, Error?) -> Void) {
+    func fetchRoute(from routeInfo: RouteInfo, completion: @escaping (AGSRoute?, Error?) -> Void) {
         
-        fetchBarriers(from: route) { (barriers, error) in
+        fetchBarriers(from: routeInfo) { (barriers, error) in
             if let error = error {
                 completion(nil,error)
                 return
             }
             
             guard let barriers = barriers else {
-                completion(nil, nil); #warning("fix error")
+                completion(nil, MapAPIControllerError.noBarriersReturned)
                 return
             }
             
             self.routeTask.defaultRouteParameters { [weak self] (defaultParameters, error) in
                 guard error == nil else {
                     print("Error getting default parameters: \(error!.localizedDescription)")
-                    completion(nil, nil); #warning("fix error")
+                    completion(nil, MapAPIControllerError.noRouteParameters)
                     return
                 }
-                let startCLCoordinate = CLLocationCoordinate2D(latitude: route.startLat, longitude: route.startLon)
-                let endCLCoordinate = CLLocationCoordinate2D(latitude: route.endLat, longitude: route.endLon)
+                let startCLCoordinate = CLLocationCoordinate2D(latitude: routeInfo.startLat, longitude: routeInfo.startLon)
+                let endCLCoordinate = CLLocationCoordinate2D(latitude: routeInfo.endLat, longitude: routeInfo.endLon)
                 let startPoint = AGSPoint(clLocationCoordinate2D: startCLCoordinate)
                 let endPoint = AGSPoint(clLocationCoordinate2D: endCLCoordinate)
                 
                 guard let params = defaultParameters, let self = self else { return }
                 
+                //Clear in case we're re-calling this after map has a route
                 params.clearStops()
-                params.setStops([AGSStop(point: startPoint), AGSStop(point: endPoint)])
+                //Setup the names of the stop with Addresses from SelectRoute
+                let startStop = AGSStop(point: startPoint)
+                startStop.name = routeInfo.startName
+                let endStop = AGSStop(point: endPoint)
+                endStop.name = routeInfo.endName
+                params.setStops([startStop, endStop])
                 params.clearPolygonBarriers()
                 params.setPolygonBarriers(barriers)
                 params.returnDirections = true
                 params.returnStops = true
-                params.directionsDistanceUnits = AGSUnitSystem(rawValue: 0)!
+                //Force unwrapping below becuase it wouldn't autocomplete and the enum case in documentation errored out: Wanting Imperial vs. Metric, using rawValue here returns optional
+                let unitSystem = AGSUnitSystem(rawValue: 0)!
+                params.directionsDistanceUnits = unitSystem
                 
                 self.routeTask.solveRoute(with: params){ (result, error) in
                     guard error == nil else {
@@ -105,10 +116,33 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
                     }
                     #warning("Do we want to offer a list of routes to choose from?")
                     if let firstRoute = result?.routes.first {
+                        self.printRoute(with: firstRoute)
                         completion (firstRoute,nil)
                     }
                 }
             }
+        }
+    }
+    
+    public func testRoute() {
+        let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
+        let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
+        let start = AGSPoint(clLocationCoordinate2D: startCoord)
+        let end = AGSPoint(clLocationCoordinate2D: endCoord)
+        
+        let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
+        let routeInfo = RouteInfo(height: vehicle.height!, startName: "Test Start", startLon: startCoord.longitude, startLat: startCoord.latitude, endName: "Test End", endLon: endCoord.longitude, endLat: endCoord.latitude)
+        
+        ARSLineProgress.show()
+        fetchRoute(from: routeInfo) { (route, error) in
+            if let error = error {
+                #warning("give user an error here.")
+                return
+            }
+            if let route = route {
+                self.selectedRoute = route
+            }
+            ARSLineProgress.hide()
         }
     }
     
@@ -138,6 +172,29 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
                 barriers.append(barrier)
             }
             completion(barriers, nil)
+        }
+    }
+    
+    private func printRoute(with route: AGSRoute) {
+        let timeInSeconds: Double = route.totalTime * 60
+        print ("Total Time: \(timeInSeconds.asString(style: .short))")
+        let lengthString: String = route.totalLength.fromMetersToImperialString()
+        print ("Total Length: " + lengthString)
+        print ("***Stops***")
+        for stop in route.stops.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.sequence < rhs.sequence
+        }) {
+            print("Stop \(stop.sequence): name: \(stop.name) for route \(stop.routeName)  ")
+        }
+        print ("  ***Maneuvers***")
+        for maneuver in route.directionManeuvers {
+            print ("    Maneuver text: \(maneuver.directionText)")
+            print ("    Maneuver lenght: \(maneuver.length.fromMetersToImperialString())")
+            print ("      Messages:")
+            for message in maneuver.maneuverMessages {
+                print ("           message: \(message.text)  type: \(String(describing: message.type))")
+            }
+            print ("    Maneuver type: \(String(describing: maneuver.maneuverType))")
         }
     }
 }

@@ -64,7 +64,7 @@
 		FB67983C23D10F38009E0D87 /* UserControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */; };
 		FB67983E23D114D4009E0D87 /* VehicleModelControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */; };
 		FB67984423D121E1009E0D87 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984323D121E1009E0D87 /* ModelController.swift */; };
-		FB67984723D12E52009E0D87 /* LamdaDSAvoidanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984623D12E52009E0D87 /* LamdaDSAvoidanceController.swift */; };
+		FB67984723D12E52009E0D87 /* LamdaDSAvoidanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984623D12E52009E0D87 /* LamdaDSAvoidanceProvider.swift */; };
 		FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */; };
 		FB8D3D2B23E1113100EC23FC /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8D3D2A23E1113100EC23FC /* RouteController.swift */; };
 		FB8D3D2C23E14E0600EC23FC /* AGSMapAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */; };
@@ -94,6 +94,7 @@
 		FBAC9BDB23DC0F8E0023BC3B /* SelectLocationTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBAC9BDA23DC0F8E0023BC3B /* SelectLocationTextField.xib */; };
 		FBAC9BDD23DC122C0023BC3B /* SelectLocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BDC23DC122C0023BC3B /* SelectLocationTextField.swift */; };
 		FBAC9BDF23DC24AB0023BC3B /* UIViewLoadingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC9BDE23DC24AB0023BC3B /* UIViewLoadingProtocol.swift */; };
+		FBBA358123E8FBEB002089CF /* Double+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBA358023E8FBEB002089CF /* Double+toString.swift */; };
 		FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */; };
 		FBBABF8723A991F40067B28F /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */; };
 		FBD1AFE223C39C6000377F7C /* SKSignupBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */; };
@@ -168,7 +169,7 @@
 		FB67983B23D10F38009E0D87 /* UserControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserControllerProtocol.swift; sourceTree = "<group>"; };
 		FB67983D23D114D4009E0D87 /* VehicleModelControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModelControllerProtocol.swift; sourceTree = "<group>"; };
 		FB67984323D121E1009E0D87 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
-		FB67984623D12E52009E0D87 /* LamdaDSAvoidanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamdaDSAvoidanceController.swift; sourceTree = "<group>"; };
+		FB67984623D12E52009E0D87 /* LamdaDSAvoidanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamdaDSAvoidanceProvider.swift; sourceTree = "<group>"; };
 		FB67984823D13CD2009E0D87 /* AvoidanceControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidanceControllerProtocol.swift; sourceTree = "<group>"; };
 		FB8D3D2A23E1113100EC23FC /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		FB954F5223D60CA500E638BE /* ARSLineProgressCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSLineProgressCustomization.swift; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 		FBAC9BDA23DC0F8E0023BC3B /* SelectLocationTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLocationTextField.xib; sourceTree = "<group>"; };
 		FBAC9BDC23DC122C0023BC3B /* SelectLocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTextField.swift; sourceTree = "<group>"; };
 		FBAC9BDE23DC24AB0023BC3B /* UIViewLoadingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewLoadingProtocol.swift; sourceTree = "<group>"; };
+		FBBA358023E8FBEB002089CF /* Double+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+toString.swift"; sourceTree = "<group>"; };
 		FBBABF8423A976DA0067B28F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		FBBABF8623A991F40067B28F /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSignupBackground.swift; sourceTree = "<group>"; };
@@ -239,12 +241,13 @@
 		321DE99923A84AE000521AAB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */,
+				FBBA358023E8FBEB002089CF /* Double+toString.swift */,
 				FBA96C8323DCE0970056AE55 /* NibDesignable.swift */,
+				323F3FE023E06394009F9A9B /* NotificationNames+Extension.swift */,
+				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
 				321DE99723A84AD800521AAB /* UIColor+Extension.swift */,
 				32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */,
-				FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */,
-				FB954F6C23D77C9A00E638BE /* CLPlacemark+AddressProtocol.swift */,
-				323F3FE023E06394009F9A9B /* NotificationNames+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,8 +340,8 @@
 				FBE19F9623CD6F200046837C /* Hamburger Menu */,
 				FBAA2B7323A8370100D6E4B7 /* AddVehicle */,
 				324603A723D7B0AB00A32E48 /* PlanningARoute */,
-				FB59BBD023E35F1000D74881 /* Helpers */,
 				321DE99923A84AE000521AAB /* Extensions */,
+				FB59BBD023E35F1000D74881 /* Helpers */,
 				D1BCDD82230E0F6900986A18 /* ModelControllers */,
 				D1BCDD81230E0F5D00986A18 /* Models */,
 				FB67984523D123A4009E0D87 /* NetworkingControllers */,
@@ -449,7 +452,7 @@
 		FB67984523D123A4009E0D87 /* NetworkingControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FB67984623D12E52009E0D87 /* LamdaDSAvoidanceController.swift */,
+				FB67984623D12E52009E0D87 /* LamdaDSAvoidanceProvider.swift */,
 				FB954F7023D79B5B00E638BE /* AGSMapAPIController.swift */,
 				3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */,
 				D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */,
@@ -827,7 +830,7 @@
 				FB954F6123D60CA900E638BE /* ARSInfiniteLoader.swift in Sources */,
 				FB954F6723D762B900E638BE /* DirectionsController.swift in Sources */,
 				FB954F7723D7E45C00E638BE /* ViewDelegateProtocol.swift in Sources */,
-				FB67984723D12E52009E0D87 /* LamdaDSAvoidanceController.swift in Sources */,
+				FB67984723D12E52009E0D87 /* LamdaDSAvoidanceProvider.swift in Sources */,
 				FB954F5C23D60CA900E638BE /* ARSLineProgressCustomization.swift in Sources */,
 				FBA96C8423DCE0970056AE55 /* NibDesignable.swift in Sources */,
 				321DE99823A84AD800521AAB /* UIColor+Extension.swift in Sources */,
@@ -843,6 +846,7 @@
 				FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,
 				FB65890123DA3AF100DBF1D3 /* Route.swift in Sources */,
+				FBBA358123E8FBEB002089CF /* Double+toString.swift in Sources */,
 				FBAC9BDF23DC24AB0023BC3B /* UIViewLoadingProtocol.swift in Sources */,
 				FB67984423D121E1009E0D87 /* ModelController.swift in Sources */,
 				323955E123DB5781007D217C /* CustomDropDownTextField.swift in Sources */,
@@ -1019,8 +1023,8 @@
 			baseConfigurationReference = 9148ABE2644645D31A197500 /* Pods-RVNav.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = "$(SRCROOT)/RVNav/Resources/Info.plist";
@@ -1030,9 +1034,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.rvnav;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.RVNav;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = RVNavApp;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1043,8 +1047,8 @@
 			baseConfigurationReference = B5F313F511943CF84D7AFBE6 /* Pods-RVNav.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = "$(SRCROOT)/RVNav/Resources/Info.plist";
@@ -1054,9 +1058,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.rvnav;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.RVNav;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = RVNavApp;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -14,7 +14,7 @@ class SelectLocationTextField: NibDesignableControl {
     // MARK: - Properties
     private let nibName = "SelectLocationTextField"
     public var delegate: SelectALocationDelegate?
-    @IBInspectable public var label: String? {
+    public var label: String? {
         didSet {
             labelView.text = self.label
             setNeedsDisplay()
