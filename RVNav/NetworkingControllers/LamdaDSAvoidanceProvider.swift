@@ -1,5 +1,5 @@
 //
-//  LambdaDSAvoidanceController.swift
+//  LambdaDSAvoidanceProvider.swift
 //  RVNav
 //
 //  Created by Lambda_School_Loaner_214 on 1/16/20.

@@ -19,8 +19,10 @@ struct Route {
 
 struct RouteInfo: Codable {
     let height: Float
+    let startName: String
     let startLon: Double
     let startLat: Double
+    let endName: String
     let endLon: Double
     let endLat: Double
 }

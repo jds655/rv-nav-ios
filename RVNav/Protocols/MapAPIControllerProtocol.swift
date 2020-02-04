@@ -22,4 +22,6 @@ protocol MapAPIControllerProtocol {
     func search(with address: String, completion: @escaping ([AGSGeocodeResult]?) -> Void)
     
     func fetchRoute(from route: RouteInfo, completion: @escaping (AGSRoute?, Error?) -> Void)
+    
+    func testRoute()
 }

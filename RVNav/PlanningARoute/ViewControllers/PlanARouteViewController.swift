@@ -50,11 +50,13 @@ class PlanARouteViewController: UIViewController {
                 let mapAPIController = mapAPIController,
                 let name = selectedVehicle.text,
                 let height = vehicleController?.getVehicleHeight(with: name),
+                let startName = startLocation.label,
                 let startLon = startLocation.location?.displayLocation?.x,
                 let startLat = startLocation.location?.displayLocation?.y,
+                let endName = endLocation.label,
                 let endLon = endLocation.location?.displayLocation?.x,
                 let endLat = endLocation.location?.displayLocation?.y else { return }
-            let routeInfo = RouteInfo(height: height, startLon: startLon, startLat: startLat, endLon: endLon, endLat: endLat)
+            let routeInfo = RouteInfo(height: height, startName: startName, startLon: startLon, startLat: startLat, endName: endName, endLon: endLon, endLat: endLat)
             vc.mapAPIController = mapAPIController
             vc.routeInfo = routeInfo
         default:
