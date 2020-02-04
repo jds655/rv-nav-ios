@@ -29,7 +29,6 @@
 		32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */; };
 		3291787923E353600043FCF3 /* AGSPortal+AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291787823E3535F0043FCF3 /* AGSPortal+AppID.swift */; };
 		3299CBD423DA075F0033EBA9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* MapViewController.swift */; };
-		32D65D9E23E9D50C0039A811 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32D65D9D23E9D50B0039A811 /* Info.plist */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
@@ -720,7 +719,6 @@
 				FB27EFFC23CD148600C7EA9A /* MapView.storyboard in Resources */,
 				FBAC9BDB23DC0F8E0023BC3B /* SelectLocationTextField.xib in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
-				32D65D9E23E9D50C0039A811 /* Info.plist in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
 				324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
