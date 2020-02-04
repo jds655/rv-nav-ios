@@ -86,11 +86,9 @@ extension PlanARouteViewController: CustomDropDownTextFieldDelegate {
 // MARK: - Extensions
 extension PlanARouteViewController: VehicleModelDataDelegate {
     func didStartFetchingData() {
-        
     }
     
     func didEndFetchingData(error: VehicleModelControllerError?) {
-        
     }
     
     func dataDidChange() {

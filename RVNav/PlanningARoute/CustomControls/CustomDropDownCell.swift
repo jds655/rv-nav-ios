@@ -17,8 +17,8 @@ class CustomDropDownCell: DropDownCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
     }
+    
     @IBAction func addVehicleTapped(_ sender: UIButton) {
         delegate?.performSegue(segueIdentifier: "AddVehicleSegue")
     }
