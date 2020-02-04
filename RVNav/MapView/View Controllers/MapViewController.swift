@@ -30,7 +30,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 let routeGeometry = route.routeGeometry {
                 self.mapView.setViewpointGeometry(routeGeometry, padding: 100, completion: nil)
             }
-            mapView.map = AGSMap(basemapType: mapType, latitude: lat, longitude: lon, levelOfDetail: 0)
+            mapView.map = AGSMap(basemapType: mapType, latitude: lat, longitude: lon, levelOfDetail: 18)
         }
     }
     

@@ -45,6 +45,9 @@ class SelectALocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         if mapAPIController == nil {
             fatalError("No mapPAIController in SelectALocationController")
         }
@@ -92,6 +95,7 @@ class SelectALocationViewController: UIViewController {
         mapView.viewpointChangedHandler = {
             //Keep pin in center
         }
+        mapView.locationDisplay.autoPanMode = .recenter
         mapView.locationDisplay.start {error in
             DispatchQueue.main.async {
                 if let error = error {
