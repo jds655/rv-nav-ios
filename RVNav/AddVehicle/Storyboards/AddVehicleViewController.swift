@@ -132,7 +132,11 @@ class AddVehicleViewController: ShiftableViewController {
             performSegue(withIdentifier: "ShowRVTypesSegue", sender: self)
         }
     }
-    
+    /*
+     The backend database represents a vehicles dimension(Height, Width, Length) by
+     total inches in Float form.  This handler converts the given "Feet and Inches"
+     given by user to total inches.
+     */
     private func feetAndInchesHandlerToDB(feet: String, inches: String) -> Float {
         guard let feetFloat = Float(feet),
             let inchesFloat = Float(inches) else { return 0.0 }
@@ -143,7 +147,10 @@ class AddVehicleViewController: ShiftableViewController {
         totalInInches /= 12
         return totalInInches
     }
-    
+    /*
+     This converts the vehicles dimension coming from the data base back to Feet and
+     Inches to be displayed properly when user is "Editing" a vehicle.
+     */
     private func feetAndInchesHandlerFromDB(totalFeet: Float) -> (feet: Int, inches: Int) {
         let feet = Int(floor(totalFeet))
         var decimal = totalFeet.truncatingRemainder(dividingBy: 1)
@@ -206,7 +213,7 @@ class AddVehicleViewController: ShiftableViewController {
         default:
             return
         }
-        
+        // Converting user entered Feet and Inches to "Total Inches" to be accepted by database
         let vehicleHeight = feetAndInchesHandlerToDB(feet: heightFeet, inches: heightInches)
         let vehicleWidth = feetAndInchesHandlerToDB(feet: widthFeet, inches: widthInches)
         let vehicleLength = feetAndInchesHandlerToDB(feet: lengthFeet, inches: lengthInches)
