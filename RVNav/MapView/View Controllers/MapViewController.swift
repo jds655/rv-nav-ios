@@ -28,6 +28,11 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 let lon = location.position?.x else { return }
             if let route = directionsController.mapAPIController.selectedRoute,
                 let routeGeometry = route.routeGeometry {
+                let count = self.mapView.graphicsOverlays.count
+                print("Graphic Overlay count: \(count)")
+                if count == 1 {
+                    self.mapView.graphicsOverlays.removeAllObjects()
+                }
                 self.mapView.setViewpointGeometry(routeGeometry, padding: 100, completion: nil)
             }
             mapView.map = AGSMap(basemapType: mapType, latitude: lat, longitude: lon, levelOfDetail: 18)
@@ -98,6 +103,9 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             if let routePolyline = route.routeGeometry {
                 let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
                 let routeGraphic = AGSGraphic(geometry: routePolyline, symbol: routeSymbol, attributes: nil)
+                let count = self.graphicsOverlay.graphics.count
+                print("Graphic Overlay count: \(count)")
+                self.graphicsOverlay.graphics.removeAllObjects()
                 self.graphicsOverlay.graphics.add(routeGraphic)
             }
             guard let start = route.stops.first?.geometry,
@@ -123,6 +131,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                     if let location = self.mapView.locationDisplay.location,
                         let lat = location.position?.y ,
                         let lon = location.position?.x {
+                        
                         self.mapView.map = AGSMap(basemapType: self.mapType, latitude: lat, longitude: lon, levelOfDetail: 0)
                     } else {
                         self.mapView.map = AGSMap(basemapType: self.mapType, latitude: 40.615518, longitude: -74.026005, levelOfDetail: 0)
@@ -131,6 +140,12 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             }
         }
         mapView.touchDelegate = self
+        let count = mapView.graphicsOverlays.count
+//        print("Graphic Overlay count: \(count)")
+//        if count == 0 {
+//        }else {
+//            mapView.graphicsOverlays.removeAllObjects()
+//        }
         mapView.graphicsOverlays.add(graphicsOverlay)
     }
     
