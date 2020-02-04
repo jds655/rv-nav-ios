@@ -167,7 +167,7 @@
                         <outlet property="selectedVehicle" destination="ykj-43-OZI" id="s5I-ZV-iF0"/>
                         <outlet property="startLocation" destination="0Ix-JC-Wcr" id="Z16-DI-hNm"/>
                         <segue destination="XwP-qY-5Ir" kind="show" identifier="AddVehicleSegue" id="rnt-W9-qKw"/>
-                        <segue destination="UER-Rk-XC9" kind="presentation" identifier="SelectALocation" id="bfw-5X-O31"/>
+                        <segue destination="UER-Rk-XC9" kind="presentation" identifier="SelectALocation" modalPresentationStyle="fullScreen" id="bfw-5X-O31"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

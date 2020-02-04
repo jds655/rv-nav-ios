@@ -54,6 +54,7 @@ class RouteResultsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .darkBlue
+        tableView.separatorStyle = .none
         view.backgroundColor = .darkBlue
     }
     

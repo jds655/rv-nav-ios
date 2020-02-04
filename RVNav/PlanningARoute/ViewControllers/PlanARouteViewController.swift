@@ -12,11 +12,6 @@ import ArcGIS
 class PlanARouteViewController: UIViewController {
     
     // MARK: - Properties
-    var route: Route?{
-        didSet{
-            
-        }
-    }
     var vehicleController: VehicleModelControllerProtocol?
     var mapAPIController: MapAPIControllerProtocol?
     var sender: SelectALocationDelegate?
@@ -25,7 +20,6 @@ class PlanARouteViewController: UIViewController {
     @IBOutlet weak var selectedVehicle: CustomDropDownTextField!
     @IBOutlet weak var startLocation: SelectLocationTextField!
     @IBOutlet weak var endLocation: SelectLocationTextField!
-    
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -92,11 +86,9 @@ extension PlanARouteViewController: CustomDropDownTextFieldDelegate {
 // MARK: - Extensions
 extension PlanARouteViewController: VehicleModelDataDelegate {
     func didStartFetchingData() {
-        
     }
     
     func didEndFetchingData(error: VehicleModelControllerError?) {
-        
     }
     
     func dataDidChange() {

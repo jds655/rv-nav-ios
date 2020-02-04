@@ -9,7 +9,7 @@
 import UIKit
 
 extension AddVehicleViewController {
-    
+    // This extension checks to make sure the user fills out the form completely 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case vehicleNameTextField:

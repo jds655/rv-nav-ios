@@ -29,6 +29,7 @@
 		32798A7023DA5706002D1AA5 /* CustomDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */; };
 		3291787923E353600043FCF3 /* AGSPortal+AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291787823E3535F0043FCF3 /* AGSPortal+AppID.swift */; };
 		3299CBD423DA075F0033EBA9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299CBD323DA075F0033EBA9 /* MapViewController.swift */; };
+		32D65D9E23E9D50C0039A811 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32D65D9D23E9D50B0039A811 /* Info.plist */; };
 		32F788B023AAA0B400C234FC /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */; };
 		446F3903230DA7FC00D57DE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F3902230DA7FC00D57DE3 /* User.swift */; };
 		447831E623146AC5007D50E7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447831E523146AC5007D50E7 /* Vehicle.swift */; };
@@ -43,7 +44,6 @@
 		D1BCDD7F230DB69B00986A18 /* WebRESTAPINetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */; };
 		FB202E1123AAAA1800A1083C /* ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */; };
 		FB202E1323AD6B2500A1083C /* String+IsValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */; };
-		FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */; };
 		FB27EFFC23CD148600C7EA9A /* MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB27EFFB23CD148600C7EA9A /* MapView.storyboard */; };
 		FB58EF1423E08E6000A1AA8B /* RouteResults.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB58EF1323E08E6000A1AA8B /* RouteResults.storyboard */; };
 		FB58EF1623E0D70A00A1AA8B /* RouteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB58EF1523E0D70A00A1AA8B /* RouteResultsViewController.swift */; };
@@ -120,7 +120,6 @@
 		3231CA3E23CD28EC008CDBA5 /* AddVehicle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddVehicle.storyboard; sourceTree = "<group>"; };
 		3231CA4023CD2BAD008CDBA5 /* AddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddVehicleViewController.swift; path = RVNav/AddVehicle/Storyboards/AddVehicleViewController.swift; sourceTree = SOURCE_ROOT; };
 		3231CA4423CD5B1F008CDBA5 /* RVTypePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RVTypePickerViewController.swift; path = RVNav/AddVehicle/Storyboards/RVTypePickerViewController.swift; sourceTree = SOURCE_ROOT; };
-		323F3F6623DB9EAC009F9A9B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		323F3FE023E06394009F9A9B /* NotificationNames+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationNames+Extension.swift"; sourceTree = "<group>"; };
 		3243786F23CF84AC00539257 /* FirebaseNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetworkController.swift; sourceTree = "<group>"; };
 		3243787723D12A5F00539257 /* AddVehicleViewController+TextFieldFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddVehicleViewController+TextFieldFlow.swift"; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		32798A6F23DA5706002D1AA5 /* CustomDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownCell.swift; sourceTree = "<group>"; };
 		3291787823E3535F0043FCF3 /* AGSPortal+AppID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGSPortal+AppID.swift"; sourceTree = "<group>"; };
 		3299CBD323DA075F0033EBA9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		32D65D9D23E9D50B0039A811 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32F788AF23AAA0B400C234FC /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		446F3902230DA7FC00D57DE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		447831E523146AC5007D50E7 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 		D1BCDD7E230DB69B00986A18 /* WebRESTAPINetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRESTAPINetworkController.swift; sourceTree = "<group>"; };
 		FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftableViewController.swift; sourceTree = "<group>"; };
 		FB202E1223AD6B2400A1083C /* String+IsValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidEmail.swift"; sourceTree = "<group>"; };
-		FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingBackground.swift; sourceTree = "<group>"; };
 		FB27EFFB23CD148600C7EA9A /* MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapView.storyboard; sourceTree = "<group>"; };
 		FB58EF1323E08E6000A1AA8B /* RouteResults.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteResults.storyboard; sourceTree = "<group>"; };
 		FB58EF1523E0D70A00A1AA8B /* RouteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteResultsViewController.swift; sourceTree = "<group>"; };
@@ -381,8 +380,8 @@
 				D11ABC2B2318DF6A0046F7D3 /* Assets.xcassets */,
 				321DE99623A84A5600521AAB /* Font Files */,
 				447831EA23146D65007D50E7 /* GoogleService-Info.plist */,
-				323F3F6623DB9EAC009F9A9B /* Info.plist */,
 				D18DAE78230B3C3F00D7C151 /* LaunchScreen.storyboard */,
+				32D65D9D23E9D50B0039A811 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -546,7 +545,6 @@
 				FBD1AFE123C39C5F00377F7C /* SKSignupBackground.swift */,
 				FB202E1023AAAA1800A1083C /* ShiftableViewController.swift */,
 				FBD1AFE623C3E2F900377F7C /* PasswordTextField.swift */,
-				FB27EFF523CCC76A00C7EA9A /* onboardingBackground.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -722,6 +720,7 @@
 				FB27EFFC23CD148600C7EA9A /* MapView.storyboard in Resources */,
 				FBAC9BDB23DC0F8E0023BC3B /* SelectLocationTextField.xib in Resources */,
 				FBAA2B7923A8383F00D6E4B7 /* OnboardingLogin.storyboard in Resources */,
+				32D65D9E23E9D50C0039A811 /* Info.plist in Resources */,
 				321DE98723A83D5300521AAB /* Heebo-Light.ttf in Resources */,
 				324603AB23D7B12F00A32E48 /* PlanARoute.storyboard in Resources */,
 				D11ABC2C2318DF6A0046F7D3 /* Assets.xcassets in Resources */,
@@ -838,7 +837,6 @@
 				FB954F5D23D60CA900E638BE /* ARSLineProgressTypeAliases.swift in Sources */,
 				FB67984923D13CD2009E0D87 /* AvoidanceControllerProtocol.swift in Sources */,
 				FBAC9BD723DBCCB20023BC3B /* SelectALocationDelegate.swift in Sources */,
-				FB27EFF623CCC76A00C7EA9A /* onboardingBackground.swift in Sources */,
 				FBBABF8523A976DB0067B28F /* OnboardingViewController.swift in Sources */,
 				FB6588FF23DA321100DBF1D3 /* PlanARouteViewController.swift in Sources */,
 				D185F9562322FABE00E4C64A /* Avoid.swift in Sources */,

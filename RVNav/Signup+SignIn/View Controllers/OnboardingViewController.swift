@@ -124,12 +124,20 @@ class OnboardingViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
+    
+    /*
+    IMPORTANT: After registering with google, profile information is then passed into OUR backend to register on line 361.
+     */
 
     @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signIn()
     }
+    
+    /*
+     If needing to test registration/logIn with Facebook, be sure to read through provided document "NotesFromLabs19iOSTeam"
+     */
     
     @IBAction func signUpWithFacebookTapped(_ sender: UIButton) {
         LoginManager().logIn(permissions: ["email", "public_profile"], from: self) { (result, error) in
@@ -175,7 +183,6 @@ class OnboardingViewController: ShiftableViewController {
                     }
                 }
                 
-                
                 DispatchQueue.main.async {
                     let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                     self.userController.signIn(with: facebookSignInInfo) { (_, error) in
@@ -196,6 +203,10 @@ class OnboardingViewController: ShiftableViewController {
 
 // MARK: - Extensions
 extension OnboardingViewController {
+    /*
+     - Most of this code is used to ensure that the form is filled out properly
+     - I.E. valid emails, no blank entries etc.
+     */
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         switch textField {
@@ -333,6 +344,14 @@ extension OnboardingViewController {
 }
 
 extension OnboardingViewController: GIDSignInDelegate {
+    /*
+        Sign In requirement for Signing up with Google
+        Link: https://developers.google.com/identity/sign-in/ios
+        ENSURE you are logged into Google with RV NAV and not your personal account if navigating to https://developers.google.com
+     
+        IMPORTANT: After registering with google, profile information is then passed into OUR backend to register on line 361.
+     */
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             NSLog("Error logging in user with google :\(error)")
@@ -384,7 +403,4 @@ extension OnboardingViewController: LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
     }
-    
-    
 }
-

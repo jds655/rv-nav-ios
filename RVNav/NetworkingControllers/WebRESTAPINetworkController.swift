@@ -21,6 +21,7 @@ enum WebAPIError: Error {
     case dataTaskData(Any)
     case responseNoToken(Any)
     case responseNoUserID(Any)
+    case responseOther(String)
 }
 
 @objc
@@ -143,7 +144,8 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        guard let token = KeychainWrapper.standard.string(forKey: "accessToken") else { return }
+        request.setValue(token, forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
         
         do {
@@ -157,7 +159,7 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(nil,NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(nil, WebAPIError.responseOther("Resonse: \(response.statusCode)"))
                 return
             }
             if let error = error {
