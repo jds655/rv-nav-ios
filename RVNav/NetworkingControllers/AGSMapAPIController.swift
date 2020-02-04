@@ -127,8 +127,6 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
     public func testRoute() {
         let startCoord = CLLocationCoordinate2D(latitude: 34.740070, longitude: -92.295000)
         let endCoord = CLLocationCoordinate2D(latitude: 34.741428, longitude: -92.294998)
-        let start = AGSPoint(clLocationCoordinate2D: startCoord)
-        let end = AGSPoint(clLocationCoordinate2D: endCoord)
         
         let vehicle = Vehicle(id: 2, name: "Big Jim", height: 13, weight: 5555.0, width: 10.0, length: 38.0, axelCount: 3, vehicleClass: "Class A", dualTires: true, trailer: nil)
         let routeInfo = RouteInfo(height: vehicle.height!, startName: "Test Start", startLon: startCoord.longitude, startLat: startCoord.latitude, endName: "Test End", endLon: endCoord.longitude, endLat: endCoord.latitude)
@@ -136,7 +134,8 @@ class AGSMapAPIController: NSObject, MapAPIControllerProtocol, AGSGeoViewTouchDe
         ARSLineProgress.show()
         fetchRoute(from: routeInfo) { (route, error) in
             if let error = error {
-                #warning("give user an error here.")
+                ARSLineProgress.showFail()
+                print("ASGMapAPIController - Error gettign route: \(error)")
                 return
             }
             if let route = route {

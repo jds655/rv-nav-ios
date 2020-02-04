@@ -11,7 +11,6 @@ import UIKit
 class AddVehicleViewController: ShiftableViewController {
     
     // MARK: - IBOutlets
-
     @IBOutlet weak var addEditVehicleBarLabel: UILabel!
     @IBOutlet weak var addEditVehicleLabel: UILabel!
     @IBOutlet weak var exitButton: UIButton!
@@ -46,7 +45,6 @@ class AddVehicleViewController: ShiftableViewController {
     }
     
     // MARK: - Private Methods
-    
     private func updateViews() {
         if let vehicle = vehicle,
             let vehicleName = vehicle.name,
@@ -194,7 +192,7 @@ class AddVehicleViewController: ShiftableViewController {
             let axelCountString = axelCountTextField.text,
             let vehicleAxelCount = Int(axelCountString),
             let vehicleTypeString = rvTypeTextField.text else {
-                #warning("Add better error handling here")
+                showAlert(on: self, title: "Warning", message: "Please fill out all fields before submitting")
                 return
             }
         
@@ -229,7 +227,6 @@ class AddVehicleViewController: ShiftableViewController {
                 } else {
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
-                        //self.dismiss(animated: true, completion: nil)
                     }
                 }
             })
