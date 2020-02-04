@@ -20,7 +20,8 @@ class RouteResultsViewController: UIViewController {
             guard let routeInfo = routeInfo else { return }
             mapAPIController?.fetchRoute(from: routeInfo) { (route, error) in
                 if let error = error {
-                    #warning("give user an error here.")
+                    ARSLineProgress.showFail()
+                    showAlert(on: self, title: "Error", message: "Unable to find route. \(error)")
                     return
                 }
                 if let route = route {

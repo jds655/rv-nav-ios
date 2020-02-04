@@ -115,6 +115,7 @@ extension VehicleListTableViewController: VehicleModelDataDelegate {
     func didEndFetchingData(error: VehicleModelControllerError?) {
         if let error = error {
             ARSLineProgress.showFail()
+            showAlert(on: self, title: "Error", message: "Error fetching vehicles list: \(error)")
         } else {
             ARSLineProgress.hide()
         }
