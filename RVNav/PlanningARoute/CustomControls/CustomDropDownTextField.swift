@@ -67,16 +67,14 @@ class CustomDropDownTextField: UIControl {
         label.font = _font
         label.textColor = .black
         label.isUserInteractionEnabled = false
-        //label.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        //label.delegate = self
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        // TextField Constraints
-        let textFieldLeadingAnchor  = label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
-        let textFieldTopAnchor      = label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
-        let textFieldTrailingAnchor = label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
-        let textFieldBottomAnchor   = label.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        NSLayoutConstraint.activate([textFieldLeadingAnchor, textFieldTopAnchor, textFieldTrailingAnchor, textFieldBottomAnchor])
+        // Label Constraints
+        let labelLeadingAnchor  = label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 45)
+        let labelTopAnchor      = label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0)
+        let labelTrailingAnchor = label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -50)
+        let labelBottomAnchor   = label.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        NSLayoutConstraint.activate([labelLeadingAnchor, labelTopAnchor, labelTrailingAnchor, labelBottomAnchor])
     }
     
     private func setAssessoryImageView() {
@@ -156,6 +154,7 @@ class CustomDropDownTextField: UIControl {
     }
     
     private func setupVehicleDropDownCellConfiguration() {
+        // This documentation can be found in DropDown Cocoapod
         dropDownVehicles.dataSource = [""]
         dropDownVehicles.cellNib = UINib(nibName: "CustomDropDownCell", bundle: nil)
         dropDownVehicles.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
@@ -189,6 +188,7 @@ extension CustomDropDownTextField: CustomDropDownCellDelegate {
 }
 
 extension UIView {
+    // Rotating animation for menu item arrow
     func rotateUp() {
         func rotateUpward() { transform = CGAffineTransform(rotationAngle: CGFloat.pi) }
         UIView.animate(withDuration: 0.3, animations: rotateUpward)

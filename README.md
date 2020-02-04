@@ -5,9 +5,16 @@
 
 |                                       [Ryan Murphy](https://tryanmurphy.com/)                                        |                                       [Jonathan Ferrer](https://www.jonathanferrer.dev)                                        |                                                                      
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
-|                      [<img src="https://media.licdn.com/dms/image/C4D03AQGlHnkj67kkIQ/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=l06yZViaeRx_F7TedurhJxqEBIz1bnmnd07t32JQbdw" width = "200" />](https://github.com/)                       |                      [<img src="https://media.licdn.com/dms/image/C5603AQFasjNpUIVxQA/profile-displayphoto-shrink_200_200/0?e=1572480000&v=beta&t=CWkr7Rz-506_6zvpcYV7_ciavR2nDw8Njf2kjnCwuNA" width = "200" />](https://github.com/)                       |                         |
+|                      [<img src="DevImages/RyanMurphy.png" width = "200" />](https://github.com/)                       |                      [<img src="DevImages/JonathanFerrer.png" width = "200" />](https://github.com/)                       |                         |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MurphDirt879)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JayFenam)             |                 |       |                |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/thomasryanmurphy/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ferrer-jonathan/) |
+
+
+|                                       [Joshua Sharp](https://emptybliss.info)                                        |                                       [Jacob Connerly](https://github.com/jlconnerly/Jake-Connerly-Portfolio)                                        |                                                                      
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
+|                      [<img src="DevImages/JoshuaSharp.jpg" width = "200" />](https://github.com/)                       |                      [<img src="DevImages/JakeConnerly.jpg" width = "200" />](https://github.com/)                       |                         |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jds655)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jlconnerly)             |                 |       |                |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/emptybliss/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jacob-connerly/) |
 
 
 
@@ -21,19 +28,17 @@
 
 You can find a webversion of the deployed project at [RVNav](www.RVNav.com).
 
-[Trello Board](https://trello.com/b/uPEi1KSU/labs-15-rv-life)
+[Trello Board](https://trello.com/b/BLl1FDC5/labs-19-rv-nav)
 
-[Product Canvas](https://www.notion.so/5aa76f6aca86492baaad94c9557ca2f3?v=a47d5b273e12448a816af139b3aa7ef0)
+[Product Canvas](https://www.notion.so/RV-Road-Life-e8e617ec8a144c19b9fd635b330b7f49)
 
-[UX Design files](https://www.figma.com/file/KGiH4omkur2KgDrckWclF9/🚍-RV-Life?node-id=0%3A1)
+[UX Design files](https://www.figma.com/file/AxTeN3chUATzOCcAOCCF9D/RV-Way-Labs-19?node-id=0%3A1)
 
 
 
 Traveling safely for RVers is difficult. RV Nav will get you to where you need to go safely and with no hassle.
 
 Using several available data sources integrated into a map thats designed for RV travel, we supply you with the route you need. Trust RVNav to safely get you there.
-
-![](header.png)
 
 ### Features
 
@@ -57,9 +62,17 @@ Using several available data sources integrated into a map thats designed for RV
 
 [SideMenu]( https://github.com/jonkykong/SideMenu) Simple side/slide menu control for iOS, no code necessary! Lots of customization.
 
-### Mapbox Geocoder
+### Google Sign In
 
-[Mapbox Geocoder](https://github.com/mapbox/MapboxGeocoder.swift) is an iOS SDK that allows for the search for an addresses that is then turned into coordinates.
+[Google Sign In](https://developers.google.com/identity/sign-in/ios/start-integrating) allows our users to sign in with Google.
+
+### Facebook Sign In
+
+[Facebook Sign In](https://developers.facebook.com/docs/facebook-login/ios) allows our users to sign in with Facebook.
+
+### Drop Down
+
+[DropDown](https://developers.facebook.com/docs/facebook-login/ios) when our users are selecting a vehicle, this gives our users a nice drop down menu.
 
 
 ## Requirements

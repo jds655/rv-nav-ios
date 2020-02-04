@@ -20,7 +20,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 LambdaDSAvoidanceProvider())))
     private let graphicsOverlay = AGSGraphicsOverlay()
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
-    #warning("Save and restore from userdefauls?")
+    
     private var mapType: AGSBasemapType = .navigationVector {
         didSet{
             guard let location = mapView.locationDisplay.location,

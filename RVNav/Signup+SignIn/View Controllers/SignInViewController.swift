@@ -31,6 +31,7 @@ class SignInViewController: ShiftableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // forces app to use light mode to match design from Labs15
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
@@ -67,6 +68,7 @@ class SignInViewController: ShiftableViewController {
         facebookSignInButton.layer.borderWidth = 0.2
     }
     
+    // Checks if fields are fillout correctly, then activates "Sign In Button"
     private func signInButtonButtonUISetup() {
         signInButton.layer.borderWidth = 0.4
         signInButton.layer.cornerRadius = 4
@@ -92,6 +94,13 @@ class SignInViewController: ShiftableViewController {
         view.endEditing(true)
     }
     
+    /*
+        Getting user information via "GraphRequest" from Facebook
+        Documentation can be found here
+        https://developers.facebook.com/docs/swift/send_graph_requests/
+        NOTE: Must be logged into FacebookDevelopers to access link
+        Login info provided in Notes from Labs19
+    */
     private func loginWithFacebook() {
         GraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
             if let error = error {

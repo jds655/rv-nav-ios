@@ -23,31 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AGSAuthenticationManagerD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AGSAuthenticationManager.shared().delegate = self
-        //setupOAuthManager()
         DropDown.startListeningToKeyboard()
         globalConfiguration.timeoutInterval = 300.0
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = "199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4.apps.googleusercontent.com"
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-
-
         return true
     }
     
-//    @available(iOS 9.0, *)
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-//
-//        let appID = Settings.appID
-//        if url == URL(string: "com.googleusercontent.apps.199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4") {
-//            return GIDSignIn.sharedInstance().handle(url)
-//        } else if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") {
-//            return ApplicationDelegate.shared.application(app, open: url, options: options)
-//        }
-//        return false
-//    }
-    
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let appID = Settings.appID
+        // He we check if user is attemping to signIn/SignUp with Google
+        // or Facebook and generating the appropriate url call
         if url == URL(string: "com.googleusercontent.apps.199974151301-jblt1pc708u1domcc6vpvpa8av0gi8t4") {
             return GIDSignIn.sharedInstance().handle(url)
         } else if url.scheme != nil && url.scheme!.hasPrefix("fb\(appID!)") {
@@ -64,13 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AGSAuthenticationManagerD
         }
         return true
     }
-
-//    private func setupOAuthManager() {
-//        let config = AGSOAuthConfiguration(portalURL: nil, clientID: AppConfiguration.clientID, redirectURL: "\(AppConfiguration.urlScheme)://\(AppConfiguration.urlAuthPath)")
-//        AGSAuthenticationManager.shared().oAuthConfigurations.add(config)
-//        AGSAuthenticationManager.shared().credentialCache.enableAutoSyncToKeychain(withIdentifier: AppConfiguration.keychainIdentifier, accessGroup: nil, acrossDevices: false)
-//    }
     
+        //  The following code allows us to use arcGIS without a popup
+        //  that requires our users to have an arcGIS account
     var arcgisPortal = AGSPortal.arcGISOnline(withLoginRequired: false)
     
     func authenticationManager(_ authenticationManager: AGSAuthenticationManager, didReceive challenge: AGSAuthenticationChallenge) {
@@ -83,11 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AGSAuthenticationManagerD
         // prompt will be displayed (unless some OAuth configuration has been set up,
         // in which case Runtime will enter the OAuth workflow).
         
-        // Here we will try to get a valid credential using the ClientID/ClientSecret.
-        // Note, I have kept this on AGSPortal because the token REST endpoint is associated
-        // with the portal so it makes logical sense. Otherwise we would need to pass in the
-        // URL to the portal anyway. Portal is a very lighweight object so this isn't too
-        // onerous. If needed, we can revisit this.
         arcgisPortal.getAppIDToken(clientId: "taIMz5a6FZ8j6ZCs", clientSecret: "42694cda208b4c95b7c07673ca877f92") { (credential, error) in
             if let error = error {
                 print("Error getting credential using AppID! \(error)")
@@ -115,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AGSAuthenticationManagerD
         }
     }
 
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -137,7 +114,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AGSAuthenticationManagerD
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

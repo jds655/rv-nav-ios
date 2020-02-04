@@ -84,6 +84,7 @@ extension VehicleListTableViewController: UITableViewDelegate, UITableViewDataSo
             
             return vehicleCell
         } else {
+            // Gives us the Add new vehicle option
             guard let addVehicleCell = tableView.dequeueReusableCell(withIdentifier: "AddVehicleCell") else { return UITableViewCell() }
             addVehicleCell.textLabel?.text = "+ Add New Vehicle"
             return addVehicleCell
