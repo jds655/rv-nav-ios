@@ -28,7 +28,8 @@ enum WebAPIError: Error {
 class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // MARK: - Properties
-    let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
+    let baseURL = URL(string:"https://labs15rvlife.herokuapp.com/")!
+    //Staging URL - let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
     
     // MARK: - Public Methods
