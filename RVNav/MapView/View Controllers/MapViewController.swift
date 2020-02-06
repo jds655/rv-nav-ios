@@ -19,11 +19,19 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             AvoidanceController(avoidanceProvider:
                 LambdaDSAvoidanceProvider())))
     private let graphicsOverlay = AGSGraphicsOverlay()
+    private var routeLineColor: UIColor = .blue {
+        didSet {
+            DispatchQueue.main.async {
+                self.drawRouteLine()
+            }
+        }
+    }
     private let routeTask = AGSRouteTask(url: URL(string: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World")!)
     
     private var mapType: AGSBasemapType = .navigationVector {
         didSet{
             var map: AGSMap
+            routeLineColor = .blue
             switch self.mapType {
             case .navigationVector:
                 map = AGSMap(basemap: AGSBasemap.navigationVector())
@@ -32,6 +40,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             case .terrainWithLabelsVector:
                 map = AGSMap(basemap: AGSBasemap.terrainWithLabelsVector())
             case .streetsNightVector:
+                routeLineColor = .red
                 map = AGSMap(basemap: AGSBasemap.streetsNightVector())
             default:
                 return
@@ -127,12 +136,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
         DispatchQueue.main.async {
             if let routeGeometry = route.routeGeometry {
                 //Draw the route in an overlay and add it, clearing any previous
-                let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 4)
-                let routeGraphic = AGSGraphic(geometry: routeGeometry, symbol: routeSymbol, attributes: nil)
-                let count = self.graphicsOverlay.graphics.count
-                print("Graphic Overlay count: \(count)")
-                self.graphicsOverlay.graphics.removeAllObjects()
-                self.graphicsOverlay.graphics.add(routeGraphic)
+                self.drawRouteLine()
                 
                 //Mark start and stop points
                 guard let start = route.stops.first?.geometry,
@@ -180,6 +184,18 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
             mapView.graphicsOverlays.removeAllObjects()
         }
         mapView.graphicsOverlays.add(graphicsOverlay)
+    }
+    
+    //Draw/Redraw the route line
+    private func drawRouteLine() {
+        guard let route = directionsController.mapAPIController.selectedRoute,
+        let routeGeometry = route.routeGeometry else { return }
+        if graphicsOverlay.graphics.count > 0 {
+            graphicsOverlay.graphics.removeObject(at: 0)
+        }
+        let routeSymbol = AGSSimpleLineSymbol(style: .solid, color: self.routeLineColor, width: 4)
+        let routeGraphic = AGSGraphic(geometry: routeGeometry, symbol: routeSymbol, attributes: nil)
+        self.graphicsOverlay.graphics.insert(routeGraphic, at: 0)
     }
     
     // adds a mapmarker at a given location.
