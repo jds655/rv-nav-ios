@@ -95,6 +95,7 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     @IBAction func logOutButtonTapped(_ sender: Any) {
         modelController.userController.logout {
             DispatchQueue.main.async {
+                self.graphicsOverlay.graphics.removeAllObjects()
                 self.performSegue(withIdentifier: "SignInSegue", sender: self)
             }
         }
