@@ -31,6 +31,8 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
                 map = AGSMap(basemap: AGSBasemap.imageryWithLabelsVector())
             case .terrainWithLabelsVector:
                 map = AGSMap(basemap: AGSBasemap.terrainWithLabelsVector())
+            case .streetsNightVector:
+                map = AGSMap(basemap: AGSBasemap.streetsNightVector())
             default:
                 return
             }
@@ -199,6 +201,10 @@ class MapViewController: UIViewController, AGSGeoViewTouchDelegate {
     
     @objc func map_ter () {
         self.mapType = .terrainWithLabelsVector
+    }
+    
+    @objc func map_night () {
+        self.mapType = .streetsNightVector
     }
     
     @objc private func logout() {
