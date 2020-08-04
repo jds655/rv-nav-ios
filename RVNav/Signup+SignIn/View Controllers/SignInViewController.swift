@@ -31,6 +31,7 @@ class SignInViewController: ShiftableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // forces app to use light mode to match design from Labs17
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
@@ -67,6 +68,7 @@ class SignInViewController: ShiftableViewController {
         facebookSignInButton.layer.borderWidth = 0.2
     }
     
+    // Checks if fields are fillout correctly, then activates "Sign In Button"
     private func signInButtonButtonUISetup() {
         signInButton.layer.borderWidth = 0.4
         signInButton.layer.cornerRadius = 4
@@ -88,10 +90,17 @@ class SignInViewController: ShiftableViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
     
+    /*
+        Getting user information via "GraphRequest" from Facebook
+        Documentation can be found here
+        https://developers.facebook.com/docs/swift/send_graph_requests/
+        NOTE: Must be logged into FacebookDevelopers to access link
+        Login info provided in Notes from Labs19
+    */
     private func loginWithFacebook() {
         GraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
             if let error = error {
@@ -136,17 +145,19 @@ class SignInViewController: ShiftableViewController {
             !password.isEmpty else { return }
         
         let signInInfo = SignInInfo(email: email, password: password)
+        ARSLineProgress.show()
         userController?.signIn(with: signInInfo) { (_, error) in
             if let error = error {
+                ARSLineProgress.showFail()
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(alertAction)
-                    
                     self.present(alert, animated: true)
                 }
             }
+            ARSLineProgress.showSuccess()
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -216,11 +227,11 @@ extension SignInViewController: GIDSignInDelegate {
         
         emailTextField.text = googleEmail
         passwordTextField.text = googlePassword
-        
         let signInInfo = SignInInfo(email: googleEmail, password: googlePassword)
-        
+        ARSLineProgress.show()
         userController?.signIn(with: signInInfo) { (_, error) in
             if let error = error {
+                ARSLineProgress.showFail()
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
@@ -231,6 +242,7 @@ extension SignInViewController: GIDSignInDelegate {
                 }
                 return
             }
+            ARSLineProgress.showSuccess()
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }

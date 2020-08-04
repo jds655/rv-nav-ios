@@ -14,6 +14,7 @@ struct MenuItem {
     var order: Int
     var segueID: String = ""
     var selector: String = ""
+    var inMenu: Bool = false
 }
 
 struct MenuItemSection {

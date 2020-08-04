@@ -124,12 +124,20 @@ class OnboardingViewController: ShiftableViewController {
     }
     
     // MARK: - IBActions
+    
+    /*
+    IMPORTANT: After registering with google, profile information is then passed into OUR backend to register on line 361.
+     */
 
     @IBAction func signupWithGoogleTapped(_ sender: UIButton) {
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signIn()
     }
+    
+    /*
+     If needing to test registration/logIn with Facebook, be sure to read through provided document "NotesFromLabs19iOSTeam"
+     */
     
     @IBAction func signUpWithFacebookTapped(_ sender: UIButton) {
         LoginManager().logIn(permissions: ["email", "public_profile"], from: self) { (result, error) in
@@ -160,9 +168,11 @@ class OnboardingViewController: ShiftableViewController {
                 lastName = names.joined(separator: " ")
             }
             
-            let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, username: fullNameFromFacebook)
+            let facebookUser = User(firstName: firstName, lastName: lastName, password: idFromFacebook, email: emailFromFacebook, id: nil, username: fullNameFromFacebook)
+            ARSLineProgress.show()
             self.userController.register(with: facebookUser) { (error) in
                 if let error = error {
+                    ARSLineProgress.showFail()
                     NSLog("Error signing up with Facebook: \(error)")
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
@@ -173,7 +183,6 @@ class OnboardingViewController: ShiftableViewController {
                     }
                 }
                 
-                
                 DispatchQueue.main.async {
                     let facebookSignInInfo = SignInInfo(email: emailFromFacebook, password: idFromFacebook)
                     self.userController.signIn(with: facebookSignInInfo) { (_, error) in
@@ -181,6 +190,7 @@ class OnboardingViewController: ShiftableViewController {
                             NSLog("Error when signing in with google after registration:\(error)")
                             return
                         }
+                        ARSLineProgress.showSuccess()
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                         }
@@ -193,6 +203,10 @@ class OnboardingViewController: ShiftableViewController {
 
 // MARK: - Extensions
 extension OnboardingViewController {
+    /*
+     - Most of this code is used to ensure that the form is filled out properly
+     - I.E. valid emails, no blank entries etc.
+     */
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         switch textField {
@@ -330,6 +344,14 @@ extension OnboardingViewController {
 }
 
 extension OnboardingViewController: GIDSignInDelegate {
+    /*
+        Sign In requirement for Signing up with Google
+        Link: https://developers.google.com/identity/sign-in/ios
+        ENSURE you are logged into Google with RV NAV and not your personal account if navigating to https://developers.google.com
+     
+        IMPORTANT: After registering with google, profile information is then passed into OUR backend to register on line 361.
+     */
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             NSLog("Error logging in user with google :\(error)")
@@ -342,10 +364,11 @@ extension OnboardingViewController: GIDSignInDelegate {
             let googleEmail = googleUser.profile.email,
             let googlePassword = googleUser.userID else { return }
         
-        let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, username: googleEmail)
-        
+        let userToRegister = User(firstName: firstName, lastName: lastName, password: googlePassword, email: googleEmail, id: nil, username: googleEmail)
+        ARSLineProgress.show()
         userController.register(with: userToRegister) { (error) in
             if let error = error {
+                ARSLineProgress.showFail()
                 NSLog("Error signing up: \(error)")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Username or Password incorrect", message: "Please try again.", preferredStyle: .alert)
@@ -357,11 +380,14 @@ extension OnboardingViewController: GIDSignInDelegate {
             }
             DispatchQueue.main.async {
                 let googleSignInInfo = SignInInfo(email: googleEmail, password: googlePassword)
+                ARSLineProgress.show()
                 self.userController.signIn(with: googleSignInInfo) { (_, error) in
                     if let error = error {
+                        ARSLineProgress.showFail()
                         NSLog("Error when signing in with google after registration:\(error)")
                         return
                     }
+                    ARSLineProgress.showSuccess()
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "unwindToMapView", sender: self)
                     }
@@ -377,7 +403,4 @@ extension OnboardingViewController: LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
     }
-    
-    
 }
-

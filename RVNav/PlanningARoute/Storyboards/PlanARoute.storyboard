@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dBe-uT-XvF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Heebo-Bold.ttf">
+            <string>Heebo-Bold</string>
+        </array>
+        <array key="Heebo-Regular.ttf">
+            <string>Heebo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--PlanA Route View Controller-->
+        <scene sceneID="2aA-mN-28y">
+            <objects>
+                <viewController id="dBe-uT-XvF" customClass="PlanARouteViewController" customModule="RVNav" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mxx-3q-ZlZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fe5-Tz-daM" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MS7-mz-0he">
+                                        <rect key="frame" x="20" y="40" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="5oq-Ua-de4"/>
+                                            <constraint firstAttribute="height" constant="40" id="Law-uE-qIl"/>
+                                        </constraints>
+                                        <state key="normal" image="hamburger"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RV WAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWb-XT-TG9">
+                                        <rect key="frame" x="143" y="43" width="129" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="Rzh-Q8-1gf"/>
+                                            <constraint firstAttribute="width" constant="129" id="mDE-J8-sGb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Heebo-Bold" family="Heebo" pointSize="36"/>
+                                        <color key="textColor" red="0.20784313730000001" green="0.76470588240000004" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWl-MN-UlT">
+                                        <rect key="frame" x="370" y="53" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="ae5-vu-Znd"/>
+                                            <constraint firstAttribute="width" constant="24" id="cbC-M5-dFX"/>
+                                        </constraints>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <segue destination="4lp-7Q-JQt" kind="unwind" unwindAction="unwindToMapViewWithSegue:" id="B4n-Tp-Wnu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="AfH-yZ-ZX3"/>
+                                    <constraint firstAttribute="bottom" secondItem="FWb-XT-TG9" secondAttribute="bottom" constant="23" id="CJP-k3-88g"/>
+                                    <constraint firstItem="IWl-MN-UlT" firstAttribute="bottom" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="-23" id="Mgd-4N-uK6"/>
+                                    <constraint firstItem="FWb-XT-TG9" firstAttribute="leading" secondItem="MS7-mz-0he" secondAttribute="trailing" constant="83" id="O6q-9x-Wb9"/>
+                                    <constraint firstItem="MS7-mz-0he" firstAttribute="leading" secondItem="Fe5-Tz-daM" secondAttribute="leading" constant="20" id="Ohm-MG-Rot"/>
+                                    <constraint firstAttribute="bottom" secondItem="MS7-mz-0he" secondAttribute="bottom" constant="20" id="UFc-tC-vIc"/>
+                                    <constraint firstAttribute="trailing" secondItem="IWl-MN-UlT" secondAttribute="trailing" constant="20" id="xkG-cf-eii"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="b19-Es-RTg">
+                                <rect key="frame" x="20" y="140" width="374" height="361.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a vehicle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pYM-ee-D7Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                        <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykj-43-OZI" userLabel="SelectStartLocationView" customClass="CustomDropDownTextField" customModule="RVNav" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="43.5" width="374" height="45"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="0ZY-J1-Fl7"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="safeArea" id="jon-sM-IoG"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openSelectLocation:" destination="dBe-uT-XvF" eventType="touchUpInside" id="YnZ-rn-FwU"/>
+                                        </connections>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a starting point..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xru-Jr-9Us">
+                                        <rect key="frame" x="0.0" y="108.5" width="374" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                        <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ix-JC-Wcr" userLabel="SelectStartLocationView" customClass="SelectLocationTextField" customModule="RVNav" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="152" width="374" height="45"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="lK6-hB-uUr"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="greyLocation"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openSelectLocation:" destination="dBe-uT-XvF" eventType="touchUpInside" id="5iO-n8-aDK"/>
+                                        </connections>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you going?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rd2-uK-5Be">
+                                        <rect key="frame" x="0.0" y="217" width="374" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                        <color key="textColor" red="0.93000000000000005" green="0.93300000000000005" blue="0.94599999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxt-vT-xwn" userLabel="SelectEndLocationView" customClass="SelectLocationTextField" customModule="RVNav" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="260.5" width="374" height="45"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="bnZ-P9-76t"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="graySearch"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openSelectLocation:" destination="dBe-uT-XvF" eventType="touchUpInside" id="I19-PF-nRe"/>
+                                        </connections>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Flc-Px-yHb">
+                                        <rect key="frame" x="0.0" y="325.5" width="374" height="36"/>
+                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="16"/>
+                                        <state key="normal" title="Get Direction">
+                                            <color key="titleColor" red="0.0" green="0.69803921570000005" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getDirectionsTapped:" destination="dBe-uT-XvF" eventType="touchUpInside" id="jJt-XG-ipT"/>
+                                            <segue destination="asC-bF-2Yi" kind="show" identifier="RouteResults" id="p69-ve-Y7L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.19962024689999999" green="0.2008501291" blue="0.3054743707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="b19-Es-RTg" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" constant="20" id="30c-AB-s3V"/>
+                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="trailing" secondItem="Ua1-0m-Q33" secondAttribute="trailing" id="QEo-36-quO"/>
+                            <constraint firstItem="b19-Es-RTg" firstAttribute="top" secondItem="Fe5-Tz-daM" secondAttribute="bottom" constant="40" id="b5i-0l-D7b"/>
+                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="top" secondItem="mxx-3q-ZlZ" secondAttribute="top" id="cog-v8-OmM"/>
+                            <constraint firstItem="Fe5-Tz-daM" firstAttribute="leading" secondItem="Ua1-0m-Q33" secondAttribute="leading" id="e7S-hY-1QB"/>
+                            <constraint firstItem="Ua1-0m-Q33" firstAttribute="trailing" secondItem="b19-Es-RTg" secondAttribute="trailing" constant="20" id="pmD-XX-cyQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ua1-0m-Q33"/>
+                    </view>
+                    <connections>
+                        <outlet property="endLocation" destination="sxt-vT-xwn" id="O0r-OD-DYW"/>
+                        <outlet property="selectedVehicle" destination="ykj-43-OZI" id="s5I-ZV-iF0"/>
+                        <outlet property="startLocation" destination="0Ix-JC-Wcr" id="Z16-DI-hNm"/>
+                        <segue destination="XwP-qY-5Ir" kind="show" identifier="AddVehicleSegue" id="rnt-W9-qKw"/>
+                        <segue destination="UER-Rk-XC9" kind="presentation" identifier="SelectALocation" modalPresentationStyle="fullScreen" id="bfw-5X-O31"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UfM-2m-Vwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4lp-7Q-JQt" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="8Av-Zh-yf0"/>
+            </objects>
+            <point key="canvasLocation" x="-257.97101449275362" y="227.67857142857142"/>
+        </scene>
+        <!--AddVehicle-->
+        <scene sceneID="3Xt-ec-PMs">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="AddVehicle" storyboardName="AddVehicle" id="XwP-qY-5Ir" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SL8-JR-HH7"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Mf-ZN-ejp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="134"/>
+        </scene>
+        <!--SelectALocation-->
+        <scene sceneID="D8i-6B-N3x">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SelectALocation" storyboardName="SelectALocation" id="UER-Rk-XC9" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Bf1-xu-V6R"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1b-KF-UFO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="228"/>
+        </scene>
+        <!--RouteResults-->
+        <scene sceneID="eyU-oi-MM8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RouteResults" id="asC-bF-2Yi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lde-18-NHq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTC-Tu-Ooe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="295"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="24" height="24"/>
+        <image name="graySearch" width="20" height="20"/>
+        <image name="greyLocation" width="24" height="24"/>
+        <image name="hamburger" width="39" height="39"/>
+    </resources>
+</document>

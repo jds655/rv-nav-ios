@@ -21,13 +21,15 @@ enum WebAPIError: Error {
     case dataTaskData(Any)
     case responseNoToken(Any)
     case responseNoUserID(Any)
+    case responseOther(String)
 }
 
 @objc
 class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
     
     // MARK: - Properties
-    let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
+    let baseURL = URL(string:"https://labs15rvlife.herokuapp.com/")!
+    //Staging URL - let baseURL = URL(string: "https://labs-rv-life-staging-1.herokuapp.com/")!
     let avoidURL = URL(string: "https://dr7ajalnlvq7c.cloudfront.net/fetch_low_clearance")!
     
     // MARK: - Public Methods
@@ -143,7 +145,8 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
         let url = baseURL.appendingPathComponent("vehicle")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(KeychainWrapper.standard.string(forKey: "accessToken"), forHTTPHeaderField: "Authorization")
+        guard let token = KeychainWrapper.standard.string(forKey: "accessToken") else { return }
+        request.setValue(token, forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
         
         do {
@@ -154,16 +157,22 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
             completion(nil,error)
             return
         }
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(nil,NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(nil, WebAPIError.responseOther("Resonse: \(response.statusCode)"))
                 return
             }
             if let error = error {
                 completion(nil,error)
                 return
             }
+            
+            if let data = data {
+                print("Create Vehicle: \(String(data: data, encoding: .utf8)!)")
+                
+            }
+            
             #warning("Get vehicleID from response and save it")
             completion(vehicle,nil)
         }.resume()
@@ -244,5 +253,21 @@ class WebRESTAPINetworkController : NSObject, NetworkControllerProtocol {
                 completion([], error)
             }
         }.resume()
+    }
+    
+    func addRoute(_ route: Route) {
+        
+    }
+    
+    func deleteRoute(_ route: Route) {
+        
+    }
+    
+    func updateRoute(_ route: Route, _ newRoute: Route) {
+        
+    }
+    
+    func getRoutes() -> [Route] {
+        return []
     }
 }

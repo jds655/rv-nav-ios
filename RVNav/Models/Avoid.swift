@@ -10,16 +10,8 @@ import Foundation
 
 struct Avoid: Codable {
 
-    let uid: Int
+    let uid: Int?
     let latitude: Double
     let longitude: Double
-    let name: String
-}
-
-struct RouteInfo: Codable {
-    let height: Float
-    let startLon: Double
-    let startLat: Double
-    let endLon: Double
-    let endLat: Double
+    let name: String?
 }

@@ -14,6 +14,25 @@ enum VehicleClassDataBaseRepresentation: String, Codable {
     case classC = "ClassC"
     case fifthWheel = "5thWheel"
     case tagalong = "tagalong"
+    
+    func displayString () -> String {
+        var vehicleType: String = "<Not found!>"
+        switch self.rawValue {
+        case VehicleClassDataBaseRepresentation.classA.rawValue:
+            vehicleType = VehicleClassDisplayString.classA.rawValue
+        case VehicleClassDataBaseRepresentation.classB.rawValue:
+            vehicleType = VehicleClassDisplayString.classB.rawValue
+        case VehicleClassDataBaseRepresentation.classC.rawValue:
+            vehicleType = VehicleClassDisplayString.classC.rawValue
+        case VehicleClassDataBaseRepresentation.fifthWheel.rawValue:
+            vehicleType = VehicleClassDisplayString.fifthWheel.rawValue
+        case VehicleClassDataBaseRepresentation.tagalong.rawValue:
+            vehicleType = VehicleClassDisplayString.tagalong.rawValue
+        default:
+            break
+        }
+        return vehicleType
+    }
 }
 
 enum VehicleClassDisplayString: String, CaseIterable {

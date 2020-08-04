@@ -49,6 +49,7 @@ class Onboarding2ViewController: ShiftableViewController {
                         lastName: formData.lastname,
                         password: formData.password,
                         email: formData.email,
+                        id: nil,
                         username: formData.username)
         ARSLineProgress.show()
         userController?.register(with: user) { (error) in
@@ -65,10 +66,11 @@ class Onboarding2ViewController: ShiftableViewController {
                         let password = formData.password,
                         !email.isEmpty,
                         !password.isEmpty else { return }
-                    
+                    ARSLineProgress.show()
                     let signInInfo = SignInInfo(email: email, password: password)
                     self.userController.signIn(with: signInInfo) { (_, error) in
                         if let error = error {
+                            ARSLineProgress.showFail()
                             NSLog("Error signing in: \(error)")
                         } else {
                             DispatchQueue.main.async {
